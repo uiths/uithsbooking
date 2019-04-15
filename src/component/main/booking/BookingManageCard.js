@@ -1,9 +1,10 @@
 import React, { Component } from 'react';
 import { Link } from "react-router-dom";
 
-export function RentalManageCard(props) {
-    const rental = props.rental;
-
+export function BookingManageCard(props) {
+    const rental = props.rental.rental;
+    const booking = props.rental;
+    console.log(props)
     return (
         <React.Fragment>
             <div className="col-sm-3">
@@ -33,17 +34,20 @@ export function RentalManageCard(props) {
                             <h4 className="modal-title">Modal Header</h4>
                         </div>
                         <div className="modal-body">
-                            <p>Some text in the modal.</p>
+                            <p>{booking.guests}</p>
+                            <p>{booking.startAt}</p>
+                            <p>{booking.endAt}</p>
+                            <p>{booking.days}</p>
+                            <p>{booking.totalPrice}</p>
                         </div>
                         <div className="modal-footer">
                             <button type="button" className="btn btn-default" data-dismiss="modal">Close
                     </button>
                         </div>
                     </div>
-
                 </div>
             </div>
         </React.Fragment>
     )
 }
-export default RentalManageCard;
+export default BookingManageCard;

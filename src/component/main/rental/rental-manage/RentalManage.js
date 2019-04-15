@@ -1,7 +1,7 @@
 import React, { Component, Fragment} from 'react';
 import { BrowserRouter as Router, Link, withRouter } from "react-router-dom";
 import * as actions from 'actions';
-import RentalCard from '../../index/rentalCard'
+import RentalManageCard from './RentalManageCard'
 class RentalManage extends Component {
     constructor() {
         super();
@@ -25,7 +25,7 @@ class RentalManage extends Component {
     renderRentalManageCard() {
         this.state.userRentals.map((i, index) => {
             return (
-                <RentalCard key={index} rental={i} />
+                <RentalManageCard key={index} rental={i} />
             )
         })
     }
@@ -48,7 +48,7 @@ class RentalManage extends Component {
                                     this.state.userRentals.length > 0 &&
                                     this.state.userRentals.map((i, index) => {
                                         return (<Fragment key={index}>
-                                            <RentalCard rental={i} key={index} />
+                                            <RentalManageCard rental={i} key={index} />
                                         </Fragment>)
                                     })
                                 }

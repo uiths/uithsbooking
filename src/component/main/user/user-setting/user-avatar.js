@@ -69,8 +69,8 @@ class UserAvatar extends Component {
                             <div >
                                 <div {...getRootProps()} className="centered cont" style={{ margin: "auto", width: "150px", marginTop: "20px" }}>
                                     <input {...getInputProps()} />
-                                    {this.state.imgSrc.length > 0 ? <img style={{ "min-height": "150px", "min-width": "150px" }} className="image" src={this.state.imgSrc} />
-                                        : <img src={this.props.img} style={{ "min-height": "150px", "min-width": "150px" }} className="image" />}
+                                    {this.state.imgSrc.length > 0 ? <img style={{ minHeight: "150px", minWidth: "150px", width:"150px",height:"150px" }} className="image" src={this.state.imgSrc} />
+                                        : <img src={this.props.img} style={{ minHeight: "150px", minWidth: "150px", width:"150px", height:"150px" }} className="image" />}
                                 
                                 </div>
                             </div>

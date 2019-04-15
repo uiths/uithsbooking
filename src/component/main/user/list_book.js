@@ -1,6 +1,6 @@
 import React, { Component, Fragment } from 'react';
 import { BrowserRouter as Router, Link, withRouter } from "react-router-dom";
-import RentalCard from '../index/rentalCard'
+import BookingManageCard from '../booking/BookingManageCard'
 import { connect } from 'react-redux'
 import * as actions from 'actions';
 class List_book extends Component {
@@ -10,7 +10,7 @@ class List_book extends Component {
     renderRental = () => {
         if (this.props.userBookings.length > 0) {
             this.props.userBookings.map((i, index) => {
-                return <RentalCard rental={i.rental} key={index} />
+                return <BookingManageCard rental={i.rental} key={index} />
             })
         }
     }
@@ -18,7 +18,6 @@ class List_book extends Component {
         alert(i.startAt)
     }
     render() {
-        { console.log(this.props.userBookings) }
         return (
             <div>
                 <div className="container">
@@ -30,7 +29,7 @@ class List_book extends Component {
                                     this.props.userBookings.length > 0 &&
                                     this.props.userBookings.map((i, index) => {
                                         return (<Fragment key={index}>
-                                            <RentalCard rental={i.rental} key={index} />
+                                            <BookingManageCard rental={i} key={index} />
                                             <button onClick={this.bookingDetail} className="form-control"/>
                                         </Fragment>)
                                     })

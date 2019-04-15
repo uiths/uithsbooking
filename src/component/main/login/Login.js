@@ -41,7 +41,7 @@ class Login extends Component {
                                 </div>
                             }
                             <br />
-                            <LoginForm submitCb={this.loginUser} errors={errors} isLoad={this.state.isLoading} />
+                            <LoginForm submitCb={this.loginUser} errors={errors}/>
                         </div>
                     </div>
                 </div>

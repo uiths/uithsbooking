@@ -10,9 +10,7 @@ export const BwmTextArea = ({
 }) => (
   <div className='form-group'>
     <label>{label}</label>
-    <div className='input-group'>
-      <textarea {...input} type={type} rows={rows} className={className}></textarea>
-    </div>
+      <textarea {...input} type={type} style={{ resize: "none" }} rows={rows} className={className}></textarea>
       {touched &&
         ((error && <div className='alert alert-danger'>{error}</div>))}
   </div>

@@ -9,6 +9,7 @@ export const BwmSelect = ({
 }) => {
 
   function renderOptions() {
+    console.log(options)
     return options.map((option, index) => {
       return <option key={index} value={option}> {option} </option>
     });
@@ -17,11 +18,9 @@ export const BwmSelect = ({
   return (
     <div className='form-group'>
       <label>{label}</label>
-      <div className='input-group'>
         <select {...input} className={className} >
           {renderOptions()}
         </select>
-      </div>
         {touched &&
           ((error && <div className='alert alert-danger'>{error}</div>))}
     </div>

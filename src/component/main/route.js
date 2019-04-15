@@ -20,7 +20,6 @@ import MyListBook from "./user/list_book";
 import Search from "./search/search"
 // import CreateRent from "./user/create_rent"
 import CreateRent from './rental/rental-create/RentalCreate'
-import SubCreateRent from "./user/sub/sub_create_rent"
 import {ProtectedRoute} from './shared/auth/ProtectedRoute'
 import {LoggedInRoute} from './shared/auth/LoggedInRoute'
 
@@ -41,7 +40,6 @@ class Routerr extends Component {
                 <Route path="/search" component={Search} />
 
                 <ProtectedRoute path="/create_rent" component={CreateRent} />
-                <ProtectedRoute path="/sub_create_rent" component={SubCreateRent} />
 
                 <LoggedInRoute path="/forgot_pass" component={ForgotPassword} />
                 {/* <LoggedInRoute path="/new_pass_f" component={change_pass} /> */}

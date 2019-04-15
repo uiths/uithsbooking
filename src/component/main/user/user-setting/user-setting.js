@@ -2,50 +2,24 @@ import React, { Component } from 'react';
 import { Tabs, Tab, TabPanel, TabList } from 'react-web-tabs';
 import 'react-web-tabs/dist/react-web-tabs.css';
 import authService from '../../../../services/auth-service';
-import UserContent from './user-content';
 import UserAvatar from './user-avatar';
 import * as actions from 'actions'
 import { connect } from 'react-redux'
 import { Link } from 'react-router-dom'
-
+import UserContentForm from './user-content-form'
 class userSetting extends Component {
     constructor(props) {
         super(props);
-        // this.onImageDrop = this.onImageDrop.bind(this);
-        // this.upload = this.upload.bind(this);
-        // this.state = {
-        //     imageFiles: [],
-        //     imgSrc: '',
-        //     isChange: false
-        // }
+        this.options = ['Nam', 'Nữ']
+        this.updateInfo = this.updateInfo.bind(this)
     }
-
+    updateInfo(){
+        
+    }
     componentWillMount() {
         const userId = authService.getId();
         this.props.dispatch(actions.fetchUserById(userId));
-    }
-
-    // onImageDrop(selectedFile) {
-    //     console.log(selectedFile)
-    //     this.setState({
-    //         imageFiles: selectedFile[0],
-    //         isChange : true
-    //     })
-    //     console.log(this.state.imageFiles)
-    //     const myFilereader = new FileReader();
-    //     myFilereader.addEventListener("load", () => {
-    //         this.setState({
-    //             imgSrc: myFilereader.result
-    //         })
-    //     }, false)
-    //     myFilereader.readAsDataURL(this.state.imageFiles);
-    //     console.log(this.state)
-    // }
-    // upload() {
-    //     const file = this.state.imageFiles;
-    //     console.log(file);
-    //     actions.uploadAvatar(file);
-    // }
+    } 
     render() {
         const user = this.props.users.data
         return (
@@ -60,10 +34,11 @@ class userSetting extends Component {
                                 <Tab tabFor="basic-tab-four" className="tabc"><i className="fa fa-lock" style={{ fontSize: "20px" }} /><h4 style={{ display: "inline-block", marginLeft: "10px" }}>Đổi mật khẩu</h4></Tab>
                             </TabList>
                             <TabPanel tabId="basic-tab-one">
-                                <UserContent user={user}/>
+                                <UserContentForm user={this.props.users.data} submitCb={this.updateInfo} options={this.options} />
+
                             </TabPanel>
                             <TabPanel tabId="basic-tab-two">
-                                <UserAvatar img={user.image}/>
+                                <UserAvatar img={user.image} />
                             </TabPanel>
                             {/* <TabPanel tabId="basic-tab-three">
                                 <div className="usercontent">
