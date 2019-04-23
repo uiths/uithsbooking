@@ -3,6 +3,7 @@ import { BrowserRouter as Router, Link, withRouter } from "react-router-dom";
 import * as actions from 'actions'
 import RentalCard from '../index/rentalCard'
 import { connect } from 'react-redux'
+import Loading from 'component/main/user/loading'
 class List extends Component {
     constructor(props) {
         super(props);
@@ -14,7 +15,6 @@ class List extends Component {
 
     renderRentals() {
         return this.props.rentals.map((rental, index) => {
-            console.log(rental)
             return (
                 <RentalCard key={index} rental={rental} />
             )
@@ -22,6 +22,7 @@ class List extends Component {
     }
     render() {
         {console.log(this.props.rentals)}
+        if(this.props.rentals && this.props.rentals.length > 0){
         return (
             <div>
                 <div className="container">
@@ -36,6 +37,8 @@ class List extends Component {
                 </div>
             </div>
         );
+    }
+    else return <Loading/>
     }
 }
 const mapStateToProps = (state, ownProps) => {

@@ -5,6 +5,7 @@ import Slider from "react-slick";
 import { connect } from "react-redux";
 
 import * as actions from '../../../actions';
+import Loading from '../user/loading';
 
 class RentalList extends Component {
 
@@ -38,6 +39,8 @@ class RentalList extends Component {
             slidesToShow: 5,
             slidesToScroll: 1
         };
+        console.log(this.props)
+        if(this.props.rentals && this.props.rentals.length > 0){
         return (
             <div id="sub_home" className="container">
                 <h2 style={{color: "black"}} className="text-center">THUÊ NHÀ</h2>
@@ -55,10 +58,13 @@ class RentalList extends Component {
             </div>
         );
     }
+    else return <Loading/>
+    }
 }
 const mapStateToProps = (state, ownProps) => {
     return {
-        rentals: state.rentals.data
+        rentals: state.rentals.data,
+        fetch : state.rental
     }
 }
 export default connect(mapStateToProps)(RentalList);

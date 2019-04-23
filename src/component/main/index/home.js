@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import RentalList from '../index/rentalList'
 import { Link } from "react-router-dom";
+import Loading from 'component/main/user/loading'
 
 class Home extends Component {
     render() {

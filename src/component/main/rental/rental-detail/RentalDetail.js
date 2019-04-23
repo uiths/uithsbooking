@@ -6,6 +6,7 @@ import { RentalInfo } from './RentalDetailInfo'
 import * as actions from 'actions';
 import RentalDateForm from './RentalDateForm'
 import { startSubmit, stopSubmit } from 'redux-form'
+import Loading from "component/main/user/loading"
 class RentalDetail extends Component {
 
   componentWillMount() {
@@ -54,9 +55,10 @@ class RentalDetail extends Component {
 
   }
   render() {
-    {console.log(this.props.booking)}
+    {console.log(this.props.rental)}
     const errors = this.props.booking.errors
     const isSuccess = this.props.booking.isSuccess
+    if(this.props.rental._id){
     return (
       <div id="rent">
         <div className="container">
@@ -147,7 +149,8 @@ class RentalDetail extends Component {
           </div>
         </div>
       </div>
-    );
+    );}
+    else return <Loading/>
   }
 }
 

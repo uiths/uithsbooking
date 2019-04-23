@@ -10,7 +10,7 @@ import User1 from "../main/user/user-setting/user-setting"
 import Contactmain from "./contact/contact_main";
 import Paymentmain from "./payment/payment_main";
 
-
+import Loading from "component/main/user/loading"
 import RentalDetail from "./rental/rental-detail/RentalDetail";
 import BookingHome from "./booking/list";
 
@@ -38,7 +38,7 @@ class Routerr extends Component {
                 <ProtectedRoute path="/user1" component={User1} />
 
                 <Route path="/search" component={Search} />
-
+                <Route path="/loading" component={Loading} />                
                 <ProtectedRoute path="/create_rent" component={CreateRent} />
 
                 <LoggedInRoute path="/forgot_pass" component={ForgotPassword} />

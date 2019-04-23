@@ -1,12 +1,10 @@
 import React, {Component} from 'react';
-
+import './style.scss'
 class Loading extends Component {
     render() {
         return (
             <div>
-                <div>
-                    <span className="fa fa-cog fa-spin" style={{fontSize:"25px",color:"gray",paddingTop:"150px",paddingBottom:"150px",paddingLeft:"20px",paddingRight:"20px"}}/>
-                </div>
+                    <i className="loading-icon fa fa-cog fa-spin" />
             </div>
         );
     }
