@@ -10,7 +10,7 @@ class List_book extends Component {
     renderRental = () => {
         if (this.props.userBookings.length > 0) {
             this.props.userBookings.map((i, index) => {
-                return <BookingManageCard rental={i.rental} key={index} />
+                return <BookingManageCard rental={i.rental} key={index} delete={this.delete} />
             })
         }
     }
@@ -30,7 +30,6 @@ class List_book extends Component {
                                     this.props.userBookings.map((i, index) => {
                                         return (<Fragment key={index}>
                                             <BookingManageCard rental={i} key={index} />
-                                            <button onClick={this.bookingDetail} className="form-control"/>
                                         </Fragment>)
                                     })
                                 }

@@ -3,16 +3,17 @@ import Slider from "react-slick";
 
 function renderImage(image) {
     if (Array.isArray(image))
-        return (image.map(i => {
+        return (image.map((i,index) => {
             return (
-                <div>
-                    <img className="resize" src={i} />
-                </div>)
+            <div key={index} >
+                <img className="resize"  src={i} />
+            </div>
+            )
         }))
+        
 }
 
 export function VariableWidth(props) {
-
     const settings = {
         className: "slider variable-width",
         arrows: false,
