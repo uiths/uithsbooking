@@ -2,6 +2,8 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import RentalImages from './RentalImages';
 import { RentalAssets } from './RentalAssets';
+import DatePicker from "react-datepicker";
+import "react-datepicker/dist/react-datepicker.css";
 import { RentalInfo } from './RentalDetailInfo'
 import * as actions from 'actions';
 import Carousel from 'nuka-carousel';
@@ -22,10 +24,13 @@ class RentalDetail extends Component {
   }
   constructor(props) {
     super(props);
+
     this.state = {
       startAt:null,
       endAt:null,
-      guests: null
+      guests: null,
+      startDate: new Date(),
+      endDate: new Date()
     }
     this.book = this.book.bind(this);
     this.handleChange = this.handleChange.bind(this);
@@ -46,20 +51,28 @@ class RentalDetail extends Component {
       [e.target.name]: e.target.value
     })
   }
+  handleChange(date) {
+    this.setState({
+      startDate: date
+    });
+  }
+
+  handleChange(date) {
+    this.setState({
+      endDate: date
+    });
+  }
 
   render() {
     {console.log(this.state)};
     return (
       <div>
+        <RentalImages image={this.props.rental.image} />
         <div className="container">
-          <RentalImages image={this.props.rental.image} />
-          <br />
-          <br />
-          <br />
           <div>
             <div className="col-sm-8">
               <div>
-                <div className="infobox">
+                <div className="infobox slide-in-left">
                   <div>
                     <h3>{this.props.rental.title}</h3>
                     <h6 style={{ color: "gray" }}>{this.props.rental.address}</h6>
@@ -69,7 +82,6 @@ class RentalDetail extends Component {
                     <li className="active"><a data-toggle="tab" href="#description">Mô tả</a></li>
                     <li><a data-toggle="tab" href="#info">Thông tin</a></li>
                     <li><a data-toggle="tab" href="#goods">Tiện nghi</a></li>
-                    <li><a data-toggle="tab" href="#price">Giá</a></li>
                   </ul>
                   <div className="tab-content">
                     <div id="description" className="tab-pane fade in active">
@@ -86,11 +98,6 @@ class RentalDetail extends Component {
                       <i className="fa fa-bath"> {this.props.rental.bathrooms} phòng tắm</i> <br />
                       <br />
                     </div>
-                    <div id="price" className="tab-pane fade">
-                      <br />
-                      <h4>{(this.props.rental.price)} đ / ngày</h4>
-
-                    </div>
                   </div>
                 </div>
               </div>
@@ -101,16 +108,39 @@ class RentalDetail extends Component {
           </div>
           <div className="col-sm-4">
             <div className="divide">
-              <div className="infobox">
+              <div className="infobox slide-in-right">
                 <div>
-                  <h3 style={{ marginTop: "30px", paddingLeft: "35%" }}>Đặt chỗ</h3>
+                  <h3 style={{marginTop:"30px"}}>Giá: {(this.props.rental.price)} đ / ngày</h3>
                 </div>
                 <hr />
                 <label>Ngày đến</label>
                 <input onChange={this.handleChange} type="date" className="form-control" id="start" name="startAt" />
+                <br/>
+                <p>work in progress</p>
+                <DatePicker
+                    dateFormat="dd/MM/yyyy"
+                    className="form-control"
+                    selectsStart
+                    selected={this.state.startDate}
+                    minDate={new Date()}
+                    onChange={this.handleChange}
+                    id="start"
+                    name="startAt"
+                />
                 <br />
                 <label>Ngày đi</label>
                 <input onChange={this.handleChange} type="date" className="form-control" id="end" name="endAt" />
+                <br/>
+                <DatePicker
+                    dateFormat="dd/MM/yyyy"
+                    className="form-control"
+                    selectsEnd
+                    selected={this.state.endDate}
+                    minDate={new Date()}
+                    onChange={this.handleChange}
+                    id="end"
+                    name="endAt"
+                />
                 <br />
                 <label>Số người ở</label>
                 <select name="guests" onChange={this.handleChange} className="form-control">
@@ -123,7 +153,7 @@ class RentalDetail extends Component {
                 </select>
                 <hr />
                 <br />
-                <button onClick={this.book} type="submit" className="btn btn-primary center_button" /*data-toggle="modal" data-target="#payment"*/>Thuê</button>
+                <button onClick={this.book} type="submit" className="b b1 center_button" /*data-toggle="modal" data-target="#payment"*/>Thuê</button>
                 <br />
                 <br />
                 {/* <div className="modal fade" id="payment" role="dialog">
