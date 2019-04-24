@@ -1549,30 +1549,48 @@ LEVEL 4. SETTINGS
 #sub_home {
   padding-top: 20px;
   padding-bottom: 40px; }
+  #sub_home .sub_home_slider .slick-prev:before {
+    color: black;
+    margin-right: -25px;
+    font-size: 40px;
+    line-height: 0; }
+  #sub_home .sub_home_slider .slick-next:before {
+    color: black;
+    margin-left: -25px;
+    font-size: 40px;
+    line-height: 0; }
   #sub_home .sub_home_slider_container {
     position: relative;
-    text-align: center;
-    color: #ffffff;
+    text-align: left;
     font-family: 'Open Sans', sans-serif;
-    border: 2px solid #EFECEC;
-    border-radius: 8px;
     padding: 1em;
     line-height: 1.5em; }
-    #sub_home .sub_home_slider_container p:last-child {
-      position: absolute;
-      top: 85%;
-      left: 50%;
-      transform: translate(-50%, -50%);
-      font-size: 14px;
-      background: rgba(35, 35, 35, 0.6);
-      width: 85%; }
-      #sub_home .sub_home_slider_container p:last-child br {
-        margin-bottom: 5px; }
+    #sub_home .sub_home_slider_container .sub_home_link {
+      text-decoration: none;
+      color: #222222; }
+    #sub_home .sub_home_slider_container .sub_home_text_p {
+      font-size: 13px;
+      margin-top: 0;
+      margin-bottom: 5px;
+      line-height: 22px; }
+    #sub_home .sub_home_slider_container .sub_home_text_h3 {
+      margin-top: 0;
+      font-weight: 700;
+      font-size: 15px;
+      margin-bottom: 8px;
+      line-height: 20px; }
+    #sub_home .sub_home_slider_container .sub_home_text_price {
+      font-size: 17px; }
+    #sub_home .sub_home_slider_container .sub_home_star {
+      color: orange;
+      margin-top: 5px;
+      font-size: 15px;
+      letter-spacing: 2px; }
     #sub_home .sub_home_slider_container img {
-      height: 248px;
-      width: 223.5px;
-      opacity: 0.9;
-      border-radius: 8px; }
+      height: 190px;
+      opacity: 1;
+      border-radius: 5px;
+      margin-bottom: 10px; }
   #sub_home .sub_home_slider_container_list_rent .sub_home_image_link {
     display: block;
     transition: 0.5s ease;
@@ -1581,7 +1599,7 @@ LEVEL 4. SETTINGS
     transition: 0.5s ease;
     opacity: 0;
     position: absolute;
-    top: 50%;
+    top: 40%;
     left: 50%;
     transform: translate(-50%, -50%);
     -ms-transform: translate(-50%, -50%);
@@ -1632,6 +1650,36 @@ LEVEL 4. SETTINGS
     opacity: 0.3; }
   #sub_home .sub_home_slider_container_list_rent:hover .middle {
     opacity: 1; }
+
+#sub_home02 .sub_home02_container {
+  position: relative; }
+#sub_home02 .sub_home02_link {
+  text-decoration: none;
+  color: white;
+  transition: all ease .2s; }
+  #sub_home02 .sub_home02_link img {
+    border-radius: 5px;
+    overflow: hidden;
+    transition: all .3s ease-out 0s; }
+  #sub_home02 .sub_home02_link p {
+    padding-left: 20px;
+    position: absolute;
+    top: 18%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    font-size: 14px;
+    background: rgba(35, 35, 35, 0.6);
+    width: 92%;
+    color: white; }
+    #sub_home02 .sub_home02_link p b {
+      font-size: 25px; }
+    #sub_home02 .sub_home02_link p br {
+      margin-bottom: 5px; }
+#sub_home02 .sub_home02_link:hover {
+  line-height: 1;
+  overflow: hidden; }
+  #sub_home02 .sub_home02_link:hover img {
+    transform: scale(1.02); }
 
 #contact {
   background: #3399ff;

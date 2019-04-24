@@ -3,7 +3,6 @@
   border: $value $style $color;
   border-radius: $radius;
   height: $height;
-
 }
 
 @mixin border($position,$value,$style,$color)
