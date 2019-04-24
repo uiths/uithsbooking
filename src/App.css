@@ -1563,7 +1563,8 @@ LEVEL 4. SETTINGS
     position: relative;
     text-align: left;
     font-family: 'Open Sans', sans-serif;
-    padding: 1em;
+    max-height: 350px;
+    padding: 2em;
     line-height: 1.5em; }
     #sub_home .sub_home_slider_container .sub_home_link {
       text-decoration: none;

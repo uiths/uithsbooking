@@ -16,7 +16,7 @@ class RentalList extends Component {
     renderRentals() {
         return this.props.rentals.map((rental, index) => {
             return (
-                <div  key={index} className="sub_home_slider_container ">
+                <div  key={index} className="sub_home_slider_container col-sm-3">
                     {/* <div className="sub_home_slider_container"> */}
                     <Link className="sub_home_link"  to={`/detail/${rental._id}`}>
                         <img className="sub_home_fix_img" src={rental.image[0]} alt="Snow" width="100%" />
