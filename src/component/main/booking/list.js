@@ -10,6 +10,7 @@ class List extends Component {
         this.renderRentals = this.renderRentals.bind(this);
     }
     componentWillMount() {
+        this.props.dispatch(actions.resetBookState());
         this.props.dispatch(actions.fetchRentals());
     }
 

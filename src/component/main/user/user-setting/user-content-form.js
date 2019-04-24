@@ -9,7 +9,7 @@ import { updateUserValidate } from 'component/main/shared/form/validators';
 
 const userContentForm = props => {
     console.log(props.user.bookings.length)
-    const {username, email, address, phone, fullname, gender, description, initialValues} = props.user
+    const { username, email, address, phone, fullname, gender, description, initialValues } = props.user
     const { handleSubmit, pristine, submitting, submitCb, valid, errors, options, user } = props
     return (
         <form onSubmit={handleSubmit(submitCb)}>
@@ -65,7 +65,7 @@ const userContentForm = props => {
                             id='phone'
                             defaultValue={phone}
                             component={Input}
-                            // validate={[required, minLength4]}
+                        // validate={[required, minLength4]}
                         />
 
                     </div>
@@ -128,7 +128,14 @@ const userContentForm = props => {
                     <div className="col-lg-4">
                     </div>
                     <div className="col-lg-4">
-                        <button type="submit" className="b b1 center_button" disabled={!valid||submitting}>Lưu thay đổi</button>
+                        <button type="submit" className="b b1 center_button" disabled={!valid || submitting}>
+                            {submitting ?
+                                <span>
+                                    <i className="fa fa-spin fa-spinner" /> Đang lưu...</span>
+                                :
+                                <span>Lưu</span>
+                            }
+                        </button>
                     </div>
                     <div className="col-lg-4">
                     </div>
@@ -146,5 +153,5 @@ export default reduxForm({
     form: 'userContentForm',
     enableReinitialize: true
     // validate: updateUserValidate
-    
+
 })(userContentForm)

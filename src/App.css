@@ -1090,9 +1090,9 @@ LEVEL 4. SETTINGS
   .checkb {
     padding-left: 22%; } }
 .center_button {
-  width: 30%;
-  margin-left: 35%;
-  margin-right: 35%; }
+  width: 50%;
+  margin-left: 25%;
+  margin-right: 25%; }
 
 @media screen and (max-width: 1000px) {
   .dbox {
@@ -1719,5 +1719,28 @@ LEVEL 4. SETTINGS
 
 .react-datepicker-wrapper, .react-datepicker__input-container {
   display: block !important; }
-
+  .boxtrue
+  {
+      background-color: #CBFFD1;
+      border-style: solid;
+      border-color: #15A123;
+      border-width: 1px;
+      border-radius: 3px;
+      padding: 10px;
+      text-align: center;
+      color: #0E7C19;
+  }
+  
+  .boxfalse
+  {
+      background-color: #FFC3C3;
+      border-style: solid;
+      border-color: #E12828;
+      border-width: 1px;
+      border-radius: 3px;
+      padding: 10px;
+      text-align: center;
+      color: #A11515;
+  }
+  
 /*# sourceMappingURL=App.css.map */

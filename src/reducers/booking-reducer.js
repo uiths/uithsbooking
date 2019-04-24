@@ -7,6 +7,7 @@ import {
   DELETE_BOOKING_SUCCESS,
   DELETE_BOOKING_FAILURE
 } from 'actions/types';
+import { RESET_BOOKING_STATE } from '../actions/types';
 
 const INITIAL_STATE = {
   data: [],
@@ -31,6 +32,8 @@ export const userBookingsReducer = (state = INITIAL_STATE, action) => {
       return {...state, isSuccess: true, data: action.data}
     case DELETE_BOOKING_FAILURE:
     return {...state, errors: action.errors}
+    case RESET_BOOKING_STATE: 
+    return {...state, isSuccess: false, errors:[]}
     default:
       return state;
   }

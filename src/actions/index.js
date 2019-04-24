@@ -221,7 +221,11 @@ export const deleteBooking = (bookingId) => {
 const resetBooking =()=> {
   return {type: RESET_BOOKING_STATE}
 }
-
+export const resetBookState = () => {
+  return dispatch => {
+    dispatch(resetBooking())
+  }
+}
 
 
 // USER RENTALS ACTIONS ---------------------------
