@@ -7,6 +7,7 @@ import * as actions from 'actions';
 import RentalDateForm from './RentalDateForm'
 import { startSubmit, stopSubmit } from 'redux-form'
 import Loading from "component/main/user/loading"
+import {formatNumber} from 'helpers/index'
 class RentalDetail extends Component {
 
   componentWillMount() {
@@ -55,78 +56,75 @@ class RentalDetail extends Component {
 
   }
   render() {
-    {console.log(this.props.rental)}
+    { console.log(this.props) }
     const errors = this.props.booking.errors
     const isSuccess = this.props.booking.isSuccess
-    if(this.props.rental._id){
-    return (
-      <div id="rent">
-        <div className="container">
-          <RentalImages image={this.props.rental.image} />
-          <br />
-          <br />
-          <br />
-          <div>
-            <div className="col-sm-8">
-              <div>
-                <div className="infobox">
-                  <div>
-                    <h3>{this.props.rental.title}</h3>
-                    <h6 style={{ color: "gray" }}>{this.props.rental.address}</h6>
-                  </div>
-
-                  <ul className="nav nav-tabs">
-                    <li className="active"><a data-toggle="tab" href="#description">Mô tả</a></li>
-                    <li><a data-toggle="tab" href="#info">Thông tin</a></li>
-                    <li><a data-toggle="tab" href="#goods">Tiện nghi</a></li>
-                    <li><a data-toggle="tab" href="#price">Giá</a></li>
-                  </ul>
-                  <div className="tab-content">
-                    <div id="description" className="tab-pane fade in active">
-                      <br />
-                      <p>{this.props.rental.description}</p>
+    if (this.props.rental._id) {
+      return (
+        <div id="rent">
+          <div className="container">
+            <RentalImages image={this.props.rental.image} />
+            <br />
+            <div>
+              <div className="col-sm-8">
+                <div>
+                  <div className="infobox">
+                    <div>
+                      <h3>{this.props.rental.title}</h3>
+                      <h6 style={{ color: "gray" }}>{this.props.rental.address}</h6>
                     </div>
-                    <RentalAssets rental={this.props.rental} />
-                    <div id="info" className="tab-pane fade">
-                      <br />
-                      <i className="fa fa-bed"> {this.props.rental.bedrooms} giường</i> <br />
-                      <br />
-                      <i className="fa fa-male"> Tối đa {this.props.rental.people} người ở</i> <br />
-                      <br />
-                      <i className="fa fa-bath"> {this.props.rental.bathrooms} phòng tắm</i> <br />
-                      <br />
-                    </div>
-                    <div id="price" className="tab-pane fade">
-                      <br />
-                      <h4>{(this.props.rental.price)} đ / ngày</h4>
 
+                    <ul className="nav nav-tabs">
+                      <li className="active"><a data-toggle="tab" href="#description">Mô tả</a></li>
+                      <li><a data-toggle="tab" href="#info">Thông tin</a></li>
+                      <li><a data-toggle="tab" href="#goods">Tiện nghi</a></li>
+                    </ul>
+                    <div className="tab-content">
+                      <div id="description" className="tab-pane fade in active">
+                        <br />
+                        <p>{this.props.rental.description}</p>
+                      </div>
+                      <RentalAssets rental={this.props.rental} />
+                      <div id="info" className="tab-pane fade">
+                        <br />
+                        <i className="fa fa-bed"> {this.props.rental.bedrooms} giường</i> <br />
+                        <br />
+                        <i className="fa fa-male"> Tối đa {this.props.rental.people} người ở</i> <br />
+                        <br />
+                        <i className="fa fa-bath"> {this.props.rental.bathrooms} phòng tắm</i> <br />
+                        <br />
+                      </div>
+                      
                     </div>
                   </div>
                 </div>
+
               </div>
 
+
             </div>
+            <div className="col-sm-4">
+              <div className="divide">
+                <div className="infobox slide-in-right">
+                  <div>
+                    <h3 style={{ marginTop: "30px" }}>Giá: {formatNumber(this.props.rental.price)} đ / ngày</h3>
+                  </div>
+                  <hr />
+                  <div>
+                    <h3 style={{ marginTop: "30px", paddingLeft: "35%" }}>Đặt chỗ</h3>
+                  </div>
+                  <hr />
+                  {
+                    isSuccess &&
+                    <div className="boxtrue">Đã đặt phòng thành công</div>
+                  }
+                  <RentalDateForm submitCb={this.book} people={this.props.rental.people} errors={errors} />
 
-
-          </div>
-          <div className="col-sm-4">
-            <div className="divide">
-              <div className="infobox">
-                <div>
-                  <h3 style={{ marginTop: "30px", paddingLeft: "35%" }}>Đặt chỗ</h3>
-                </div>
-                <hr />
-                {
-                  isSuccess &&
-                  <div className="boxtrue">Đã đặt phòng thành công</div>
-                }
-                <RentalDateForm submitCb={this.book} people={this.props.rental.people} errors={errors} />
-
-                <hr />
-                <br />
-                <br />
-                <br />
-                {/* <div className="modal fade" id="payment" role="dialog">
+                  <hr />
+                  <br />
+                  <br />
+                  <br />
+                  {/* <div className="modal fade" id="payment" role="dialog">
                   <div className="modal-dialog">
 
 
@@ -144,13 +142,14 @@ class RentalDetail extends Component {
                     </div>
                   </div>
                 </div> */}
+                </div>
               </div>
             </div>
           </div>
         </div>
-      </div>
-    );}
-    else return <Loading/>
+      );
+    }
+    else return <Loading />
   }
 }
 

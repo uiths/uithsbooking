@@ -8,7 +8,7 @@ import { BwmTextArea } from 'component/main/shared/form/BwmTextArea';
 import { updateUserValidate } from 'component/main/shared/form/validators';
 
 const userContentForm = props => {
-    console.log(props)
+    console.log(props.user.bookings.length)
     const {username, email, address, phone, fullname, gender, description, initialValues} = props.user
     const { handleSubmit, pristine, submitting, submitCb, valid, errors, options, user } = props
     return (
@@ -102,10 +102,10 @@ const userContentForm = props => {
                         />
                         <br />
                         <label>Số nhà đã đặt</label>
-                        <p style={{ marginLeft: "20px" }}>20 Nhà</p>
+                        <p style={{ marginLeft: "20px" }}>{props.user.bookings.length}</p>
                         <br />
                         <label>Số nhà đã đăng</label>
-                        <p style={{ marginLeft: "20px" }}>20 Nhà</p>
+                        <p style={{ marginLeft: "20px" }}>{props.user.rentals.length}</p>
                     </div>
                     <div className="col-lg-6">
                         <br />

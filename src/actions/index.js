@@ -218,6 +218,12 @@ export const deleteBooking = (bookingId) => {
       dispatch(deleteBookingFailure(response.data.errors))})
   }
 }
+const resetBooking =()=> {
+  return {type: RESET_BOOKING_STATE}
+}
+
+
+
 // USER RENTALS ACTIONS ---------------------------
 
 export const getUserRentals = () => {
@@ -491,11 +497,12 @@ export const createBooking = (booking) => {
     dispatch(startSubmit('rentalDateForm'))
     return axiosInstance.post('/bookings/book', booking)
       .then(res => {
+        console.log(res.data)
         dispatch(stopSubmit('rentalDateForm'))
         dispatch(createBookingSuccess(res.data))
       })
       .catch(({ response }) => {
-        console.log(response.data)
+        console.log(response.data.errors)
         dispatch(stopSubmit('rentalDateForm'))
         dispatch(createBookingFail(response.data.errors))
       })
