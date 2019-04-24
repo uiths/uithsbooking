@@ -43,18 +43,15 @@ class RentalList extends Component {
         console.log(this.props)
         if(this.props.rentals && this.props.rentals.length > 0){
         return (
-            <div id="sub_home" className="container">
-                <h2 style={{color: "black"}} className="text-center">THUÊ NHÀ</h2>
-                <div className="text-center headdingGray"><sup className="spainGray pd-right-20">________________</sup><sup className="spainGray pd-left-20">________________</sup></div>
-
-                <div className="sub_home_object">
-                    <h4 style={{marginBottom:"20px",fontSize:"40px",padding:"10px"}} className="text-left title_h3 type1 animated fadeInLeft">Gợi ý  </h4>
+            <div id="sub_home" className="container-fluid">
+                <div className="sub_home_list mg-top-40">
+                    <h4  className="text-left title_h3 animated fadeInLeft">Gợi ý tốt nhất</h4>
                     <div className="sub_home_slider text-center">
                         <Slider {...settings}>
                             {this.renderRentals()}
                         </Slider>
                     </div>
-                    <Link to="/booking_home" className="f-right title_h3 type2 animated fadeInLeft">Xem thêm ></Link>
+                    <Link to="/booking_home" className="f-right title_link animated fadeInLeft">Xem thêm ></Link>
                 </div>
             </div>
         );

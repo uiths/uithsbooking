@@ -12,10 +12,19 @@ $color1: #566473;
 .mg-0 {
   margin: 0!important;
 }
+.mg-top-40{
+  margin-top:40px;
+}
 
+.mg-top-80{
+  margin-top:80px;
+}
 .mg-top-20{
-  margin-top:25px;
-  font-size: 15px;
+  margin-top:20px;
+
+}
+.mg-top-15{
+  margin-top:15px;
 }
 .mg-top-10{
   margin-top:10px;
@@ -33,54 +42,62 @@ $color1: #566473;
 
 .spainGreen {
   color: #0fda93;
-
 }
+
+
 
 // for title h3 all text
 
 .title_h3 {
-  position: relative;
-  top: 8px;
-  left: 8px;
+  font-size: 35px;
+  margin: 0;
+  margin-bottom: 20px;
+  font-weight: 600;
   display: inline-block;
-  color: #ba9186;
-  font-family:'Pacifico',sans-serif;
-
-
-  &.type1{
-    font-size:29pt;
-  }
-  &.type2{
-    font-size:20pt;
-  }
+  color: #000000;
+  //color: #ba9186;
+  //font-family: 'Pacifico', sans-serif;
+}
+.title_link{
+  font-size: 20px;
+  color: red;
+}
+.title_link:hover{
+  color: red;
 }
 
-.title_h3.type1.type1::after, .title_h3.type1.type1::before {
-  content: "";
-  display: block;
-  position: absolute;
-  width: 20%;
-  height: 20%;
-  border: 2px solid;
-  transition: all 0.6s ease;
-  border-radius: 2px;
-}
-.title_h3.type1.type1::after {
-  bottom: 0;
-  right: 0;
-  border-top-color: transparent;
-  border-left-color: transparent;
-  border-bottom-color: #566473;
-  border-right-color: #566473;
-}
-.title_h3.type1.type1::before {
-  top: 0;
-  left: 0;
-  border-bottom-color: transparent;
-  border-right-color: transparent;
-  border-top-color: #566473;
-  border-left-color: #566473;
-}
-.title_h3.type1.type1:hover:after, .title_h3.type1.type1:hover:before {
 
-}
+//  &.type2{
+//    font-size:20pt;
+//  }
+//}
+//
+//.title_h3.type1.type1::after, .title_h3.type1.type1::before {
+//  content: "";
+//  display: block;
+//  position: absolute;
+//  width: 20%;
+//  height: 20%;
+//  border: 2px solid;
+//  transition: all 0.6s ease;
+//  border-radius: 2px;
+//}
+//.title_h3.type1.type1::after {
+//  bottom: 0;
+//  right: 0;
+//  border-top-color: transparent;
+//  border-left-color: transparent;
+//  border-bottom-color: #566473;
+//  border-right-color: #566473;
+//}
+//.title_h3.type1.type1::before {
+//  top: 0;
+//  left: 0;
+//  border-bottom-color: transparent;
+//  border-right-color: transparent;
+//  border-top-color: #566473;
+//  border-left-color: #566473;
+//}
+//.title_h3.type1.type1:hover:after, .title_h3.type1.type1:hover:before {
+//
+//}
