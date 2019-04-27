@@ -5,6 +5,8 @@ import { Redirect } from 'react-router-dom';
 import * as actions from 'actions';
 import { connect } from 'react-redux'
 import { startSubmit, stopSubmit } from 'redux-form';
+import {fromJS} from 'immutable'
+import user from '../../user/user';
 // import {rentalCreateForm} from './RentalCreateForm'
 class Create_rent extends Component {
     constructor() {
@@ -17,17 +19,21 @@ class Create_rent extends Component {
     }
 
     handleClick(userData) {
-        this.props.dispatch(startSubmit('rentalCreateForm'))
-        actions.createRental(userData)
-            .then(
-                (rental) => {
-                    this.props.dispatch(stopSubmit('rentalCreateForm'))
-                    this.setState({ redirect: true })
-                },
-                (errors) => {
-                    this.props.dispatch(stopSubmit('rentalCreateForm'))
-                    this.setState({ errors })
-                })
+        Object.values(userData)[0].map(i => {
+            if(i.get('thumbSmall'))
+            console.log(i.get('thumbSmall'));
+        })
+        // this.props.dispatch(startSubmit('rentalCreateForm'))
+        // actions.createRental(userData)
+        //     .then(
+        //         (rental) => {
+        //             this.props.dispatch(stopSubmit('rentalCreateForm'))
+        //             this.setState({ redirect: true })
+        //         },
+        //         (errors) => {
+        //             this.props.dispatch(stopSubmit('rentalCreateForm'))
+        //             this.setState({ errors })
+        //         })
 
     }
     render() {

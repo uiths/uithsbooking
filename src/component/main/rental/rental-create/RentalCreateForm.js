@@ -7,6 +7,7 @@ import { BwmTextArea } from 'component/main/shared/form/BwmTextArea';
 import { validate } from 'component/main/shared/form/validators';
 import React, { Component } from 'react';
 import DropzoneUpload from '../../shared/form/DropzoneUpload';
+import ProfilePhoto from "component/Form/ProfilePhoto"
 
 class RentalCreateForm extends Component {
     render() {
@@ -112,7 +113,7 @@ class RentalCreateForm extends Component {
                                     </div>
                                 </div>
                                 <br />
-                                <Field name="images" component={DropzoneUpload} />
+                                <Field name="images" component={ProfilePhoto} />
                             </div>
                             <div className="col-lg-6">
                                 <div className="col-lg-12"><label>Tiện ích</label></div>

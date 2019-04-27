@@ -107,7 +107,7 @@ class RentalDetail extends Component {
               <div className="divide">
                 <div className="infobox slide-in-right">
                   <div>
-                    <h3 style={{ marginTop: "30px" }}>Giá: {formatNumber(this.props.rental.price)} đ / ngày</h3>
+                    <h3 style={{ marginTop: "30px" }}>Giá: <b>{formatNumber(this.props.rental.price)}</b> đ / ngày</h3>
                   </div>
                   <hr />
                   <div>
