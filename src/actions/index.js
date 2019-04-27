@@ -411,14 +411,14 @@ const updateUserFailure = (errors) => {
 }
 export const updateUserInfo = (userData) => {
   return dispatch => {
-    dispatch(startSubmit('userContentForm'))
+    dispatch(startSubmit('editProfileForm'))
     return axiosInstance.post('/users/updateinfo', userData)
       .then(res => {
-        dispatch(stopSubmit('userContentForm'))        
+        dispatch(stopSubmit('editProfileForm'))        
         dispatch(updatePassSuccess(res.data))
       })
       .catch(({ response }) => {
-        dispatch(stopSubmit('userContentForm'))
+        dispatch(stopSubmit('editProfileForm'))
         dispatch(updatePassFailure(response.data.errors))
       })
   }

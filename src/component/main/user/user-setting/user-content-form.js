@@ -6,7 +6,6 @@ import { BwmResError } from 'component/main/shared/form/BwmResError';
 import { BwmSelect } from 'component/main/shared/form/BwmSelect';
 import { BwmTextArea } from 'component/main/shared/form/BwmTextArea';
 import { updateUserValidate } from 'component/main/shared/form/validators';
-
 const userContentForm = props => {
     console.log(props.user.bookings.length)
     const { username, email, address, phone, fullname, gender, description, initialValues } = props.user

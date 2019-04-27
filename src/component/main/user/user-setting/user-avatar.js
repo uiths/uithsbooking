@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
 import Dropzone from 'react-dropzone'
 import * as actions from 'actions'
+import ImagePicker from 'react-image-picker'
+import 'react-image-picker/dist/index.css'
 class UserAvatar extends Component {
     constructor(props) {
         super(props);
@@ -11,7 +13,8 @@ class UserAvatar extends Component {
             imgSrc: '',
             isChange: false,
             isUpLoading: false,
-            isSuccess: false
+            isSuccess: false,
+            image: null
         }
     }
     onImageDrop(selectedFile) {
@@ -41,7 +44,11 @@ class UserAvatar extends Component {
         }
         )
     }
+    onPick = (image) => {
+        this.setState({ image })
+    }
     render() {
+        const imageList = [this.props.img, this.props.img, this.props.img, this.props.img, this.props.img]
         return (
             <div className="usercontent">
                 <div>
@@ -49,6 +56,10 @@ class UserAvatar extends Component {
                 </div>
                 <br />
                 <hr />
+                <ImagePicker
+                    images={imageList.map((image, i) => ({ src: image, value: i }))}
+                    onPick={this.onPick}
+                />
                 {/* <div className="centered cont" style={{ marginTop: "20px" }}>
                     <img src={"/img/img_avatar.png"} className="image" />
                     <div className="middle">
@@ -64,30 +75,30 @@ class UserAvatar extends Component {
                             <div >
                                 <div {...getRootProps()} className="centered cont" style={{ margin: "auto", width: "150px", marginTop: "20px" }}>
                                     <input {...getInputProps()} />
-                                    {this.state.imgSrc.length > 0 ? <img style={{ minHeight: "150px", minWidth: "150px", width:"150px",height:"150px" }} className="image" src={this.state.imgSrc} />
-                                        : <img src={this.props.img} style={{ minHeight: "150px", minWidth: "150px", width:"150px", height:"150px" }} className="image" />}
-                                
+                                    {this.state.imgSrc.length > 0 ? <img style={{ minHeight: "150px", minWidth: "150px", width: "150px", height: "150px" }} className="image" src={this.state.imgSrc} />
+                                        : <img src={this.props.img} style={{ minHeight: "150px", minWidth: "150px", width: "150px", height: "150px" }} className="image" />}
+
                                 </div>
                             </div>
                         )
                     }}
                 </Dropzone>
                 <hr />
-               
+
                 <div>
                     <div className="col-lg-4">
                     </div>
                     <div className="col-lg-4">
-                    {
-                        this.state.isSuccess && 
-                        <div class="boxtrue">Đổi Avatar Thành công</div>
-                    }
-                    <br/>
-                    { this.state.isChange ? (this.state.isUpLoading ?<button disabled type="submit" className="b b1 center_button">Uploading....</button>:
-                    <button onClick={this.upload} type="submit" className="b b1 center_button">Lưu thay đổi</button>)
-                        :<div></div>
-                    }
-                        </div>
+                        {
+                            this.state.isSuccess &&
+                            <div class="boxtrue">Đổi Avatar Thành công</div>
+                        }
+                        <br />
+                        {this.state.isChange ? (this.state.isUpLoading ? <button disabled type="submit" className="b b1 center_button">Uploading....</button> :
+                            <button onClick={this.upload} type="submit" className="b b1 center_button">Lưu thay đổi</button>)
+                            : <div></div>
+                        }
+                    </div>
                     <div className="col-lg-4">
                     </div>
                 </div>

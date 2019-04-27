@@ -8,6 +8,8 @@ import { connect } from 'react-redux'
 import ChangNewPass from '../change_new_password'
 import UserContentForm from './user-content-form'
 import Loading from 'component/main/user/loading'
+import EditProfile from 'component/EditProfile'
+
 class userSetting extends Component {
     constructor(props) {
         super(props);
@@ -40,8 +42,8 @@ class userSetting extends Component {
                                     <Tab tabFor="basic-tab-four" className="tabc"><i className="fa fa-lock" style={{ fontSize: "20px" }} /><h4 style={{ display: "inline-block", marginLeft: "10px" }}>Đổi mật khẩu</h4></Tab>
                                 </TabList>
                                 <TabPanel tabId="basic-tab-one">
-                                    <UserContentForm initialValues={user} user={this.props.users.data} submitCb={this.updateInfo} options={this.options} />
-
+                                    <EditProfile initialValues={user} submitCb={this.updateInfo} />
+                                    {/* <UserContentForm initialValues={user} user={this.props.users.data} submitCb={this.updateInfo} options={this.options} /> */}
                                 </TabPanel>
                                 <TabPanel tabId="basic-tab-two">
                                     <UserAvatar img={user.image} />
@@ -92,7 +94,7 @@ class userSetting extends Component {
                 </div>
             );
         }
-        else return <Loading/>
+        else return <Loading />
     }
 }
 const mapStateToProps = (state) => {

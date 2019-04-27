@@ -1,17 +1,16 @@
 
-.edit-profile-container {
-    margin: auto;
-    width: 70%;
+// .edit-profile-container {
+//     margin: auto;
+//     width: 70%;
     
-}
-.edit-profile-form {
-    border: 2px solid #673AB7;
-    border-radius: 20px;
-}
+// }
+// .edit-profile-form {
+//     border: 2px solid #673AB7;
+//     border-radius: 20px;
+// }
 .custom-input {
-    border: 0 0 1px 0;
-    width: 50%;
-    margin-bottom: 50px;
+    width: 100%;
+    // margin-bottom: 50px;
     border: 0;
     outline: 0;
     border-bottom: 2px solid  #D1C4E9;
@@ -19,17 +18,44 @@
     font-size: 17px;
     font-family: HiraKakuPro-W3;
 }
+
 .custom-input:focus {
     outline: none;
-    border-bottom-color:#673AB7
+    border-bottom-color:#00d8ff
+}
+.error-form {
+    border-bottom-color: red
+}
+.custom-textarea {
+    width: 100%;
+    // margin-bottom: 50px;
+    outline: 0;
+    width: 100%;
+    height: 125px;
+    padding: 12px;
+    font-size: 17px;
+    font-family: HiraKakuPro-W3;
+    border : 2px dashed #d1c4e9;
+    border-radius: .4em;    
+}
+.custom-textarea:focus  {
+    outline: none;
+    border-color:#00d8ff
 }
 .field-container {
-    position: relative;
+    margin-top: 32px;
+    margin-bottom: 32px;
+    select {
+        height: 32px;
+    }
 }
 .photo-selector {
     width: 200px;
     height: 200px;
 }
 .edit-profile-fields {
-    padding: 40px 120px 120px 40px
+    padding: 40px 120px 40px 120px
+}
+textarea {
+    resize: none;
 }

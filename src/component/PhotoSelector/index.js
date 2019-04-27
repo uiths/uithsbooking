@@ -12,7 +12,8 @@ class PhotoSelector extends Component {
     this.state = {
       isOpen: false,
       imageForCrop: null,
-      loading: false
+      loading: false,
+      imageBase64: null
     };
   }
 
@@ -45,15 +46,20 @@ class PhotoSelector extends Component {
     this.setState({ loading: true });
     const blob = dataURItoBlob(imageUrl);
     try {
-      const avatarId = 'ABC'
+    
+      // const avatarId = 'ABC'
       // const avatarId = await this.handleUploadFile(blob);
-      this.props.addItem({ imageUrl: imageUrl, imageId: avatarId }, this.props.frameKey);
-      this.setState({ loading: false });
+      // this.props.addItem({ imageUrl: imageUrl, imageId: avatarId }, this.props.frameKey);
+      this.setState({ loading: false, imageBase64: imageUrl }, this.props.input.onChange(this.state.imageBase64));
     } catch (e) {
       console.log(e.message);
     }
   }
-
+  removeItem = () => {
+    this.setState(
+      { imageBase64: null},
+      this.props.input.onChange(this.state.imageBase64));   
+  }
   // async handleUploadFile(file) {
   //   try {
   //     const image = await uploadAvatar(file);
@@ -76,12 +82,12 @@ class PhotoSelector extends Component {
 
     let inputId = "imageUploadMyPage" + this.props.frameKey;
 
-    if (this.props.imageUrl && this.props.imageId) {
+    if (this.state.imageBase64) {
       // remove mode
-      cornerBtnAction = this.props.removeItem;
+      cornerBtnAction = this.removeItem;
       cornerButton = <div className="corner-btn" onClick={cornerBtnAction}><img src="/img/remove-upload-image.svg" /></div>;
 
-      background = "url('" + this.props.imageUrl + "')";
+      background = "url('" + this.state.imageBase64 + "')";
     } else {
       // upload mode
       cornerButton = <div className="corner-btn" onClick={cornerBtnAction}><img src="/img/add-upload-image.svg" /></div>;
