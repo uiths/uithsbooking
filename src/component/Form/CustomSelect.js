@@ -4,8 +4,8 @@ class CustomSelect extends Component {
     render() {
         return (
             <Fragment>
-                <label htmlFor={this.props.name}>{this.props.label}</label><br />
-                <select className={this.props.className} {...this.props.input} >
+                <label htmlFor={this.props.input.name}>{this.props.label}</label><br />
+                <select name={this.props.input.name} className={this.props.className} {...this.props.input} >
                     {this.props.children}
                 </select>
             </Fragment>

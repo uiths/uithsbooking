@@ -13,10 +13,17 @@ class PhotoSelector extends Component {
       isOpen: false,
       imageForCrop: null,
       loading: false,
-      imageBase64: null
+      imageBase64: props.image || null,
+      blobFile: null
     };
   }
-
+  componentWillReceiveProps(nextProps){
+    if(nextProps.image!==this.props.image){
+      //Perform some operation
+      this.setState({imageBase64: nextProps.image });
+      // this.classMethod();
+    }
+  }
   handleClose = () => {
     this.setState({ isOpen: false });
   }
@@ -50,15 +57,16 @@ class PhotoSelector extends Component {
       // const avatarId = 'ABC'
       // const avatarId = await this.handleUploadFile(blob);
       // this.props.addItem({ imageUrl: imageUrl, imageId: avatarId }, this.props.frameKey);
-      this.setState({ loading: false, imageBase64: imageUrl }, this.props.input.onChange(this.state.imageBase64));
+      this.setState({ loading: false, imageBase64: imageUrl, blobFile: blob }, 
+        this.props.input.onChange(blob));
     } catch (e) {
       console.log(e.message);
     }
   }
   removeItem = () => {
     this.setState(
-      { imageBase64: null},
-      this.props.input.onChange(this.state.imageBase64));   
+      { imageBase64: null, blobFile: null}, ()=>
+      this.props.input.onChange(this.state.blobFile));   
   }
   // async handleUploadFile(file) {
   //   try {
@@ -75,19 +83,22 @@ class PhotoSelector extends Component {
   // }
 
   render() {
+    console.log(this.props.image);
+    console.log(this.state.imageBase64)
     let fileTrigger = null;
     let cornerButton = null;
     let cornerBtnAction = null;
+    let avatar = null;
     let background = "none";
 
     let inputId = "imageUploadMyPage" + this.props.frameKey;
 
     if (this.state.imageBase64) {
       // remove mode
+      // background = "url('" + this.state.imageBase64 + ".jpg')";
+      avatar = <img className="image-avatar" src={this.state.imageBase64}/>
       cornerBtnAction = this.removeItem;
-      cornerButton = <div className="corner-btn" onClick={cornerBtnAction}><img src="/img/remove-upload-image.svg" /></div>;
-
-      background = "url('" + this.state.imageBase64 + "')";
+      cornerButton = <div className="corner-btn" onClick={cornerBtnAction}> <img src="/img/remove-upload-image.svg" /></div>;
     } else {
       // upload mode
       cornerButton = <div className="corner-btn" onClick={cornerBtnAction}><img src="/img/add-upload-image.svg" /></div>;
@@ -99,6 +110,7 @@ class PhotoSelector extends Component {
       <div className="photo-selector square" style={{ backgroundImage: background }}>
         {cornerButton}
         {fileTrigger}
+        {avatar}
         <input
           type='file'
           id={inputId}

@@ -1,14 +1,14 @@
 import React, { Component } from 'react';
 import { Tabs, Tab, TabPanel, TabList } from 'react-web-tabs';
 import 'react-web-tabs/dist/react-web-tabs.css';
-import authService from '../../../../services/auth-service';
+import authService from 'services/auth-service';
 import UserAvatar from './user-avatar';
 import * as actions from 'actions'
 import { connect } from 'react-redux'
-import ChangNewPass from '../change_new_password'
-import UserContentForm from './user-content-form'
+import ChangNewPass from 'component/main/user/change_new_password'
+// import UserContentForm from './OLD-user-content-form'
 import Loading from 'component/main/user/loading'
-import EditProfile from 'component/EditProfile'
+import EditProfile from 'component/user-setting/EditProfile'
 
 class userSetting extends Component {
     constructor(props) {
@@ -18,13 +18,17 @@ class userSetting extends Component {
     }
     updateInfo(userData) {
         const user = this.props.users.data
-        console.log(user)
+        // console.log(user)
         console.log(userData)
-        this.props.dispatch(actions.updateUserInfo(userData))
+        if(userData != user){
+        this.props.dispatch(actions.updateUserInfo(userData))}
     }
     componentWillMount() {
         const userId = authService.getId();
         this.props.dispatch(actions.fetchUserById(userId));
+    }
+    show = (file) => {
+        this.props.dispatch(actions.uploadAvatar(file))
     }
     render() {
         const user = this.props.users.data
@@ -46,7 +50,7 @@ class userSetting extends Component {
                                     {/* <UserContentForm initialValues={user} user={this.props.users.data} submitCb={this.updateInfo} options={this.options} /> */}
                                 </TabPanel>
                                 <TabPanel tabId="basic-tab-two">
-                                    <UserAvatar img={user.image} />
+                                    <UserAvatar  initialValues={user} submitCb={this.show} img={user.image} />
                                 </TabPanel>
                                 {/* <TabPanel tabId="basic-tab-three">
                                 <div className="usercontent">

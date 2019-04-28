@@ -27,11 +27,10 @@
     border-bottom-color: red
 }
 .custom-textarea {
-    width: 100%;
     // margin-bottom: 50px;
     outline: 0;
     width: 100%;
-    height: 125px;
+    
     padding: 12px;
     font-size: 17px;
     font-family: HiraKakuPro-W3;
@@ -45,17 +44,35 @@
 .field-container {
     margin-top: 32px;
     margin-bottom: 32px;
+    height: 60px;
     select {
         height: 32px;
     }
 }
 .photo-selector {
-    width: 200px;
-    height: 200px;
+    width: 280px;
+    height: 280px;
+    margin: auto;
+    margin-bottom: 30px;
 }
 .edit-profile-fields {
     padding: 40px 120px 40px 120px
 }
 textarea {
     resize: none;
+}
+.responsive {
+    width: 100px;
+    height: 100px;
+    .thumbnail {
+        width: 100px !important;
+        height: 100px !important;
+    }
+    .icon {
+        width: 30px !important;
+        height: 30px !important;
+    }
+}
+.image_picker {
+    margin-bottom: 24px;
 }

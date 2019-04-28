@@ -5,7 +5,7 @@ import Login from "./login/Login"
 
 import Home from "../main/index/home";
 import User from "./user/user";
-import User1 from "../main/user/user-setting/user-setting"
+import User1 from "component/user-setting/user-setting"
 
 import Contactmain from "./contact/contact_main";
 import Paymentmain from "./payment/payment_main";
@@ -27,7 +27,7 @@ import ForgotPassword from "./user/forgot_password";
 import change_new_pass from "./user/change_new_password";
 
 import ResetPass from './user/reset_pass'
-import EditProfile from 'component/EditProfile'
+// import EditProfile from 'component/EditProfile'
 import RentalManage from './rental/rental-manage/RentalManage'
 class Routerr extends Component {
     render() {
@@ -51,7 +51,7 @@ class Routerr extends Component {
                 <ProtectedRoute path="/booking_home" component={BookingHome} />
                 <ProtectedRoute exact path="/rental/manage" component={RentalManage} />
                 <Route path="/list_book" component={MyListBook} />
-                <Route path="/editMyProfile" component={EditProfile}/>
+                {/* <Route path="/editMyProfile" component={EditProfile}/> */}
 
                 {/*<PrivateRoute  path="/slot" component={Slot} />*/}
 

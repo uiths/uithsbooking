@@ -4,14 +4,15 @@ class CustomTextArea extends Component {
     render() {
         return (
             <Fragment>
-                <label htmlFor={this.props.name}>{this.props.label}</label>{this.props.label && <br />}
+                <label htmlFor={this.props.input.name}>{this.props.label}</label>{this.props.label && <br />}
                 <textarea {...this.props.input}
                     type={this.props.type}
-                    name={this.props.name}
+                    name={this.props.input.name}
                     className={this.props.className}
                     placeholder={this.props.placeholder}
                     maxLength={this.props.maxLength}
-                    disabled={this.props.disabled} 
+                    disabled={this.props.disabled}
+                    rows="4"
                 />
             </Fragment>
         );

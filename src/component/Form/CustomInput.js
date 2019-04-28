@@ -27,9 +27,7 @@ export const CustomInput = ({
     label,
     type,
     defaultValue,
-    symbol,
     name,
-    values,
     className,
     maxLength,
     disabled,
@@ -42,24 +40,24 @@ export const CustomInput = ({
             {input.name === 'email' || input.name === 'username' ?
                 <input {...input}
                     type={type}
-                    name={name}
+                    name={input.name}
                     // value={this.props.defaultValue}
                     /*${this.props.meta.error && ' error-form'} */
-                    className={`${className} `}
+                    className={`${className} ${error && ' error-form'}`}
                     placeholder={defaultValue}
                     maxLength={maxLength}
                     readOnly
                 />
                 : <input {...input}
                     type={type}
-                    name={name}
+                    name={input.name}
                     // value={this.props.defaultValue}
                     /*${this.props.meta.error && ' error-form'} */
-                    className={`${className} `}
+                    className={`${className} ${error && ' error-form'}`}
                     placeholder={defaultValue}
                     maxLength={maxLength}
                     disabled={disabled}
                 />}
-            {/* {touched &&
-                ((error && <div className='validation' >{error}</div>))} */}
+            {touched &&
+                ((error && <p style={{fontSize:"14x", color:"red"}}>{error}</p>))}
         </Fragment>)

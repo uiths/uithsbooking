@@ -19,8 +19,9 @@ class Datepicker extends Component {
     render() {
         return (
             <Fragment>
-                <label htmlFor={this.props.name}>{this.props.label}</label><br />
+                <label htmlFor={this.props.input.name}>{this.props.label}</label><br />
                 <DatePicker
+                    name={this.props.input.name}
                     minDate={new Date()}
                     className={this.props.className}
                     selected={this.state.startDate}

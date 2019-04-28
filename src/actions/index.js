@@ -198,10 +198,10 @@ export const fetchUserBookings = () => {
   }
 }
 const deleteBookingSuccess = (data) => {
-  return{
-  type : DELETE_BOOKING_SUCCESS,
-  data
-}
+  return {
+    type: DELETE_BOOKING_SUCCESS,
+    data
+  }
 }
 const deleteBookingFailure = (errors) => {
   return {
@@ -212,14 +212,15 @@ const deleteBookingFailure = (errors) => {
 export const deleteBooking = (bookingId) => {
   return dispatch => {
     axiosInstance.delete(`bookings/${bookingId}`)
-    .then(res => dispatch(deleteBookingSuccess(res.data)))
-    .catch(({response}) => {
-      console.log(({response}))
-      dispatch(deleteBookingFailure(response.data.errors))})
+      .then(res => dispatch(deleteBookingSuccess(res.data)))
+      .catch(({ response }) => {
+        console.log(({ response }))
+        dispatch(deleteBookingFailure(response.data.errors))
+      })
   }
 }
-const resetBooking =()=> {
-  return {type: RESET_BOOKING_STATE}
+const resetBooking = () => {
+  return { type: RESET_BOOKING_STATE }
 }
 export const resetBookState = () => {
   return dispatch => {
@@ -414,7 +415,7 @@ export const updateUserInfo = (userData) => {
     dispatch(startSubmit('editProfileForm'))
     return axiosInstance.post('/users/updateinfo', userData)
       .then(res => {
-        dispatch(stopSubmit('editProfileForm'))        
+        dispatch(stopSubmit('editProfileForm'))
         dispatch(updatePassSuccess(res.data))
       })
       .catch(({ response }) => {
@@ -469,13 +470,23 @@ const uploadFailure = (errors) => {
 }
 
 export const uploadAvatar = (file) => {
-  const formData = new FormData();
-  formData.append('image', file);
-  console.log(formData)
-  return axiosInstance.post('/users/avatar', formData)
-    .then(res => res.data)
-    .catch(({ response }) => Promise.reject(response.data.errors))
+  return dispatch => {
+    console.log(file.avatar)
+    const formData = new FormData();
+    formData.append('image', file.avatar);
+    return axiosInstance.post('/users/avatar', formData)
+      .then(res => dispatch(fetchUserByIdSuccess(res.data)))
+      .catch(({ response }) => Promise.reject(response.data.errors))
+  }
+}
 
+export const oldAvatar = (url) => {
+  return dispatch => {
+    console.log(url)
+    return axiosInstance.post('/users/oldAvatar', url)
+      .then(res => dispatch(fetchUserByIdSuccess(res.data)))
+      .catch(({ response }) => Promise.reject(response.data.errors))
+  }
 }
 
 const createBookingFail = (errors) => {
