@@ -10,6 +10,7 @@ import Loading from '../user/loading';
 class RentalList extends Component {
 
     componentWillMount() {
+        if(this.props.rentals.length === 0)
         this.props.dispatch(actions.fetchRentals());
     }
 

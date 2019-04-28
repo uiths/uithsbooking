@@ -11,6 +11,7 @@ class List extends Component {
     }
     componentWillMount() {
         this.props.dispatch(actions.resetBookState());
+        if(this.props.rentals.length===0)
         this.props.dispatch(actions.fetchRentals());
     }
 

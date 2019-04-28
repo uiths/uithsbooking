@@ -17,7 +17,7 @@ import BookingHome from "./booking/list";
 import MyListRent from "./user/list_rent";
 import MyListBook from "./user/list_book";
 
-import Search from "./search/search"
+import Search from "component/Search"
 // import CreateRent from "./user/create_rent"
 import CreateRent from './rental/rental-create/RentalCreate'
 import {ProtectedRoute} from './shared/auth/ProtectedRoute'

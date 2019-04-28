@@ -25,6 +25,7 @@ class userSetting extends Component {
     }
     componentWillMount() {
         const userId = authService.getId();
+        if(!this.props.users.data._id)
         this.props.dispatch(actions.fetchUserById(userId));
     }
     show = (file) => {
@@ -32,7 +33,6 @@ class userSetting extends Component {
     }
     render() {
         const user = this.props.users.data
-        console.log(user)
         if (user._id) {
             return (
                 <div>

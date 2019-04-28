@@ -3,7 +3,6 @@ import { Link } from "react-router-dom";
 import {formatNumber} from 'helpers/index'
 export function RentalCard(props) {
     const rental = props.rental;
-    console.log(props)
     return (
         <div className="sub_home_slider_container col-sm-3">
             {/* <div className="sub_home_slider_container"> */}
