@@ -1,7 +1,7 @@
 import React, { Component, Fragment } from 'react';
 import PropTypes from 'prop-types';
 import _ from 'lodash';
-import PhotoSelector from 'component/PhotoSelector/';
+import RentalPhotoSelector from 'component/RentalPhotoSelector/';
 import { fromJS } from 'immutable';
 
 class ProfilePhoto extends Component {
@@ -43,22 +43,21 @@ class ProfilePhoto extends Component {
     }
 
     addItem = (value, key) => {
+        console.log(value)
         let images = this.state.images;
+        console.log(images)
         images[key] = {
-            objectId: value.imageId,
             thumbSmall: value.imageUrl
         }
         this.setState({
             images
         });
-        console.log(fromJS(images))
         this.props.input.onChange(fromJS(images));
     }
 
     removeItem = (key) => {
         let images = this.state.images;
         images[key] = {
-            objectId: null,
             thumbSmall: null
         }
         this.setState({
@@ -72,8 +71,10 @@ class ProfilePhoto extends Component {
 
         for (let key in images) {
             if (images.hasOwnProperty(key)) {
+                if(key > 0){
                 photoSelectors.push(
-                    <PhotoSelector
+                    <RentalPhotoSelector
+                        className="photo-selector"
                         imageId={images[key].objectId}
                         imageUrl={images[key].thumbSmall}
                         addItem={(value) => { this.addItem(value, key); }}
@@ -81,6 +82,19 @@ class ProfilePhoto extends Component {
                         frameKey={key}
                     />
                 );
+            }
+            else {
+                photoSelectors.push(
+                    <RentalPhotoSelector
+                        className="photo-selector-1"
+                        imageId={images[key].objectId}
+                        imageUrl={images[key].thumbSmall}
+                        addItem={(value) => { this.addItem(value, key); }}
+                        removeItem={() => { this.removeItem(key); }}
+                        frameKey={key}
+                    />
+                );
+            }
             }
         }
         return (
@@ -91,7 +105,6 @@ class ProfilePhoto extends Component {
                     </div>
                     <div className="photo-selector-container col-xs-4 col-md-4 col-xl-4">
                         {photoSelectors[1]}
-                        <div style={{ height: "32px" }}></div>
                         {photoSelectors[2]}
                     </div>
                 </div>

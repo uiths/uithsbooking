@@ -116,13 +116,13 @@ export const fetchRentalById = (rentalId) => {
   }
 }
 
-export const createRental = (rentalData) => {
+export const createRental = (rentalData, images) => {
   console.log(rentalData)
   const formData = new FormData();
   for (var key in rentalData) {
     formData.append(key, rentalData[key]);
   }
-  rentalData.images.map(i => {
+  images.map(i => {
     formData.append('image', i)
   })
   return axiosInstance.post('/rentals', formData)

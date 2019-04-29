@@ -105,9 +105,9 @@ class PhotoSelector extends Component {
       fileTrigger = <label htmlFor={inputId}></label>;
       background = this.state.loading ? "url('" + loaderURL + "')" : 'none';
     }
-
+    console.log(this.props)
     return (
-      <div className="photo-selector square" style={{ backgroundImage: background }}>
+      <div className={`${this.props.className} square`} style={{ backgroundImage: background }}>
         {cornerButton}
         {fileTrigger}
         {avatar}

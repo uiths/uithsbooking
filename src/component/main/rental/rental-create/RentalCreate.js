@@ -5,8 +5,12 @@ import { Redirect } from 'react-router-dom';
 import * as actions from 'actions';
 import { connect } from 'react-redux'
 import { startSubmit, stopSubmit } from 'redux-form';
-import {fromJS} from 'immutable'
+import { fromJS } from 'immutable'
 import user from '../../user/user';
+import './style.scss'
+import toJS from 'immutable'
+import { base64toBlob } from 'helpers/index';
+
 // import {rentalCreateForm} from './RentalCreateForm'
 class Create_rent extends Component {
     constructor() {
@@ -14,26 +18,41 @@ class Create_rent extends Component {
         this.state = {
             errors: [],
             redirect: false,
+            images: []
         }
         this.handleClick = this.handleClick.bind(this);
     }
 
     handleClick(userData) {
-        Object.values(userData)[0].map(i => {
-            if(i.get('thumbSmall'))
-            console.log(i.get('thumbSmall'));
+        const images = []
+        const data = {}
+        for (var key in userData) {
+            if (key != 'image')
+                Object.assign(data, { [key]: userData[key] });
+
+        }
+        console.log(data)
+        userData.image.map(i => {
+            if (i.get('thumbSmall')) {
+                const base64 = (i.get('thumbSmall').split(','))[1]
+                images.push(base64toBlob(base64, 'image/png'));
+            }
         })
-        // this.props.dispatch(startSubmit('rentalCreateForm'))
-        // actions.createRental(userData)
-        //     .then(
-        //         (rental) => {
-        //             this.props.dispatch(stopSubmit('rentalCreateForm'))
-        //             this.setState({ redirect: true })
-        //         },
-        //         (errors) => {
-        //             this.props.dispatch(stopSubmit('rentalCreateForm'))
-        //             this.setState({ errors })
-        //         })
+        this.setState({ images }, () => {
+            this.props.dispatch(startSubmit('rentalCreateForm'))
+            actions.createRental(data, this.state.images)
+                .then(
+                    (rental) => {
+                        this.props.dispatch(stopSubmit('rentalCreateForm'))
+                        this.setState({ redirect: true })
+                    },
+                    (errors) => {
+                        this.props.dispatch(stopSubmit('rentalCreateForm'))
+                        this.setState({ errors })
+                    })
+        })
+
+
 
     }
     render() {
@@ -64,4 +83,4 @@ const mapStateToProps = (state, ownProps) => {
 
     }
 }
-export default  connect(mapStateToProps)(Create_rent);
+export default connect(mapStateToProps)(Create_rent);

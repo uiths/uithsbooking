@@ -1,0 +1,16 @@
+input[type=number]::-webkit-inner-spin-button, 
+input[type=number]::-webkit-outer-spin-button { 
+  -webkit-appearance: none; 
+  margin: 0; 
+}
+.infobox {
+    padding: 15px 50px 15px 50px
+}
+.field-container {
+    margin-top: 0px;
+}
+.image-avatar {
+    width: inherit;
+    height: inherit;
+    margin-top: 0px !important;
+}

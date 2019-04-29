@@ -17,19 +17,25 @@ class Datepicker extends Component {
         this.props.input.onChange(date);
     }
     render() {
+        const {
+            input, placeholder,
+            meta: { touched, error }
+        } = this.props
         return (
-            <Fragment>
+
+            <div>
                 <label htmlFor={this.props.input.name}>{this.props.label}</label><br />
                 <DatePicker
+                    // {...input}
+                    placeholderText="dd/mm/yyyy"
                     name={this.props.input.name}
                     minDate={new Date()}
-                    className={this.props.className}
+                    className={`${this.props.className} ${error && ' error-form'}`}
                     selected={this.state.startDate}
                     minDate={this.props.minDate}
                     maxDate={this.props.maxDate}
-                    dateFormat="dd-MM-yyyy"
+                    dateFormat="dd/MM/yyyy"
                     onChange={this.handleChange}
-                    peekNextMonth
                     showMonthDropdown
                     showYearDropdown
                     dropdownMode="select"
@@ -40,8 +46,8 @@ class Datepicker extends Component {
                 //         return date;
                 // }}
                 />
-            </Fragment>
-        );
+
+            </div>);
     }
 }
 

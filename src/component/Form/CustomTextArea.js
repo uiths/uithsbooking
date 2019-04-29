@@ -12,7 +12,7 @@ class CustomTextArea extends Component {
                     placeholder={this.props.placeholder}
                     maxLength={this.props.maxLength}
                     disabled={this.props.disabled}
-                    rows="4"
+                    rows={this.props.rows}
                 />
             </Fragment>
         );

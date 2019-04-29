@@ -5,7 +5,7 @@ import 'react-image-picker/dist/index.css'
 import PhotoSelector from 'component/PhotoSelector'
 import { Field, reduxForm } from 'redux-form';
 import './style.scss'
-import { validate2} from './validate'
+import { validate2 } from './validate'
 class UserAvatar extends Component {
     constructor(props) {
         super(props);
@@ -18,7 +18,7 @@ class UserAvatar extends Component {
             image: null
         }
     }
-    
+
     onPick = (image) => {
         this.setState({ image, isChange: true })
     }
@@ -40,6 +40,7 @@ class UserAvatar extends Component {
                     <div className="col-md-6 col-lg-6 col-xs-12">
                         <form onSubmit={handleSubmit(submitCb)}>
                             <Field
+                                className="photo-selector"
                                 name="avatar"
                                 image={this.props.initialValues.image}
                                 component={PhotoSelector} />
@@ -55,22 +56,22 @@ class UserAvatar extends Component {
                         </form>
                     </div>
                     <div className="col-md-6 col-lg-6 col-xs-12">
-                    { imageList.length > 0 && <React.Fragment>
-                        <ImagePicker
-                            images={imageList.map((image, i) => ({ src: image, value: i }))}
-                            onPick={this.onPick}
-                        />
-                        <button onClick={this.useAvatar} className="b b1 center_button" disabled={!this.state.isChange} >
-                            {submitting ?
-                                <span>
-                                    <i className="fa fa-spin fa-spinner" /> Đang lưu...
+                        {imageList.length > 0 && <React.Fragment>
+                            <ImagePicker
+                                images={imageList.map((image, i) => ({ src: image, value: i }))}
+                                onPick={this.onPick}
+                            />
+                            <button onClick={this.useAvatar} className="b b1 center_button" disabled={!this.state.isChange} >
+                                {submitting ?
+                                    <span>
+                                        <i className="fa fa-spin fa-spinner" /> Đang lưu...
                                         </span>
-                                :
-                                <span>Lưu</span>
-                            }
-                        </button>
+                                    :
+                                    <span>Lưu</span>
+                                }
+                            </button>
                         </React.Fragment>
-                    }
+                        }
                     </div>
                     {/* <div className="centered cont" style={{ marginTop: "20px" }}>
                     <img src={"/img/img_avatar.png"} className="image" />

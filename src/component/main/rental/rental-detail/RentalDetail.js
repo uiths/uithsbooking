@@ -7,7 +7,11 @@ import * as actions from 'actions';
 import RentalDateForm from './RentalDateForm'
 import { startSubmit, stopSubmit } from 'redux-form'
 import Loading from "component/main/user/loading"
-import {formatNumber} from 'helpers/index'
+import { formatNumber } from 'helpers/index'
+// import ImageGallery from 'react-image-gallery';
+// import "react-image-gallery/styles/css/image-gallery.css";
+import "./style.scss"
+
 class RentalDetail extends Component {
 
   componentWillMount() {
@@ -25,7 +29,6 @@ class RentalDetail extends Component {
     this.book = this.book.bind(this);
   }
   book(bookData) {
-    console.log(bookData);
     const booking = {
       startAt: bookData.startAt,
       endAt: bookData.endAt,
@@ -56,92 +59,77 @@ class RentalDetail extends Component {
 
   }
   render() {
-    { console.log(this.props) }
     const errors = this.props.booking.errors
     const isSuccess = this.props.booking.isSuccess
+    // const images = []
+    // if (this.props.rental.image) {
+    //   this.props.rental.image.map(i => {
+    //     images.push({
+    //       original: i,
+    //       thumbnail: i
+    //     })
+    //   })
+    // }
     if (this.props.rental._id) {
       return (
         <div id="rent">
           <div className="container">
-            <RentalImages image={this.props.rental.image} />
-            <br />
-            <div>
-              <div className="col-sm-8">
-                <div>
-                  <div className="infobox">
-                    <div>
-                      <h3>{this.props.rental.title}</h3>
-                      <h6 style={{ color: "gray" }}>{this.props.rental.address}</h6>
-                    </div>
-
-                    <ul className="nav nav-tabs">
-                      <li className="active"><a data-toggle="tab" href="#description">Mô tả</a></li>
-                      <li><a data-toggle="tab" href="#info">Thông tin</a></li>
-                      <li><a data-toggle="tab" href="#goods">Tiện nghi</a></li>
-                    </ul>
-                    <div className="tab-content">
-                      <div id="description" className="tab-pane fade in active">
-                        <br />
-                        <p>{this.props.rental.description}</p>
-                      </div>
-                      <RentalAssets rental={this.props.rental} />
-                      <div id="info" className="tab-pane fade">
-                        <br />
-                        <i className="fa fa-bed"> {this.props.rental.bedrooms} giường</i> <br />
-                        <br />
-                        <i className="fa fa-male"> Tối đa {this.props.rental.people} người ở</i> <br />
-                        <br />
-                        <i className="fa fa-bath"> {this.props.rental.bathrooms} phòng tắm</i> <br />
-                        <br />
-                      </div>
-                      
-                    </div>
-                  </div>
+            <div className="detail-up">
+              <div className="row">
+                <div className="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                  {/* <ImageGallery items={images} /> */}
+                  <RentalImages image={this.props.rental.image} />
                 </div>
-
               </div>
+            </div>
 
+            <div className="col-sm-8">
+            <div className="rental-owner">
+                  <p>Chủ nhà: ABC</p>
+                  <img style={{width:"56px",height:"56px",borderRadius:"50%"}} src={this.props.rental.image[0]}></img>
+                  <p style={{color:"#53525a"}}>Đôi lời nhắn nhủ của chủ nhà XXXXXXX</p>
+                </div>
+              <div className="infobox">
+                
+                <h3>{this.props.rental.title}</h3>
+                <h6 style={{ color: "gray" }}>{this.props.rental.address}</h6>
+                <ul className="nav nav-tabs">
+                  <li className="active"><a data-toggle="tab" href="#description">Mô tả</a></li>
+                  <li><a data-toggle="tab" href="#info">Thông tin</a></li>
+                  <li><a data-toggle="tab" href="#goods">Tiện nghi</a></li>
+                </ul>
+                <div className="tab-content">
+                  <div id="description" className="tab-pane fade in active">
+                    <br />
+                    <p>{this.props.rental.description}</p>
+                  </div>
+                  <RentalAssets rental={this.props.rental} />
+                  <div id="info" className="tab-pane fade">
+                    <br />
+                    <i className="fa fa-bed"> {this.props.rental.bedrooms} giường</i> <br />
+                    <br />
+                    <i className="fa fa-male"> Tối đa {this.props.rental.people} người ở</i> <br />
+                    <br />
+                    <i className="fa fa-bath"> {this.props.rental.bathrooms} phòng tắm</i> <br />
+                    <br />
+                  </div>
+
+                </div>
+              </div>
 
             </div>
             <div className="col-sm-4">
               <div className="divide">
+                <div className="price-tag">
+
+                </div>
                 <div className="infobox slide-in-right">
-                  <div>
-                    <h3 style={{ marginTop: "30px" }}>Giá: <b>{formatNumber(this.props.rental.price)}</b> đ / ngày</h3>
-                  </div>
-                  <hr />
-                  <div>
-                    <h3 style={{ marginTop: "30px", paddingLeft: "35%" }}>Đặt chỗ</h3>
-                  </div>
-                  <hr />
+                  <h3 style={{ marginTop: "30px" }}>Giá: <b>{formatNumber(this.props.rental.price)}</b> đ / ngày</h3>
                   {
                     isSuccess &&
                     <div className="boxtrue">Đã đặt phòng thành công</div>
                   }
                   <RentalDateForm submitCb={this.book} people={this.props.rental.people} errors={errors} />
-
-                  <hr />
-                  <br />
-                  <br />
-                  <br />
-                  {/* <div className="modal fade" id="payment" role="dialog">
-                  <div className="modal-dialog">
-
-
-                    <div className="modal-content">
-                      <div className="modal-header">
-                        <button type="button" className="close" data-dismiss="modal">&times;</button>
-                        <h4 className="modal-title">Thanh toán</h4>
-                      </div>
-                      <div className="modal-body">
-                        <p>Truyền prob thông tin thanh toán vào đây.</p>
-                      </div>
-                      <div className="modal-footer">
-                        <button type="button" className="btn btn-default" data-dismiss="modal">Thanh toán</button>
-                      </div>
-                    </div>
-                  </div>
-                </div> */}
                 </div>
               </div>
             </div>
@@ -152,7 +140,6 @@ class RentalDetail extends Component {
     else return <Loading />
   }
 }
-
 function mapStateToProps(state) {
   return {
     booking: state.userBookings,
@@ -160,5 +147,4 @@ function mapStateToProps(state) {
     errors: state.rental.errors
   }
 }
-
 export default connect(mapStateToProps)(RentalDetail)

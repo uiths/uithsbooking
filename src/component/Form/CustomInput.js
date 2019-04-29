@@ -31,7 +31,6 @@ export const CustomInput = ({
     className,
     maxLength,
     disabled,
-
     meta: { touched, error, warning }
 }) => (
         <Fragment>
