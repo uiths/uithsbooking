@@ -5,6 +5,7 @@ import Login from "./login/Login"
 
 import Home from "../main/index/home";
 import User from "./user/user";
+import User2 from "./user/user2";
 import User1 from "component/user-setting/user-setting"
 
 import Contactmain from "./contact/contact_main";
@@ -36,6 +37,7 @@ class Routerr extends Component {
                 <Route exact path="/" component={Home} />
                 <ProtectedRoute path="/user" component={User1} />
                 <ProtectedRoute path="/user1" component={User1} />
+                <Route path="/user2" component={User2} />
 
                 <Route path="/search" component={Search} />
                 <Route path="/loading" component={Loading} />                
