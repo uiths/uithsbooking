@@ -61,12 +61,7 @@ class User2 extends Component {
                                 <br/>
                                 <div>
                                     <label>Giới tính:</label>
-                                    <br/>
-                                    <input list="genders" name="gender"/>
-                                    <datalist id="genders">
-                                        <option value="Nam"/>
-                                        <option value="Nữ"/>
-                                    </datalist>
+                                    <p>Gay</p>
                                 </div>
                                 <br/>
                                 <div>
@@ -90,7 +85,7 @@ class User2 extends Component {
                                 <br/>
                                 <div>
                                     <label>Đôi điều về bạn:</label>
-                                    <textarea cols="35" rows="5" style={{border:"dashed 2px gray",borderRadius:"5px"}}/>
+                                    <p>Placebolder</p>
                                 </div>
                             </div>
                         </div>
