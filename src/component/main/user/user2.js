@@ -20,21 +20,14 @@ class User2 extends Component {
                             <div className="col-lg-6" id="rent">
                                 <div className="centered1 cont ex">
                                     <img src={"./img/img_bookhouse/house.jpg"} className="image1" alt="none" style={{marginTop:"-100px"}}/>
-                                    <div className="middle1">
-                                        <div>
-                                            <button type="submit" className="btn btn-primary">
-                                                <i className="fa fa-camera"/></button>
-                                        </div>
-                                    </div>
+                                    
                                 </div>
-                                <div>
-                                    <button type="submit" className="b b1" style={{marginTop:"10px",marginBottom:"20px",marginRight:"15%",marginLeft:"15%",width:"70%"}} >Đổi avatar</button>
-                                </div>
+                                
                             </div>
 
                             <div className="col-lg-6">
                                 <div className="row">
-                                    <button type="submit" className="b b1" style={{display:"inline-block",float:"right",marginRight:"10px"}}><i className="fa fa-edit"/>   Edit</button>
+                                    <button type="submit" className="b b1" style={{display:"inline-block",float:"right",marginRight:"10px"}}><i className="fa fa-edit"/> Sửa thông tin</button>
                                     <p style={{fontSize:"25px",marginLeft:"10px"}}>Username</p>
                                 </div>
                                 <br/>
