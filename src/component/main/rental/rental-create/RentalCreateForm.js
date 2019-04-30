@@ -4,7 +4,7 @@ import { BwmResError } from 'component/main/shared/form/BwmResError';
 import { BwmSelect } from 'component/main/shared/form/BwmSelect';
 import { Checkbox } from 'component/main/shared/form/Checkbox';
 import { BwmTextArea } from 'component/main/shared/form/BwmTextArea';
-import { validate } from 'component/main/shared/form/validators';
+import { validate } from './validate';
 import React, { Component } from 'react';
 import DropzoneUpload from '../../shared/form/DropzoneUpload';
 import ProfilePhoto from "component/Form/ProfilePhoto"
@@ -17,7 +17,7 @@ class RentalCreateForm extends Component {
         return (
             <React.Fragment>
                 <form onSubmit={handleSubmit(submitCb)}>
-                    <div className="usercontent">
+                    <div className="create-rental-content">
                         <div className="row">
                             <div className="col-lg-6">
                                 <div className="field-container">
@@ -252,5 +252,6 @@ class RentalCreateForm extends Component {
     }
 }
 export default reduxForm({
-    form: 'rentalCreateForm'
+    form: 'rentalCreateForm',
+    validate
 })(RentalCreateForm)

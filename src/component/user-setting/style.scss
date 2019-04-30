@@ -24,7 +24,7 @@
     border-bottom-color:#00d8ff
 }
 .error-form {
-    border-bottom-color: red
+    border-color: red !important
 }
 .custom-textarea {
     // margin-bottom: 50px;
@@ -50,8 +50,8 @@
     }
 }
 .photo-selector {
-    width: 280px;
-    height: 280px;
+    width: 280px !important;
+    height: 280px !important;
     margin: auto;
     margin-bottom: 30px;
 }

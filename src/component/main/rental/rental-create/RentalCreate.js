@@ -31,26 +31,26 @@ class Create_rent extends Component {
                 Object.assign(data, { [key]: userData[key] });
 
         }
-        console.log(data)
-        userData.image.map(i => {
-            if (i.get('thumbSmall')) {
-                const base64 = (i.get('thumbSmall').split(','))[1]
-                images.push(base64toBlob(base64, 'image/png'));
-            }
-        })
-        this.setState({ images }, () => {
-            this.props.dispatch(startSubmit('rentalCreateForm'))
-            actions.createRental(data, this.state.images)
-                .then(
-                    (rental) => {
-                        this.props.dispatch(stopSubmit('rentalCreateForm'))
-                        this.setState({ redirect: true })
-                    },
-                    (errors) => {
-                        this.props.dispatch(stopSubmit('rentalCreateForm'))
-                        this.setState({ errors })
-                    })
-        })
+        console.log(userData.image)
+        // userData.image.map(i => {
+        //     if (i.get('thumbSmall')) {
+        //         const base64 = (i.get('thumbSmall').split(','))[1]
+        //         images.push(base64toBlob(base64, 'image/png'));
+        //     }
+        // })
+        // this.setState({ images }, () => {
+        //     this.props.dispatch(startSubmit('rentalCreateForm'))
+        //     actions.createRental(data, this.state.images)
+        //         .then(
+        //             (rental) => {
+        //                 this.props.dispatch(stopSubmit('rentalCreateForm'))
+        //                 this.setState({ redirect: true })
+        //             },
+        //             (errors) => {
+        //                 this.props.dispatch(stopSubmit('rentalCreateForm'))
+        //                 this.setState({ errors })
+        //             })
+        // })
 
 
 

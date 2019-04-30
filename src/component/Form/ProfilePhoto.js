@@ -100,10 +100,10 @@ class ProfilePhoto extends Component {
         return (
             <Fragment>
                 <div className="row">
-                    <div className="photo-selector-container col-xs-8 col-md-8 col-xl-8">
+                    <div className="photo-selector-container col-sm-8 col-xs-12 col-md-8 col-xl-8">
                         {photoSelectors[0]}
                     </div>
-                    <div className="photo-selector-container col-xs-4 col-md-4 col-xl-4">
+                    <div className="photo-selector-container col-sm-8 col-xs-12 col-md-4 col-xl-4">
                         {photoSelectors[1]}
                         {photoSelectors[2]}
                     </div>

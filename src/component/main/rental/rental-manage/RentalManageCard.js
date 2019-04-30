@@ -32,7 +32,7 @@ export function RentalManageCard(props) {
                             <h4 className="modal-title">Modal Header</h4>
                         </div>
                         <div className="modal-body">
-                            <input class="form-control" value={rental.title} />
+                            <input className="form-control" value={rental.title} />
                         </div>
                         <div className="modal-footer">
                             <button type="button" className="btn btn-default" data-dismiss="modal">Close
