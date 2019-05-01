@@ -92,3 +92,10 @@ export function base64toBlob(base64Data, contentType) {
   }
   return new Blob(byteArrays, { type: contentType });
 }
+export function isEmpty(obj) {
+  for(var key in obj) {
+      if(obj.hasOwnProperty(key))
+          return false;
+  }
+  return true;
+}

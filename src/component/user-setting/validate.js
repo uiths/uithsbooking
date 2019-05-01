@@ -15,6 +15,10 @@ export const validate = (values) => {
     if (values.dateOfBirth && values.dateOfBirth !== 10 || !isValidDate(values.dateOfBirth)) {
         error.birthday = 'Ngày không hợp lệ';
     }
+    if(values.identityCard && !/^\d+$/.test(values.identityCard))
+        error.identityCard = "Số chứng minh thư không hợp lệ"
+    if(values.identityCard && values.identityCard.length!=9)
+        error.identityCard = "Số chứng minh thư không hợp lệ"
     return error;
 }
 

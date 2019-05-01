@@ -80,13 +80,13 @@ class RentalPhotoSelector extends Component {
         this.setState({ imageBase64: null })
     }
     render() {
+
         let fileTrigger = null;
         let cornerButton = null;
         let cornerBtnAction = null;
         let background = "none";
         let avatar = null;
         let inputId = "imageUploadMyPage" + this.props.frameKey;
-
         if (this.state.imageBase64) {
             // remove mode
             avatar = <img className="image-avatar" src={this.state.imageBase64} />
@@ -101,7 +101,6 @@ class RentalPhotoSelector extends Component {
             fileTrigger = <label htmlFor={inputId}></label>;
             background = this.state.loading ? "url('" + loaderURL + "')" : 'none';
         }
-
         return (
             <div className={`${this.props.className} square`} style={{ backgroundImage: background }}>
                 {cornerButton}

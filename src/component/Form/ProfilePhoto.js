@@ -2,7 +2,7 @@ import React, { Component, Fragment } from 'react';
 import PropTypes from 'prop-types';
 import _ from 'lodash';
 import RentalPhotoSelector from 'component/RentalPhotoSelector/';
-import { fromJS } from 'immutable';
+import {isImmutable, fromJS } from 'immutable';
 
 class ProfilePhoto extends Component {
     constructor(props) {
@@ -12,29 +12,29 @@ class ProfilePhoto extends Component {
         input = input.toJS ? input.toJS() : [];
         this.state = {
             images: [
-                input[0] || {},
-                input[1] || {},
-                input[2] || {},
-                input[3] || {},
-                input[4] || {},
-                input[5] || {}
+                input[0] || null,
+                input[1] || null,
+                input[2] || null,
+                input[3] || null,
+                input[4] || null,
+                input[5] || null
             ]
         }
     }
-
+    
     componentWillReceiveProps(newProps) {
         let { input } = newProps;
         input = input.value || {};
-        input = input.toJS ? input.toJS() : [];
-
+        
+        input = input.toJS ? input.toJS() : input;
         let newstate = {
             images: [
-                input[0] || {},
-                input[1] || {},
-                input[2] || {},
-                input[3] || {},
-                input[4] || {},
-                input[5] || {}
+                input[0] || null,
+                input[1] || null,
+                input[2] || null,
+                input[3] || null,
+                input[4] || null,
+                input[5] || null
             ]
         }
         if (!_.isEqual(newstate.images, this.state.images)) {
@@ -43,27 +43,22 @@ class ProfilePhoto extends Component {
     }
 
     addItem = (value, key) => {
-        console.log(value)
         let images = this.state.images;
-        console.log(images)
-        images[key] = {
-            thumbSmall: value.imageUrl
-        }
+        images[key] = value.imageUrl
+        
         this.setState({
             images
         });
-        this.props.input.onChange(fromJS(images));
+        this.props.input.onChange(images);
     }
 
     removeItem = (key) => {
         let images = this.state.images;
-        images[key] = {
-            thumbSmall: null
-        }
+        images[key] = null
         this.setState({
             images
         });
-        this.props.input.onChange(fromJS(images));
+        this.props.input.onChange((images));
     }
     render() {
         let photoSelectors = [];
@@ -71,30 +66,30 @@ class ProfilePhoto extends Component {
 
         for (let key in images) {
             if (images.hasOwnProperty(key)) {
-                if(key > 0){
-                photoSelectors.push(
-                    <RentalPhotoSelector
-                        className="photo-selector"
-                        imageId={images[key].objectId}
-                        imageUrl={images[key].thumbSmall}
-                        addItem={(value) => { this.addItem(value, key); }}
-                        removeItem={() => { this.removeItem(key); }}
-                        frameKey={key}
-                    />
-                );
-            }
-            else {
-                photoSelectors.push(
-                    <RentalPhotoSelector
-                        className="photo-selector-1"
-                        imageId={images[key].objectId}
-                        imageUrl={images[key].thumbSmall}
-                        addItem={(value) => { this.addItem(value, key); }}
-                        removeItem={() => { this.removeItem(key); }}
-                        frameKey={key}
-                    />
-                );
-            }
+                if (key > 0) {
+                    photoSelectors.push(
+                        <RentalPhotoSelector
+                            image={this.props.input.value[key]}
+                            className="photo-selector"
+                            imageUrl={images[key]}
+                            addItem={(value) => { this.addItem(value, key); }}
+                            removeItem={() => { this.removeItem(key); }}
+                            frameKey={key}
+                        />
+                    );
+                }
+                else {
+                    photoSelectors.push(
+                        <RentalPhotoSelector
+                            image={this.props.input.value[key]}
+                            className="photo-selector-1"
+                            imageUrl={images[key]}
+                            addItem={(value) => { this.addItem(value, key); }}
+                            removeItem={() => { this.removeItem(key); }}
+                            frameKey={key}
+                        />
+                    );
+                }
             }
         }
         return (

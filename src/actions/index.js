@@ -2,7 +2,7 @@ import axios from 'axios';
 import authService from 'services/auth-service';
 import axiosService from 'services/axios-service';
 import { startSubmit, stopSubmit } from 'redux-form';
-
+import { base64toBlob } from 'helpers/index';
 import {
   FETCH_RENTAL_BY_ID_SUCCESS,
   FETCH_RENTAL_BY_ID_INIT,
@@ -36,7 +36,8 @@ import {
   RELOAD_MAP,
   RELOAD_MAP_FINISH,
   DELETE_BOOKING_SUCCESS,
-  DELETE_BOOKING_FAILURE
+  DELETE_BOOKING_FAILURE,
+  RESET_USER_STATE
 } from './types';
 
 const axiosInstance = axiosService.getInstance();
@@ -116,22 +117,66 @@ export const fetchRentalById = (rentalId) => {
   }
 }
 
-export const createRental = (rentalData, images) => {
+export const createRental = (rentalData) => {
   console.log(rentalData)
-  const formData = new FormData();
-  for (var key in rentalData) {
-    formData.append(key, rentalData[key]);
-  }
-  images.map(i => {
-    formData.append('image', i)
+  // const formData = new FormData();
+  // for (var key in rentalData) {
+  //   formData.append(key, rentalData[key]);
+  // }
+  // images.map(i => {
+  //   formData.append('image', i)
+  // })
+  const image = []
+  console.log(rentalData)
+  const change = rentalData.image.map(i => {
+    if (i !== null)
+      image.push(i)
   })
-  return axiosInstance.post('/rentals', formData)
-    .then(
-      res => res.data,
-      err => Promise.reject(err.response.data.errors)
-    )
-}
+  Promise.all(change).then(() => {
+    Object.assign(rentalData, { image: image })
+    console.log(rentalData)
+    axiosInstance.post('/rentals/create', rentalData)
 
+  })
+  //  axiosInstance.post('/rentals', rentalData)
+  //   .then(
+  //     res => res.data,
+  //     err => Promise.reject(err.response.data.errors)
+  //   )
+}
+export const editRental = (rentalData, id) => {
+  const image = []
+  console.log(rentalData)
+  const change = rentalData.image.map(i => {
+    if (i !== null)
+      image.push(i)
+  })
+  Promise.all(change).then(() => {
+    Object.assign(rentalData, { image: image })
+    console.log(rentalData)
+    axiosInstance.post(`/rentals/update/${id}`, rentalData)
+      .then(res => console.log(res.data))
+      .catch(({ response }) => console.log(response))
+
+  })
+  // const change = image.map(i => {
+  //   if(i!=null && i.includes(',')){
+  //     const base64 = (i.split(','))[1]
+  //     formData.append(`${image.indexOf(i)}`,base64toBlob(base64,'image/png'))
+  //     image[image.indexOf(i)] = null
+  //   }
+  // })
+  // Promise.all(change).then(()=>{
+  //   rentalData.image = image;
+  //   for (var key in rentalData) {
+  //     formData.append(key, rentalData[key]);
+  //   }
+  //   console.log(rentalData)
+
+  //   axiosInstance.post(`/rentals/${id}`, formData)
+  // })
+
+}
 export const resetRentalErrors = () => {
   return {
     type: RESET_RENTAL_ERRORS
@@ -412,15 +457,16 @@ const updateUserFailure = (errors) => {
 }
 export const updateUserInfo = (userData) => {
   return dispatch => {
+    dispatch(resetUserState())
     dispatch(startSubmit('editProfileForm'))
     return axiosInstance.post('/users/updateinfo', userData)
       .then(res => {
         dispatch(stopSubmit('editProfileForm'))
-        dispatch(updatePassSuccess(res.data))
+        dispatch(updateUserSuccess(res.data))
       })
       .catch(({ response }) => {
         dispatch(stopSubmit('editProfileForm'))
-        dispatch(updatePassFailure(response.data.errors))
+        dispatch(updateUserFailure(response.data.errors))
       })
   }
 }
@@ -429,6 +475,7 @@ export const updatePass = (userData) => {
   userData._id = authService.getId();
   console.log(userData);
   return (dispatch) => {
+    dispatch(resetUserState());
     dispatch(startSubmit('newPassForm'))
     return axiosInstance.post('/users/change', userData)
       .then(res => {
@@ -436,6 +483,7 @@ export const updatePass = (userData) => {
         dispatch(updatePassSuccess())
       })
       .catch(errors => {
+        console.log(errors)
         dispatch(stopSubmit('newPassForm'))
         dispatch(updatePassFailure(errors.response.data.errors[0]))
       }
@@ -457,9 +505,16 @@ export const updatePass = (userData) => {
   //   })
   // }
 }
-const uploadSuccess = () => {
+
+export const resetUserState = () => {
   return {
-    type: UPLOAD_AVATAR_SUCCESS
+    type: RESET_USER_STATE
+  }
+}
+const uploadSuccess = (data) => {
+  return {
+    type: UPLOAD_AVATAR_SUCCESS,
+    data
   }
 }
 const uploadFailure = (errors) => {
@@ -471,21 +526,35 @@ const uploadFailure = (errors) => {
 
 export const uploadAvatar = (file) => {
   return dispatch => {
-    console.log(file.avatar)
     const formData = new FormData();
     formData.append('image', file.avatar);
+    dispatch(resetUserState())
+    dispatch(startSubmit('editAvatarForm'))
     return axiosInstance.post('/users/avatar', formData)
-      .then(res => dispatch(fetchUserByIdSuccess(res.data)))
-      .catch(({ response }) => Promise.reject(response.data.errors))
+      .then(res => {
+        dispatch(uploadSuccess(res.data))
+        dispatch(stopSubmit('editAvatarForm'))
+      })
+      .catch(({ response }) => {
+        dispatch(stopSubmit('editAvatarForm'))
+        Promise.reject(response.data.errors)
+      })
   }
 }
 
 export const oldAvatar = (url) => {
   return dispatch => {
-    console.log(url)
+    dispatch(resetUserState())
+    dispatch(startSubmit('oldAvatarForm'))
     return axiosInstance.post('/users/oldAvatar', url)
-      .then(res => dispatch(fetchUserByIdSuccess(res.data)))
-      .catch(({ response }) => Promise.reject(response.data.errors))
+      .then(res => {
+        dispatch(stopSubmit('oldAvatarForm'))
+        dispatch(uploadSuccess(res.data))
+      })
+      .catch(({ response }) => {
+        dispatch(stopSubmit('oldAvatarForm'))
+        Promise.reject(response.data.errors)
+      })
   }
 }
 

@@ -83,8 +83,7 @@ class PhotoSelector extends Component {
   // }
 
   render() {
-    console.log(this.props.image);
-    console.log(this.state.imageBase64)
+
     let fileTrigger = null;
     let cornerButton = null;
     let cornerBtnAction = null;
@@ -105,7 +104,6 @@ class PhotoSelector extends Component {
       fileTrigger = <label htmlFor={inputId}></label>;
       background = this.state.loading ? "url('" + loaderURL + "')" : 'none';
     }
-    console.log(this.props)
     return (
       <div className={`${this.props.className} square`} style={{ backgroundImage: background }}>
         {cornerButton}

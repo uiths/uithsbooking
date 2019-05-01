@@ -253,5 +253,6 @@ class RentalCreateForm extends Component {
 }
 export default reduxForm({
     form: 'rentalCreateForm',
-    validate
+    enableReinitialize: true,
+    // validate
 })(RentalCreateForm)

@@ -26,6 +26,7 @@ import {LoggedInRoute} from './shared/auth/LoggedInRoute'
 import ForgotPassword from "./user/forgot_password";
 import change_new_pass from "./user/change_new_password";
 
+import RentalEdit from 'component/RentalEdit'
 import ResetPass from './user/reset_pass'
 // import EditProfile from 'component/EditProfile'
 import RentalManage from './rental/rental-manage/RentalManage'
@@ -36,7 +37,7 @@ class Routerr extends Component {
                 <Route exact path="/" component={Home} />
                 <ProtectedRoute path="/user" component={User1} />
                 <ProtectedRoute path="/user1" component={User1} />
-
+                <ProtectedRoute path="/edit/:id" component={RentalEdit}/>
                 <Route path="/search" component={Search} />
                 <Route path="/loading" component={Loading} />                
                 <ProtectedRoute path="/create_rent" component={CreateRent} />

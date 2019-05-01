@@ -1,15 +1,14 @@
 import React, { Component, Fragment } from 'react';
 import { BrowserRouter as Router, Link, withRouter } from "react-router-dom";
-import RentalCreateForm from './RentalCreateForm';
+import RentalCreateForm from 'component/main/rental/rental-create/RentalCreateForm';
 import { Redirect } from 'react-router-dom';
 import * as actions from 'actions';
 import { connect } from 'react-redux'
 import { startSubmit, stopSubmit } from 'redux-form';
 import './style.scss'
-import { base64toBlob } from 'helpers/index';
 
 // import {rentalCreateForm} from './RentalCreateForm'
-class Create_rent extends Component {
+class RentalEdit extends Component {
     constructor() {
         super();
         this.state = {
@@ -20,9 +19,9 @@ class Create_rent extends Component {
         this.handleClick = this.handleClick.bind(this);
     }
 
-    handleClick(rentalData) {
-        actions.createRental(rentalData)
-        // console.log(userData)
+    handleClick(userData) {
+        
+        actions.editRental(userData,this.props.location.state.rental._id);
         // const images = []
         // const data = {}
         // for (var key in userData) {
@@ -55,6 +54,7 @@ class Create_rent extends Component {
 
     }
     render() {
+        const rental = this.props.location.state.rental;
         const { isLoad, isLoading } = this.state;
         if (this.state.redirect) {
             return <Redirect to={{ pathname: '/rental/manage', state: { posted: true } }} />
@@ -67,7 +67,7 @@ class Create_rent extends Component {
                         <br />
                         <div className="container fea-container">
                             <div className="infobox">
-                                <RentalCreateForm submitCb={this.handleClick} />
+                                <RentalCreateForm initialValues={rental} submitCb={this.handleClick} />
                             </div>
                         </div>
                     </div>
@@ -79,7 +79,7 @@ class Create_rent extends Component {
 }
 const mapStateToProps = (state, ownProps) => {
     return {
-
+        rental : state.rental
     }
 }
-export default connect(mapStateToProps)(Create_rent);
+export default connect(mapStateToProps)(RentalEdit);

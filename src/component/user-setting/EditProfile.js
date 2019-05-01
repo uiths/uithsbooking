@@ -59,6 +59,7 @@ class EditProfile extends Component {
                                             label="Giới thiệu bản thân"
                                             name="description"
                                             component={CustomTextArea}
+                                            rows={4}
                                             className="custom-textarea"
                                             maxLength={120}
                                         />
@@ -95,7 +96,7 @@ class EditProfile extends Component {
                                         <Field
                                             label="Số chứng minh thư"
                                             name="identityCard"
-                                            maxLength={120}
+                                            maxLength={9}
                                             component={CustomInput}
                                             className="custom-input"
                                         />
@@ -104,6 +105,7 @@ class EditProfile extends Component {
                                         <Field
                                             label="Đôi lời nhắn nhủ"
                                             name="message"
+                                            rows={4}
                                             maxLength={120}
                                             component={CustomTextArea}
                                             className="custom-textarea"
