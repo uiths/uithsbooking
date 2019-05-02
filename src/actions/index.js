@@ -118,14 +118,6 @@ export const fetchRentalById = (rentalId) => {
 }
 
 export const createRental = (rentalData) => {
-  console.log(rentalData)
-  // const formData = new FormData();
-  // for (var key in rentalData) {
-  //   formData.append(key, rentalData[key]);
-  // }
-  // images.map(i => {
-  //   formData.append('image', i)
-  // })
   const image = []
   console.log(rentalData)
   const change = rentalData.image.map(i => {
@@ -138,27 +130,39 @@ export const createRental = (rentalData) => {
     axiosInstance.post('/rentals/create', rentalData)
 
   })
-  //  axiosInstance.post('/rentals', rentalData)
-  //   .then(
-  //     res => res.data,
-  //     err => Promise.reject(err.response.data.errors)
-  //   )
+}
+const editRentalSuccess = (data) =>{
+  return {
+    type: UPDATE_RENTAL_SUCCESS,
+    data
+  }
+}
+const editRentalFail = () => {
+  return {type: UPDATE_RENTAL_FAIL}
 }
 export const editRental = (rentalData, id) => {
-  const image = []
-  console.log(rentalData)
-  const change = rentalData.image.map(i => {
-    if (i !== null)
-      image.push(i)
-  })
-  Promise.all(change).then(() => {
-    Object.assign(rentalData, { image: image })
-    console.log(rentalData)
-    axiosInstance.post(`/rentals/update/${id}`, rentalData)
-      .then(res => console.log(res.data))
-      .catch(({ response }) => console.log(response))
-
-  })
+  // const image = []
+  // console.log(rentalData)
+  // const change = rentalData.image.map(i => {
+  //   if (i !== null)
+  //     image.push(i)
+  // })
+  // Promise.all(change).then(() => {
+  //   Object.assign(rentalData, { image: image })
+    return dispatch => {
+      dispatch(startSubmit('rentalCreateForm'))
+      axiosInstance.post(`/rentals/update/${id}`, rentalData)
+        .then(res => {
+          console.log(res.data)
+          dispatch(stopSubmit('rentalCreateForm'))
+          dispatch(editRentalSuccess(res.data))
+        })
+        .catch(({ response }) => {
+          dispatch(stopSubmit('rentalCreateForm'))
+          Promise.reject(response.data.errors)}
+        )
+    }
+  // })
   // const change = image.map(i => {
   //   if(i!=null && i.includes(',')){
   //     const base64 = (i.split(','))[1]

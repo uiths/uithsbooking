@@ -5,10 +5,9 @@ import { RentalAssets } from './RentalAssets';
 import { RentalInfo } from './RentalDetailInfo'
 import * as actions from 'actions';
 import RentalDateForm from './RentalDateForm'
-import { startSubmit, stopSubmit } from 'redux-form'
 import Loading from "component/main/user/loading"
 import { formatNumber } from 'helpers/index'
-import {Link} from 'react-router-dom'
+import { Link } from 'react-router-dom'
 import authService from 'services/auth-service';
 
 // import ImageGallery from 'react-image-gallery';
@@ -29,8 +28,10 @@ class RentalDetail extends Component {
       booked: false,
       errors: []
     }
+    
     this.book = this.book.bind(this);
   }
+  
   book(bookData) {
     const booking = {
       startAt: bookData.startAt,
@@ -62,6 +63,11 @@ class RentalDetail extends Component {
 
   }
   
+  componentDidUpdate(){
+
+    
+  }
+  
   render() {
     const owner = this.props.rental.user
     const errors = this.props.booking.errors
@@ -89,14 +95,14 @@ class RentalDetail extends Component {
             </div>
 
             <div className="col-sm-8">
-            <div className="rental-owner">
-                  <p>Chủ nhà: {owner.username}</p>
-                  <img style={{width:"56px",height:"56px",borderRadius:"50%"}} src={owner.image}></img>
-                  <p style={{color:"#53525a"}}>Lời từ chủ nhà ví dụ {owner.message}</p>
-                  {authService.getId()===owner._id && <button><Link to={{pathname:`/edit/${this.props.rental._id}`,state:{rental:this.props.rental}}}>Nút chỉnh sửa chỉ hiện khi là chủ nhà</Link></button>}
-                </div>
+              <div className="rental-owner">
+                <p>Chủ nhà: {owner.username}</p>
+                <img style={{ width: "56px", height: "56px", borderRadius: "50%" }} src={owner.image}></img>
+                <p style={{ color: "#53525a" }}>Lời từ chủ nhà ví dụ {owner.message}</p>
+                {authService.getId() === owner._id && <button><Link to={{ pathname: `/edit/${this.props.rental._id}`, state: { rental: this.props.rental } }}>Nút chỉnh sửa chỉ hiện khi là chủ nhà</Link></button>}
+              </div>
               <div className="infobox">
-                
+
                 <h3>{this.props.rental.title}</h3>
                 <h6 style={{ color: "gray" }}>{this.props.rental.address}</h6>
                 <ul className="nav nav-tabs">

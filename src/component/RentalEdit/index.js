@@ -4,7 +4,8 @@ import RentalCreateForm from 'component/main/rental/rental-create/RentalCreateFo
 import { Redirect } from 'react-router-dom';
 import * as actions from 'actions';
 import { connect } from 'react-redux'
-import { startSubmit, stopSubmit } from 'redux-form';
+import ReactNotification from "react-notifications-component";
+import "react-notifications-component/dist/theme.css";
 import './style.scss'
 
 // import {rentalCreateForm} from './RentalCreateForm'
@@ -14,54 +15,63 @@ class RentalEdit extends Component {
         this.state = {
             errors: [],
             redirect: false,
-            images: []
+            images: [],
+            rental: {}
         }
-        this.handleClick = this.handleClick.bind(this);
-    }
-
-    handleClick(userData) {
-        
-        actions.editRental(userData,this.props.location.state.rental._id);
-        // const images = []
-        // const data = {}
-        // for (var key in userData) {
-        //     if (key != 'image')
-        //         Object.assign(data, { [key]: userData[key] });
-
-        // }
-        // console.log(userData.image)
-        // userData.image.map(i => {
-        //     if (i.get('thumbSmall')) {
-        //         const base64 = (i.get('thumbSmall').split(','))[1]
-        //         images.push(base64toBlob(base64, 'image/png'));
-        //     }
-        // })
-        // this.setState({ images }, () => {
-        //     this.props.dispatch(startSubmit('rentalCreateForm'))
-        //     actions.createRental(data, this.state.images)
-        //         .then(
-        //             (rental) => {
-        //                 this.props.dispatch(stopSubmit('rentalCreateForm'))
-        //                 this.setState({ redirect: true })
-        //             },
-        //             (errors) => {
-        //                 this.props.dispatch(stopSubmit('rentalCreateForm'))
-        //                 this.setState({ errors })
-        //             })
-        // })
-
-
+        this.notificationDOMRef = React.createRef();
 
     }
+    handleClick = (rentalData) => {
+        console.log(rentalData);
+        console.log(this.props.rental)
+        if (rentalData != this.props.rental) {
+            const image = []
+            const change = rentalData.image.map(i => {
+                if (i !== null)
+                    image.push(i)
+            })
+            Promise.all(change).then(() => {
+                Object.assign(rentalData, { image: image })
+                this.props.dispatch(actions.editRental(rentalData, this.props.location.state.rental._id));
+            })
+        }
+    }
+    componentWillMount() {
+        window.scrollTo(0, 0)
+        if (this.props.location.state)
+            this.state.rental = this.props.location.state.rental;
+    }
+    addNotification = (message, type) => {
+        this.notificationDOMRef.current.addNotification({
+            message,
+            type,
+            insert: "top",
+            container: "top-right",
+            animationIn: ["animated", "fadeIn"],
+            animationOut: ["animated", "fadeOut"],
+            dismiss: { duration: 4000 },
+            dismissable: { click: true }
+        });
+    }
+    // componentDidUpdate() {
+    //     if (this.props.rental.isUpdated) {
+    //         const id = this.props.location.pathname.split('/edit/')[1]
+    //         return <Redirect to={{ pathname: `/detail/${id}` }} />
+    //     }
+    // }
     render() {
-        const rental = this.props.location.state.rental;
-        const { isLoad, isLoading } = this.state;
+        if (!this.props.location.state || this.props.rental.isUpdated) {
+            const id = this.props.location.pathname.split('/edit/')[1]
+            return <Redirect to={{ pathname: `/detail/${id}`, state: { editted: true } }} />
+        }
+        const rental = this.state.rental
         if (this.state.redirect) {
             return <Redirect to={{ pathname: '/rental/manage', state: { posted: true } }} />
         }
         return (
             <div>
                 <div className="container">
+                    <ReactNotification ref={this.notificationDOMRef} />
                     <div id="create-rent" className=" text-left ">
                         <h3 className="title_h3 type1 animated fadeInLeft">Cho thuê nhà</h3>
                         <br />
@@ -77,9 +87,9 @@ class RentalEdit extends Component {
         );
     }
 }
-const mapStateToProps = (state, ownProps) => {
+const mapStateToProps = (state) => {
     return {
-        rental : state.rental
+        rental: state.rental
     }
 }
 export default connect(mapStateToProps)(RentalEdit);

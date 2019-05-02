@@ -16,7 +16,8 @@ const INITIAL_STATE = {
   },
   rental: {
     data: {},
-    errors: []
+    errors: [],
+    isUpdated: false
   }
 }
 
@@ -41,7 +42,7 @@ export const selectedRentalReducer = (state = INITIAL_STATE.rental, action) => {
     case FETCH_RENTAL_BY_ID_SUCCESS:
       return Object.assign({}, state, { data: action.rental });
     case UPDATE_RENTAL_SUCCESS:
-      return { ...state, data: action.rental };
+      return { ...state, data: action.data, isUpdated: true};
     case UPDATE_RENTAL_FAIL:
       return { ...state, errors: action.errors };
     case RESET_RENTAL_ERRORS:

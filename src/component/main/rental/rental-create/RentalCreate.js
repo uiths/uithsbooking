@@ -22,37 +22,6 @@ class Create_rent extends Component {
 
     handleClick(rentalData) {
         actions.createRental(rentalData)
-        // console.log(userData)
-        // const images = []
-        // const data = {}
-        // for (var key in userData) {
-        //     if (key != 'image')
-        //         Object.assign(data, { [key]: userData[key] });
-
-        // }
-        // console.log(userData.image)
-        // userData.image.map(i => {
-        //     if (i.get('thumbSmall')) {
-        //         const base64 = (i.get('thumbSmall').split(','))[1]
-        //         images.push(base64toBlob(base64, 'image/png'));
-        //     }
-        // })
-        // this.setState({ images }, () => {
-        //     this.props.dispatch(startSubmit('rentalCreateForm'))
-        //     actions.createRental(data, this.state.images)
-        //         .then(
-        //             (rental) => {
-        //                 this.props.dispatch(stopSubmit('rentalCreateForm'))
-        //                 this.setState({ redirect: true })
-        //             },
-        //             (errors) => {
-        //                 this.props.dispatch(stopSubmit('rentalCreateForm'))
-        //                 this.setState({ errors })
-        //             })
-        // })
-
-
-
     }
     render() {
         const { isLoad, isLoading } = this.state;
@@ -79,7 +48,7 @@ class Create_rent extends Component {
 }
 const mapStateToProps = (state, ownProps) => {
     return {
-
+        
     }
 }
 export default connect(mapStateToProps)(Create_rent);
