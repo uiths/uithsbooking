@@ -46,7 +46,7 @@ export const selectedRentalReducer = (state = INITIAL_STATE.rental, action) => {
     case UPDATE_RENTAL_FAIL:
       return { ...state, errors: action.errors };
     case RESET_RENTAL_ERRORS:
-      return { ...state, errors: [] };
+      return { ...state, errors: [], isUpdated:false };
     default:
       return state;
   }

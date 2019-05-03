@@ -28,11 +28,10 @@ class RentalDetail extends Component {
       booked: false,
       errors: []
     }
-    
-    this.book = this.book.bind(this);
+
   }
-  
-  book(bookData) {
+
+  book = (bookData) => {
     const booking = {
       startAt: bookData.startAt,
       endAt: bookData.endAt,
@@ -45,30 +44,12 @@ class RentalDetail extends Component {
       errors: []
     })
     this.props.dispatch(actions.createBooking(booking))
-    // this.props.dispatch(startSubmit('rentalDateForm'))
-    // actions.createBooking(booking)
-    //   .then(res => {
-    //     (booked) => {
-    //       console.log(booked)
-    //       this.setState({ booked: booked })
-    //       this.props.dispatch(stopSubmit('rentalDateForm'))
-    //     },
-    //       (errors) => {
-    //         this.setState({ errors: errors })
-    //         console.log(this.state)
-    //         this.props.dispatch(stopSubmit('rentalDateForm'))
-    //       }
-    //   }
-    //   )
-
   }
-  
-  componentDidUpdate(){
 
-    
-  }
   
+
   render() {
+    console.log(this.props.rental)
     const owner = this.props.rental.user
     const errors = this.props.booking.errors
     const isSuccess = this.props.booking.isSuccess
@@ -82,6 +63,7 @@ class RentalDetail extends Component {
     //   })
     // }
     if (this.props.rental._id) {
+     
       return (
         <div id="rent">
           <div className="container">
@@ -154,6 +136,7 @@ class RentalDetail extends Component {
 }
 function mapStateToProps(state) {
   return {
+    isUpdated : state.rental.isUpdated,
     booking: state.userBookings,
     rental: state.rental.data,
     errors: state.rental.errors

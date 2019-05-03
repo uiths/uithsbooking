@@ -13,10 +13,10 @@ export function RentalManageCard(props) {
                     <Link to={`/detail/${rental._id}`}><img src={rental.image[0]} alt="Snow" width="100%" /></Link>
                     <div className="middle">
 
-                        <a href="#" data-toggle="modal" data-target={`#myListRentModal${rental._id}`} title=""><i
+                        {/* <a href={`/edit/${rental._id}`} title=""><i
                             className="fa fa-edit" aria-hidden="true" /></a>
                         <a href="#" data-toggle="modal" data-target={`#deleteRentModal${rental._id}`} title=""><i
-                            className="fa fa-close" aria-hidden="true" /></a>
+                            className="fa fa-close" aria-hidden="true" /></a> */}
                     </div>
                     <p><b>{rental.title}</b>
                         <br />

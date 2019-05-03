@@ -181,11 +181,12 @@ export const editRental = (rentalData, id) => {
   // })
 
 }
-export const resetRentalErrors = () => {
+export const resetRentalState = () => {
   return {
     type: RESET_RENTAL_ERRORS
   }
 }
+
 
 const updateRentalSuccess = (updatedRental) => {
   return {

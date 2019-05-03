@@ -2,7 +2,7 @@
   "name": "usernew",
   "version": "0.1.0",
   "private": true,
-  "proxy": "https://uithsbooking.herokuapp.com",
+  "proxy": "http://localhost:3001",
   "dependencies": {
     "axios": "^0.18.0",
     "date-fns": "^1.30.1",

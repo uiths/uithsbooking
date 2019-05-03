@@ -22,8 +22,7 @@ class RentalEdit extends Component {
 
     }
     handleClick = (rentalData) => {
-        console.log(rentalData);
-        console.log(this.props.rental)
+        
         if (rentalData != this.props.rental) {
             const image = []
             const change = rentalData.image.map(i => {
@@ -37,7 +36,7 @@ class RentalEdit extends Component {
         }
     }
     componentWillMount() {
-        window.scrollTo(0, 0)
+        window.scrollTo(0, 0);
         if (this.props.location.state)
             this.state.rental = this.props.location.state.rental;
     }
@@ -62,6 +61,7 @@ class RentalEdit extends Component {
     render() {
         if (!this.props.location.state || this.props.rental.isUpdated) {
             const id = this.props.location.pathname.split('/edit/')[1]
+            // this.props.dispatch(actions.resetRentalState())
             return <Redirect to={{ pathname: `/detail/${id}`, state: { editted: true } }} />
         }
         const rental = this.state.rental
