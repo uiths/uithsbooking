@@ -34,18 +34,20 @@ const RentalDateForm = props => {
                     options={['1', '2', '3', '4', '5', '6', '8', '9', '10']}
                     component={BwmSelect}
                 />
+                <hr/>
                 <button type="submit" className="b b1 center_button" disabled={!valid || pristine || submitting}>
                     {submitting ?
                         <span>
                             <i className="fa fa-spin fa-spinner" /> Đang đặt phòng...
                         </span>
                         :
-                        <span>Đặt phòng</span>
+                        <span><i className="fa fa-check-circle"/>   Đặt phòng</span>
                     }
                 </button>
                 {}
-                <br />
-                <br />
+                <hr/>
+                <p>Điện thoại hỗ trợ</p>
+                <p>Nhắn tin</p>
             </form>
         </React.Fragment>
     )

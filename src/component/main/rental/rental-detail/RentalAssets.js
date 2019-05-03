@@ -26,7 +26,7 @@ function renderFridge(isFridge) {
 export function RentalAssets(props) {
 
   return (
-    <div id="goods" className="tab-pane fade">
+    <div>
       {renderTv(props.rental.isTv)}
       {renderWifi(props.rental.isWifi)}
       {renderConditioner(props.rental.isConditioner)}

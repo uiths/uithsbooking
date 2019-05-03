@@ -62,30 +62,29 @@ class RentalDetail extends Component {
     if (this.props.rental._id) {
       return (
         <div id="rent">
+          <RentalImages image={this.props.rental.image} />
+          <br />
           <div className="container">
-            <RentalImages image={this.props.rental.image} />
-            <br />
             <div>
               <div className="col-sm-8">
                 <div>
-                  <div className="infobox">
+                  <div className="infobox slide-in-left" style={{backgroundColor:"#3498DB"}}>
+                    <p>Chủ nhà và avatar chủ nhà + rating</p>
+                  </div>
+                  <div className="infobox slide-in-left">
                     <div>
-                      <h3>{this.props.rental.title}</h3>
+                      <h2 id="null" style={{fontWeight:"bold"}}>{this.props.rental.title}</h2>
                       <h6 style={{ color: "gray" }}>{this.props.rental.address}</h6>
-                    </div>
-
-                    <ul className="nav nav-tabs">
-                      <li className="active"><a data-toggle="tab" href="#description">Mô tả</a></li>
-                      <li><a data-toggle="tab" href="#info">Thông tin</a></li>
-                      <li><a data-toggle="tab" href="#goods">Tiện nghi</a></li>
-                    </ul>
-                    <div className="tab-content">
-                      <div id="description" className="tab-pane fade in active">
+                      <hr/>
+                      <h3>Mô Tả</h3>
+                      <div>
                         <br />
                         <p>{this.props.rental.description}</p>
                       </div>
+                      <h3>Thông tin</h3>
                       <RentalAssets rental={this.props.rental} />
-                      <div id="info" className="tab-pane fade">
+                      <h3>Tiện nghi</h3>
+                      <div>
                         <br />
                         <i className="fa fa-bed"> {this.props.rental.bedrooms} giường</i> <br />
                         <br />
@@ -105,24 +104,17 @@ class RentalDetail extends Component {
             </div>
             <div className="col-sm-4">
               <div className="divide">
+                <div className="infobox slide-in-right" style={{backgroundColor:"black"}}>
+                  <h3 style={{color:"white"}}>Giá: <b>{formatNumber(this.props.rental.price)}</b> đ / ngày</h3>
+                  <hr style={{color:"white"}}/>
+                  <h3 style={{color:"white"}}>Tổng cộng: --- đ</h3>
+                </div>
                 <div className="infobox slide-in-right">
-                  <div>
-                    <h3 style={{ marginTop: "30px" }}>Giá: <b>{formatNumber(this.props.rental.price)}</b> đ / ngày</h3>
-                  </div>
-                  <hr />
-                  <div>
-                    <h3 style={{ marginTop: "30px", paddingLeft: "35%" }}>Đặt chỗ</h3>
-                  </div>
-                  <hr />
                   {
                     isSuccess &&
                     <div className="boxtrue">Đã đặt phòng thành công</div>
                   }
                   <RentalDateForm submitCb={this.book} people={this.props.rental.people} errors={errors} />
-
-                  <hr />
-                  <br />
-                  <br />
                   <br />
                   {/* <div className="modal fade" id="payment" role="dialog">
                   <div className="modal-dialog">
