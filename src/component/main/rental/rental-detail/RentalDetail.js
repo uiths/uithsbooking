@@ -68,23 +68,30 @@ class RentalDetail extends Component {
             <div>
               <div className="col-sm-8">
                 <div>
-                  <div className="infobox slide-in-left" style={{backgroundColor:"#3498DB"}}>
+                  <div className="infobox slide-in-left" style={{marginBottom:"20px"}}>
                     <p>Chủ nhà và avatar chủ nhà + rating</p>
                   </div>
-                  <div className="infobox slide-in-left">
+                    <div className="infobox slide-in-left" style={{backgroundColor:"#673AB7"}}>
+                        <h2 id="null" style={{fontWeight:"bold",color:"white"}}>{this.props.rental.title}</h2>
+                        <h6 style={{ color: "white" }}>{this.props.rental.address}</h6>
+
+                    </div>
+                    <div className="infobox slide-in-left">
                     <div>
-                      <h2 id="null" style={{fontWeight:"bold"}}>{this.props.rental.title}</h2>
-                      <h6 style={{ color: "gray" }}>{this.props.rental.address}</h6>
-                      <hr/>
-                      <h3>Mô Tả</h3>
+                        <h3 className="text-left bor type1"
+                            style={{marginBottom:"20px",padding:"10px", fontSize:"27px"}}>Mô tả </h3>
                       <div>
                         <br />
                         <p>{this.props.rental.description}</p>
                       </div>
-                      <h3>Thông tin</h3>
-                      <RentalAssets rental={this.props.rental} />
-                      <h3>Tiện nghi</h3>
-                      <div>
+                        <hr/>
+                        <h3 className="text-left bor type1"
+                            style={{marginBottom:"20px",padding:"10px", fontSize:"27px"}}>Thông tin </h3>
+                        <RentalAssets rental={this.props.rental} />
+                        <hr/>
+                        <h3 className="text-left bor type1"
+                            style={{marginBottom:"20px",padding:"10px", fontSize:"27px"}}>Tiện nghi </h3>
+                        <div>
                         <br />
                         <i className="fa fa-bed"> {this.props.rental.bedrooms} giường</i> <br />
                         <br />
@@ -106,8 +113,6 @@ class RentalDetail extends Component {
               <div className="divide">
                 <div className="infobox slide-in-right" style={{backgroundColor:"black"}}>
                   <h3 style={{color:"white"}}>Giá: <b>{formatNumber(this.props.rental.price)}</b> đ / ngày</h3>
-                  <hr style={{color:"white"}}/>
-                  <h3 style={{color:"white"}}>Tổng cộng: --- đ</h3>
                 </div>
                 <div className="infobox slide-in-right">
                   {
