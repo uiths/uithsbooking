@@ -24,7 +24,7 @@ export const validate = (values) => {
 
 export const validate2 = (values) => {
     const error = {};
-    if(values.avatar === undefined)
+    if(values.avatar === null || !values.avatar || values.avatar===undefined)
         error.avatar = "Chưa chọn hình"
     return error;
 }

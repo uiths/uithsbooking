@@ -47,6 +47,7 @@ class userSetting extends Component {
         this.props.users.isUploaded && this.addNotification('Tải ảnh lên thành công')
     }
     uploadAvatar = (file) => {
+        console.log(file)
         this.props.dispatch(actions.uploadAvatar(file))
     }
     useAvatar = (url) => {

@@ -95,7 +95,7 @@ class RentalDetail extends Component {
                 <div className="tab-content">
                   <div id="description" className="tab-pane fade in active">
                     <br />
-                    <p>{this.props.rental.description}</p>
+                    <p>{this.props.rental.description.replace(/✔️/g, "\n")}</p>
                   </div>
                   <RentalAssets rental={this.props.rental} />
                   <div id="info" className="tab-pane fade">
