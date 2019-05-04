@@ -1222,6 +1222,46 @@ LEVEL 4. SETTINGS
   border-top-color: #566473;
   border-left-color: #566473; }
 
+
+.bor {
+  position: relative;
+  top: 0px;
+  left: 0px;
+  display: inline-block;
+  color: #4B0082;
+  font-family: "Courier New", Courier, "Lucida Sans Typewriter", "Lucida Typewriter", monospace;
+  font-weight: bolder;
+}
+.bor.type1 {
+  font-size: 20pt; }
+
+.bor.type1.type1::after, .bor.type1.type1::before {
+  content: "";
+  display: block;
+  position: absolute;
+  width: 20%;
+  height: 20%;
+  border: 2px solid;
+  transition: all 0.6s ease;
+  border-radius: 2px; }
+
+.bor.type1.type1::after {
+  bottom: 0;
+  right: 0;
+  border-top-color: transparent;
+  border-left-color: transparent;
+  border-bottom-color: #566473;
+  border-right-color: #566473; }
+
+.bor.type1.type1::before {
+  top: 0;
+  left: 0;
+  border-bottom-color: transparent;
+  border-right-color: transparent;
+  border-top-color: #566473;
+  border-left-color: #566473; }
+
+
 .dbox {
   margin-left: 30%;
   margin-right: 30%;

@@ -35,6 +35,8 @@ const RentalDateForm = props => {
                     component={BwmSelect}
                 />
                 <hr/>
+                <h4 style={{fontWeight:"bold",marginLeft:"5px"}}>Tổng cộng: --- đ</h4>
+                <hr/>
                 <button type="submit" className="b b1 center_button" disabled={!valid || pristine || submitting}>
                     {submitting ?
                         <span>
@@ -46,8 +48,7 @@ const RentalDateForm = props => {
                 </button>
                 {}
                 <hr/>
-                <p>Điện thoại hỗ trợ</p>
-                <p>Nhắn tin</p>
+                <p className="text-center">Điện thoại hỗ trợ: <span style={{fontWeight:"bold"}}>0123456789</span></p>
             </form>
         </React.Fragment>
     )
