@@ -8,7 +8,7 @@ class Home extends Component {
         return (
             <div>
                 <main>
-                    <div id="home" className="carousel slide carousel-fade animated fadeInUp" data-ride="carousel">
+                    <div id="home" className="carousel slide carousel-fade" data-ride="carousel">
                         <ol className="carousel-indicators home-dot">
                             <li data-target="#home" data-slide-to="0" className="active" />
                             <li data-target="#home" data-slide-to="1" />
@@ -27,6 +27,11 @@ class Home extends Component {
                                 <img src="./img/img_home/index_slide/3.png" alt="Brandi Img 3" width="100%" />
                             </div>
                         </div>
+                        <form className="home_search" action="#" method="post">
+                            <i className="fa fa-search"/>
+                            <input type="search" name="search" placeholder="Nhập tên thành phố hoặc homestay ở đây nè hihi" required=""/>
+                            <Link className="btn btn-success" to="/search">Tìm kiếm</Link>
+                        </form>
                     </div>
                     <RentalList/>
 

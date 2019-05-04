@@ -59,23 +59,35 @@ header {
     padding: 0 17px;
     font-weight: bold;
     color: #fff; }
-  .na-brand .top_logo_home {
-    position: absolute;
-    font-size: 17px;
-    top: 13px;
-    right: -15px;
-    color: #2fdab8; }
 
 .navbar-right {
   margin-right: 0; }
   @media screen and (max-width: 768px) {
     .navbar-right {
       float: right; } }
+  .navbar-right .navbar-right-img {
+    width: 30px;
+    height: 30px;
+    border-radius: 50%; }
+  .navbar-right .dropdown-menu {
+    font-size: 11px; }
+    .navbar-right .dropdown-menu hr {
+      margin: 2px 0; }
+    .navbar-right .dropdown-menu li button {
+      border: none;
+      background: white;
+      display: block;
+      padding: 3px 20px;
+      clear: both;
+      font-weight: 400;
+      line-height: 1.42857143;
+      color: #333;
+      white-space: nowrap; }
 
 .na-sign-in {
   background: none;
-  color: #a0a3a7;
-  margin-right: 20px; }
+  color: #36363a;
+  margin-right: 10px; }
 
 .na-sign-in:hover {
   color: #1ea78d;
@@ -97,19 +109,20 @@ header {
 .na {
   padding: 10px 0;
   margin-bottom: 0;
-  border: 0;
-  font-size: 11px !important;
-  opacity: 0.97;
-  background: black !important;
-  z-index: 1000; }
+  background: white !important;
+  z-index: 1;
+  border-bottom: 3px solid #bfa161;
+  box-shadow: 0 1px 0 rgba(12, 13, 14, 0.1), 0 1px 6px rgba(59, 64, 69, 0.1); }
   .na .na-item {
     font-size: 17px;
     font-weight: normal;
-    color: #d5d5d5 !important;
+    color: black !important;
     padding-top: 5px;
     padding-bottom: 5px;
     letter-spacing: 2px;
-    margin-right: 40px; }
+    margin-right: 10px;
+    text-decoration: none;
+    border-bottom: 1px solid white; }
     @media screen and (max-width: 1200px) {
       .na .na-item {
         font-size: 14px;
@@ -134,15 +147,13 @@ header {
   @media screen and (max-width: 768px) {
     .na .nav > li > ul > li > a {
       text-align: center;
-      color: #AFAFAF !important; } }
+      color: black !important; } }
   .na .na-item:hover {
-    color: #fff !important;
     background: none !important;
     border-bottom: 1px solid #1ea78d !important; }
   .na .na-item:focus {
     text-decoration: none; }
   .na .na-item:active {
-    color: #fff !important;
     background: none !important;
     border-bottom: 1px solid #1ea78d !important; }
     .na .na-item:active a:active {
@@ -162,32 +173,6 @@ header {
     @media screen and (max-width: 367px) {
       .na .na-toggle {
         margin-top: 15px; } }
-
-.header_search {
-  float: right;
-  width: 33%; }
-  .header_search form input[type="search"] {
-    outline: none;
-    width: 87%;
-    padding: 12px 10px;
-    color: #848484;
-    font-size: 16px;
-    border: 1px solid #ddd;
-    letter-spacing: 1px; }
-  .header_search a {
-    background: no-repeat 4px 0px #2fdab8;
-    width: 11%;
-    height: 50px;
-    border: none;
-    padding: 0;
-    border: none;
-    outline: none;
-    float: right; }
-    .header_search a i {
-      padding: 10px 10px;
-      text-align: center;
-      color: #FFFFFF;
-      font-size: 25px; }
 
 /* //navigation */
 /* //header */
@@ -1090,9 +1075,9 @@ LEVEL 4. SETTINGS
   .checkb {
     padding-left: 22%; } }
 .center_button {
-  width: 30%;
-  margin-left: 35%;
-  margin-right: 35%; }
+  width: 40%;
+  margin-left: 30%;
+  margin-right: 30%; }
 
 @media screen and (max-width: 1000px) {
   .dbox {
@@ -1159,6 +1144,40 @@ LEVEL 4. SETTINGS
 .title_link:hover {
   color: red; }
 
+#home .home_search {
+  position: absolute;
+  top: 5%;
+  background: white;
+  width: 95%;
+  left: 2.5%;
+  min-height: auto;
+  padding: 12px 16px;
+  border-radius: 8px; }
+  #home .home_search i {
+    font-size: 30px;
+    vertical-align: middle;
+    margin-bottom: 5px;
+    color: #767676; }
+  #home .home_search input {
+    height: 50px;
+    border: none;
+    font-size: 17px;
+    padding-left: 20px;
+    position: relative;
+    box-shadow: none;
+    line-height: 1;
+    width: 80%; }
+  #home .home_search a {
+    float: right;
+    background-color: #f4511e;
+    color: #fff;
+    font-size: 18px;
+    height: 50px;
+    border-radius: 8px;
+    font-weight: 400;
+    line-height: 2;
+    width: 17%;
+    border: none; }
 #home .home-dot {
   left: 97%;
   bottom: 40%;
@@ -1573,14 +1592,16 @@ LEVEL 4. SETTINGS
     font-size: 40px;
     line-height: 0;
     width: 50px;
-    height: 80px; }
+    height: 80px;
+    padding: 30px; }
   #sub_home .sub_home_slider .slick-next:before {
     color: black;
     margin-left: -15px;
     font-size: 40px;
     line-height: 0;
     width: 50px;
-    height: 80px; }
+    height: 80px;
+    padding: 30px; }
   #sub_home .sub_home_slider_container {
     position: relative;
     text-align: left;
