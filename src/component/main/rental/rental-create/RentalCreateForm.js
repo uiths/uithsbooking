@@ -133,6 +133,8 @@ class RentalCreateForm extends Component {
                                             <option value='Biệt thư'>Biệt thự</option>
                                             <option value='Chung cư'>Chung cư</option>
                                             <option value='Khách sạn'>Khách sạn</option>
+                                            <option value='Nhà riêng'>Nhà riêng</option>
+                                            <option value='Căn hộ dịch vụ'>Căn hộ dịch vụ</option>
                                             </Field>
                                         </div>
                                     </div>

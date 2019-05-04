@@ -21,11 +21,21 @@ class Create_rent extends Component {
     }
 
     handleClick(rentalData) {
-        actions.createRental(rentalData)
-    }
+        const image = []
+        console.log(rentalData)
+        const change = rentalData.image.map(i => {
+            if (i !== null)
+                image.push(i)
+        })
+        Promise.all(change).then(() => {
+            Object.assign(rentalData, { image: image })
+            console.log(rentalData)
+            this.props.dispatch(actions.createRental(rentalData))
+        }
+    )}
     render() {
-        const { isLoad, isLoading } = this.state;
-        if (this.state.redirect) {
+                const { isLoad, isLoading } = this.state;
+                if(this.state.redirect) {
             return <Redirect to={{ pathname: '/rental/manage', state: { posted: true } }} />
         }
         return (
@@ -48,7 +58,7 @@ class Create_rent extends Component {
 }
 const mapStateToProps = (state, ownProps) => {
     return {
-        
+
     }
 }
 export default connect(mapStateToProps)(Create_rent);

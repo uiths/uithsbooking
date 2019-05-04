@@ -118,27 +118,34 @@ export const fetchRentalById = (rentalId) => {
 }
 
 export const createRental = (rentalData) => {
-  const image = []
-  console.log(rentalData)
-  const change = rentalData.image.map(i => {
-    if (i !== null)
-      image.push(i)
-  })
-  Promise.all(change).then(() => {
-    Object.assign(rentalData, { image: image })
-    console.log(rentalData)
-    axiosInstance.post('/rentals/create', rentalData)
+  // const image = []
+  // console.log(rentalData)
+  // const change = rentalData.image.map(i => {
+  //   if (i !== null)
+  //     image.push(i)
+  // })
+  // Promise.all(change).then(() => {
+  //   Object.assign(rentalData, { image: image })
+  //   console.log(rentalData)
+  return dispatch => {
+    dispatch(startSubmit('rentalCreateForm'))
+    return axiosInstance.post('/rentals/create', rentalData)
+    .then((res) => {
+      dispatch(stopSubmit('rentalCreateForm'))
 
-  })
+    })
+    .catch(({res}) => Promise.reject())
+  }
+  // })
 }
-const editRentalSuccess = (data) =>{
+const editRentalSuccess = (data) => {
   return {
     type: UPDATE_RENTAL_SUCCESS,
     data
   }
 }
 const editRentalFail = () => {
-  return {type: UPDATE_RENTAL_FAIL}
+  return { type: UPDATE_RENTAL_FAIL }
 }
 export const editRental = (rentalData, id) => {
   // const image = []
@@ -149,19 +156,20 @@ export const editRental = (rentalData, id) => {
   // })
   // Promise.all(change).then(() => {
   //   Object.assign(rentalData, { image: image })
-    return dispatch => {
-      dispatch(startSubmit('rentalCreateForm'))
-      axiosInstance.post(`/rentals/update/${id}`, rentalData)
-        .then(res => {
-          console.log(res.data)
-          dispatch(stopSubmit('rentalCreateForm'))
-          dispatch(editRentalSuccess(res.data))
-        })
-        .catch(({ response }) => {
-          dispatch(stopSubmit('rentalCreateForm'))
-          Promise.reject(response.data.errors)}
-        )
-    }
+  return dispatch => {
+    dispatch(startSubmit('rentalCreateForm'))
+    axiosInstance.post(`/rentals/update/${id}`, rentalData)
+      .then(res => {
+        console.log(res.data)
+        dispatch(stopSubmit('rentalCreateForm'))
+        dispatch(editRentalSuccess(res.data))
+      })
+      .catch(({ response }) => {
+        dispatch(stopSubmit('rentalCreateForm'))
+        Promise.reject(response.data.errors)
+      }
+      )
+  }
   // })
   // const change = image.map(i => {
   //   if(i!=null && i.includes(',')){
