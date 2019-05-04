@@ -37,10 +37,8 @@ class reset_pass extends Component {
     const { isUpdated, errors, isError } = this.props
     return (
       <main>
-        <div className="container">
-          <h3>Đổi mật khẩu</h3>
-    
-          <div className="col-lg-8 infobox scale-in-center">
+        <div className="edit-profile-fields">
+          <div className="scale-in-center">
             {
               isUpdated &&
               <div className='alert alert-success'>

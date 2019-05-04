@@ -49,8 +49,8 @@ export function RentalManageCard(props) {
                             <p>Bạn có chắc chắn sẽ xóa</p>
                         </div>
                         <div className="modal-footer">
-                            <button type="button" onClick={()=>{deleteRental(rental._id)}} className="btn btn-default" data-dismiss="modal">Đồng ý</button>
-                            <button type="button" className="btn btn-default" data-dismiss="modal">Đóng</button>
+                            <button type="button" style={{float:"left",display:"inline-block"}} onClick={()=>{deleteRental(rental._id)}} className="btn btn-default" data-dismiss="modal">Đồng ý</button>
+                            <button type="button" style={{float:"right",display:"inline-block"}} className="btn btn-default" data-dismiss="modal">Đóng</button>
                         </div>
                     </div>
 
