@@ -44,30 +44,29 @@ const RentalDateForm = props => {
                     </div>
                 </div>
                 <br />
-                <div className="people-select">
-                    <Field
-                        name="guests"
-                        label='Số người'
-                        className="custom-input"
-                        component={CustomSelect}
-                    >
-                        {[(<option disabled key='null'></option>)].concat(options.map((item) => {
-                            return <option value={item} key={item}>{item}</option>;
-                        }))}
-                    </Field>
-                </div>
+                <Field
+                    name="guests"
+                    label='Số người'
+                    className="custom-input"
+                    component={CustomSelect}
+                >{[(<option disabled key='null'></option>)].concat(options.map((item) => {
+                    return <option value={item} key={item}>{item}</option>;
+                }))}</Field>
+                <hr/>
+                <h4 style={{fontWeight:"bold",marginLeft:"5px"}}>Tổng cộng: --- đ</h4>
+                <hr/>
                 <button type="submit" className="b b1 center_button" disabled={!valid || pristine || submitting}>
                     {submitting ?
                         <span>
                             <i className="fa fa-spin fa-spinner" /> Đang đặt phòng...
                         </span>
                         :
-                        <span>Đặt phòng</span>
+                        <span><i className="fa fa-check-circle"/>   Đặt phòng</span>
                     }
                 </button>
                 {}
-                <br />
-                <br />
+                <hr/>
+                <p className="text-center">Điện thoại hỗ trợ: <span style={{fontWeight:"bold"}}>0123456789</span></p>
             </form>
         </React.Fragment>
     )

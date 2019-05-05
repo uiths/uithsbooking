@@ -75,3 +75,10 @@ textarea {
 .image_picker {
     margin-bottom: 24px;
 }
+
+@media screen and (max-width: 1000px) {
+    .edit-profile-fields {
+        padding: 30px 20px 20px 30px;
+    }
+}
+

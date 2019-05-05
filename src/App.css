@@ -680,7 +680,11 @@ footer {
   position: relative; }
 
 .centered1 img {
-  height: 200px; }
+  height: 200px;
+  border: solid;
+border-width: 2px;
+border-color: gray;}
+
 
 .middle1 {
   transition: .5s ease;
@@ -718,6 +722,23 @@ footer {
   -o-filter: blur(2px);
   -ms-filter: blur(2px);
   filter: blur(px);*/ }
+.bg1 {
+  content: '';
+  position: fixed;
+  overflow: hidden;
+  background-image: url("/public/img/bg.jpg");
+  margin-top: -30%;
+  padding: 0 0;
+  height: auto !important;
+  width: 100% !important;
+  z-index: -5;
+  /*
+  -webkit-filter: blur(2px);
+  -moz-filter: blur(2px);
+  -o-filter: blur(2px);
+  -ms-filter: blur(2px);
+  filter: blur(px);*/ }
+
 
 .bg img {
   -webkit-filter: grayscale(75%);
@@ -726,6 +747,14 @@ footer {
   opacity: 0.60;
   filter: alpha(opacity=60);
   /* For IE8 and earlier */ }
+.bg1 img {
+  -webkit-filter: grayscale(75%);
+  /* Safari 6.0 - 9.0 */
+  filter: grayscale(75%);
+  opacity: 0.60;
+  filter: alpha(opacity=60);
+  /* For IE8 and earlier */ }
+
 
 @media screen and (max-width: 1200px) {
   .bg {
@@ -743,7 +772,24 @@ footer {
             -o-filter: blur(1px);
             -ms-filter: blur(1px);
             filter: blur(px);
-      */ } }
+      */ }
+  .bg1 {
+    content: '';
+    position: fixed;
+    overflow: hidden;
+    margin-top: -70%;
+    padding: 0 0;
+    height: 100% !important;
+    width: auto !important;
+    z-index: -5;
+    /*
+            -webkit-filter: blur(1px);
+            -moz-filter: blur(1px);
+            -o-filter: blur(1px);
+            -ms-filter: blur(1px);
+            filter: blur(px);
+      */ }
+}
 .slide-in-bottom {
   -webkit-animation: slide-in-bottom 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94) both;
   animation: slide-in-bottom 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94) both; }
@@ -1061,10 +1107,10 @@ LEVEL 4. SETTINGS
 .b1 {
   background-color: white;
   color: black;
-  border: 2px solid #673AB7; }
+  border: 2px solid #4B0082; }
 
 .b1:hover {
-  background-color: #673AB7;
+  background-color: #4B0082;
   color: white; }
 
 .dbox {
@@ -1105,7 +1151,8 @@ LEVEL 4. SETTINGS
     padding-bottom: 10%;
     padding-left: 10%;
     padding-right: 10%;
-    box-shadow: 0px 2px 3px rgba(0, 0, 0, 0.13), 1px 2px 2px rgba(0, 0, 0, 0.1), -1px -2px 2px rgba(0, 0, 0, 0.05); } }
+    box-shadow: 0px 2px 3px rgba(0, 0, 0, 0.13), 1px 2px 2px rgba(0, 0, 0, 0.1), -1px -2px 2px rgba(0, 0, 0, 0.05); }
+}
 .pd-left-20 {
   padding-left: 20px; }
 
@@ -1175,6 +1222,69 @@ LEVEL 4. SETTINGS
   border-top-color: #566473;
   border-left-color: #566473; }
 
+
+.bor {
+  position: relative;
+  margin-top: 5px;
+  margin-bottom: 20px;
+  display: inline-block;
+  color: #4B0082;
+  font-family: "Courier New", Courier, "Lucida Sans Typewriter", "Lucida Typewriter", monospace;
+  font-weight: bolder;
+}
+.bor.type1 {
+  font-size: 20pt; }
+
+.bor.type1.type1::after, .bor.type1.type1::before {
+  content: "";
+  display: block;
+  position: absolute;
+  width: 20%;
+  height: 20%;
+  border: 2px solid;
+  transition: all 0.6s ease;
+  border-radius: 2px; }
+
+.bor.type1.type1::after {
+  bottom: 0;
+  right: 0;
+  border-top-color: transparent;
+  border-left-color: transparent;
+  border-bottom-color: #566473;
+  border-right-color: #566473; }
+
+.bor.type1.type1::before {
+  top: 0;
+  left: 0;
+  border-bottom-color: transparent;
+  border-right-color: transparent;
+  border-top-color: #566473;
+  border-left-color: #566473; }
+.block{
+display: inline-block;
+width: 150px;
+height: 50px;
+padding: 5px;
+}
+.ravatar{
+    height: 60px;
+    width: auto;
+    border: solid 2px lightgray;
+    display: inline-block;
+}
+.rname{
+    display:inline-block;
+    font-weight:bold;
+    margin-left:20px;
+    vertical-align: middle;
+}
+.rbutton{
+    display:inline-block;
+    float:right;
+    margin-top: 10px;
+    margin-left: 5px;
+    margin-right:5px;
+}
 .dbox {
   margin-left: 30%;
   margin-right: 30%;
@@ -1186,15 +1296,27 @@ LEVEL 4. SETTINGS
   padding-right: 5%;
   box-shadow: 0px 2px 3px rgba(0, 0, 0, 0.13), 1px 2px 2px rgba(0, 0, 0, 0.1), -1px -2px 2px rgba(0, 0, 0, 0.05); }
 
+.dbox3 {
+  margin-left: 20%;
+  margin-right: 20%;
+  background-color: white;
+  border-radius: 2px;
+  padding-top: 3%;
+  padding-bottom: 5%;
+  padding-left: 5%;
+  padding-right: 5%;
+  box-shadow: 0px 2px 3px rgba(0, 0, 0, 0.13), 1px 2px 2px rgba(0, 0, 0, 0.1), -1px -2px 2px rgba(0, 0, 0, 0.05);
+}
 .infobox {
   background-color: white;
-  border-radius: 1%;
   padding-top: 5%;
   padding-bottom: 5%;
   padding-left: 5%;
   padding-right: 5%;
   box-shadow: 0px 2px 3px rgba(0, 0, 0, 0.13), 1px 2px 2px rgba(0, 0, 0, 0.1), -1px -2px 2px rgba(0, 0, 0, 0.05); }
-
+#null{
+  all: unset;
+}
 .dbox2 {
   margin-left: 10%;
   margin-right: 10%;
@@ -1219,7 +1341,19 @@ LEVEL 4. SETTINGS
     box-shadow: 0px 2px 3px rgba(0, 0, 0, 0.13), 1px 2px 2px rgba(0, 0, 0, 0.1), -1px -2px 2px rgba(0, 0, 0, 0.05); } }
 @media screen and (max-width: 800px) {
   .dbox2 {
-    display: none; } }
+    display: none; }
+  .dbox3 {
+    margin-left: 0%;
+    margin-right: 0%;
+    background-color: white;
+    border-radius: 2px;
+    padding-top: 3%;
+    padding-bottom: 5%;
+    padding-left: 5%;
+    padding-right: 5%;
+    box-shadow: 0px 2px 3px rgba(0, 0, 0, 0.13), 1px 2px 2px rgba(0, 0, 0, 0.1), -1px -2px 2px rgba(0, 0, 0, 0.05);
+  }
+}
 #rent {
   /* If you want the content centered horizontally and vertically */
   /* Style the image inside the centered container, if needed */ }
@@ -1630,11 +1764,7 @@ LEVEL 4. SETTINGS
         display: block;
         width: 100%;
         height: 100%;
-        top: -2px;
-        left: -2px;
-        border: 2px dashed #fff;
-        position: absolute;
-        border-radius: 50%; }
+        position: absolute; }
       #sub_home .sub_home_slider_container_list_rent .middle a i {
         position: relative;
         z-index: 3; }
@@ -1748,12 +1878,12 @@ LEVEL 4. SETTINGS
     margin-top: 20px; }
 
   .resize {
-    height: 200px;
+    height: 200px!important;
     width: auto;
     padding: 5px; }
 
   .resize1 {
-    height: 200px;
+    height: 200px!important;
     width: 100%; }
 
   .slick-track {
