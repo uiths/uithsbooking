@@ -8,12 +8,11 @@ import * as actions from 'actions';
 class Login extends Component {
     constructor() {
         super();
-        this.loginUser = this.loginUser.bind(this);
         this.state = {
             errors: []
         }
     }
-    loginUser(userData) {
+    loginUser = (userData)=> {
         this.props.dispatch(actions.login(userData))
             .then(
                 ({ errors }) => {
