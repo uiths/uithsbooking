@@ -112,3 +112,10 @@ export function handleString(str) {
   str = str.toLowerCase()
   return str;
 }
+export function subtractTwoDates (startAt, endAt) {
+  const date1 = new Date(startAt);
+  const date2 = new Date(endAt);
+  const diffTime = (date2.getTime() - date1.getTime());
+  const diffDays = Math.ceil(diffTime / (1000 * 60 * 60 * 24));
+  return diffDays;
+}

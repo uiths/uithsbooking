@@ -66,7 +66,7 @@ class RentalEdit extends Component {
         }
         const rental = this.state.rental
         if (this.state.redirect) {
-            return <Redirect to={{ pathname: '/rental/manage', state: { posted: true } }} />
+            return <Redirect to={{ pathname: '/rental/manage', state: { editted: true } }} />
         }
         return (
             <div>

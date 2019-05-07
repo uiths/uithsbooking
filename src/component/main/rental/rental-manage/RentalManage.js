@@ -1,7 +1,10 @@
-import React, { Component, Fragment} from 'react';
+import React, { Component, Fragment } from 'react';
 import { BrowserRouter as Router, Link, withRouter } from "react-router-dom";
 import * as actions from 'actions';
 import RentalManageCard from './RentalManageCard'
+import {connect} from 'react-redux'
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 class RentalManage extends Component {
     constructor() {
         super();
@@ -11,10 +14,9 @@ class RentalManage extends Component {
             errors: [],
             isFetching: false
         }
-
         // this.deleteRental = this.deleteRental.bind(this);
     }
-
+    notify = (content) => toast.success(content);
     componentWillMount() {
         this.setState({ isFetching: true });
 
@@ -29,22 +31,29 @@ class RentalManage extends Component {
             )
         })
     }
+    componentDidUpdate(){
+        // this.props.isDeleted && this.addNotification('Xóa thành công', "success")
+        // this.props.dispatch(actions.resetRentalsState())
+    }
     render() {
-        console.log(this.state.userRentals)
-        const { posted } = this.props.location.state || false;
-
+        
+        const { posted, isDeleted } = this.props.location.state || false;
+        {
+            isDeleted && this.notify("Đã xóa thành công")
+        }
         return (
             <div>
                 <div className="container">
+                <ToastContainer/>
                     <h4 className="text-left title_h3 type1 animated fadeInLeft">Danh sách nhà mà bạn cho thuê</h4>
                     <div id="sub_home" className="text-center ">
                         <div className="container mg-top-20 ">
-                        {
-                            posted && 
-                            <div className="boxtrue">Đăng thông tin thành công</div>
-                        }
-                            <div className="row">
                             {
+                                posted &&
+                                <div className="boxtrue">Đăng thông tin thành công</div>
+                            }
+                            <div className="row">
+                                {
                                     this.state.userRentals.length > 0 &&
                                     this.state.userRentals.map((i, index) => {
                                         return (<Fragment key={index}>
@@ -61,5 +70,10 @@ class RentalManage extends Component {
         );
     }
 }
-
-export default RentalManage;
+const mapStateToProps = (state) => {
+    return {
+        rentals: state.rentals,
+        isDeleted: state.rentals.isDeleted
+    }
+}
+export default connect(mapStateToProps)(RentalManage);

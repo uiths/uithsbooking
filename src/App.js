@@ -24,11 +24,12 @@ class App extends Component {
     store.dispatch(actions.logout());
   }
   render() {
-    
+
     return (
       <Provider store={store}>
         <BrowserRouter>
           <div className="App">
+          
             <Header logout={this.logout} />
             <Router />
             <Footer />

@@ -13,10 +13,10 @@ export function RentalManageCard(props) {
                     <Link to={`/detail/${rental._id}`}><img src={rental.image[0]} alt="Snow" width="100%" /></Link>
                     <div className="middle">
 
-                        {/* <a href={`/edit/${rental._id}`} title=""><i
-                            className="fa fa-edit" aria-hidden="true" /></a>
-                        <a href="#" data-toggle="modal" data-target={`#deleteRentModal${rental._id}`} title=""><i
-                            className="fa fa-close" aria-hidden="true" /></a> */}
+                        {/* <Link to={`/edit/${rental._id}`} title=""><i
+                            className="fa fa-edit" aria-hidden="true" /></Link>
+                        <Link to="#" data-toggle="modal" data-target={`#deleteRentModal${rental._id}`} title=""><i
+                            className="fa fa-close" aria-hidden="true" /></Link> */}
                     </div>
                     <p><b>{rental.title}</b>
                         <br />
@@ -32,7 +32,7 @@ export function RentalManageCard(props) {
                             <h4 className="modal-title">Modal Header</h4>
                         </div>
                         <div className="modal-body">
-                            <input className="form-control" value={rental.title} />
+                            <input className="form-control"  />
                         </div>
                         <div className="modal-footer">
                             <button type="button" className="btn btn-default" data-dismiss="modal">Close
@@ -49,8 +49,8 @@ export function RentalManageCard(props) {
                             <p>Bạn có chắc chắn sẽ xóa</p>
                         </div>
                         <div className="modal-footer">
-                            <button type="button" onClick={()=>{deleteRental(rental._id)}} className="btn btn-default" data-dismiss="modal">Đồng ý</button>
-                            <button type="button" className="btn btn-default" data-dismiss="modal">Đóng</button>
+                            <button type="button" style={{float:"left",display:"inline-block"}} onClick={()=>{deleteRental(rental._id)}} className="btn btn-default" data-dismiss="modal">Đồng ý</button>
+                            <button type="button" style={{float:"right",display:"inline-block"}} className="btn btn-default" data-dismiss="modal">Đóng</button>
                         </div>
                     </div>
 

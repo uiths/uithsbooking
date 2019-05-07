@@ -38,15 +38,13 @@ class Search extends Component {
         const params = new URLSearchParams(nextProps.location.search);
         const key = params.get('key');
         const result = nextProps.rentals.data.filter(i =>
-            i.title.toLowerCase().includes(key) ||
-            i.city.toLowerCase().includes(key) ||
-            i.address.toLowerCase().includes(key)
+            handleString(i.title).includes(key) ||
+            handleString(i.city).includes(key) ||
+            handleString(i.address).includes(key)
         )
         Promise.all(result).then(this.setState({rentals:result}))
     }
     render() {
-        console.log('3')
-        console.log(this.state.rentals)
         return (
             <Fragment>
                 <div className="container">

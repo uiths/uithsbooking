@@ -40,12 +40,12 @@ class Header extends Component {
         }
     }
     componentWillMount(){
+        if(this.props.auth.isAuth){ 
         const id = authService.getId();
         this.props.fetchUserById(id)
-    }
+    }}
     render() {
         const image = this.props.user.data.image
-        console.log(image)
         const { username, isAuth } = this.props.auth;
         return (
             <Fragment>

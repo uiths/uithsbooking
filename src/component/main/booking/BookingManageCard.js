@@ -11,7 +11,9 @@ class BookingManageCard extends Component {
             rental : {}
         }
     }
-    
+    componentWillMount(){
+        // this.props.dispatch(actions.fetchBookingById(this.props.id))
+    }
     delete = (bookingId) => {
         console.log(this.props)
         this.props.dispatch(actions.deleteBooking(bookingId))
@@ -19,18 +21,20 @@ class BookingManageCard extends Component {
     render() {
         const rental = this.props.rental.rental;
         const booking = this.props.rental;
+        const owner = this.props.owner
+        console.log(this.props)
         return (
             < React.Fragment >
                 <div className="col-sm-3">
                     <div className="sub_home_slider_container sub_home_slider_container_list_rent">
-                        <Link to={`/detail/${rental._id}`}><img src={rental.image[0]} alt="Snow" width="100%" /></Link>
+                        <Link to={{pathname:`/booking/${rental._id}`,state:{booking:booking}}}><img src={rental.image[0]} alt="Snow" width="100%" /></Link>
                         <div className="middle">
                             {/* <a href="#" title=""><i
                                         className="fa fa-plus" aria-hidden="true" /></a> */}
-                            <a href="#" data-toggle="modal" data-target={`#detailModal${booking._id}`} title=""><i
+                            {/* <a href="#" data-toggle="modal" data-target={`#detailModal${booking._id}`} title=""><i
                                 className="fa fa-edit" aria-hidden="true" /></a>
                             <a href="#" data-toggle="modal" data-target={`#deleteModal${booking._id}`} title=""><i
-                                className="fa fa-close" aria-hidden="true" /></a>
+                                className="fa fa-close" aria-hidden="true" /></a> */}
                         </div>
                         <p><b>{rental.title}</b>
                             <br />
@@ -73,8 +77,7 @@ class BookingManageCard extends Component {
                             </div>
                             <div className="modal-footer">
                                 <button type="button" className="btn btn-default" data-dismiss="modal" onClick={()=> this.delete(booking._id)}>OK</button>
-                                <button type="button" className="btn btn-default" data-dismiss="modal">Close
-                                </button>
+                                <button type="button" className="btn btn-default" data-dismiss="modal">Close</button>
                             </div>
                         </div>
                     </div>
@@ -85,7 +88,8 @@ class BookingManageCard extends Component {
 }
 const mapStateToProps = (state, ownProps) => {
     return {
-        prop: state.prop
+        rentals: state.rentals,
+        booking: state.userBookings
     }
 }
 export default connect(mapStateToProps) (BookingManageCard);

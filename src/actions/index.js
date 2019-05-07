@@ -37,7 +37,15 @@ import {
   RELOAD_MAP_FINISH,
   DELETE_BOOKING_SUCCESS,
   DELETE_BOOKING_FAILURE,
-  RESET_USER_STATE
+  RESET_USER_STATE,
+  DELETE_RENTAL_SUCCESS,
+  DELETE_RENTAL_FAILURE,
+  CREATE_RENTAL_SUCCESS,
+  CREATE_RENTAL_FAILURE,
+  RESET_RENTAL_STATE,
+  FETCH_BOOKING_BY_ID_SUCCESS,
+  FETCH_BOOKING_BY_ID_FAILURE,
+  SORT_BOOKING
 } from './types';
 
 const axiosInstance = axiosService.getInstance();
@@ -116,7 +124,18 @@ export const fetchRentalById = (rentalId) => {
       );
   }
 }
-
+const createRentalSuccess = (data) => {
+  return {
+    type: CREATE_RENTAL_SUCCESS,
+    data
+  }
+}
+const createRentalFailure = (errors) => {
+  return {
+    type: CREATE_RENTAL_FAILURE,
+    errors
+  }
+}
 export const createRental = (rentalData) => {
   // const image = []
   // console.log(rentalData)
@@ -130,11 +149,16 @@ export const createRental = (rentalData) => {
   return dispatch => {
     dispatch(startSubmit('rentalCreateForm'))
     return axiosInstance.post('/rentals/create', rentalData)
-    .then((res) => {
-      dispatch(stopSubmit('rentalCreateForm'))
-
-    })
-    .catch(({res}) => Promise.reject())
+      .then((res) => {
+        dispatch(stopSubmit('rentalCreateForm'))
+        dispatch(createRentalSuccess(res.data))
+      })
+      .catch(({ response }) => {
+        console.log(response.data.errors)
+        dispatch(stopSubmit('rentalCreateForm'))
+        dispatch(createRentalFailure(response.data.errors))
+        return response.data.errors
+      })
   }
   // })
 }
@@ -189,13 +213,17 @@ export const editRental = (rentalData, id) => {
   // })
 
 }
-export const resetRentalState = () => {
+export const resetRentalsState = () => {
   return {
     type: RESET_RENTAL_ERRORS
   }
 }
 
-
+export const resetRentalState = () => {
+  return {
+    type: RESET_RENTAL_STATE
+  }
+}
 const updateRentalSuccess = (updatedRental) => {
   return {
     type: UPDATE_RENTAL_SUCCESS,
@@ -224,7 +252,12 @@ export const updateRental = (id, rentalData) => dispatch => {
 }
 
 // USER BOOKINGS ACTIONS ---------------------------
-
+export const sortBooking = (data) => {
+  return {
+    type: SORT_BOOKING,
+    data
+  }
+}
 const fetchUserBookingsInit = () => {
   return {
     type: FETCH_USER_BOOKINGS_INIT
@@ -295,11 +328,24 @@ export const getUserRentals = () => {
     err => Promise.reject(err.response.data.errors)
   )
 }
-
+const deleteRentalSuccess = (data) => {
+  return {
+    type: DELETE_RENTAL_SUCCESS,
+    data
+  }
+}
+const deleteRentalFailure = (errors) => {
+  return {
+    type: DELETE_RENTAL_FAILURE,
+    errors
+  }
+}
 export const deleteRental = (rentalId) => {
-  return axiosInstance.delete(`/rentals/${rentalId}`).then(
-    res => res.data,
-    err => Promise.reject(err.response.data.errors))
+  return dispatch => {
+    return axiosInstance.delete(`/rentals/${rentalId}`)
+      .then(res => dispatch(deleteRentalSuccess(res.data)))
+      .catch(({ response }) => dispatch(deleteRentalFailure(response.data.errors)))
+  }
 }
 
 // AUTH ACTIONS ---------------------------
@@ -581,6 +627,20 @@ const createBookingSuccess = (data) => {
   return {
     type: CREATE_BOOKING_SUCCESS,
     data
+  }
+}
+const fetchBookingByIdSuccess = (data) =>{
+  return {
+    type: FETCH_BOOKING_BY_ID_SUCCESS,
+    data
+  }
+}
+export const fetchBookingById = (bookingId) => {
+  return  dispatch =>{
+    axiosInstance.get(`/booking/${bookingId}`)
+      .then(res => res.data)
+      .then(rental => dispatch(fetchBookingByIdSuccess(rental))
+      );
   }
 }
 const resetBookingState = () => {
