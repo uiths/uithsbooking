@@ -15,11 +15,13 @@ import 'react-toastify/dist/ReactToastify.css';
 // import ImageGallery from 'react-image-gallery';
 // import "react-image-gallery/styles/css/image-gallery.css";
 import "./style.scss"
-
+import moment from 'moment'
 class RentalDetail extends Component {
   componentWillMount() {
     // Dispatch action
-    window.scrollTo(0, 0)
+    window.scrollTo(0, 0);
+    if(!this.props.booking.data.length>0)
+    this.props.dispatch(actions.fetchUserBookings());
     const rentalId = this.props.match.params.id;
     this.props.dispatch(actions.fetchRentalById(rentalId));
   }
@@ -31,7 +33,7 @@ class RentalDetail extends Component {
       show: false
     }
   }
-  notify = () => toast.success("Wow so easy !");
+  notify = (text) => toast.success(text);
   deleteRental = (rentalId) => {
     this.props.dispatch(actions.deleteRental(rentalId))
   }
@@ -55,17 +57,28 @@ class RentalDetail extends Component {
       booked: false,
       errors: []
     })
-    this.props.dispatch(actions.createBooking(booking))
-  }
+    this.isValid(this.props.booking.data,booking)
 
+    // this.props.dispatch(actions.createBooking(booking))
+  }
+  // isValid (data,booking) {
+  //   for(let i = 0; i < data.length; i++)
+  //     if(+moment(data[i].s))
+  // }
   componentDidUpdate() {
     this.props.dispatch(actions.resetRentalState())
   }
-
+ 
   render() {
     const {posted} = this.props.location.state || false
     {
-      posted && this.notify()
+      posted && this.notify("Đăng nhà thành công")
+      this.props.dispatch(actions.resetRentalState())
+    }
+    {
+      this.props.isUpdated && this.notify("Cập nhật thành công")
+      this.props.dispatch(actions.resetRentalState())
+
     }
     const owner = this.props.rental.user
     const errors = this.props.booking.errors
@@ -248,7 +261,9 @@ function mapStateToProps(state) {
     isUpdated: state.rental.isUpdated,
     booking: state.userBookings,
     rental: state.rental.data,
+    rentals:state.rentals.data,
     errors: state.rental.errors,
+    // booking: state.userBookings
     auth: state.auth
   }
 }

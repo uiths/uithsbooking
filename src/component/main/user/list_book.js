@@ -6,7 +6,7 @@ import * as actions from 'actions';
 import { stat } from 'fs';
 class List_book extends Component {
     componentWillMount() {
-        if(!this.props.userBookings.length>0)
+        // if(!this.props.userBookings.length>0)
         this.props.dispatch(actions.fetchUserBookings());
     }
     renderRental = () => {

@@ -158,7 +158,7 @@ class RentalCreateForm extends Component {
                                     </div>
                                     <div className="col-lg-4">
                                         <Field
-                                            name="isTivi"
+                                            name="isTv"
                                             type="checkbox"
                                             label='TV'
                                             id='TV'

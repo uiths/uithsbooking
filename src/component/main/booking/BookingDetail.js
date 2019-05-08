@@ -64,10 +64,14 @@ class BookingDetail extends Component {
         this.props.dispatch(actions.resetRentalState())
     }
     delete = (bookingId) => {
-        console.log(this.props)
         this.props.dispatch(actions.deleteBooking(bookingId))
     }
+    
     render() {
+
+        if(this.props.isDeleted){
+            return <Redirect to={{ pathname: "/list_book", state: { deleted: true } }} />
+        }
         const booking = this.props.location.state.booking
         const owner = this.props.location.state.booking.owner;
         const rental = this.props.location.state.booking.rental;
@@ -82,10 +86,10 @@ class BookingDetail extends Component {
         //     })
         //   })
         // }
-        if (this.props.booking.isSuccess) {
-            this.handleClose();
-            return <Redirect to="/list_book" />
-        }
+        // if (this.props.booking.isSuccess) {
+        //     this.handleClose();
+        //     return <Redirect to="/list_book" />
+        // }
         // if (this.props.rental._id) {
 
         return (
@@ -185,7 +189,7 @@ class BookingDetail extends Component {
 function mapStateToProps(state) {
     return {
         isCreated: state.rental.isCreated,
-        // isDeleted: state.getUser.isDeleted,
+        isDeleted: state.userBookings.isDeleted,
         deleteError: state.rentals.errors,
         isUpdated: state.rental.isUpdated,
         booking: state.userBookings,

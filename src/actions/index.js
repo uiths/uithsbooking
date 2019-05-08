@@ -303,7 +303,7 @@ const deleteBookingFailure = (errors) => {
 export const deleteBooking = (bookingId) => {
   return dispatch => {
     axiosInstance.delete(`bookings/${bookingId}`)
-      .then(res => dispatch(deleteBookingSuccess(res.data)))
+      .then(res => {dispatch(deleteBookingSuccess(res.data))})
       .catch(({ response }) => {
         console.log(({ response }))
         dispatch(deleteBookingFailure(response.data.errors))

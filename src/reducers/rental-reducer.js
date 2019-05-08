@@ -68,7 +68,7 @@ export const selectedRentalReducer = (state = INITIAL_STATE.rental, action) => {
     case CREATE_RENTAL_FAILURE:
       return {...state, errors:action.errors}
     case RESET_RENTAL_STATE:
-      return {...state, isCreated: false}
+      return {...state, isCreated: false, isUpdated: false}
     default:
       return state;
   }
