@@ -2,6 +2,7 @@ import React, { Component, Fragment } from 'react';
 import { BrowserRouter as Router, Link, withRouter } from "react-router-dom";
 import BookingManageCard from '../booking/BookingManageCard'
 import { connect } from 'react-redux'
+import { formatDate } from 'helpers/index'
 import * as actions from 'actions';
 import { stat } from 'fs';
 class BookingHistory extends Component {
@@ -39,24 +40,43 @@ class BookingHistory extends Component {
                                 isSuccess &&
                                 <div className="boxtrue">Đã xóa thành công</div>
                             }
-                            <div className="row">
-                                {
+                                <table id="history">
+                                    <tr>
+                                        <th>Tên</th>
+                                        <th>Số ngày</th>
+                                        <th>Ngày đặt</th>
+                                        <th>Ngày bắt đầu</th>
+                                        <th>Ngày kết thúc</th>
+                                        <th>Tổng giá</th>
+                                        <th>Số khách</th>
+                                        <th>Trạng thái</th>
+                                    </tr>
+
+                                    {
                                     this.props.userBookings.length > 0 &&
                                     
                                     this.props.userBookings.map((i, index) => {
                                         return (<Fragment key={index}>
-                                        <div>{i.startAt}</div>
+                                            <tr>
+                                                <td><Link to={`/detail/${i.rental._id}`}>{i.rental.title}</Link></td>
+                                                <td>{i.days}</td>
+                                                <td>{formatDate(i.createdAt,"DD/MM/YYYY")}</td>
+                                                <td>{formatDate(i.startAt,"DD/MM/YYYY")}</td>
+                                                <td>{formatDate(i.endAt,"DD/MM/YYYY")}</td>
+                                                <td>{i.totalPrice.toLocaleString()} đ</td>
+                                                <td>{i.guests}</td>
+                                                <td>{i.status}</td>
+                                            </tr>
                                         </Fragment>)
                                     })
                                 }
-
+                            </table>
                                 {/* <RentalCard rental={this.props.userBookings.rental}/> */}
                             </div>
                         </div>
                     </div>
 
                 </div>
-            </div>
         );
     }
 }

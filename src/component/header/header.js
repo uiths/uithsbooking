@@ -66,9 +66,11 @@ class Header extends Component {
                                     <div className="collapse navbar-collapse na-right col-sm-6" id="myNavbar">
                                         <ul className="nav navbar-nav ">
                                             <li><Link className="na-item " to="/booking_home">ĐẶT NHÀ</Link></li>
-                                            <li><Link className="na-item" to="/">BLOG CHIA SẺ</Link></li>
+                                            <li><Link className="na-item" to="/history">LỊCH SỬ</Link></li>
+
+                                            {/* <li><Link className="na-item" to="/">BLOG CHIA SẺ</Link></li> */}
                                             {/*{this.renderOwnerSection(isAuth)}*/}
-                                            <li><Link className="na-item" to="/contact">LIÊN HỆ</Link></li>
+                                            {/* <li><Link className="na-item" to="/contact">LIÊN HỆ</Link></li> */}
                                         </ul>
                                     </div>
 

@@ -9,7 +9,7 @@ import { formatNumber } from 'helpers/index'
 import { Link, Redirect } from 'react-router-dom'
 import authService from 'services/auth-service';
 import { Modal, Button } from 'react-bootstrap'
-
+import {formatDate} from 'helpers/index'
 // import ImageGallery from 'react-image-gallery';
 // import "react-image-gallery/styles/css/image-gallery.css";
 // import "./style.scss"
@@ -151,14 +151,23 @@ class BookingDetail extends Component {
                                 <div className="infobox slide-in-right" style={{ backgroundColor: "#4B0082" }}>
                                     <h3 style={{ color: "white" }}>Giá: <b>{formatNumber(rental.price)}</b> đ / ngày</h3>
                                 </div>
-                                <div>{booking.days}</div>
-                                <div>{booking.createdAt}</div>
-                                <div>{booking.startAt}</div>
-                                <div>{booking.endAt}</div>
-                                <div>{booking.totalPrice}</div>
-                                <div>{booking.guests}</div>
-                                <div>{booking.status}</div>
-                                <button onClick={this.handleShow} className="b b1 rbutton"><span><i className="fa fa-close" />   Xóa</span></button>
+                                <div className="infobox" style={{padding:"20px"}}>
+                                    <h4 style={{fontWeight:"bold"}}>Số ngày:</h4>
+                                    <p>{booking.days}</p>
+                                    <h4 style={{fontWeight:"bold"}}>Ngày đặt:</h4>
+                                    <p>{formatDate(booking.createdAt,"DD/MM/YYYY")}</p>
+                                    <h4 style={{fontWeight:"bold"}}>Ngày bắt đầu:</h4>
+                                    <p>{formatDate(booking.startAt,"DD/MM/YYYY")}</p>
+                                    <h4 style={{fontWeight:"bold"}}>Ngày kết thúc:</h4>
+                                    <p>{formatDate(booking.endAt,"DD/MM/YYYY")}</p>
+                                    <h4 style={{fontWeight:"bold"}}>Tổng giá:</h4>
+                                    <p>{booking.totalPrice.toLocaleString()} đ</p>
+                                    <h4 style={{fontWeight:"bold"}}>Số khách:</h4>
+                                    <p>{booking.guests}</p>
+                                    <h4 style={{fontWeight:"bold"}}>Trạng thái:</h4>
+                                    <p>{booking.status}</p>
+                                    <hr/>
+                                <button onClick={this.handleShow} className="b b1 center_button"><span><i className="fa fa-close" />   Xóa</span></button>
                                 <Modal style={{ opacity: 1 }} show={this.state.show} onHide={this.handleClose}>
                                     <Modal.Body>Bạn có chắc muốn xóa?</Modal.Body>
                                     <Modal.Footer>
@@ -170,7 +179,7 @@ class BookingDetail extends Component {
                                         </Button>
                                     </Modal.Footer>
                                 </Modal>
-
+                            </div>
 
                             </div>
                         }

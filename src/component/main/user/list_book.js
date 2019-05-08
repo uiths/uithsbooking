@@ -3,7 +3,6 @@ import { BrowserRouter as Router, Link, withRouter } from "react-router-dom";
 import BookingManageCard from '../booking/BookingManageCard'
 import { connect } from 'react-redux'
 import * as actions from 'actions';
-import { stat } from 'fs';
 class List_book extends Component {
     componentWillMount() {
         // if(!this.props.userBookings.length>0)
@@ -30,14 +29,12 @@ class List_book extends Component {
       }
       
     render() {
-        console.log(this.props.userBookings)
-        console.log(this.props.userBookings.filter(i =>
-            i.guests > 2
-        ))
+        
         const isSuccess = this.props.isSuccess
         return (
             <div>
                 <div className="container">
+                <br/>
                     <h4 className="text-left title_h3 type1 animated fadeInLeft">Danh sách nhà mà bạn thuê</h4>
                     <div id="sub_home" className="text-center ">
                         <div className="container mg-top-20">
