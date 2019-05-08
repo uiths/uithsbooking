@@ -73,7 +73,7 @@ class BookingDetail extends Component {
             return <Redirect to={{ pathname: "/list_book", state: { deleted: true } }} />
         }
         const booking = this.props.location.state.booking
-        const owner = this.props.location.state.booking.owner;
+        const owner = this.props.location.state.booking.owner || {};
         const rental = this.props.location.state.booking.rental;
         // const errors = this.props.booking.errors
         // const isSuccess = this.props.booking.isSuccess

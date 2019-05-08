@@ -643,7 +643,7 @@ export const fetchBookingById = (bookingId) => {
       );
   }
 }
-const resetBookingState = () => {
+export const resetBookingState = () => {
   return {
     type: RESET_BOOKING_STATE
   }

@@ -34,6 +34,8 @@ class RentalDetail extends Component {
     }
   }
   notify = (text) => toast.success(text);
+  notifyE = (text) => toast.error(text);
+  
   deleteRental = (rentalId) => {
     this.props.dispatch(actions.deleteRental(rentalId))
   }
@@ -57,14 +59,16 @@ class RentalDetail extends Component {
       booked: false,
       errors: []
     })
-    this.isValid(this.props.booking.data,booking)
-
-    // this.props.dispatch(actions.createBooking(booking))
+    if(this.isValid(this.props.booking.data,booking))
+      this.props.dispatch(actions.createBooking(booking))
+    else this.notifyE("Bạn không thể đặt thêm nhà trong khoảng thời gian này")
   }
-  // isValid (data,booking) {
-  //   for(let i = 0; i < data.length; i++)
-  //     if(+moment(data[i].s))
-  // }
+  isValid (data,booking) {
+    for(let i = 0; i < data.length; i++)
+      if((+moment(booking.startAt)<=+moment(data[i].endAt) && +moment(booking.startAt)>=+moment(data[i].startAt)) ||(+moment(booking.endAt)<=+moment(data[i].endAt) && +moment(booking.endAt)>=+moment(data[i].startAt)) )
+        return false;
+      return true 
+    }
   componentDidUpdate() {
     this.props.dispatch(actions.resetRentalState())
   }
@@ -78,6 +82,11 @@ class RentalDetail extends Component {
     {
       this.props.isUpdated && this.notify("Cập nhật thành công")
       this.props.dispatch(actions.resetRentalState())
+
+    }
+    {
+      this.props.booking.isSuccess && this.notify("Đặt phòng thành công")
+      // this.props.dispatch(actions.resetBookingState())
 
     }
     const owner = this.props.rental.user
@@ -216,10 +225,7 @@ class RentalDetail extends Component {
                     <h3 style={{ color: "white" }}>Giá: <b>{formatNumber(this.props.rental.price)}</b> đ / ngày</h3>
                   </div>
                   <div className="infobox slide-in-right">
-                    {
-                      isSuccess &&
-                      <div className="boxtrue">Đã đặt phòng thành công</div>
-                    }
+                    
                     <RentalDateForm price={this.props.rental.price} submitCb={this.book} people={this.props.rental.people} errors={errors} />
                     <br />
                     {/* <div className="modal fade" id="payment" role="dialog">

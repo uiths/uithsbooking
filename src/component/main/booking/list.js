@@ -4,6 +4,7 @@ import * as actions from 'actions'
 import RentalCard from '../index/rentalCard'
 import { connect } from 'react-redux'
 import Loading from 'component/main/user/loading'
+import "./style.scss"
 class List extends Component {
     constructor(props) {
         super(props);
