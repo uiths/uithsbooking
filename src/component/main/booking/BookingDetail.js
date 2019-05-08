@@ -147,6 +147,7 @@ class BookingDetail extends Component {
                                 <div className="infobox slide-in-right" style={{ backgroundColor: "#4B0082" }}>
                                     <h3 style={{ color: "white" }}>Giá: <b>{formatNumber(rental.price)}</b> đ / ngày</h3>
                                 </div>
+                                <div>{booking.days}</div>
                                 <div>{booking.createdAt}</div>
                                 <div>{booking.startAt}</div>
                                 <div>{booking.endAt}</div>
