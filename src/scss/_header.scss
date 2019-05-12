@@ -3,7 +3,6 @@
   border: $value $style $color;
   border-radius: $radius;
   height: $height;
-
 }
 
 @mixin border($position,$value,$style,$color)
@@ -43,25 +42,41 @@ header
     font-weight: bold;
     color: #fff;
   }
-  .top_logo_home
-  {
-    position: absolute;
-    font-size: 17px;
-    top: 13px;
-    right: -15px;
-    color: #2fdab8;
-  }
 }
 .navbar-right{
   margin-right: 0;
   @media screen and (max-width: 768px ) {
     float: right;
   }
+
+  .navbar-right-img{
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+  }
+
+  .dropdown-menu{
+    font-size: 11px;
+    hr{
+      margin: 2px 0;
+    }
+    li button{
+      border: none;
+      background: white;
+      display: block;
+      padding: 3px 20px;
+      clear: both;
+      font-weight: 400;
+      line-height: 1.42857143;
+      color: #333;
+      white-space: nowrap;
+    }
+  }
 }
 .na-sign-in{
     background: none;
-    color:#a0a3a7;
-    margin-right: 20px;
+    color: #36363a;
+    margin-right: 10px;
 }
 .na-sign-in:hover{
     color:#1ea78d;
@@ -93,22 +108,23 @@ header
 {
   padding: 10px 0;
   margin-bottom: 0;
-  border: 0;
-  font-size: 11px !important;
-  opacity:0.97;
-  //background-color: rgb(11, 36, 38) !important;
-  background: black !important;
-  z-index: 1000;
+   background: white !important;
+  z-index: 1;
+  border-bottom: 3px solid #bfa161;
+  box-shadow: 0 1px 0 rgba(12,13,14,0.1),0 1px 6px rgba(59,64,69,0.1);
+
 
 
   .na-item{
     font-size: 17px;
     font-weight: normal;
-    color: #d5d5d5 !important;
+    color: black !important;
     padding-top: 5px;
     padding-bottom: 5px;
     letter-spacing: 2px;
-    margin-right: 40px;
+    margin-right: 10px;
+    text-decoration: none;
+    border-bottom: 1px solid white;
     @media screen and (max-width: 1200px ) {
       font-size: 14px;
       text-align: center;
@@ -136,11 +152,12 @@ header
   .nav>li>ul>li>a{
     @media screen and (max-width: 768px ) {
       text-align: center;
-      color: #AFAFAF!important;
+      color: black !important;
+
     }
   }
   .na-item:hover{
-    color: #fff !important;
+
     background: none!important;
     border-bottom: 1px solid #1ea78d !important;
   }
@@ -149,7 +166,7 @@ header
     text-decoration: none;
   }
   .na-item:active{
-    color: #fff !important;
+
     background: none!important;
     border-bottom: 1px solid #1ea78d !important;
     a:active{
@@ -175,37 +192,6 @@ header
     margin-top: 20px;
     @media screen and (max-width: 367px ) {
       margin-top: 15px;
-    }
-  }
-}
-
-
-.header_search{
-  float: right;
-  width: 33%;
-  form input[type="search"] {
-    outline: none;
-    width: 87%;
-    padding: 12px 10px;
-    color: #848484;
-    font-size: 16px;
-    border: 1px solid #ddd;
-    letter-spacing: 1px;
-  }
-  a {
-    background: no-repeat 4px 0px #2fdab8;
-    width: 11%;
-    height: 50px;
-    border: none;
-    padding: 0;
-    border: none;
-    outline: none;
-    float: right;
-    i{
-      padding: 10px 10px;
-      text-align: center;
-      color: #FFFFFF;
-      font-size: 25px;
     }
   }
 }

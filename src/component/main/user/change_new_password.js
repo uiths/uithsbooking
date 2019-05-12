@@ -2,8 +2,9 @@ import React, { Component } from 'react';
 import NewPass from './change_new_password_form'
 import { connect } from 'react-redux';
 import * as actions from 'actions';
+import ReactNotification from "react-notifications-component";
+import "react-notifications-component/dist/theme.css";
 
-import { stat } from 'fs';
 class reset_pass extends Component {
   constructor(props) {
     super(props);
@@ -12,6 +13,7 @@ class reset_pass extends Component {
       redirect: false,
       errors: ''
     }
+    this.notificationDOMRef = React.createRef();
   }
   updatePass(userData) {
     this.props.dispatch(actions.updatePass(userData))
@@ -30,44 +32,41 @@ class reset_pass extends Component {
   //   const rsid = this.props.match.params.id;
   //   this.props.dispatch(actions.resetPass(userData, rsid))
   // }
-  componentWillUpdate() {
-
+  addNotification = (message, type) => {
+    this.notificationDOMRef.current.addNotification({
+      message,
+      type,
+      insert: "top",
+      container: "top-right",
+      animationIn: ["animated", "fadeIn"],
+      animationOut: ["animated", "fadeOut"],
+      dismiss: { duration: 4000 },
+      dismissable: { click: true }
+    });
+  }
+  componentDidUpdate() {
+    this.props.users.isChanged && this.addNotification('Cập nhật thông tin thành công', "success")
+    this.props.users.errors.detail && this.addNotification(this.props.users.errors.detail, "danger")
   }
   render() {
-    const { isUpdated, errors, isError } = this.props
+    const { errors, isError } = this.props
     return (
       <main>
-        <div className="container">
-          <h3>Đổi mật khẩu</h3>
-    
-          <div className="col-lg-8 infobox scale-in-center">
-            {
-              isUpdated &&
-              <div className='alert alert-success'>
-                <p>Đã đổi mật khẩu thành công</p>
-              </div>
-            }
-            {
-              isError &&
-              <div className='alert alert-danger'>
-                <p>{errors.detail}</p>
-              </div>
-            }
+        <div className="edit-profile-fields">
+          <div className="scale-in-center">
+          <ReactNotification ref={this.notificationDOMRef} />
             <NewPass submitCb={this.updatePass} errors={errors} />
-
           </div>
           <div className="col-lg-2">
-
           </div>
-
         </div>
-
       </main>
     );
   }
 }
 const mapStateToProps = (state, ownProps) => {
   return {
+    users: state.users,
     errors: state.users.errors,
     isUpdated: state.users.isUpdated,
     isError: state.users.isError

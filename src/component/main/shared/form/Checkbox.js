@@ -14,7 +14,7 @@ export const Checkbox = ({
                         <div className='input-group-text'>{symbol}</div>
                     </div>
                 }
-                <input {...input} type={type} /><label> {label}</label>
+                <input {...input} type={type} /><label>&ensp;{label}</label>
             {touched &&
                 ((error && <div className='validation'>{error}</div>))}
         </div>

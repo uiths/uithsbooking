@@ -1,18 +1,27 @@
-import React, { Component } from 'react';
+import React, { Component, Fragment } from 'react';
 import { connect } from 'react-redux';
 import RentalImages from './RentalImages';
 import { RentalAssets } from './RentalAssets';
 import { RentalInfo } from './RentalDetailInfo'
 import * as actions from 'actions';
 import RentalDateForm from './RentalDateForm'
-import { startSubmit, stopSubmit } from 'redux-form'
 import Loading from "component/main/user/loading"
-import {formatNumber} from 'helpers/index'
+import { formatNumber } from 'helpers/index'
+import { Link, Redirect } from 'react-router-dom'
+import authService from 'services/auth-service';
+import { Modal, Button } from 'react-bootstrap'
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
+// import ImageGallery from 'react-image-gallery';
+// import "react-image-gallery/styles/css/image-gallery.css";
+import "./style.scss"
+import moment from 'moment'
 class RentalDetail extends Component {
-
   componentWillMount() {
     // Dispatch action
-    window.scrollTo(0, 0)
+    window.scrollTo(0, 0);
+    if(!this.props.booking.data.length>0)
+    this.props.dispatch(actions.fetchUserBookings());
     const rentalId = this.props.match.params.id;
     this.props.dispatch(actions.fetchRentalById(rentalId));
   }
@@ -20,12 +29,25 @@ class RentalDetail extends Component {
     super(props);
     this.state = {
       booked: false,
-      errors: []
+      errors: [],
+      show: false
     }
-    this.book = this.book.bind(this);
   }
-  book(bookData) {
-    console.log(bookData);
+  notify = (text) => toast.success(text);
+  notifyE = (text) => toast.error(text);
+  
+  deleteRental = (rentalId) => {
+    this.props.dispatch(actions.deleteRental(rentalId))
+  }
+  handleClose = () => {
+    this.setState({ show: false });
+  }
+
+  handleShow = () => {
+    this.setState({ show: true });
+  }
+
+  book = (bookData) => {
     const booking = {
       startAt: bookData.startAt,
       endAt: bookData.endAt,
@@ -37,94 +59,176 @@ class RentalDetail extends Component {
       booked: false,
       errors: []
     })
-    this.props.dispatch(actions.createBooking(booking))
-    // this.props.dispatch(startSubmit('rentalDateForm'))
-    // actions.createBooking(booking)
-    //   .then(res => {
-    //     (booked) => {
-    //       console.log(booked)
-    //       this.setState({ booked: booked })
-    //       this.props.dispatch(stopSubmit('rentalDateForm'))
-    //     },
-    //       (errors) => {
-    //         this.setState({ errors: errors })
-    //         console.log(this.state)
-    //         this.props.dispatch(stopSubmit('rentalDateForm'))
-    //       }
-    //   }
-    //   )
-
+    if(this.isValid(this.props.booking.data,booking))
+      this.props.dispatch(actions.createBooking(booking))
+    else this.notifyE("Bạn không thể đặt thêm nhà trong khoảng thời gian này")
   }
+  isValid (data,booking) {
+    for(let i = 0; i < data.length; i++)
+      if((+moment(booking.startAt)<=+moment(data[i].endAt) && +moment(booking.startAt)>=+moment(data[i].startAt)) ||(+moment(booking.endAt)<=+moment(data[i].endAt) && +moment(booking.endAt)>=+moment(data[i].startAt)) )
+        return false;
+      return true 
+    }
+  componentDidUpdate() {
+    this.props.dispatch(actions.resetRentalState())
+  }
+ 
   render() {
-    { console.log(this.props) }
+    const {posted} = this.props.location.state || false
+    {
+      posted && this.notify("Đăng nhà thành công")
+      this.props.dispatch(actions.resetRentalState())
+    }
+    {
+      this.props.isUpdated && this.notify("Cập nhật thành công")
+      this.props.dispatch(actions.resetRentalState())
+
+    }
+    {
+      this.props.booking.isSuccess && this.notify("Đặt phòng thành công")
+      // this.props.dispatch(actions.resetBookingState())
+
+    }
+    const owner = this.props.rental.user
     const errors = this.props.booking.errors
     const isSuccess = this.props.booking.isSuccess
+    // const images = []
+    // if (this.props.rental.image) {
+    //   this.props.rental.image.map(i => {
+    //     images.push({
+    //       original: i,
+    //       thumbnail: i
+    //     })
+    //   })
+    // }
+    if (this.props.isDeleted) {
+      this.handleClose()
+      return <Redirect to={{pathname:"/rental/manage", state:{isDeleted: true}}} />
+    }
     if (this.props.rental._id) {
+
       return (
         <div id="rent">
+          
+          <ToastContainer/>
+          <RentalImages image={this.props.rental.image} />
+          <br />
           <div className="container">
-            <RentalImages image={this.props.rental.image} />
-            <br />
             <div>
               <div className="col-sm-8">
                 <div>
-                  <div className="infobox">
-                    <div>
-                      <h3>{this.props.rental.title}</h3>
-                      <h6 style={{ color: "gray" }}>{this.props.rental.address}</h6>
+                  <div className="infobox slide-in-left row" style={{ marginBottom: "20px" }}>
+                    <div className="col-lg-8">
+                      <img src={owner.image} className="ravatar" alt="none" />
+                      <h4 className="rname">{owner.username}</h4>
                     </div>
+                    {(authService.getId() === owner._id) &&
+                      <div className="col-lg-4">
+                        <Link to={{ pathname: `/edit/${this.props.rental._id}`, state: { rental: this.props.rental } }}>
+                          <button className="b b1 rbutton"><span><i className="fa fa-edit" />   Sửa</span></button>
+                        </Link>
+                        <button onClick={this.handleShow} className="b b1 rbutton"><span><i className="fa fa-close" />   Xóa</span></button>
+                        <Modal style={{ opacity: 1 }} show={this.state.show} onHide={this.handleClose}>
+                          <Modal.Body>Bạn có chắc muốn xóa?</Modal.Body>
+                          <Modal.Footer>
+                            <Button className="b b1" onClick={() => { this.handleClose();this.deleteRental(this.props.rental._id) }}>
+                              Xóa
+                            </Button>
+                            <Button className="b b1" onClick={this.handleClose}>
+                              Đóng
+                            </Button>
+                          </Modal.Footer>
+                        </Modal>
 
-                    <ul className="nav nav-tabs">
-                      <li className="active"><a data-toggle="tab" href="#description">Mô tả</a></li>
-                      <li><a data-toggle="tab" href="#info">Thông tin</a></li>
-                      <li><a data-toggle="tab" href="#goods">Tiện nghi</a></li>
-                    </ul>
-                    <div className="tab-content">
-                      <div id="description" className="tab-pane fade in active">
-                        <br />
-                        <p>{this.props.rental.description}</p>
                       </div>
+                    }
+                  </div>
+                  <div className="infobox slide-in-left" style={{ backgroundColor: "#4B0082" }}>
+                    <h3 id="null" style={{ fontWeight: "bold", color: "white", fontSize: "25px" }}>{this.props.rental.title}</h3>
+                    <h5 style={{ color: "white" }}>{this.props.rental.address}</h5>
+
+                  </div>
+                  <div className="infobox slide-in-left">
+                    <div>
+                      <h3 className="text-left bor type1"
+                        style={{ padding: "5px", fontSize: "27px" }}>Mô tả </h3>
+                      <div>
+                        <br />
+                        <p style={{ whiteSpace: "pre-line", whiteSpace: "pre-wrap" }}>{this.props.rental.description}</p>
+                      </div>
+                      <hr />
+                      <h3 className="text-left bor type1"
+                        style={{ padding: "5px", fontSize: "27px" }}>Thông tin </h3>
+                      <div>
+
+                        <div className="block">
+                          <i className="fa fa-bed"> {this.props.rental.bedrooms} giường</i> <br />
+                        </div>
+                        <div className="block">
+                          <i className="fa fa-male"> Tối đa {this.props.rental.people} người ở</i> <br />
+                        </div>
+                        <div className="block">
+                          <i className="fa fa-bath"> {this.props.rental.bathrooms} phòng tắm</i> <br />
+                        </div>
+                      </div>
+                      <hr />
+                      <h3 className="text-left bor type1"
+                        style={{ padding: "5px", fontSize: "27px" }}>Tiện nghi </h3>
                       <RentalAssets rental={this.props.rental} />
-                      <div id="info" className="tab-pane fade">
-                        <br />
-                        <i className="fa fa-bed"> {this.props.rental.bedrooms} giường</i> <br />
-                        <br />
-                        <i className="fa fa-male"> Tối đa {this.props.rental.people} người ở</i> <br />
-                        <br />
-                        <i className="fa fa-bath"> {this.props.rental.bathrooms} phòng tắm</i> <br />
-                        <br />
-                      </div>
-                      
                     </div>
                   </div>
                 </div>
+              </div>
+            </div>
 
+            {/* <div className="col-sm-8">
+              <div className="rental-owner">
+                <p>Chủ nhà: {owner.username}</p>
+                <img style={{ width: "56px", height: "56px", borderRadius: "50%" }} src={owner.image}></img>
+                <p style={{ color: "#53525a" }}>Lời từ chủ nhà ví dụ {owner.message}</p>
+                {authService.getId() === owner._id && <button><Link to={{ pathname: `/edit/${this.props.rental._id}`, state: { rental: this.props.rental } }}>Nút chỉnh sửa chỉ hiện khi là chủ nhà</Link></button>}
+              </div>
+              <div className="infobox">
+
+                <h3>{this.props.rental.title}</h3>
+                <h6 style={{ color: "gray" }}>{this.props.rental.address}</h6>
+                <ul className="nav nav-tabs">
+                  <li className="active"><a data-toggle="tab" href="#description">Mô tả</a></li>
+                  <li><a data-toggle="tab" href="#info">Thông tin</a></li>
+                  <li><a data-toggle="tab" href="#goods">Tiện nghi</a></li>
+                </ul>
+                <div className="tab-content">
+                  <div id="description" className="tab-pane fade in active">
+                    <br />
+                    <p>{this.props.rental.description.replace(/✔️/g, "\n")}</p>
+                  </div>
+                  <RentalAssets rental={this.props.rental} />
+                  <div id="info" className="tab-pane fade">
+                    <br />
+                    <i className="fa fa-bed"> {this.props.rental.bedrooms} giường</i> <br />
+                    <br />
+                    <i className="fa fa-male"> Tối đa {this.props.rental.people} người ở</i> <br />
+                    <br />
+                    <i className="fa fa-bath"> {this.props.rental.bathrooms} phòng tắm</i> <br />
+                    <br />
+                  </div>
+
+                </div>
               </div>
 
-
-            </div>
+            </div> */}
             <div className="col-sm-4">
-              <div className="divide">
-                <div className="infobox slide-in-right">
-                  <div>
-                    <h3 style={{ marginTop: "30px" }}>Giá: {formatNumber(this.props.rental.price)} đ / ngày</h3>
+              {
+                !(authService.getId() === owner._id) &&
+                <div className="divide">
+                  <div className="infobox slide-in-right" style={{ backgroundColor: "#4B0082" }}>
+                    <h3 style={{ color: "white" }}>Giá: <b>{formatNumber(this.props.rental.price)}</b> đ / ngày</h3>
                   </div>
-                  <hr />
-                  <div>
-                    <h3 style={{ marginTop: "30px", paddingLeft: "35%" }}>Đặt chỗ</h3>
-                  </div>
-                  <hr />
-                  {
-                    isSuccess &&
-                    <div className="boxtrue">Đã đặt phòng thành công</div>
-                  }
-                  <RentalDateForm submitCb={this.book} people={this.props.rental.people} errors={errors} />
-
-                  <hr />
-                  <br />
-                  <br />
-                  <br />
-                  {/* <div className="modal fade" id="payment" role="dialog">
+                  <div className="infobox slide-in-right">
+                    
+                    <RentalDateForm price={this.props.rental.price} submitCb={this.book} people={this.props.rental.people} errors={errors} />
+                    <br />
+                    {/* <div className="modal fade" id="payment" role="dialog">
                   <div className="modal-dialog">
 
 
@@ -142,23 +246,31 @@ class RentalDetail extends Component {
                     </div>
                   </div>
                 </div> */}
+                  </div>
                 </div>
-              </div>
+              }
             </div>
           </div>
         </div>
       );
     }
-    else return <Loading />
+    else return <Fragment>
+      <Loading />
+    </Fragment>
   }
 }
-
 function mapStateToProps(state) {
   return {
+    isCreated: state.rental.isCreated,
+    isDeleted: state.rentals.isDeleted,
+    deleteError: state.rentals.errors,
+    isUpdated: state.rental.isUpdated,
     booking: state.userBookings,
     rental: state.rental.data,
-    errors: state.rental.errors
+    rentals:state.rentals.data,
+    errors: state.rental.errors,
+    // booking: state.userBookings
+    auth: state.auth
   }
 }
-
 export default connect(mapStateToProps)(RentalDetail)

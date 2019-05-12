@@ -5,7 +5,8 @@ import Login from "./login/Login"
 
 import Home from "../main/index/home";
 import User from "./user/user";
-import User1 from "../main/user/user-setting/user-setting"
+import User2 from "./user/user2";
+import User1 from "component/user-setting/user-setting"
 
 import Contactmain from "./contact/contact_main";
 import Paymentmain from "./payment/payment_main";
@@ -13,11 +14,13 @@ import Paymentmain from "./payment/payment_main";
 import Loading from "component/main/user/loading"
 import RentalDetail from "./rental/rental-detail/RentalDetail";
 import BookingHome from "./booking/list";
+import BookingDetail from "component/main/booking/BookingDetail";
+import BookingHistory from "component/main/booking/BookingHistory"
 
 import MyListRent from "./user/list_rent";
 import MyListBook from "./user/list_book";
 
-import Search from "./search/search"
+import Search from "component/Search"
 // import CreateRent from "./user/create_rent"
 import CreateRent from './rental/rental-create/RentalCreate'
 import {ProtectedRoute} from './shared/auth/ProtectedRoute'
@@ -26,8 +29,9 @@ import {LoggedInRoute} from './shared/auth/LoggedInRoute'
 import ForgotPassword from "./user/forgot_password";
 import change_new_pass from "./user/change_new_password";
 
+import RentalEdit from 'component/RentalEdit'
 import ResetPass from './user/reset_pass'
-
+// import EditProfile from 'component/EditProfile'
 import RentalManage from './rental/rental-manage/RentalManage'
 class Routerr extends Component {
     render() {
@@ -36,22 +40,25 @@ class Routerr extends Component {
                 <Route exact path="/" component={Home} />
                 <ProtectedRoute path="/user" component={User1} />
                 <ProtectedRoute path="/user1" component={User1} />
+                <ProtectedRoute path="/edit/:id" component={RentalEdit}/>
+                <Route path="/user2" component={User2} />
 
                 <Route path="/search" component={Search} />
                 <Route path="/loading" component={Loading} />                
                 <ProtectedRoute path="/create_rent" component={CreateRent} />
-
+                <ProtectedRoute path="/history" component={BookingHistory}/>
                 <LoggedInRoute path="/forgot_pass" component={ForgotPassword} />
                 {/* <LoggedInRoute path="/new_pass_f" component={change_pass} /> */}
                 <ProtectedRoute path="/new_pass" component={change_new_pass} />
                 <Route exact path='/reset/:id' component={ResetPass}/>
                 <LoggedInRoute path="/login" component={Login} />
                 <LoggedInRoute path="/register" component={Sign_up} />
+                <ProtectedRoute path="/booking/:id" component={BookingDetail}/>
                 <Route path="/detail/:id" component={RentalDetail} />
                 <ProtectedRoute path="/booking_home" component={BookingHome} />
                 <ProtectedRoute exact path="/rental/manage" component={RentalManage} />
                 <Route path="/list_book" component={MyListBook} />
-
+                {/* <Route path="/editMyProfile" component={EditProfile}/> */}
 
                 {/*<PrivateRoute  path="/slot" component={Slot} />*/}
 

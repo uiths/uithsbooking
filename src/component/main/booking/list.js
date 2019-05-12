@@ -4,12 +4,15 @@ import * as actions from 'actions'
 import RentalCard from '../index/rentalCard'
 import { connect } from 'react-redux'
 import Loading from 'component/main/user/loading'
+import "./style.scss"
 class List extends Component {
     constructor(props) {
         super(props);
         this.renderRentals = this.renderRentals.bind(this);
     }
     componentWillMount() {
+        this.props.dispatch(actions.resetBookState());
+        if(this.props.rentals.length===0)
         this.props.dispatch(actions.fetchRentals());
     }
 
