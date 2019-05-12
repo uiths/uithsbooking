@@ -2,7 +2,7 @@ import axios from 'axios';
 import authService from 'services/auth-service';
 import axiosService from 'services/axios-service';
 import { startSubmit, stopSubmit } from 'redux-form';
-import { base64toBlob } from 'helpers/index';
+import {reset} from 'redux-form';
 import {
   FETCH_RENTAL_BY_ID_SUCCESS,
   FETCH_RENTAL_BY_ID_INIT,
@@ -529,6 +529,14 @@ export const updateUserInfo = (userData) => {
       })
   }
 }
+export const addSearchHistory = (key) => {
+  return dispatch => {
+    return axiosInstance.post("/users/searchHistory", {"key":key})
+    .then(res=>        
+      dispatch(fetchUserByIdSuccess(res.data))
+    )
+  }
+}
 export const updatePass = (userData) => {
 
   userData._id = authService.getId();
@@ -593,6 +601,8 @@ export const uploadAvatar = (file) => {
       .then(res => {
         dispatch(uploadSuccess(res.data))
         dispatch(stopSubmit('editAvatarForm'))
+        dispatch(reset('editAvatarForm'))
+
       })
       .catch(({ response }) => {
         dispatch(stopSubmit('editAvatarForm'))
@@ -604,14 +614,16 @@ export const uploadAvatar = (file) => {
 export const oldAvatar = (url) => {
   return dispatch => {
     dispatch(resetUserState())
-    dispatch(startSubmit('oldAvatarForm'))
+    dispatch(startSubmit('editAvatarForm'))
     return axiosInstance.post('/users/oldAvatar', url)
       .then(res => {
-        dispatch(stopSubmit('oldAvatarForm'))
+        authService.changeImage(res.data.image)
+        dispatch(stopSubmit('editAvatarForm'))
+        dispatch(reset('editAvatarForm'))
         dispatch(uploadSuccess(res.data))
       })
       .catch(({ response }) => {
-        dispatch(stopSubmit('oldAvatarForm'))
+        dispatch(stopSubmit('editAvatarForm'))
         Promise.reject(response.data.errors)
       })
   }

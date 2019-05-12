@@ -3,7 +3,6 @@ import { Tabs, Tab, TabPanel, TabList } from 'react-web-tabs';
 import 'react-web-tabs/dist/react-web-tabs.css';
 import authService from 'services/auth-service';
 import UserAvatar from './user-avatar';
-import UserOldAvatar from 'component/user-setting/user-old-avatar'
 import * as actions from 'actions'
 import { connect } from 'react-redux'
 import ChangNewPass from 'component/main/user/change_new_password'
@@ -47,8 +46,12 @@ class userSetting extends Component {
         this.props.users.isUploaded && this.addNotification('Tải ảnh lên thành công')
     }
     uploadAvatar = (file) => {
-        console.log(file)
-        this.props.dispatch(actions.uploadAvatar(file))
+        
+        if(file.avatar )
+            this.props.dispatch(actions.uploadAvatar(file))
+        if(file.oldAvatar)
+            this.props.dispatch(actions.oldAvatar(file.oldAvatar))
+
     }
     useAvatar = (url) => {
         console.log(url)
@@ -73,7 +76,6 @@ class userSetting extends Component {
                                 </TabList>
                                 <TabPanel tabId="basic-tab-one">
                                     <EditProfile initialValues={user} submitCb={this.updateInfo} />
-                                    {/* <UserContentForm initialValues={user} user={this.props.users.data} submitCb={this.updateInfo} options={this.options} /> */}
                                 </TabPanel>
                                 <TabPanel tabId="basic-tab-two">
                                     <div className="usercontent">
@@ -83,8 +85,7 @@ class userSetting extends Component {
                                         <br />
                                         <hr />
                                         <div className="row">
-                                            <UserAvatar initialValues={user} submitCb={this.uploadAvatar} img={user.image} />
-                                            <UserOldAvatar imageList={user.oldImages} submitCb={this.useAvatar} />
+                                            <UserAvatar imageList={user.oldImages} submitCb={this.uploadAvatar} img={user.image} />
                                         </div>
                                         <hr />
                                         <br />

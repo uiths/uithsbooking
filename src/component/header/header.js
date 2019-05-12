@@ -39,14 +39,10 @@ class Header extends Component {
             )
         }
     }
-    componentWillMount(){
-        if(this.props.auth.isAuth){ 
-        const id = authService.getId();
-        this.props.fetchUserById(id)
-    }}
     render() {
-        const image = this.props.user.data.image
         const { username, isAuth } = this.props.auth;
+        const image = authService.getImage() || ''
+
         return (
             <Fragment>
                 <header >
@@ -105,13 +101,10 @@ class Header extends Component {
         );
     }
 }
-const mapDispatchToProps = dispatch => ({
-    fetchUserById: (id) => dispatch(actions.fetchUserById(id))
-  })
+
 const mapStateToProps = (state, ownProps) => {
     return {
         auth: state.auth,
-        user: state.users
     }
 }
-export default withRouter(connect(mapStateToProps,mapDispatchToProps)(Header));
+export default withRouter(connect(mapStateToProps)(Header));

@@ -1218,8 +1218,8 @@ LEVEL 4. SETTINGS
     #home .home_search input:focus{
       outline: none;
   }
-  #home .home_search a {
-    float: right;
+  #home .home_search button {
+    margin-left: auto;
     background-color: #f4511e;
     color: #fff;
     font-size: 18px;

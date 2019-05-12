@@ -41,7 +41,6 @@ class RentalList extends Component {
             slidesToShow: 5,
             slidesToScroll: 1
         };
-        console.log(this.props)
         if(this.props.rentals && this.props.rentals.length > 0){
         return (
             <div id="sub_home" className="container-fluid">

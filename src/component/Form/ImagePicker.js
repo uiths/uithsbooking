@@ -10,6 +10,7 @@ class Imagepicker extends Component {
         }
     }
     onPick = (image) => {
+        this.props.action();
         this.setState({ image},(()=>{this.props.input.onChange(this.state.image)}))
     }
     render() {
