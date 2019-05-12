@@ -52,10 +52,9 @@ class reset_pass extends Component {
     const { errors, isError } = this.props
     return (
       <main>
-        <div className="container">
+        <div className="edit-profile-fields">
+          <div className="scale-in-center">
           <ReactNotification ref={this.notificationDOMRef} />
-          <h3>Đổi mật khẩu</h3>
-          <div className="col-lg-8 infobox scale-in-center">
             <NewPass submitCb={this.updatePass} errors={errors} />
           </div>
           <div className="col-lg-2">

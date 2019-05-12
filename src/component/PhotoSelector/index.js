@@ -57,15 +57,18 @@ class PhotoSelector extends Component {
       // const avatarId = 'ABC'
       // const avatarId = await this.handleUploadFile(blob);
       // this.props.addItem({ imageUrl: imageUrl, imageId: avatarId }, this.props.frameKey);
-      this.setState({ loading: false, imageBase64: imageUrl, blobFile: blob }, 
-        this.props.input.onChange(blob));
+      this.setState({ loading: false, imageBase64: imageUrl, blobFile: blob }, () =>{ 
+        this.props.action();
+        this.props.input.onChange(blob)
+      }
+        );
     } catch (e) {
       console.log(e.message);
     }
   }
   removeItem = () => {
     this.setState(
-      { imageBase64: null, blobFile: null}, ()=>
+      { imageBase64: null, blobFile: ''}, ()=>
       this.props.input.onChange(this.state.blobFile));   
   }
   // async handleUploadFile(file) {

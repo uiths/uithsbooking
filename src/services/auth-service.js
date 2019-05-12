@@ -26,7 +26,18 @@ class AuthService {
 
     return moment.unix(exp);
   }
+  changeImage(image) {
+    const objectFromToken = this.decode(this.getToken());
+    objectFromToken.image = image;
+    const newToken = jwt.sign(objectFromToken, 'secret');
+    this.saveToken(newToken)
+  }
+  getImage(){
+    if(localStorage.getItem(this.tokenKey)===null)
+      return ''       
+    else return this.decode(this.getToken()).image;
 
+  }
   getId() {
     return this.decode(this.getToken()).userId
   }
@@ -39,9 +50,7 @@ class AuthService {
   getPhone() {
     return this.decode(this.getToken()).phone;
   }
-  getImage() {
-    return this.decode(this.getToken()).image;
-  }
+  
   isValid(token) {
     return moment().isBefore(this.getExpiration(token));
   }

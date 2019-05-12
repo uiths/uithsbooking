@@ -3,6 +3,7 @@ import { connect } from 'react-redux'
 import NormalRentalCard from './NormalRentalCard'
 import { Link } from "react-router-dom";
 import * as actions from 'actions'
+import {handleString} from 'helpers/index'
 class Search extends Component {
     constructor(props) {
         super(props);
@@ -18,15 +19,18 @@ class Search extends Component {
         })
     }
     componentWillMount() {
+        console.log(this.props)
+        window.scrollTo(0, 0)
         if (this.props.rentals.data.length === 0)
             this.props.dispatch(actions.fetchRentals());
         else {
             const params = new URLSearchParams(this.props.location.search);
-            const key = params.get('key');
+            const key = handleString(params.get('key'));
+            console.log(key)
             const result = this.props.rentals.data.filter(i =>
-                i.title.toLowerCase().includes(key) ||
-                i.city.toLowerCase().includes(key) ||
-                i.address.toLowerCase().includes(key)
+                handleString(i.title).includes(key) ||
+                handleString(i.city).includes(key) ||
+                handleString(i.address).includes(key)
             )
             Promise.all(result).then(this.setState({rentals:result}))
         }
@@ -35,15 +39,13 @@ class Search extends Component {
         const params = new URLSearchParams(nextProps.location.search);
         const key = params.get('key');
         const result = nextProps.rentals.data.filter(i =>
-            i.title.toLowerCase().includes(key) ||
-            i.city.toLowerCase().includes(key) ||
-            i.address.toLowerCase().includes(key)
+            handleString(i.title).includes(key) ||
+            handleString(i.city).includes(key) ||
+            handleString(i.address).includes(key)
         )
         Promise.all(result).then(this.setState({rentals:result}))
     }
     render() {
-        console.log('3')
-        console.log(this.state.rentals)
         return (
             <Fragment>
                 <div className="container">

@@ -6,18 +6,28 @@ import {
   FETCH_RENTALS_FAIL,
   UPDATE_RENTAL_SUCCESS,
   UPDATE_RENTAL_FAIL,
-  RESET_RENTAL_ERRORS
+  RESET_RENTAL_ERRORS,
+  DELETE_RENTAL_SUCCESS,
+  DELETE_RENTAL_FAILURE,
+  DELETE_BOOKING_FAILURE,
+  RESET_RENTALS_STATE,
+  RESET_RENTAL_STATE,
+  CREATE_RENTAL_SUCCESS,
+  CREATE_RENTAL_FAILURE
 } from '../actions/types';
+import { toast } from "react-toastify";
 
 const INITIAL_STATE = {
   rentals: {
     data: [],
-    errors: []
+    errors: [],
+    isDeleted: false
   },
   rental: {
     data: {},
     errors: [],
-    isUpdated: false
+    isUpdated: false,
+    isCreated: false
   }
 }
 
@@ -29,6 +39,12 @@ export const rentalReducer = (state = INITIAL_STATE.rentals, action) => {
       return { ...state, data: action.rentals };
     case FETCH_RENTALS_FAIL:
       return Object.assign({}, state, { errors: action.errors, data: [] });
+    case DELETE_RENTAL_SUCCESS:
+      return {...state, data: action.data, isDeleted: true}
+    case DELETE_RENTAL_FAILURE: 
+      return {...state, errors:action.errors}
+    case RESET_RENTALS_STATE:
+      return {...state, isDeleted: false, erros:[]}
     default:
       return state;
   }
@@ -47,6 +63,12 @@ export const selectedRentalReducer = (state = INITIAL_STATE.rental, action) => {
       return { ...state, errors: action.errors };
     case RESET_RENTAL_ERRORS:
       return { ...state, errors: [], isUpdated:false };
+    case  CREATE_RENTAL_SUCCESS:
+      return {...state, data:action.data, isCreated: true}
+    case CREATE_RENTAL_FAILURE:
+      return {...state, errors:action.errors}
+    case RESET_RENTAL_STATE:
+      return {...state, isCreated: false, isUpdated: false}
     default:
       return state;
   }

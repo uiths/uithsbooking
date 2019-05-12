@@ -3,39 +3,51 @@ import { BrowserRouter as Router, Link, withRouter } from "react-router-dom";
 import BookingManageCard from '../booking/BookingManageCard'
 import { connect } from 'react-redux'
 import * as actions from 'actions';
-import { stat } from 'fs';
 class List_book extends Component {
     componentWillMount() {
+        // if(!this.props.userBookings.length>0)
         this.props.dispatch(actions.fetchUserBookings());
     }
     renderRental = () => {
         if (this.props.userBookings.length > 0) {
             this.props.userBookings.map((i, index) => {
-                return <BookingManageCard rental={i.rental} key={index} delete={this.delete} />
+                return <BookingManageCard  rental={i.rental} key={index} delete={this.delete} />
             })
         }
     }
     bookingDetail =( i ) =>{
         alert(i.startAt)
     }
+    compare = ( a, b )=> {
+        if ( a.guests < b.guests ){
+          return -1;
+        }
+        if ( a.guests > b.guests ){
+          return 1;
+        }
+        return 0;
+      }
+      
     render() {
+        
         const isSuccess = this.props.isSuccess
         return (
             <div>
                 <div className="container">
+                <br/>
                     <h4 className="text-left title_h3 type1 animated fadeInLeft">Danh sách nhà mà bạn thuê</h4>
                     <div id="sub_home" className="text-center ">
                         <div className="container mg-top-20">
-                        {
+                        {/* {
                             isSuccess &&
                             <div className="boxtrue">Đã xóa thành công</div>
-                        }
+                        } */}
                             <div className="row">
                                 {
                                     this.props.userBookings.length > 0 &&
                                     this.props.userBookings.map((i, index) => {
                                         return (<Fragment key={index}>
-                                            <BookingManageCard rental={i} key={index} />
+                                            <BookingManageCard owner={i.owner} id={i._id} rental={i} key={index} />
                                         </Fragment>)
                                     })
                                 }

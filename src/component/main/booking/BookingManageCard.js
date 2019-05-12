@@ -11,7 +11,9 @@ class BookingManageCard extends Component {
             rental : {}
         }
     }
-    
+    componentWillMount(){
+        // this.props.dispatch(actions.fetchBookingById(this.props.id))
+    }
     delete = (bookingId) => {
         console.log(this.props)
         this.props.dispatch(actions.deleteBooking(bookingId))
@@ -19,25 +21,39 @@ class BookingManageCard extends Component {
     render() {
         const rental = this.props.rental.rental;
         const booking = this.props.rental;
+        const owner = this.props.owner
+        console.log(this.props.rental)
         return (
+            
             < React.Fragment >
-                <div className="col-sm-3">
+            <div className="sub_home_slider_container col-sm-3">
+            {/* <div className="sub_home_slider_container"> */}
+                <Link className="sub_home_link"  to={{pathname:`/booking/${rental._id}`,state:{booking:booking}}}>
+                    <img className="sub_home_fix_img" src={rental.image[0]} alt="Snow" width="100%" />
+                    <p className="sub_home_text_p">{rental.address}</p>
+                    <h3 className="sub_home_text_h3">{rental.title}</h3>
+                    <div className="sub_home_text_price">{rental.price.toLocaleString()} VNĐ</div>
+                    <div className="sub_home_star"><i className="fa fa-star"/><i className="fa fa-star"/><i className="fa fa-star"/><i className="fa fa-star"/><i className="fa fa-star"/></div>
+                </Link>
+            {/* </div> */}
+            </div>
+                {/* <div className="col-sm-3">
                     <div className="sub_home_slider_container sub_home_slider_container_list_rent">
-                        <Link to={`/detail/${rental._id}`}><img src={rental.image[0]} alt="Snow" width="100%" /></Link>
-                        <div className="middle">
+                        <Link to={{pathname:`/booking/${rental._id}`,state:{booking:booking}}}><img src={rental.image[0]} alt="Snow" width="100%" /></Link>
+                        <div className="middle"> */}
                             {/* <a href="#" title=""><i
                                         className="fa fa-plus" aria-hidden="true" /></a> */}
-                            <a href="#" data-toggle="modal" data-target={`#detailModal${booking._id}`} title=""><i
+                            {/* <a href="#" data-toggle="modal" data-target={`#detailModal${booking._id}`} title=""><i
                                 className="fa fa-edit" aria-hidden="true" /></a>
                             <a href="#" data-toggle="modal" data-target={`#deleteModal${booking._id}`} title=""><i
-                                className="fa fa-close" aria-hidden="true" /></a>
-                        </div>
+                                className="fa fa-close" aria-hidden="true" /></a> */}
+                        {/* </div>
                         <p><b>{rental.title}</b>
                             <br />
                             {rental.price}
                         </p>
                     </div>
-                </div>
+                </div> */}
                 {/*Modal Content*/}
                 <div className="modal fade" id={`detailModal${booking._id}`} role="dialog">
                     <div className="modal-dialog">
@@ -84,7 +100,8 @@ class BookingManageCard extends Component {
 }
 const mapStateToProps = (state, ownProps) => {
     return {
-        prop: state.prop
+        rentals: state.rentals,
+        booking: state.userBookings
     }
 }
 export default connect(mapStateToProps) (BookingManageCard);

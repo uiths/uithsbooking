@@ -14,6 +14,8 @@ import Paymentmain from "./payment/payment_main";
 import Loading from "component/main/user/loading"
 import RentalDetail from "./rental/rental-detail/RentalDetail";
 import BookingHome from "./booking/list";
+import BookingDetail from "component/main/booking/BookingDetail";
+import BookingHistory from "component/main/booking/BookingHistory"
 
 import MyListRent from "./user/list_rent";
 import MyListBook from "./user/list_book";
@@ -44,13 +46,14 @@ class Routerr extends Component {
                 <Route path="/search" component={Search} />
                 <Route path="/loading" component={Loading} />                
                 <ProtectedRoute path="/create_rent" component={CreateRent} />
-
+                <ProtectedRoute path="/history" component={BookingHistory}/>
                 <LoggedInRoute path="/forgot_pass" component={ForgotPassword} />
                 {/* <LoggedInRoute path="/new_pass_f" component={change_pass} /> */}
                 <ProtectedRoute path="/new_pass" component={change_new_pass} />
                 <Route exact path='/reset/:id' component={ResetPass}/>
                 <LoggedInRoute path="/login" component={Login} />
                 <LoggedInRoute path="/register" component={Sign_up} />
+                <ProtectedRoute path="/booking/:id" component={BookingDetail}/>
                 <Route path="/detail/:id" component={RentalDetail} />
                 <ProtectedRoute path="/booking_home" component={BookingHome} />
                 <ProtectedRoute exact path="/rental/manage" component={RentalManage} />

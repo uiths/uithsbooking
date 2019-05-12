@@ -33,7 +33,7 @@ export const formatNumber = (num) => {
 }
 export function readURL(file) {
   const reader = new FileReader();
-    
+
   return new Promise((resolve, reject) => {
     reader.onload = () => {
       resolve(reader.result);
@@ -45,7 +45,7 @@ export function readURL(file) {
       reject(new DOMException('Problem parsing input file'));
     };
   });
-    
+
 }
 
 export async function blobUrlToBlob(blobUrl) {
@@ -70,7 +70,7 @@ export function dataURItoBlob(dataURI) {
     ia[i] = byteString.charCodeAt(i);
   }
 
-  return new Blob([ia], {type: mimeString});
+  return new Blob([ia], { type: mimeString });
 }
 export function base64toBlob(base64Data, contentType) {
   contentType = contentType || '';
@@ -81,21 +81,41 @@ export function base64toBlob(base64Data, contentType) {
   var byteArrays = new Array(slicesCount);
 
   for (var sliceIndex = 0; sliceIndex < slicesCount; ++sliceIndex) {
-      var begin = sliceIndex * sliceSize;
-      var end = Math.min(begin + sliceSize, bytesLength);
+    var begin = sliceIndex * sliceSize;
+    var end = Math.min(begin + sliceSize, bytesLength);
 
-      var bytes = new Array(end - begin);
-      for (var offset = begin, i = 0; offset < end; ++i, ++offset) {
-          bytes[i] = byteCharacters[offset].charCodeAt(0);
-      }
-      byteArrays[sliceIndex] = new Uint8Array(bytes);
+    var bytes = new Array(end - begin);
+    for (var offset = begin, i = 0; offset < end; ++i, ++offset) {
+      bytes[i] = byteCharacters[offset].charCodeAt(0);
+    }
+    byteArrays[sliceIndex] = new Uint8Array(bytes);
   }
   return new Blob(byteArrays, { type: contentType });
 }
 export function isEmpty(obj) {
-  for(var key in obj) {
-      if(obj.hasOwnProperty(key))
-          return false;
+  for (var key in obj) {
+    if (obj.hasOwnProperty(key))
+      return false;
   }
   return true;
+}
+export function handleString(str) {
+  str = str.replace(/à|á|ạ|ả|ã|â|ầ|ấ|ậ|ẩ|ẫ|ă|ằ|ắ|ặ|ẳ|ẵ|À|Á|Ạ|Ả|Ã|Â|Ầ|Ấ|Ậ|Ẩ|Ẫ|Ă|Ằ|Ắ|Ặ|Ẳ|Ẵ/g, "a");
+  str = str.replace(/è|é|ẹ|ẻ|ẽ|ê|ề|ế|ệ|ể|ễ|È|É|Ẹ|Ẻ|Ẽ|Ê|Ề|Ế|Ệ|Ể|Ễ/g, "e");
+  str = str.replace(/ì|í|ị|ỉ|ĩ|Ì|Í|Ị|Ỉ|Ĩ/g, "i");
+  str = str.replace(/ò|ó|ọ|ỏ|õ|ô|ồ|ố|ộ|ổ|ỗ|ơ|ờ|ớ|ợ|ở|ỡ|Ò|Ó|Ọ|Ỏ|Õ|Ô|Ồ|Ố|Ộ|Ổ|Ỗ|Ơ|Ờ|Ớ|Ợ|Ở|Ỡ/g, "o");
+  str = str.replace(/ù|ú|ụ|ủ|ũ|ư|ừ|ứ|ự|ử|ữ|Ù|Ú|Ụ|Ủ|Ũ|Ư|Ừ|Ứ|Ự|Ử|Ữ/g, "u");
+  str = str.replace(/ỳ|ý|ỵ|ỷ|ỹ|Ỳ|Ý|Ỵ|Ỷ|Ỹ/g, "y");
+  str = str.replace(/đ|Đ/g, "d");
+  str = str.replace(/\s+/g, ' ');
+  str = str.trim();
+  str = str.toLowerCase()
+  return str;
+}
+export function subtractTwoDates (startAt, endAt) {
+  const date1 = new Date(startAt);
+  const date2 = new Date(endAt);
+  const diffTime = (date2.getTime() - date1.getTime());
+  const diffDays = Math.ceil(diffTime / (1000 * 60 * 60 * 24));
+  return diffDays;
 }
