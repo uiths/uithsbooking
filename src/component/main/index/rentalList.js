@@ -7,6 +7,28 @@ import { connect } from "react-redux";
 import * as actions from '../../../actions';
 import Loading from '../user/loading';
 
+function SampleNextArrow(props) {
+    const {className, style, onClick} = props
+    return (
+        <div
+            className={className}
+            style={{...style, display: 'block', background: 'red'}}
+            onClick={onClick}
+        ></div>
+    );
+}
+
+function SamplePrevArrow(props) {
+    const {className, style, onClick} = props
+    return (
+        <div
+            className={className}
+            style={{...style, display: 'block', background: 'green'}}
+            onClick={onClick}
+        ></div>
+    );
+}
+
 class RentalList extends Component {
 
     componentWillMount() {
@@ -39,7 +61,9 @@ class RentalList extends Component {
             infinite: true,
             autoplaySpeed: 2000,
             slidesToShow: 5,
-            slidesToScroll: 1
+            slidesToScroll: 1,
+            nextArrow: <SampleNextArrow />,
+            prevArrow: <SamplePrevArrow />
         };
         console.log(this.props)
         if(this.props.rentals && this.props.rentals.length > 0){
