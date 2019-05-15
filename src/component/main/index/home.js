@@ -15,6 +15,7 @@ class Home extends Component {
         }
     }
     componentWillMount(){
+        if(localStorage.getItem('auth_token')!==null)
         this.props.dispatch(actions.fetchUserById(authService.getId()))
     }
     render() {

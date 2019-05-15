@@ -46,9 +46,10 @@ class List_book extends Component {
                                 {
                                     this.props.userBookings.length > 0 &&
                                     this.props.userBookings.map((i, index) => {
-                                        return (<Fragment key={index}>
+                                        console.log(i)
+                                        return (
                                             <BookingManageCard owner={i.owner} id={i._id} rental={i} key={index} />
-                                        </Fragment>)
+                                       )
                                     })
                                 }
                                 

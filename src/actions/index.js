@@ -263,7 +263,16 @@ const fetchUserBookingsInit = () => {
     type: FETCH_USER_BOOKINGS_INIT
   }
 }
-
+export const createPayment = (data) => {
+  return dispatch => {
+    axiosInstance.post("/payments/create", data)
+    .then(res => {
+      console.log(res.data)
+      // dispatch(fetchBookingByIdSuccess(res.data));
+    })
+    .catch(res => {})
+  }
+}
 const fetchUserBookingsSuccess = (userBookings) => {
   return {
     type: FETCH_USER_BOOKINGS_SUCCESS,
@@ -648,11 +657,11 @@ const fetchBookingByIdSuccess = (data) =>{
   }
 }
 export const fetchBookingById = (bookingId) => {
-  return  dispatch =>{
-    axiosInstance.get(`/booking/${bookingId}`)
-      .then(res => res.data)
-      .then(rental => dispatch(fetchBookingByIdSuccess(rental))
-      );
+  console.log(bookingId)
+  return dispatch =>{
+    axiosInstance.get(`/bookings/booking/${bookingId}`)
+      .then(res => {console.log(res.data);dispatch(fetchBookingByIdSuccess(res.data))})
+      // .then(rental => dispatch(fetchBookingByIdSuccess(rental)));
   }
 }
 export const resetBookingState = () => {

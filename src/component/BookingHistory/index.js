@@ -1,26 +1,22 @@
 import React, { Component, Fragment } from 'react';
 import { BrowserRouter as Router, Link, withRouter } from "react-router-dom";
-import BookingManageCard from '../booking/BookingManageCard'
 import { connect } from 'react-redux'
-import { formatDate } from 'helpers/index'
+import { formatDate, toUSD } from 'helpers/index'
 import * as actions from 'actions';
+import Loading from 'component/Loading';
+
 import PaypalExpressBtn from 'react-paypal-express-checkout';
-import {fx} from 'money'
 class BookingHistory extends Component {
     componentWillMount() {
         if (!this.props.userBookings.length > 0)
             this.props.dispatch(actions.fetchUserBookings());
     }
 
-    bookingDetail = (i) => {
-        alert(i.startAt)
-    }
     render() {
-
         const onSuccess = (payment) => {
-            // Congratulation, it came here means everything's fine!
             console.log("The payment was succeeded!", payment);
-            // You can bind the "payment" object's value to your state or props or whatever here, please see below for sample returned data
+            
+
         }
 
         const onCancel = (data) => {
@@ -45,14 +41,8 @@ class BookingHistory extends Component {
             production: 'Aa05uaG4gJWB23ezy_b3bqTXVs-01Ao2QKBgYI5NzbUfKRDIrxOA8n3JmQTWp__K_sqIG7qpb5Lfv6V5',
         }
         const isSuccess = this.props.isSuccess
-        fx.base = "VND";
-        fx.rates = {
-            "USD": 0.000043
-        }
-        console.log()
-        return (
+            return (
             <div>
-
                 <div className="container">
                     <h4 className="text-left title_h3 type1 animated fadeInLeft">Danh sách nhà mà bạn thuê</h4>
                     <div id="sub_home" className="text-center ">
@@ -62,36 +52,38 @@ class BookingHistory extends Component {
                                 <div className="boxtrue">Đã xóa thành công</div>
                             }
                             <table id="history">
-                                <tr>
-                                    <th>Tên</th>
-                                    <th>Số ngày</th>
-                                    <th>Ngày đặt</th>
-                                    <th>Ngày bắt đầu</th>
-                                    <th>Ngày kết thúc</th>
-                                    <th>Tổng giá</th>
-                                    <th>Số khách</th>
-                                    <th>Trạng thái</th>
-                                </tr>
+                                <tbody>
+                                    <tr>
+                                        <th>Tên</th>
+                                        <th>Số ngày</th>
+                                        <th>Ngày đặt</th>
+                                        <th>Ngày bắt đầu</th>
+                                        <th>Ngày kết thúc</th>
+                                        <th>Tổng giá</th>
+                                        <th>Số khách</th>
+                                        <th>Trạng thái</th>
+                                    </tr>
 
-                                {
-                                    this.props.userBookings.length > 0 &&
+                                    {
+                                        this.props.userBookings.length > 0 &&
 
-                                    this.props.userBookings.map((i, index) => {
-                                        return (<Fragment key={index}>
-                                            <tr>
-                                                <td><Link to={`/detail/${i.rental._id}`}>{i.rental.title}</Link></td>
-                                                <td>{i.days}</td>
-                                                <td>{formatDate(i.createdAt, "DD/MM/YYYY")}</td>
-                                                <td>{formatDate(i.startAt, "DD/MM/YYYY")}</td>
-                                                <td>{formatDate(i.endAt, "DD/MM/YYYY")}</td>
-                                                <td>{i.totalPrice} đ</td>
-                                                <td>{i.guests}</td>
-                                                <td>{<PaypalExpressBtn env={env} client={client} currency={currency} total={parseFloat(fx.convert(i.totalPrice, {from: "VND", to: "USD"})).toFixed(2)} onError={onError} onSuccess={onSuccess} onCancel={onCancel} />
-                                                }</td>
-                                            </tr>
-                                        </Fragment>)
-                                    })
-                                }
+                                        this.props.userBookings.map((i, index) => {
+                                            return (<Fragment key={index}>
+                                                <tr>
+                                                    <td><Link to={`/detail/${i.rental._id}`}>{i.rental.title}</Link></td>
+                                                    <td>{i.days}</td>
+                                                    <td>{formatDate(i.createdAt, "DD/MM/YYYY")}</td>
+                                                    <td>{formatDate(i.startAt, "DD/MM/YYYY")}</td>
+                                                    <td>{formatDate(i.endAt, "DD/MM/YYYY")}</td>
+                                                    <td>{i.totalPrice} đ</td>
+                                                    <td>{i.guests}</td>
+                                                    <td>
+                                                    {i.status === 'paid' ? 'Đã thanh toán' : "Pending..."}</td>
+                                                </tr>
+                                            </Fragment>)
+                                        })
+                                    }
+                                </tbody>
                             </table>
                             {/* <RentalCard rental={this.props.userBookings.rental}/> */}
                         </div>
