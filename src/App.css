@@ -1623,21 +1623,15 @@ LEVEL 4. SETTINGS
   padding-top: 20px;
   padding-bottom: 40px; }
   #sub_home .sub_home_slider .slick-prev:before {
+    margin-left: -15px;
     color: black;
-    margin-right: -15px;
     font-size: 40px;
-    line-height: 0;
-    width: 50px;
-    height: 80px;
-    padding: 30px; }
+    line-height: 0; }
   #sub_home .sub_home_slider .slick-next:before {
     color: black;
-    margin-left: -15px;
+    margin-left: -25px;
     font-size: 40px;
-    line-height: 0;
-    width: 50px;
-    height: 80px;
-    padding: 30px; }
+    line-height: 0; }
   #sub_home .sub_home_slider_container {
     position: relative;
     text-align: left;
