@@ -380,7 +380,8 @@ export const register = (userData) => {
     return axiosInstance.post('/users/register', userData)
       .then(res => {
         dispatch(stopSubmit('registerForm'))
-        toast.success("Hãy kiểm tra email xác nhận")})
+        toast.success("Hãy kiểm tra email xác nhận")
+      })
       .catch(({ response }) => {
         if (response.status === 500)
           toast.error(response.data);
@@ -476,8 +477,12 @@ export const sendMail = (email) => {
 }
 export const confirmAccount = (id) => {
   return axiosInstance.get(`/users/confirm/${id}`)
-  .then(res => toast.success("Xác thực tài khoản thành công. Hãy đăng nhập ngay"))
-  .catch(({response}) => toast.error(response.data.errors.detail))
+    .then(res => toast.success("Xác thực tài khoản thành công. Hãy đăng nhập ngay"))
+    .catch(({ response }) => {
+      if (response.status === 500)
+        toast.error(response.data);
+      else toast.error(response.data.errors.detail)
+    })
 }
 export const resetSuccess = () => {
   return {
