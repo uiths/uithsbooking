@@ -1,9 +1,8 @@
 import React, {Component} from 'react';
 import { Route, Redirect } from "react-router-dom";
-import Sign_up from "./register/Register"
-import Login from "./login/Login"
-
-import Home from "../main/index/home";
+import Register from "component/Register/Register"
+import Login from "component/Login/Login"
+import Home from "../main/index/Loadable";
 import User from "./user/user";
 import User2 from "./user/user2";
 import User1 from "component/user-setting/user-setting"
@@ -16,19 +15,15 @@ import RentalDetail from "./rental/rental-detail/RentalDetail";
 import BookingHome from "./booking/list";
 import BookingDetail from "component/main/booking/BookingDetail";
 import BookingHistory from "component/BookingHistory/Loadable"
-
-import MyListRent from "./user/list_rent";
-import MyListBook from "./user/list_book";
-
+import MyListBook from "./booking/list_book";
+import RegisterConfirm from "component/RegisterConfirm"
 import Search from "component/Search"
 // import CreateRent from "./user/create_rent"
 import CreateRent from './rental/rental-create/RentalCreate'
 import {ProtectedRoute} from './shared/auth/ProtectedRoute'
 import {LoggedInRoute} from './shared/auth/LoggedInRoute'
-
 import ForgotPassword from "./user/forgot_password";
 import change_new_pass from "./user/change_new_password";
-
 import RentalEdit from 'component/RentalEdit'
 import ResetPass from './user/reset_pass'
 // import EditProfile from 'component/EditProfile'
@@ -42,7 +37,7 @@ class Routerr extends Component {
                 <ProtectedRoute path="/user1" component={User1} />
                 <ProtectedRoute path="/edit/:id" component={RentalEdit}/>
                 <Route path="/user2" component={User2} />
-
+                <Route path="/confirm/:id" component={RegisterConfirm}/>
                 <Route path="/search" component={Search} />
                 <Route path="/loading" component={Loading} />                
                 <ProtectedRoute path="/create_rent" component={CreateRent} />
@@ -52,7 +47,7 @@ class Routerr extends Component {
                 <ProtectedRoute path="/new_pass" component={change_new_pass} />
                 <Route exact path='/reset/:id' component={ResetPass}/>
                 <LoggedInRoute path="/login" component={Login} />
-                <LoggedInRoute path="/register" component={Sign_up} />
+                <LoggedInRoute path="/register" component={Register} />
                 <ProtectedRoute path="/booking/:id" component={BookingDetail}/>
                 <Route path="/detail/:id" component={RentalDetail} />
                 <ProtectedRoute path="/booking_home" component={BookingHome} />

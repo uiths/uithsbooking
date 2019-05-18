@@ -19,17 +19,14 @@ class App extends Component {
   checkAuthState() {
     store.dispatch(actions.checkAuthState());
   }
-
   logout() {
     store.dispatch(actions.logout());
   }
   render() {
-
     return (
       <Provider store={store}>
         <BrowserRouter>
           <div className="App">
-          
             <Header logout={this.logout} />
             <Router />
             <Footer />

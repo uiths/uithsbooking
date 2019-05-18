@@ -2,7 +2,10 @@ import axios from 'axios';
 import authService from 'services/auth-service';
 import axiosService from 'services/axios-service';
 import { startSubmit, stopSubmit } from 'redux-form';
-import {reset} from 'redux-form';
+import { reset } from 'redux-form';
+import { showLoading, hideLoading } from 'react-redux-loading-bar';
+import { toast } from "react-toastify";
+
 import {
   FETCH_RENTAL_BY_ID_SUCCESS,
   FETCH_RENTAL_BY_ID_INIT,
@@ -116,11 +119,15 @@ export const fetchRentals = (city) => {
 
 export const fetchRentalById = (rentalId) => {
   return function (dispatch) {
+    dispatch(showLoading())
     dispatch(fetchRentalByIdInit());
 
     axios.get(`/api/v1/rentals/${rentalId}`)
       .then(res => res.data)
-      .then(rental => dispatch(fetchRentalByIdSuccess(rental))
+      .then(rental => {
+        dispatch(hideLoading())
+        dispatch(fetchRentalByIdSuccess(rental))
+      }
       );
   }
 }
@@ -266,11 +273,11 @@ const fetchUserBookingsInit = () => {
 export const createPayment = (data) => {
   return dispatch => {
     axiosInstance.post("/payments/create", data)
-    .then(res => {
-      console.log(res.data)
-      // dispatch(fetchBookingByIdSuccess(res.data));
-    })
-    .catch(res => {})
+      .then(res => {
+        console.log(res.data)
+        // dispatch(fetchBookingByIdSuccess(res.data));
+      })
+      .catch(res => { })
   }
 }
 const fetchUserBookingsSuccess = (userBookings) => {
@@ -312,7 +319,7 @@ const deleteBookingFailure = (errors) => {
 export const deleteBooking = (bookingId) => {
   return dispatch => {
     axiosInstance.delete(`bookings/${bookingId}`)
-      .then(res => {dispatch(deleteBookingSuccess(res.data))})
+      .then(res => { dispatch(deleteBookingSuccess(res.data)) })
       .catch(({ response }) => {
         console.log(({ response }))
         dispatch(deleteBookingFailure(response.data.errors))
@@ -367,22 +374,21 @@ const loginSuccess = () => {
     username
   }
 }
-
-const loginFailure = (errors) => {
-  return {
-    type: LOGIN_FAILURE,
-    errors
-  }
-
-}
-
 export const register = (userData) => {
-  return axios.post('/api/v1/users/register', userData).then(
-    res => res.data,
-    err => Promise.reject(err.response.data.errors),
-  )
+  return dispatch => {
+    dispatch(startSubmit('registerForm'))
+    return axiosInstance.post('/users/register', userData)
+      .then(res => {
+        dispatch(stopSubmit('registerForm'))
+        toast.success("Hãy kiểm tra email xác nhận")})
+      .catch(({ response }) => {
+        if (response.status === 500)
+          toast.error(response.data);
+        else toast.error(response.data.errors.detail)
+        dispatch(stopSubmit('registerForm'))
+      })
+  }
 }
-
 export const checkAuthState = () => {
   return dispatch => {
     if (authService.isAuthenticated()) {
@@ -390,7 +396,6 @@ export const checkAuthState = () => {
     }
   }
 }
-
 export const login = (userData) => {
   return dispatch => {
     dispatch(startSubmit('loginForm'))
@@ -401,23 +406,19 @@ export const login = (userData) => {
         dispatch(loginSuccess());
         dispatch(stopSubmit('loginForm'))
       })
-      .catch((
-        { response }) => {
-        dispatch(loginFailure(response.data.errors));
+      .catch(({ response }) => {
+        if (response.status === 500)
+          toast.error(response.data);
+        else toast.error(response.data.errors.detail)
         dispatch(stopSubmit('loginForm'))
-        return response.data
       })
-    // .then(errors => {
-    //   console.log(errors)
-    //   // dispatch(loginFailure(response.data.errors));
-    // })
   }
 }
 
 export const fetchUserById = (userId) => {
   return dispatch => {
     dispatch(fetchUserByIdInit());
-    axiosInstance.get(`/users/${userId}`)
+    axiosInstance.get(`/users/info/${userId}`)
       .then(res => {
         dispatch(fetchUserByIdSuccess(res.data))
       })
@@ -473,7 +474,11 @@ export const sendMail = (email) => {
 
   }
 }
-
+export const confirmAccount = (id) => {
+  return axiosInstance.get(`/users/confirm/${id}`)
+  .then(res => toast.success("Xác thực tài khoản thành công. Hãy đăng nhập ngay"))
+  .catch(({response}) => toast.error(response.data.errors.detail))
+}
 export const resetSuccess = () => {
   return {
     type: RESET_PASSWORD_SUCCESS
@@ -540,10 +545,10 @@ export const updateUserInfo = (userData) => {
 }
 export const addSearchHistory = (key) => {
   return dispatch => {
-    return axiosInstance.post("/users/searchHistory", {"key":key})
-    .then(res=>        
-      dispatch(fetchUserByIdSuccess(res.data))
-    )
+    return axiosInstance.post("/users/searchHistory", { "key": key })
+      .then(res =>
+        dispatch(fetchUserByIdSuccess(res.data))
+      )
   }
 }
 export const updatePass = (userData) => {
@@ -650,7 +655,7 @@ const createBookingSuccess = (data) => {
     data
   }
 }
-const fetchBookingByIdSuccess = (data) =>{
+const fetchBookingByIdSuccess = (data) => {
   return {
     type: FETCH_BOOKING_BY_ID_SUCCESS,
     data
@@ -658,10 +663,10 @@ const fetchBookingByIdSuccess = (data) =>{
 }
 export const fetchBookingById = (bookingId) => {
   console.log(bookingId)
-  return dispatch =>{
+  return dispatch => {
     axiosInstance.get(`/bookings/booking/${bookingId}`)
-      .then(res => {console.log(res.data);dispatch(fetchBookingByIdSuccess(res.data))})
-      // .then(rental => dispatch(fetchBookingByIdSuccess(rental)));
+      .then(res => { console.log(res.data); dispatch(fetchBookingByIdSuccess(res.data)) })
+    // .then(rental => dispatch(fetchBookingByIdSuccess(rental)));
   }
 }
 export const resetBookingState = () => {

@@ -65,7 +65,7 @@ class RentalList extends Component {
             nextArrow: <SampleNextArrow />,
             prevArrow: <SamplePrevArrow />
         };
-        if(this.props.rentals && this.props.rentals.length > 0){
+        // if(this.props.rentals && this.props.rentals.length > 0){
         return (
             <div id="sub_home" className="container-fluid">
                 <div className="sub_home_list mg-top-40">
@@ -79,8 +79,8 @@ class RentalList extends Component {
                 </div>
             </div>
         );
-    }
-    else return <Loading/>
+    // }
+    // else return <Loading/>
     }
 }
 const mapStateToProps = (state, ownProps) => {

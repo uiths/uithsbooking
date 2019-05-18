@@ -4,6 +4,8 @@ import * as actions from 'actions'
 import { connect } from 'react-redux';
 import AuthService from 'services/auth-service'
 import authService from '../../services/auth-service';
+import LoadingBar from 'react-redux-loading-bar'
+
 class Header extends Component {
     constructor() {
         super();
@@ -45,6 +47,7 @@ class Header extends Component {
 
         return (
             <Fragment>
+                <LoadingBar style={{ height: "3px", backgroundColor: "#4B0082",position: "absolute",zIndex: "2" }} />
                 <header >
                     <div className="">
                         <nav className="navbar na">
