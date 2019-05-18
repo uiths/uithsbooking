@@ -2,7 +2,7 @@
   "name": "usernew",
   "version": "0.1.0",
   "private": true,
-  "proxy": "https://uithsbooking.herokuapp.com",
+  "proxy": "https://hsbookingbackend.glitch.me",
   "dependencies": {
     "autosuggest-highlight": "^3.1.1",
     "axios": "^0.18.0",
@@ -33,6 +33,7 @@
     "react-notifications-component": "^1.1.1",
     "react-paypal-express-checkout": "^1.0.5",
     "react-redux": "^6.0.1",
+    "react-redux-loading-bar": "^4.2.0",
     "react-router-dom": "^4.3.1",
     "react-scripts": "^2.1.8",
     "react-slick": "^0.23.2",

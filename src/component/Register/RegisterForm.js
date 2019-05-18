@@ -7,8 +7,7 @@ import { validate } from 'component/main/shared/form/validators';
 const RegisterForm = props => {
     const { handleSubmit, pristine, submitting, submitCb, valid, errors } = props
     return (
-        <React.Fragment>            <BwmResError errors={errors} />
-
+        <React.Fragment>        
             <form onSubmit={handleSubmit(submitCb)}>
                 <Field
                     name="email"

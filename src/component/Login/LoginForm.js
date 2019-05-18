@@ -1,14 +1,12 @@
-import React from 'react';
-import { Field, reduxForm } from 'redux-form';
-import { BwmInput } from 'component/main/shared/form/BwmInput';
-import { BwmResError } from 'component/main/shared/form/BwmResError';
-import { validate } from 'component/main/shared/form/validators';
+import React from 'react'
+import { Field, reduxForm } from 'redux-form'
+import { BwmInput } from 'component/main/shared/form/BwmInput'
+import { validate } from 'component/main/shared/form/validators'
 import { Link } from "react-router-dom"
 const LoginForm = props => {
   const { handleSubmit, pristine, submitting, submitCb, valid, errors } = props
   return (
     <React.Fragment>
-      <BwmResError errors={errors} />
       <form onSubmit={handleSubmit(submitCb)}>
         <Field
           name="email"
@@ -17,7 +15,6 @@ const LoginForm = props => {
           className="field__input a-field__input"
           id='email'
           component={BwmInput}
-        // validate={[required]}
         />
         <br />
         <br />
@@ -27,7 +24,6 @@ const LoginForm = props => {
           label='Password'
           className="field__input a-field__input"
           component={BwmInput}
-        // validate={[required, minLength4]}
         />
         <div className="checkbox checkb">
           <label><input type="checkbox" name="remember" /> Nhớ tên tài khoản</label>
