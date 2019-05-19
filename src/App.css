@@ -1991,4 +1991,8 @@ padding: 5px;
     background-color: #4CAF50;
     color: white;
   }
+  #g-recaptcha {
+    display: flex;
+    justify-content: center;
+  }
 /*# sourceMappingURL=App.css.map */

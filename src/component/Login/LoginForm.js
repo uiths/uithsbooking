@@ -3,6 +3,8 @@ import { Field, reduxForm } from 'redux-form'
 import { BwmInput } from 'component/main/shared/form/BwmInput'
 import { validate } from 'component/main/shared/form/validators'
 import { Link } from "react-router-dom"
+import Captcha from 'component/Captcha'
+
 const LoginForm = props => {
   const { handleSubmit, pristine, submitting, submitCb, valid, errors } = props
   return (
@@ -31,7 +33,7 @@ const LoginForm = props => {
           >Quên mật khẩu?</Link>
         </div>
         <br />
-
+        <Captcha/>
         <button type="submit" className="b b1 center_button" disabled={!valid || pristine || submitting}>
         {submitting ?
           <span>

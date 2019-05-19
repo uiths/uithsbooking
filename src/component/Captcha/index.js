@@ -33,7 +33,7 @@ class Captcha extends Component {
                 {/* You can replace captchaDemo ref with whatever works for your component */}
                 <ReCaptcha
                     ref={(el) => { this.captchaDemo = el; }}
-                    size="compact"
+                    size="normal"
                     render="explicit"
                     sitekey="6LcAUKQUAAAAAJUlKkgBjQPO-DdOm4dMg-4bIaQf"
                     onloadCallback={this.onLoadRecaptcha}
