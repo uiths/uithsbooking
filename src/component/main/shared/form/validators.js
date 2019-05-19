@@ -38,6 +38,8 @@ export const validate = (values) => {
     errors.newPasswordConfirmation = 'Mật khẩu mới chỉ có tối đa 15 ký tự'
   if (values.password && values.passwordConfirmation && values.passwordConfirmation != values.password)
     errors.passwordConfirmation = 'Mật khẩu xác nhận không trùng khớp'
+  if(!values.captcha)
+    errors.captcha = "Hãy xác nhận Captcha"
   return errors;
 }
 export const bookValidate = (values, props) => {
