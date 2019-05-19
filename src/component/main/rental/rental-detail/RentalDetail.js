@@ -218,7 +218,7 @@ class RentalDetail extends Component {
             </div> */}
             <div className="col-sm-4">
               {
-                (authService.isAuthenticated() && (authService.getId() === owner._id)) &&
+                (!authService.isAuthenticated() ||(authService.isAuthenticated() && !(authService.getId() === owner._id))) &&
                 <div className="divide">
                   <div className="infobox slide-in-right" style={{ backgroundColor: "#4B0082" }}>
                     <h3 style={{ color: "white" }}>Giá: <b>{formatNumber(this.props.rental.price)}</b> đ / ngày</h3>
