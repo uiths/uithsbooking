@@ -14,7 +14,6 @@ let RentalDateForm = props => {
     const options = ['1', '2', '3', '4', '5', '6', '7', '8', '9', '10', '11', '12', '13', '14', '15', '16', '17', '18', '19', '20']
     const { price,startAt, endAt, handleSubmit, pristine, submitting, submitCb, valid, errors } = props
     const totalPrice = (subtractTwoDates(startAt,endAt)*price);
-    console.log(totalPrice)
     return (
         <React.Fragment>
             <BwmResError errors={errors} />

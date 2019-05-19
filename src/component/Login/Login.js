@@ -1,10 +1,10 @@
 import React, { Component } from 'react';
-import { Link, Redirect } from 'react-router-dom'
-import { BwmResError } from '../shared/form/BwmResError'
+import {Redirect } from 'react-router-dom'
 import LoginForm from './LoginForm';
 import { connect } from 'react-redux';
 import * as actions from 'actions';
-
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 class Login extends Component {
     constructor() {
         super();
@@ -12,28 +12,17 @@ class Login extends Component {
             errors: []
         }
     }
-    loginUser = (userData)=> {
+    loginUser = (userData) => {
         this.props.dispatch(actions.login(userData))
-            .then(
-                ({ errors }) => {
-                    this.setState({
-                        errors: errors
-                    })
-                }
-            )
-            .catch(err => err)
-
     }
     render() {
         const { isAuth } = this.props.auth;
-        const errors = this.state.errors;
-        const { successRegister } = this.props.location.state || false;
         if (isAuth) {
             return <Redirect to={{ pathname: '/' }} />
         }
-
         return (
             <div>
+                <ToastContainer autoClose={2000} />
                 <div className="bg">
                     <img src="/img/bg.jpg" alt="bg" />
                 </div>
@@ -44,15 +33,8 @@ class Login extends Component {
                         <br />
                         <div className="dbox slide-in-bottom">
                             <h3 style={{ textAlign: "center" }}>Đăng nhập</h3>
-                            <hr />
-                            {
-                                successRegister &&
-                                <div className='boxtrue'>
-                                    <p>Đăng ký thành công. Hãy đăng nhập ngay</p>
-                                </div>
-                            }
                             <br />
-                            <LoginForm submitCb={this.loginUser} errors={errors} />
+                            <LoginForm submitCb={this.loginUser}/>
                         </div>
                     </div>
                 </div>
@@ -65,5 +47,4 @@ function mapStateToProps(state) {
         auth: state.auth
     }
 }
-
 export default connect(mapStateToProps)(Login);

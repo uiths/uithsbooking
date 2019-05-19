@@ -4,7 +4,7 @@ import { connect } from 'react-redux'
 import { Link } from 'react-router-dom'
 import Dropzone from 'react-dropzone'
 import * as actions from 'actions';
-import LoginForm from "../login/LoginForm";
+import LoginForm from "../../Login/LoginForm";
 
 
 class User2 extends Component {

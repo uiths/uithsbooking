@@ -2,6 +2,8 @@ import React, { Component } from 'react';
 import { BrowserRouter , Route, Link } from "react-router-dom";
 import { Provider} from 'react-redux';
 import './App.css';
+import { loadReCaptcha } from 'react-recaptcha-google'
+
 import Header from './component/header/header';
 import Footer from './component/footer/footer';
 import Router from "./component/main/route";
@@ -19,17 +21,17 @@ class App extends Component {
   checkAuthState() {
     store.dispatch(actions.checkAuthState());
   }
-
   logout() {
     store.dispatch(actions.logout());
   }
+  componentDidMount() {
+    loadReCaptcha();
+  }
   render() {
-
     return (
       <Provider store={store}>
         <BrowserRouter>
           <div className="App">
-          
             <Header logout={this.logout} />
             <Router />
             <Footer />

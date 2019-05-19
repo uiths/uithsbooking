@@ -1,6 +1,6 @@
 import titleize from 'titleize';
 import * as moment from 'moment';
-
+import { fx } from 'money'
 export function isValidDate(date) {
   return moment(date).isValid();
 }
@@ -112,10 +112,17 @@ export function handleString(str) {
   str = str.toLowerCase()
   return str;
 }
-export function subtractTwoDates (startAt, endAt) {
+export function subtractTwoDates(startAt, endAt) {
   const date1 = new Date(startAt);
   const date2 = new Date(endAt);
   const diffTime = (date2.getTime() - date1.getTime());
   const diffDays = Math.ceil(diffTime / (1000 * 60 * 60 * 24));
   return diffDays;
+}
+fx.base = "VND";
+fx.rates = {
+  "USD": 0.000043
+}
+export function toUSD(total) {
+  return Number(parseFloat(fx.convert(total, { from: "VND", to: "USD" })).toFixed(2))
 }

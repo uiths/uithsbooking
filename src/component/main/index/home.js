@@ -15,7 +15,8 @@ class Home extends Component {
         }
     }
     componentWillMount(){
-        this.props.dispatch(actions.fetchUserById(authService.getId()))
+        if(localStorage.getItem('auth_token')!==null)
+            this.props.dispatch(actions.fetchUserById(authService.getId()))
     }
     render() {
         const data = [{
@@ -28,7 +29,7 @@ class Home extends Component {
             array: this.props.users.data.searchHistory || []
         }
         ]
-        
+        console.log(this.props.users)
         return (
             <div>
                 <main>

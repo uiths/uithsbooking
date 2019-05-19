@@ -87,7 +87,6 @@ class RentalDetail extends Component {
     {
       this.props.booking.isSuccess && this.notify("Đặt phòng thành công")
       // this.props.dispatch(actions.resetBookingState())
-
     }
     const owner = this.props.rental.user
     const errors = this.props.booking.errors
@@ -122,7 +121,7 @@ class RentalDetail extends Component {
                       <img src={owner.image} className="ravatar" alt="none" />
                       <h4 className="rname">{owner.username}</h4>
                     </div>
-                    {(authService.getId() === owner._id) &&
+                    {(authService.isAuthenticated() && (authService.getId() === owner._id)) &&
                       <div className="col-lg-4">
                         <Link to={{ pathname: `/edit/${this.props.rental._id}`, state: { rental: this.props.rental } }}>
                           <button className="b b1 rbutton"><span><i className="fa fa-edit" />   Sửa</span></button>
@@ -219,7 +218,7 @@ class RentalDetail extends Component {
             </div> */}
             <div className="col-sm-4">
               {
-                !(authService.getId() === owner._id) &&
+                (!authService.isAuthenticated() ||(authService.isAuthenticated() && !(authService.getId() === owner._id))) &&
                 <div className="divide">
                   <div className="infobox slide-in-right" style={{ backgroundColor: "#4B0082" }}>
                     <h3 style={{ color: "white" }}>Giá: <b>{formatNumber(this.props.rental.price)}</b> đ / ngày</h3>
