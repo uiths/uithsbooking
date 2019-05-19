@@ -15,6 +15,7 @@ class Login extends Component {
         }
     }
     loginUser = (userData) => {
+        console.log(userData)
         this.props.dispatch(actions.login(userData))
     }
     render() {
