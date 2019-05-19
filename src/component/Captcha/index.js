@@ -22,7 +22,10 @@ class Captcha extends Component {
     verifyCallback(recaptchaToken) {
         this.props.input.onChange(recaptchaToken)
     }
-
+    expiredCallback(recaptchaToken){
+        console.log(recaptchaToken)
+        this.props.input.onChange('')
+    }
     render() {
         return (
             <div>
@@ -34,6 +37,7 @@ class Captcha extends Component {
                     sitekey="6LesUKQUAAAAABp7KjBQ99GmjvNcKCyijdhcN5jC"
                     onloadCallback={this.onLoadRecaptcha}
                     verifyCallback={this.verifyCallback}
+                    expiredCallback={this.expiredCallback}
                 />
             </div>
         );
