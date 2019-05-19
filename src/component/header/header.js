@@ -50,7 +50,7 @@ class Header extends Component {
                         <nav className="navbar na">
                             <div className="container-fluid">
                                 <div className="row">
-                                    <Link className="na-brand col-sm-2 mg-top-10" to="/"><span>U</span>IT HomeStay</Link>
+                                    <Link className="na-brand col-sm-2" to="/"><img src="/img/index_icon_range.png" width="50%" alt={"none"}/></Link>
                                     <div className="navbar-header">
                                         <button type="button" className="navbar-toggle na-toggle" data-toggle="collapse" data-target="#myNavbar">
                                             <span className="icon-bar" />
