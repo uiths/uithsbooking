@@ -122,7 +122,7 @@ export const fetchRentalById = (rentalId) => {
     dispatch(showLoading())
     dispatch(fetchRentalByIdInit());
 
-    axios.get(`/api/v1/rentals/${rentalId}`)
+    axiosInstance.get(`/rentals/${rentalId}`)
       .then(res => res.data)
       .then(rental => {
         dispatch(hideLoading())
