@@ -3,7 +3,6 @@ import './style.scss';
 
 export default (props) => {
   if (props.error) {
-    console.log(props);
     return <div>Error! </div>;
   } else {
     return (

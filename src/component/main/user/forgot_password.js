@@ -20,7 +20,6 @@ class ForgotPassword extends Component {
     render() {
         const  {isSend, errors}  = this.props;
         // const sendSuccess = this.props.location.state || false;
-        console.log(this.props);
         return (
             <div className="container">
                 <div>

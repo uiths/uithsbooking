@@ -29,7 +29,6 @@ class Home extends Component {
             array: this.props.users.data.searchHistory || []
         }
         ]
-        console.log(this.props.users)
         return (
             <div>
                 <main>

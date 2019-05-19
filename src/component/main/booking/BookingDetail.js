@@ -19,10 +19,8 @@ import PaypalExpressBtn from 'react-paypal-express-checkout';
 class BookingDetail extends Component {
     componentWillMount() {
         // Dispatch action
-        console.log(this.props.location.state)
         window.scrollTo(0, 0)
         const bookingId = this.props.match.params.id;
-        console.log(bookingId);
         this.props.dispatch(actions.fetchBookingById(bookingId));
         // this.props.dispatch(actions.fetchBookingById(this.props.location.state.id))
         // this.props.dispatch(action.fetchBookingById())
@@ -63,7 +61,6 @@ class BookingDetail extends Component {
     }
 
     componentDidUpdate() {
-        console.log(this.props.isCreated)
         // this.props.isCreated && this.addNotification('Tạo thành công', "success")
         this.props.dispatch(actions.resetRentalState())
     }
@@ -72,7 +69,6 @@ class BookingDetail extends Component {
     }
 
     render() {
-        console.log(this.props.booking)
         const booking = this.props.booking
         const owner = this.props.booking.owner || {};
         const rental = this.props.booking.rental;

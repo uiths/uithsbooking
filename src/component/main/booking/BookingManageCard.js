@@ -15,14 +15,12 @@ class BookingManageCard extends Component {
         // this.props.dispatch(actions.fetchBookingById(this.props.id))
     }
     delete = (bookingId) => {
-        console.log(this.props)
         this.props.dispatch(actions.deleteBooking(bookingId))
     }
     render() {
         const rental = this.props.rental.rental;
         const booking = this.props.rental;
         const owner = this.props.owner
-        console.log(this.props.rental)
         return (
             
             < React.Fragment >

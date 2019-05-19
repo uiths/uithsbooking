@@ -274,7 +274,6 @@ export const createPayment = (data) => {
   return dispatch => {
     axiosInstance.post("/payments/create", data)
       .then(res => {
-        console.log(res.data)
         // dispatch(fetchBookingByIdSuccess(res.data));
       })
       .catch(res => { })
@@ -504,7 +503,6 @@ export const resetPass = (userData, id) => {
         dispatch(resetSuccess())
       })
       .catch(response => {
-        console.log(response)
         dispatch(resetFailure(response.data.errors))
       })
   }
@@ -559,7 +557,6 @@ export const addSearchHistory = (key) => {
 export const updatePass = (userData) => {
 
   userData._id = authService.getId();
-  console.log(userData);
   return (dispatch) => {
     dispatch(resetUserState());
     dispatch(startSubmit('newPassForm'))
@@ -667,7 +664,6 @@ const fetchBookingByIdSuccess = (data) => {
   }
 }
 export const fetchBookingById = (bookingId) => {
-  console.log(bookingId)
   return dispatch => {
     axiosInstance.get(`/bookings/booking/${bookingId}`)
       .then(res => { console.log(res.data); dispatch(fetchBookingByIdSuccess(res.data)) })
@@ -685,12 +681,10 @@ export const createBooking = (booking) => {
     dispatch(startSubmit('rentalDateForm'))
     return axiosInstance.post('/bookings/book', booking)
       .then(res => {
-        console.log(res.data)
         dispatch(stopSubmit('rentalDateForm'))
         dispatch(createBookingSuccess(res.data))
       })
       .catch(({ response }) => {
-        console.log(response.data.errors)
         dispatch(stopSubmit('rentalDateForm'))
         dispatch(createBookingFail(response.data.errors))
       })

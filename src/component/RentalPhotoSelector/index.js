@@ -53,7 +53,6 @@ class RentalPhotoSelector extends Component {
         this.handleClose();
         this.setState({ loading: true });
         const blob = dataURItoBlob(imageUrl);
-        console.log(blob)
         try {
             // const avatarId = await this.handleUploadFile(blob);
             this.props.addItem({ imageUrl: imageUrl }, this.props.frameKey);

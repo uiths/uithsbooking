@@ -65,10 +65,8 @@ class Search extends Component {
 
     renderSuggestion = (suggestion, { query }) => {
         const suggestionText = `${suggestion.address}`;
-        console.log(suggestionText);
         const matches = AutosuggestHighlightMatch(suggestionText, query);
         const parts = AutosuggestHighlightParse(suggestionText, matches);
-        console.log(suggestion)
         return (
             <React.Fragment>
                 <Link to={`/detail/${suggestion._id}`}>
