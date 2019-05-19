@@ -15,7 +15,8 @@ class Login extends Component {
         }
     }
     loginUser = (userData) => {
-        this.props.dispatch(actions.login(userData))
+        console.log(userData)
+        // this.props.dispatch(actions.login(userData))
     }
     render() {
         const { isAuth } = this.props.auth;

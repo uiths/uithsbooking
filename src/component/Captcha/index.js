@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
-import { ReCaptcha } from 'react-recaptcha-google'
-
+import Recaptcha from 'react-recaptcha'
 class Captcha extends Component {
     constructor(props, context) {
         super(props, context);
@@ -9,7 +8,6 @@ class Captcha extends Component {
     }
 
     componentDidMount() {
-        
         if (this.captchaDemo) {
             console.log("started, just a second...")
             this.captchaDemo.reset();
@@ -24,14 +22,14 @@ class Captcha extends Component {
 
     verifyCallback(recaptchaToken) {
         // Here you will get the final recaptchaToken!!!  
-        console.log(recaptchaToken, "<= your recaptcha token")
+        console.log(recaptchaToken)
     }
 
     render() {
         return (
             <div>
                 {/* You can replace captchaDemo ref with whatever works for your component */}
-                <ReCaptcha
+                <Recaptcha
                     ref={(el) => { this.captchaDemo = el; }}
                     size="normal"
                     render="explicit"
