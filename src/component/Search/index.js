@@ -19,14 +19,12 @@ class Search extends Component {
         })
     }
     componentWillMount() {
-        console.log(this.props)
         window.scrollTo(0, 0)
         if (this.props.rentals.data.length === 0)
             this.props.dispatch(actions.fetchRentals());
         else {
             const params = new URLSearchParams(this.props.location.search);
             const key = handleString(params.get('key'));
-            console.log(key)
             const result = this.props.rentals.data.filter(i =>
                 handleString(i.title).includes(key) ||
                 handleString(i.city).includes(key) ||

@@ -33,7 +33,6 @@ export const userBookingsReducer = (state = INITIAL_STATE, action) => {
     case CREATE_BOOKING_FAIL:
       return { ...state, isSuccess: false, errors: action.errors };
     case DELETE_BOOKING_SUCCESS:
-      console.log(action.data)
       return { ...state, isDeleted: true, data: action.data }
     case DELETE_BOOKING_FAILURE:
       return { ...state, errors: action.errors }

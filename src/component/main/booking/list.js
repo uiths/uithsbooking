@@ -24,7 +24,6 @@ class List extends Component {
         })
     }
     render() {
-        {console.log(this.props.rentals)}
         if(this.props.rentals && this.props.rentals.length > 0){
         return (
             <div>

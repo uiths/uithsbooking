@@ -14,7 +14,6 @@ class DropzoneUpload extends Component {
     }
 
     onImageDrop(selectedFile) {
-        console.log(selectedFile)
         this.setState({
             imageFiles: selectedFile,
             isChange: true
@@ -58,7 +57,6 @@ class DropzoneUpload extends Component {
             borderRadius: "10px",
             backgroundColor: "#f7f7f7"
         };
-        { console.log(this.state) }
 
         return (
             <Fragment>

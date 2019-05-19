@@ -54,7 +54,6 @@ class userSetting extends Component {
 
     }
     useAvatar = (url) => {
-        console.log(url)
         if (!isEmpty(url))
             this.props.dispatch(actions.oldAvatar(url.oldAvatar))
     }

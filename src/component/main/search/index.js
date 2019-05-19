@@ -54,7 +54,6 @@ class Search extends Component {
         }
         return this.props.data
             .map(section => {
-                console.log(section)
                 if (section.array && section.array.length > 0 && section.array[0].address)
                     return {
                         title: section.title,

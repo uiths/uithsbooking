@@ -23,8 +23,7 @@ class Captcha extends Component {
         this.props.input.onChange(recaptchaToken)
     }
     expiredCallback(recaptchaToken){
-        console.log(recaptchaToken)
-        this.props.input.onChange('')
+        this.props.input.onChange(recaptchaToken)
     }
     render() {
         return (

@@ -16,7 +16,6 @@ class RegisterConfirm extends Component {
         .then(this.setState({ redirect: true }))
     }
     render() {
-        console.log(this.state.redirect)
         return (
             <div className="register-confirm" style={{ minHeight: "calc(100vh - 55px)" }}>
                 {
