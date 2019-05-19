@@ -9,6 +9,7 @@ class Captcha extends Component {
     }
 
     componentDidMount() {
+        
         if (this.captchaDemo) {
             console.log("started, just a second...")
             this.captchaDemo.reset();
@@ -32,7 +33,7 @@ class Captcha extends Component {
                 {/* You can replace captchaDemo ref with whatever works for your component */}
                 <ReCaptcha
                     ref={(el) => { this.captchaDemo = el; }}
-                    size="normal"
+                    size="compact"
                     render="explicit"
                     sitekey="6LcAUKQUAAAAAJUlKkgBjQPO-DdOm4dMg-4bIaQf"
                     onloadCallback={this.onLoadRecaptcha}
