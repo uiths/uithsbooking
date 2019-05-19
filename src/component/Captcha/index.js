@@ -3,8 +3,7 @@ import Recaptcha from 'react-recaptcha'
 class Captcha extends Component {
     constructor(props, context) {
         super(props, context);
-        this.onLoadRecaptcha = this.onLoadRecaptcha.bind(this);
-        this.verifyCallback = this.verifyCallback.bind(this);
+       
     }
 
     componentDidMount() {
@@ -13,16 +12,16 @@ class Captcha extends Component {
         }
     }
 
-    onLoadRecaptcha() {
+    onLoadRecaptcha = () =>{
         if (this.captchaDemo) {
             this.captchaDemo.reset();
         }
     }
 
-    verifyCallback(recaptchaToken) {
+    verifyCallback = (recaptchaToken) => {
         this.props.input.onChange(recaptchaToken)
     }
-    expiredCallback(recaptchaToken){
+    expiredCallback =(recaptchaToken) =>{
         this.props.input.onChange(recaptchaToken)
     }
     render() {
