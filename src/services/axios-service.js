@@ -10,8 +10,9 @@ class AxiosService {
   }
 
   initInstance() {
+    console.log(process.env.REACT_APP_BACKEND_URL)
     this.axiosInstance = axios.create({
-      baseURL: '/api/v1',
+      baseURL: process.env.REACT_APP_BACKEND_URL,
       timeout: 20000
     });
     this.axiosInstance.defaults.headers.common['Content-Type'] = 'multipart/form-data';
