@@ -400,7 +400,7 @@ export const checkAuthState = () => {
 export const login = (userData) => {
   return dispatch => {
     dispatch(startSubmit('loginForm'))
-    return axios.post('/api/v1/users/login', userData)
+    return axiosInstance.post('/api/v1/users/login', userData)
       .then(res => res.data)
       .then(token => {
         authService.saveToken(token);
@@ -462,7 +462,7 @@ const sendMailSuccess = () => {
 export const sendMail = (email) => {
   return dispatch => {
     dispatch(startSubmit('forgotForm'))
-    return axios.post('/api/v1/users/forgotpass', email)
+    return axiosInstance.post('/api/v1/users/forgotpass', email)
       .then(response => {
         dispatch(sendMailSuccess())
         dispatch(stopSubmit('forgotForm'))
@@ -499,7 +499,7 @@ export const resetFailure = (errors) => {
 
 export const resetPass = (userData, id) => {
   return (dispatch) => {
-    return axios.post(`/api/v1/users/reset/${id}`, userData)
+    return axiosInstance.post(`/api/v1/users/reset/${id}`, userData)
       .then(res => {
         dispatch(resetSuccess())
       })
