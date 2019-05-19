@@ -1,5 +1,5 @@
 .loading-icon {
-  min-height: calc(100hv - 100px);
+  min-height: calc(100vh - 100px);
   font-size: 25px;
   color: gray;
   padding-top: 150px;
