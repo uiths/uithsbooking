@@ -25,6 +25,7 @@ class Captcha extends Component {
         this.props.input.onChange(recaptchaToken)
     }
     render() {
+        
         return (
             <div>
                 {/* You can replace captchaDemo ref with whatever works for your component */}

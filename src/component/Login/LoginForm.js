@@ -33,10 +33,11 @@ const LoginForm = props => {
           >Quên mật khẩu?</Link>
         </div>
         <br />
+        {process.env.NODE_ENV === "production" && 
         <Field
           name="captcha"
           component={Captcha}
-        />
+        />}
         <button type="submit" className="b b1 center_button" disabled={!valid || pristine || submitting}>
         {submitting ?
           <span>
