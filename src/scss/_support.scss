@@ -44,7 +44,13 @@ $color1: #566473;
   color: #0fda93;
 }
 
-
+.pagination{
+  li{
+    a{
+      cursor: pointer;
+    }
+  }
+}
 
 // for title h3 all text
 

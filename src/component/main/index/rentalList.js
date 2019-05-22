@@ -7,6 +7,28 @@ import { connect } from "react-redux";
 import * as actions from '../../../actions';
 import Loading from '../user/loading';
 
+function SampleNextArrow(props) {
+    const {className, style, onClick} = props
+    return (
+        <div
+            className={className}
+            style={{...style, display: 'block', zIndex:3 ,  padding: 25}}
+            onClick={onClick}
+        ></div>
+    );
+}
+
+function SamplePrevArrow(props) {
+    const {className, style, onClick} = props
+    return (
+        <div
+            className={className}
+            style={{...style, display: 'block', zIndex:3, padding: 25}}
+            onClick={onClick}
+        ></div>
+    );
+}
+
 class RentalList extends Component {
 
     componentDidMount() {
@@ -23,7 +45,7 @@ class RentalList extends Component {
                         <img className="sub_home_fix_img" src={rental.image[0]} alt="Snow" width="100%" />
                         <p className="sub_home_text_p">{rental.address}</p>
                         <h3 className="sub_home_text_h3">{rental.title}</h3>
-                        <div className="sub_home_text_price">{rental.price.toLocaleString()}</div>
+                        <div className="sub_home_text_price">{rental.price.toLocaleString()} VNĐ</div>
                         <div className="sub_home_star"><i className="fa fa-star"/><i className="fa fa-star"/><i className="fa fa-star"/><i className="fa fa-star"/><i className="fa fa-star"/></div>
                     </Link>
                     {/* </div> */}
@@ -39,7 +61,9 @@ class RentalList extends Component {
             infinite: true,
             autoplaySpeed: 2000,
             slidesToShow: 5,
-            slidesToScroll: 1
+            slidesToScroll: 1,
+            nextArrow: <SampleNextArrow />,
+            prevArrow: <SamplePrevArrow />
         };
         // if(this.props.rentals && this.props.rentals.length > 0){
         return (
