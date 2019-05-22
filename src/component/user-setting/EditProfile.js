@@ -12,6 +12,7 @@ class EditProfile extends Component {
     }
     render() {
         const { valid, submitting, handleSubmit, submitCb } = this.props
+        const dateOfBirth = this.props.initialValues.dateOfBirth && new Date(this.props.initialValues.dateOfBirth)
         return (
             <Fragment>
                 <div className="edit-profile-form">
@@ -35,14 +36,13 @@ class EditProfile extends Component {
                                             maxLength={30}
                                             component={CustomInput}
                                             className="custom-input" />
-
                                     </div>
                                     <div className="field-container">
                                         <Field
                                             label="Ngày sinh"
                                             component={DatePicker}
                                             name="dateOfBirth"
-                                            selected={new Date(this.props.initialValues.dateOfBirth)}
+                                            selected={dateOfBirth && new Date(this.props.initialValues.dateOfBirth)}
                                             className="custom-input"
                                         />
                                     </div>
@@ -134,7 +134,7 @@ class EditProfile extends Component {
 
 export default reduxForm({
     form: 'editProfileForm',
-    // destroyOnUnmount: true,
+    destroyOnUnmount: true,
     enableReinitialize: true,
     validate
 })(EditProfile);

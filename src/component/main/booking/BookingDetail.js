@@ -69,9 +69,9 @@ class BookingDetail extends Component {
     }
 
     render() {
-        const booking = this.props.booking
+        const booking = this.props.booking || {}
         const owner = this.props.booking.owner || {};
-        const rental = this.props.booking.rental;
+        const rental = this.props.booking.rental || {};
         const onSuccess = (payment) => {
             console.log("The payment was succeeded!", payment);
             const data = {
@@ -126,10 +126,9 @@ class BookingDetail extends Component {
         //     return <Redirect to="/list_book" />
         // }
         // if (this.props.rental._id) {
-        if (!isEmpty(this.props.booking))
             return (
                 <div id="rent">
-                    <RentalImages image={rental && rental.image } />
+                    <RentalImages image={rental.image ? rental.image : ['/img/default-img.jpg','/img/default-img.jpg'] } />
                     <br />
                     <div className="container">
                         <div>
@@ -137,14 +136,14 @@ class BookingDetail extends Component {
                                 <div>
                                     <div className="infobox slide-in-left row" style={{ marginBottom: "20px" }}>
                                         <div className="col-lg-8">
-                                            <img src={owner.image} className="ravatar" alt="none" />
+                                            <img src={owner.image ?owner.image :'/img/default-img.jpg'} className="ravatar" alt="none" />
                                             <h4 className="rname">{owner.username}</h4>
                                         </div>
 
                                     </div>
                                     <div className="infobox slide-in-left" style={{ backgroundColor: "#4B0082" }}>
-                                        <h3 id="null" style={{ fontWeight: "bold", color: "white", fontSize: "25px" }}>{rental.title}</h3>
-                                        <h5 style={{ color: "white" }}>{rental.address}</h5>
+                                        <h3 id="null" style={{ fontWeight: "bold", color: "white", fontSize: "25px" }}>{rental.title && rental.title}</h3>
+                                        <h5 style={{ color: "white" }}>{rental.address && rental.address}</h5>
 
                                     </div>
                                     <div className="infobox slide-in-left">
@@ -153,7 +152,7 @@ class BookingDetail extends Component {
                                                 style={{ padding: "5px", fontSize: "27px" }}>Mô tả </h3>
                                             <div>
                                                 <br />
-                                                <p style={{ whiteSpace: "pre-line", whiteSpace: "pre-wrap" }}>{rental.description}</p>
+                                                <p style={{ whiteSpace: "pre-line", whiteSpace: "pre-wrap" }}>{rental.description && rental.description}</p>
                                             </div>
                                             <hr />
                                             <h3 className="text-left bor type1"
@@ -184,7 +183,7 @@ class BookingDetail extends Component {
                                 !(authService.getId() === owner._id) &&
                                 <div className="divide">
                                     <div className="infobox slide-in-right" style={{ backgroundColor: "#4B0082" }}>
-                                        <h3 style={{ color: "white" }}>Giá: <b>{formatNumber(rental.price)}</b> đ / ngày</h3>
+                                        <h3 style={{ color: "white" }}>Giá: <b>{rental.price && rental.price.toLocaleString() }</b> đ / ngày</h3>
                                     </div>
                                     <div className="infobox" style={{ padding: "20px" }}>
                                         <h4 style={{ fontWeight: "bold" }}>Số ngày:</h4>
@@ -196,7 +195,7 @@ class BookingDetail extends Component {
                                         <h4 style={{ fontWeight: "bold" }}>Ngày kết thúc:</h4>
                                         <p>{formatDate(booking.endAt, "DD/MM/YYYY")}</p>
                                         <h4 style={{ fontWeight: "bold" }}>Tổng giá:</h4>
-                                        <p>{booking.totalPrice.toLocaleString()} đ</p>
+                                        <p>{booking.totalPrice && booking.totalPrice.toLocaleString()} đ</p>
                                         <h4 style={{ fontWeight: "bold" }}>Số khách:</h4>
                                         <p>{booking.guests}</p>
                                         <h4 style={{ fontWeight: "bold" }}>Trạng thái:</h4>
@@ -228,9 +227,7 @@ class BookingDetail extends Component {
                 </div>
 
             )
-            else return <Fragment>
-                <Loading />
-             </Fragment> ;
+            
         // }
         // else return <Fragment>
         //     <Loading />

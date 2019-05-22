@@ -18,7 +18,7 @@ class List extends Component {
 
         this.onChangePage = this.onChangePage.bind(this);
     }
-    componentWillMount() {
+    componentDidMount() {
         this.props.dispatch(actions.resetBookState());
         if(this.props.rentals.length===0)
         this.props.dispatch(actions.fetchRentals());
@@ -40,11 +40,9 @@ class List extends Component {
     }
 
     render() {
-        if(this.props.rentals && this.props.rentals.length > 0){
+        // if(this.props.rentals && this.props.rentals.length > 0){
         return (
-            <div>
-
-                <div className="container">
+                <div className="container list-rentals-container">
                     <h3 className="text-left title_h3 type1 animated fadeInLeft">Tổng hợp thông tin</h3>
                     <div id="sub_home" className="text-center ">
                         <div className="container mg-top-20">
@@ -57,10 +55,9 @@ class List extends Component {
                         </div>
                     </div>
                 </div>
-            </div>
         );
-    }
-    else return <Loading/>
+    // }
+    // else return <Loading/>
     }
 }
 const mapStateToProps = (state, ownProps) => {

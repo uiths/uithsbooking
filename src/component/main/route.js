@@ -5,7 +5,7 @@ import Login from "component/Login/Login"
 import Home from "../main/index/Loadable";
 import User from "./user/user";
 import User2 from "./user/user2";
-import User1 from "component/user-setting/user-setting"
+import User1 from "component/user-setting/Loadable"
 
 import Contactmain from "./contact/contact_main";
 import Paymentmain from "./payment/payment_main";
@@ -54,7 +54,6 @@ class Routerr extends Component {
                 <ProtectedRoute exact path="/rental/manage" component={RentalManage} />
                 <Route path="/list_book" component={MyListBook} />
                 {/* <Route path="/editMyProfile" component={EditProfile}/> */}
-
                 {/*<PrivateRoute  path="/slot" component={Slot} />*/}
                 <ProtectedRoute path="/contact" component={Contactmain} />
                 <ProtectedRoute  path="/payment" component={Paymentmain} />

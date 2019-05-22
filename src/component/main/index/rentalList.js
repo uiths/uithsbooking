@@ -31,7 +31,7 @@ function SamplePrevArrow(props) {
 
 class RentalList extends Component {
 
-    componentWillMount() {
+    componentDidMount() {
         if(this.props.rentals.length === 0)
         this.props.dispatch(actions.fetchRentals());
     }
@@ -68,7 +68,7 @@ class RentalList extends Component {
         // if(this.props.rentals && this.props.rentals.length > 0){
         return (
             <div id="sub_home" className="container-fluid">
-                <div className="sub_home_list mg-top-40">
+                <div style={{minHeight:"400px"}} className="sub_home_list mg-top-40">
                     <h4  className="text-left title_h3 animated fadeInLeft">Gợi ý tốt nhất</h4>
                     <div className="sub_home_slider text-center">
                         <Slider {...settings}>

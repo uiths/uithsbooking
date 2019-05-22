@@ -4,6 +4,8 @@ import { connect } from 'react-redux'
 import { formatDate, toUSD } from 'helpers/index'
 import * as actions from 'actions';
 import Loading from 'component/Loading';
+import BookingCell from './BookingCell'
+import './style.scss'
 class BookingHistory extends Component {
     componentWillMount() {
         if (!this.props.userBookings.length > 0)
@@ -13,8 +15,23 @@ class BookingHistory extends Component {
     render() {
         const isSuccess = this.props.isSuccess
             return (
-            <div>
-                <div className="container">
+            <div style={{backgroundColor:"#f5f5f5"}}>
+                <div className="booking-history-container">
+                    <div className="booking-history-title">
+                        Lịch sử thuê phòng
+                    </div>
+                    <div className="booking-history-content">
+                        {
+                            
+                            this.props.userBookings.map(i=>
+                                <Link to={`/booking/${i._id}`}>
+                                <BookingCell booking={i}/>
+                                </Link>
+                            )
+                        }
+                    </div>
+                </div>
+                {/* <div className="container">
                     <h4 className="text-left title_h3 type1 animated fadeInLeft">Danh sách nhà mà bạn thuê</h4>
                     <div id="sub_home" className="text-center ">
                         <div className="container mg-top-20">
@@ -56,10 +73,10 @@ class BookingHistory extends Component {
                                     }
                                 </tbody>
                             </table>
-                            {/* <RentalCard rental={this.props.userBookings.rental}/> */}
                         </div>
                     </div>
                 </div>
+ */}
 
             </div>
         );

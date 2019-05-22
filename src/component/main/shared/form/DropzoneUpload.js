@@ -82,14 +82,14 @@ class DropzoneUpload extends Component {
                 </Dropzone>
                 {this.state.isLoad && (
                     <React.Fragment>
-                        <img src={this.state.imgSrc[0]} width="22%" style={{ borderRadius: "10px", margin: "5px" }} />
-                        <img src={this.state.imgSrc[1]} width="22%" style={{ borderRadius: "10px", margin: "5px" }} />
-                        <img src={this.state.imgSrc[2]} width="22%" style={{ borderRadius: "10px", margin: "5px" }} />
-                        <img src={this.state.imgSrc[3]} width="22%" style={{ borderRadius: "10px", margin: "5px" }} />
-                        <img src={this.state.imgSrc[4]} width="22%" style={{ borderRadius: "10px", margin: "5px" }} />
-                        <img src={this.state.imgSrc[5]} width="22%" style={{ borderRadius: "10px", margin: "5px" }} />
-                        <img src={this.state.imgSrc[6]} width="22%" style={{ borderRadius: "10px", margin: "5px" }} />
-                        <img src={this.state.imgSrc[7]} width="22%" style={{ borderRadius: "10px", margin: "5px" }} />
+                        <img alt="rental" src={this.state.imgSrc[0]} width="22%" style={{ borderRadius: "10px", margin: "5px" }} />
+                        <img alt="rental" src={this.state.imgSrc[1]} width="22%" style={{ borderRadius: "10px", margin: "5px" }} />
+                        <img  alt="rental" src={this.state.imgSrc[2]} width="22%" style={{ borderRadius: "10px", margin: "5px" }} />
+                        <img  alt="rental" src={this.state.imgSrc[3]} width="22%" style={{ borderRadius: "10px", margin: "5px" }} />
+                        <img  alt="rental" src={this.state.imgSrc[4]} width="22%" style={{ borderRadius: "10px", margin: "5px" }} />
+                        <img  alt="rental" src={this.state.imgSrc[5]} width="22%" style={{ borderRadius: "10px", margin: "5px" }} />
+                        <img  alt="rental" src={this.state.imgSrc[6]} width="22%" style={{ borderRadius: "10px", margin: "5px" }} />
+                        <img  alt="rental" src={this.state.imgSrc[7]} width="22%" style={{ borderRadius: "10px", margin: "5px" }} />
                     </React.Fragment>)
                 }
             </Fragment>

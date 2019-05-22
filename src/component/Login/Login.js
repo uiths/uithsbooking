@@ -5,7 +5,6 @@ import { connect } from 'react-redux';
 import * as actions from 'actions';
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
-import Captcha from 'component/Captcha'
 
 class Login extends Component {
     constructor() {
@@ -15,7 +14,6 @@ class Login extends Component {
         }
     }
     loginUser = (userData) => {
-        console.log(userData)
         this.props.dispatch(actions.login(userData))
     }
     render() {

@@ -6,7 +6,7 @@ function renderImage(image) {
         return (image.map((i,index) => {
             return (
             <div key={index} >
-                <img className="resize"  src={i} />
+                <img className="resize" alt="rental" src={i} />
             </div>
             )
         }))

@@ -5,9 +5,6 @@ import * as actions from 'actions';
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 class Signup extends Component {
-    constructor() {
-        super();
-    }
     registerUser = (userData) => {
         this.props.dispatch(actions.register(userData))
     }

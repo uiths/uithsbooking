@@ -8,8 +8,10 @@ import {
   DELETE_BOOKING_FAILURE,
   FETCH_BOOKING_BY_ID_SUCCESS,
   FETCH_BOOKING_BY_ID_FAILURE,
+  SORT_BY_PRICE
 } from 'actions/types';
-import { RESET_BOOKING_STATE } from '../actions/types';
+import { compare } from 'helpers'
+import { RESET_BOOKING_STATE, SORT_BY_DATE, SORT_BY_DAYS } from '../actions/types';
 
 const INITIAL_STATE = {
   data: [],
@@ -40,6 +42,12 @@ export const userBookingsReducer = (state = INITIAL_STATE, action) => {
       return { ...state, isSuccess: false, isDeleted: false, errors: [] }
     case FETCH_BOOKING_BY_ID_SUCCESS:
       return { ...state, booking: action.data }
+    case SORT_BY_PRICE:
+      return { ...state, data: state.data.sort((a, b) => (a.rental.price < b.rental.price) ? 1 : ((b.rental.price < a.rental.price) ? -1 : 0)) }
+    case SORT_BY_DATE:
+      return { ...state, data: state.data.sort((a, b) => (a.createdAt < b.createdAt) ? 1 : ((b.createdAt < a.createdAt) ? -1 : 0)) }
+    case SORT_BY_DAYS:
+        return {...state, data:state.data.sort((a,b) => (a.days < b.days) ? 1 : ((b.days < a.days) ? -1 : 0))}
     default:
       return state;
   }
