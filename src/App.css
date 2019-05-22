@@ -1995,4 +1995,7 @@ padding: 5px;
     display: flex;
     justify-content: center;
   }
+  .one-page-container {
+    min-height: calc(100vh - 65px)
+  }
 /*# sourceMappingURL=App.css.map */

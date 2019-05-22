@@ -6,7 +6,7 @@ import { Link } from "react-router-dom"
 import Captcha from 'component/Captcha'
 
 const LoginForm = props => {
-  const { handleSubmit, pristine, submitting, submitCb, valid, errors } = props
+  const { handleSubmit, pristine, submitting, submitCb, valid } = props
   return (
     <React.Fragment>
       <form onSubmit={handleSubmit(submitCb)}>

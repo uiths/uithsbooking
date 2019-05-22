@@ -14,9 +14,10 @@ class Imagepicker extends Component {
         this.setState({ image},(()=>{this.props.input.onChange(this.state.image)}))
     }
     render() {
+        const imageList = this.props.imageList || []
         return (
             <ImagePicker
-                images={this.props.imageList.map((image, i) => ({ src: image, value: i }))}
+                images={imageList.map((image, i) => ({ src: image, value: i }))}
                 onPick={this.onPick}
             />
         );

@@ -4,7 +4,8 @@ import * as actions from 'actions'
 import { connect } from 'react-redux';
 import AuthService from 'services/auth-service'
 import authService from '../../services/auth-service';
-import LoadingBar from 'react-redux-loading-bar'
+import LoadingBar from 'component/Loading/CustomLoadingBar';
+import './style.scss'
 
 class Header extends Component {
     constructor() {
@@ -44,10 +45,10 @@ class Header extends Component {
     render() {
         const { username, isAuth } = this.props.auth;
         const image = authService.getImage() || ''
-
+        const a = <div></div>
         return (
             <Fragment>
-                <LoadingBar style={{ height: "3px", backgroundColor: "#4B0082",position: "absolute",zIndex: "2" }} />
+                <LoadingBar className="loading-bars"></LoadingBar>
                 <header >
                     <div className="">
                         <nav className="navbar na">

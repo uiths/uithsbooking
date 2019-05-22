@@ -43,7 +43,7 @@ class RentalManage extends Component {
         }
         return (
             <div>
-                <div className="container">
+                <div className="container one-page-container">
                 <ToastContainer/>
                     <h4 className="text-left title_h3 type1 animated fadeInLeft">Danh sách nhà mà bạn cho thuê</h4>
                     <div id="sub_home" className="text-center ">

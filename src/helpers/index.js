@@ -126,3 +126,12 @@ fx.rates = {
 export function toUSD(total) {
   return Number(parseFloat(fx.convert(total, { from: "VND", to: "USD" })).toFixed(2))
 }
+export function compare(a, b) {
+  if (a.totalPrice > b.totalPrice) {
+      return -1;
+  }
+  if (a.totalPrice < b.totalPrice) {
+      return 1;
+  }
+  return 0;
+}
