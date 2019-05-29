@@ -2,7 +2,7 @@ import React, {Component} from 'react';
 import { Route, Redirect } from "react-router-dom";
 import Register from "component/Register/Register"
 import Login from "component/Login/Login"
-import Home from "../main/index/Loadable";
+import Home from "../index/Loadable";
 import User from "./user/user";
 import User2 from "./user/user2";
 import User1 from "component/user-setting/Loadable"

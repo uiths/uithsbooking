@@ -114,11 +114,11 @@ export const fetchRentals = (city) => {
         dispatch(hideLoading())
         dispatch(fetchRentalsSuccess(rentals))
       })
-      .catch(({ response }) => {
+      .catch(( response ) => {
         if (response.status === 500)
           toast.error(response.data);
         else toast.error(response.data.errors.detail)
-        // dispatch(hideLoading());
+        dispatch(hideLoading());
       })
   }
 }
@@ -378,9 +378,13 @@ const deleteRentalFailure = (errors) => {
 }
 export const deleteRental = (rentalId) => {
   return dispatch => {
+    dispatch(showLoading());
     return axiosInstance.delete(`/rentals/${rentalId}`)
-      .then(res => dispatch(deleteRentalSuccess(res.data)))
-      .catch(({ response }) => dispatch(deleteRentalFailure(response.data.errors)))
+      .then(res => {
+        dispatch(hideLoading())
+        dispatch(deleteRentalSuccess(res.data))})
+      .catch(({ response }) => {
+        dispatch(deleteRentalFailure(response.data.errors))})
   }
 }
 
@@ -450,12 +454,13 @@ export const fetchUserById = (userId) => {
         dispatch(hideLoading());
         dispatch(fetchUserByIdSuccess(res.data))
       })
-      .catch(({ response }) => {
-        if (response.status === 500)
-          toast.error(response.data);
-        else toast.error(response.data.errors.detail);
-        dispatch(hideLoading());
-        dispatch(stopSubmit('loginForm'))
+      .catch(( response ) => {
+        console.log(response)
+        // if (response.status === 500)
+        //   toast.error(response.data);
+        // else toast.error(response.data.errors.detail);
+        // dispatch(hideLoading());
+        // dispatch(stopSubmit('loginForm'))
       })
   }
 }

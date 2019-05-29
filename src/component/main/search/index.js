@@ -7,32 +7,6 @@ import AutosuggestHighlightParse from 'autosuggest-highlight/parse'
 import { connect } from 'react-redux';
 import * as actions from 'actions'
 import './style.scss'
-// Imagine you have a list of languages that you'd like to autosuggest.
-const people = [
-    {
-        first: 'Charlie',
-        last: 'Brown',
-        twitter: 'dancounsell'
-    },
-    {
-        first: 'Charlotte',
-        last: 'White',
-        twitter: 'mtnmissy'
-    },
-    {
-        first: 'Chloe',
-        last: 'Jones',
-        twitter: 'ladylexy'
-    },
-    {
-        first: 'Cooper',
-        last: 'King',
-        twitter: 'steveodom'
-    }
-];
-
-// https://developer.mozilla.org/en/docs/Web/JavaScript/Guide/Regular_Expressions#Using_Special_Characters
-
 
 class Search extends Component {
     constructor() {
@@ -57,12 +31,12 @@ class Search extends Component {
                 if (section.array && section.array.length > 0 && section.array[0].address)
                     return {
                         title: section.title,
-                        array: section.array.filter(rental => { return (rental.address.toLowerCase()).includes(escapedValue) }).slice(0,5)
+                        array: section.array.filter(rental => { return (rental.address.toLowerCase()).includes(escapedValue) }).slice(0, 5)
                     };
                 if (!section.array.address)
                     return {
                         title: section.title,
-                        array: section.array.filter(search => (search.toLowerCase()).includes(escapedValue)).slice(0,5)
+                        array: section.array.filter(search => (search.toLowerCase()).includes(escapedValue)).slice(0, 5)
                     }
             })
             .filter(section => {
@@ -124,7 +98,6 @@ class Search extends Component {
             value: newValue
         });
     };
-
     onSuggestionsFetchRequested = ({ value }) => {
         this.setState({
             suggestions: this.getSuggestions(value)
@@ -158,9 +131,12 @@ class Search extends Component {
                         renderSectionTitle={this.renderSectionTitle}
                         getSectionSuggestions={this.getSectionSuggestions}
                         inputProps={inputProps} />
-                    <Link to={`/search?key=${this.state.value}`} onClick={()=>{this.props.dispatch(actions.addSearchHistory(this.state.value))}}><button style={{ width: "200px" }} className="btn btn-success">Tìm kiếm</button></Link>
+                    <Link to={`/search?key=${this.state.value}`} >
+                        <button disabled={!value} style={{ width: "200px" }} className="btn btn-success">
+                            Tìm kiếm
+                        </button>
+                    </Link>
                 </form>
-
             </React.Fragment>
         );
     }
