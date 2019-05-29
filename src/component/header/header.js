@@ -14,7 +14,6 @@ class Header extends Component {
             key: null
         }
     }
-
     handleLogout = () => {
         this.props.logout();
         this.props.history.push('/');
@@ -24,7 +23,6 @@ class Header extends Component {
             return
         }
         return (
-            //Fragment trả về nhiều thành phần mà không cần thêm gì vào DOM
             <React.Fragment>
                 <div style={{ paddingTop: "5px" }}>
                     <Link className="na-sign-in" to="/login"><i className="fa fa-user" /> ĐĂNG NHẬP</Link>
@@ -45,7 +43,6 @@ class Header extends Component {
     render() {
         const { username, isAuth } = this.props.auth;
         const image = authService.getImage() || ''
-        const a = <div></div>
         return (
             <Fragment>
                 <LoadingBar className="loading-bars"></LoadingBar>
@@ -62,7 +59,6 @@ class Header extends Component {
                                             <span className="icon-bar" />
                                         </button>
                                     </div>
-
                                     <div className="collapse navbar-collapse na-right col-sm-6" id="myNavbar">
                                         <ul className="nav navbar-nav ">
                                             <li><Link className="na-item " to="/booking_home">ĐẶT NHÀ</Link></li>
@@ -90,22 +86,15 @@ class Header extends Component {
                                         }
                                         {this.renderAuthButton(isAuth)}
                                     </div>
-
                                 </div>
                             </div>
                         </nav>
-
                     </div>
-
-
-
                 </header>
-
             </Fragment>
         );
     }
 }
-
 const mapStateToProps = (state, ownProps) => {
     return {
         auth: state.auth,

@@ -1,12 +1,11 @@
 import React, { Component } from 'react';
-import RentalList from '../index/rentalList'
+import RentalList from './rentalList'
 import { Link } from "react-router-dom";
-import Loading from 'component/main/user/loading'
-import { handleString } from 'helpers/index'
 import Search from 'component/main/search'
 import { connect } from 'react-redux'
 import authService from 'services/auth-service';
 import * as actions from 'actions'
+import _ from 'lodash'
 class Home extends Component {
     constructor() {
         super();
@@ -15,20 +14,18 @@ class Home extends Component {
         }
     }
     componentDidMount(){
-        if(localStorage.getItem('auth_token')!==null)
-            this.props.dispatch(actions.fetchUserById(authService.getId()))
+        if(localStorage.getItem('auth_token')!==null && _.isEmpty(this.props.users.data))
+            this.props.fetchUserById(authService.getId())
     }
     render() {
         const data = [{
             title: "Gợi ý rentals",
-            array: this.props.rentals.data
-        }
-            ,
+            array: this.props.rentals.data || []
+        },
         {
             title: "Lịch sử tìm kiếm",
             array: this.props.users.data.searchHistory || []
-        }
-        ]
+        }]
         return (
             <div>
                 <main>
@@ -41,7 +38,7 @@ class Home extends Component {
 
                         <div className="carousel-inner text-center home-inner" role="listbox">
                             <div className="item active">
-                                <img src={process.env.PUBLIC_URL + "/img/img_home/index_slide/1.png"} alt="Brandi Img 1" width="100%" />
+                                <img src="img/img_home/index_slide/1.png" alt="Brandi Img 1" width="100%" />
                             </div>
                             <div className="item">
                                 <img src="./img/img_home/index_slide/2.png" alt="Brandi Img 2" width="100%" />
@@ -51,11 +48,9 @@ class Home extends Component {
                                 <img src="./img/img_home/index_slide/3.png" alt="Brandi Img 3" width="100%" />
                             </div>
                         </div>
-                        <Search   data={data} />
+                        <Search data={data} />
                     </div>
                     <RentalList />
-
-
                     <div id="sub_home02" className="container-fluid mg-top-40">
                         <h4 className="text-left title_h3 animated fadeInLeft">Điểm đến hàng đầu</h4>
                         <div className="sub_home02_list">
@@ -123,9 +118,6 @@ class Home extends Component {
                                     </p>
                                 </Link>
                             </div>
-
-
-
                         </div>
                     </div>
 
@@ -160,10 +152,15 @@ class Home extends Component {
         );
     }
 }
-const mapStateToProps = (state, ownProps) => {
+const mapDispatchToProps = (dispatch) => {
+    return {
+        fetchUserById: (id) => dispatch(actions.fetchUserById(id))
+    }
+}
+const mapStateToProps = (state) => {
     return {
         rentals: state.rentals,
         users : state.users
     }
 }
-export default connect(mapStateToProps)(Home);
+export default connect(mapStateToProps,mapDispatchToProps)(Home);
