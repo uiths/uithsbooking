@@ -6,13 +6,15 @@ import { CustomInput } from 'component/Form/CustomInput'
 import DatePicker from 'component/Form/DatePicker'
 import { Field, reduxForm } from 'redux-form';
 import { validate } from './validate'
+import {formatDate} from 'helpers'
+
 class EditProfile extends Component {
     constructor(props) {
         super(props);
     }
     render() {
         const { valid, submitting, handleSubmit, submitCb } = this.props
-        const dateOfBirth = this.props.initialValues.dateOfBirth && new Date(this.props.initialValues.dateOfBirth)
+        const dateOfBirth = this.props.initialValues.dateOfBirth ? new Date(this.props.initialValues.dateOfBirth):''
         return (
             <Fragment>
                 <div className="edit-profile-form">
@@ -42,7 +44,7 @@ class EditProfile extends Component {
                                             label="Ngày sinh"
                                             component={DatePicker}
                                             name="dateOfBirth"
-                                            selected={dateOfBirth && new Date(this.props.initialValues.dateOfBirth)}
+                                            selected={dateOfBirth}
                                             className="custom-input"
                                         />
                                     </div>
@@ -126,12 +128,10 @@ class EditProfile extends Component {
                         </button>
                     </form>
                 </div>
-                {/* </div> */}
             </Fragment>
         );
     }
 }
-
 export default reduxForm({
     form: 'editProfileForm',
     destroyOnUnmount: true,
