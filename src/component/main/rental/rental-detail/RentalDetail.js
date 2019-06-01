@@ -12,10 +12,12 @@ import authService from 'services/auth-service';
 import { Modal, Button } from 'react-bootstrap'
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+import Comment from 'component/Comment'
 // import ImageGallery from 'react-image-gallery';
 // import "react-image-gallery/styles/css/image-gallery.css";
 import "./style.scss"
 import moment from 'moment'
+import CommentDisplay from 'component/Comment/CommentDisplay'
 class RentalDetail extends Component {
   componentDidMount() {
     // Dispatch action
@@ -109,14 +111,14 @@ class RentalDetail extends Component {
 
     return (
       <div id="rent">
-
         <ToastContainer />
-        <RentalImages image={rental.image ? rental.image : ['/img/default-img.jpg','/img/default-img.jpg']} />
+        <RentalImages image={rental.image ? rental.image : ['/img/default-img.jpg', '/img/default-img.jpg']} />
         <br />
         <div className="container">
           <div>
             <div className="col-sm-8">
               <div>
+
                 <div className="infobox slide-in-left row" style={{ marginBottom: "20px" }}>
                   <div className="col-lg-8">
                     <img src={owner.image ? owner.image : '/img/default-img.jpg'} className="ravatar" alt="none" />
@@ -142,6 +144,8 @@ class RentalDetail extends Component {
 
                     </div>
                   }
+                  {(authService.isAuthenticated() && (authService.getId() !== owner._id)) &&
+                    <Comment rentalId={rental._id && rental._id} />}
                 </div>
                 <div className="infobox slide-in-left" style={{ backgroundColor: "#4B0082" }}>
                   <h3 id="null" style={{ fontWeight: "bold", color: "white", fontSize: "25px" }}>{this.props.rental.title}</h3>
@@ -181,42 +185,6 @@ class RentalDetail extends Component {
             </div>
           </div>
 
-          {/* <div className="col-sm-8">
-              <div className="rental-owner">
-                <p>Chủ nhà: {owner.username}</p>
-                <img style={{ width: "56px", height: "56px", borderRadius: "50%" }} src={owner.image}></img>
-                <p style={{ color: "#53525a" }}>Lời từ chủ nhà ví dụ {owner.message}</p>
-                {authService.getId() === owner._id && <button><Link to={{ pathname: `/edit/${this.props.rental._id}`, state: { rental: this.props.rental } }}>Nút chỉnh sửa chỉ hiện khi là chủ nhà</Link></button>}
-              </div>
-              <div className="infobox">
-
-                <h3>{this.props.rental.title}</h3>
-                <h6 style={{ color: "gray" }}>{this.props.rental.address}</h6>
-                <ul className="nav nav-tabs">
-                  <li className="active"><a data-toggle="tab" href="#description">Mô tả</a></li>
-                  <li><a data-toggle="tab" href="#info">Thông tin</a></li>
-                  <li><a data-toggle="tab" href="#goods">Tiện nghi</a></li>
-                </ul>
-                <div className="tab-content">
-                  <div id="description" className="tab-pane fade in active">
-                    <br />
-                    <p>{this.props.rental.description.replace(/✔️/g, "\n")}</p>
-                  </div>
-                  <RentalAssets rental={this.props.rental} />
-                  <div id="info" className="tab-pane fade">
-                    <br />
-                    <i className="fa fa-bed"> {this.props.rental.bedrooms} giường</i> <br />
-                    <br />
-                    <i className="fa fa-male"> Tối đa {this.props.rental.people} người ở</i> <br />
-                    <br />
-                    <i className="fa fa-bath"> {this.props.rental.bathrooms} phòng tắm</i> <br />
-                    <br />
-                  </div>
-
-                </div>
-              </div>
-
-            </div> */}
           <div className="col-sm-4">
             {
               (!authService.isAuthenticated() || (authService.isAuthenticated() && !(authService.getId() === owner._id))) &&
@@ -228,27 +196,10 @@ class RentalDetail extends Component {
 
                   <RentalDateForm price={this.props.rental.price} submitCb={this.book} people={this.props.rental.people} errors={errors} />
                   <br />
-                  {/* <div className="modal fade" id="payment" role="dialog">
-                  <div className="modal-dialog">
-
-
-                    <div className="modal-content">
-                      <div className="modal-header">
-                        <button type="button" className="close" data-dismiss="modal">&times;</button>
-                        <h4 className="modal-title">Thanh toán</h4>
-                      </div>
-                      <div className="modal-body">
-                        <p>Truyền prob thông tin thanh toán vào đây.</p>
-                      </div>
-                      <div className="modal-footer">
-                        <button type="button" className="btn btn-default" data-dismiss="modal">Thanh toán</button>
-                      </div>
-                    </div>
-                  </div>
-                </div> */}
                 </div>
               </div>
             }
+            <CommentDisplay rentalId={this.props.match.params.id} />
           </div>
         </div>
       </div>

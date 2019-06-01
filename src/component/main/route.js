@@ -5,7 +5,7 @@ import Login from "component/Login/Login"
 import Home from "../index/Loadable";
 import User from "./user/user";
 import User2 from "./user/user2";
-import User1 from "component/user-setting/Loadable"
+import User1 from "component/UserSetting/Loadable"
 
 import Contactmain from "./contact/contact_main";
 import Paymentmain from "./payment/payment_main";

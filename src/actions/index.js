@@ -454,20 +454,13 @@ export const fetchUserById = (userId) => {
         dispatch(hideLoading());
         dispatch(fetchUserByIdSuccess(res.data))
       })
-      .catch(( response ) => {
-        console.log(response)
-        // if (response.status === 500)
-        //   toast.error(response.data);
-        // else toast.error(response.data.errors.detail);
-        // dispatch(hideLoading());
-        // dispatch(stopSubmit('loginForm'))
+      .catch(( {response} ) => {
+        if (response.status === 500)
+          toast.error(response.data);
+        else toast.error(response.data.errors.detail);
+        dispatch(hideLoading());
+        dispatch(stopSubmit('loginForm'))
       })
-  }
-}
-
-const fetchUserByIdInit = () => {
-  return {
-    type: FETCH_USER_BY_ID_INIT
   }
 }
 

@@ -14,7 +14,7 @@ class Home extends Component {
         }
     }
     componentDidMount(){
-        if(localStorage.getItem('auth_token')!==null && _.isEmpty(this.props.users.data))
+        if(localStorage.getItem('auth_token')!==null && _.isEmpty(this.props.users.data)&& authService.isValid(authService.getToken()))
             this.props.fetchUserById(authService.getId())
     }
     render() {

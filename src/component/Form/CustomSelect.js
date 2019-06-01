@@ -6,11 +6,11 @@ class CustomSelect extends Component {
             <Fragment>
                 <label htmlFor={this.props.input.name}>{this.props.label}</label><br />
                 <select name={this.props.input.name} className={`${this.props.className} ${this.props.meta.error && ' error-form'}`}
- {...this.props.input} >
+                    {...this.props.input} >
                     {this.props.children}
                 </select>
                 {this.props.meta.touched &&
-                ((this.props.meta.error && <p style={{fontSize:"14x", color:"red"}}>{this.props.meta.error}</p>))}
+                    ((this.props.meta.error && <p style={{ fontSize: "14x", color: "red" }}>{this.props.meta.error}</p>))}
             </Fragment>
         );
     }

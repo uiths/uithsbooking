@@ -16,17 +16,19 @@ class Datepicker extends Component {
         this.setState({ startDate: date });
         this.props.input.onChange(date);
     }
+    
     render() {
         const {
             input, placeholder,
             meta: { touched, error }
         } = this.props
+        console.log(this.props.input.value)
         return (
 
             <div>
                 <label htmlFor={this.props.input.name}>{this.props.label}</label><br />
                 <DatePicker
-                    // {...input}
+                    {...input}
                     placeholderText="dd/mm/yyyy"
                     name={this.props.input.name}
                     minDate={new Date()}

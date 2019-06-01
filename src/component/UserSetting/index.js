@@ -8,7 +8,7 @@ import { connect } from 'react-redux'
 import ChangNewPass from 'component/main/user/change_new_password'
 // import UserContentForm from './OLD-user-content-form'
 import _ from 'lodash'
-import EditProfile from 'component/user-setting/EditProfile'
+import EditProfile from 'component/UserSetting/EditProfile'
 import ReactNotification from "react-notifications-component";
 import "react-notifications-component/dist/theme.css";
 import { isEmpty } from 'helpers/index'
@@ -59,6 +59,7 @@ class userSetting extends Component {
     }
     render() {
         const user = this.props.users.data || {}
+        console.log(user)
         return (
             <div>
                 <div className="container" style={{ marginTop: "50px" }}>
