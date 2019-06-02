@@ -9,7 +9,7 @@
   box-sizing: border-box; }
 
 body {
-  font-family: 'Open Sans','Arial', sans-serif;
+  font-family: 'Noto Sans JP', sans-serif;
   word-spacing: 1px !important;
   background: #FFFFFF; }
 
@@ -1144,9 +1144,9 @@ LEVEL 4. SETTINGS
   cursor: pointer; }
 
 .title_h3 {
+  padding-top:20px;
   font-size: 35px;
   margin: 0;
-  margin-bottom: 20px;
   font-weight: 600;
   display: inline-block;
   color: #000000; }
@@ -1623,7 +1623,7 @@ LEVEL 4. SETTINGS
     text-decoration: none; }
 
 #sub_home {
-  padding-top: 20px;
+  /* padding-top: 20px; */
   padding-bottom: 40px; }
   #sub_home .sub_home_slider .slick-prev:before {
     margin-left: -15px;

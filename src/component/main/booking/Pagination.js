@@ -34,6 +34,7 @@ class Pagination extends React.Component {
     }
 
     setPage(page) {
+        window.scrollTo(0, 0)
         var { items, pageSize } = this.props;
         var pager = this.state.pager;
 

@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import {formatDate} from 'helpers'
 class BookingCell extends Component {
     render() {
-        const booking = this.props.booking;
+        const booking = this.props.booking || {};
         const rental = this.props.booking.rental || {}
         return (
             <div className="booking-cell-container">
@@ -16,10 +16,9 @@ class BookingCell extends Component {
                     <div className="booking-time">
                         {booking.startAt && formatDate(booking.startAt,"DD/MM/YYYY")} ~ {booking.endAt &&formatDate(booking.endAt,"DD/MM/YYYY")}
                         {booking.guests && (", "+booking.guests+" khách")}
-
                     </div>
                 </div>
-                <div className={`booking-total-price ${booking.status === 'paid'?`paid`:`pending`}` }>
+                <div className={`booking-total-price ${booking.status.toLowerCase() === 'paid'?`paid`:`pending`}` }>
                     {booking.totalPrice && (<p>{booking.totalPrice.toLocaleString()+" đồng"}</p>)}
                 </div>
             </div>

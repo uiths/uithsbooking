@@ -1,11 +1,11 @@
 import axiosService from 'services/axios-service';
 import { showLoading, hideLoading } from 'react-redux-loading-bar';
 import { toast } from "react-toastify";
+const axiosInstance = axiosService.getInstance();
 
 export const POST_COMMENT_SUCCESS = "POST_COMMENT_SUCCESS"
 export const GET_COMMENT_SUCCESS = "GET_COMMENT_SUCCESS"
 export const REMOVE_COMMENT = "REMOVE_COMMENT"
-const axiosInstance = axiosService.getInstance();
 
 const commentSuccess = (comment) => {
     return {
@@ -23,7 +23,7 @@ export const comment = (commentData, rentalId) => {
                 dispatch(commentSuccess(res.data));
                 toast.success("Cảm ơn bạn đã đánh giá!")
             })
-            .catch((response) => {
+            .catch(({response}) => {
                 if (response.status === 500)
                     toast.error(response.data);
                 else toast.error(response.data.errors.detail)
@@ -45,6 +45,12 @@ export const getComment = (page, hasMore, rentalId) => {
             axiosInstance.post("/comments/get", { page, limit, rentalId })
                 .then(res => {
                     dispatch(getCommentSuccess(res.data))
+                })
+                .catch((response) => {
+                    if (response.status === 500)
+                        toast.error(response.data);
+                    else toast.error(response.data.errors.detail)
+                    dispatch(hideLoading());
                 })
         }
     }

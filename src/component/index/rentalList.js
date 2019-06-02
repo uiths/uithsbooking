@@ -3,6 +3,9 @@ import { Link } from "react-router-dom";
 import Slider from "react-slick";
 import { connect } from "react-redux";
 import * as actions from 'actions';
+import { fetchTopRentals } from './actions'
+import StarRatingComponent from 'react-star-rating-component';
+
 function SampleNextArrow(props) {
     const { className, style, onClick } = props
     return (
@@ -28,10 +31,11 @@ function SamplePrevArrow(props) {
 class RentalList extends Component {
     componentDidMount() {
         if (this.props.rentals.length === 0)
-            this.props.fetchRentals();
+            this.props.fetchTopRentals()
     }
     renderRentals() {
         const rentals = this.props.rentals || []
+        console.log(rentals)
         return rentals.map((rental, index) => {
             return (
                 <div key={index} className="sub_home_slider_container col-sm-3">
@@ -40,7 +44,12 @@ class RentalList extends Component {
                         <p className="sub_home_text_p">{rental.address && rental.address}</p>
                         <h3 className="sub_home_text_h3">{rental.title && rental.title}</h3>
                         <div className="sub_home_text_price">{rental.price && rental.price.toLocaleString()} VNĐ</div>
-                        <div className="sub_home_star"><i className="fa fa-star" /><i className="fa fa-star" /><i className="fa fa-star" /><i className="fa fa-star" /><i className="fa fa-star" /></div>
+                        <StarRatingComponent
+                            name="rating"
+                            starCount={5}
+                            value={rental.rating}
+                        />
+                        {/* <div className="sub_home_star"><i className="fa fa-star" /><i className="fa fa-star" /><i className="fa fa-star" /><i className="fa fa-star" /><i className="fa fa-star" /></div> */}
                     </Link>
                 </div>
             )
@@ -74,12 +83,13 @@ class RentalList extends Component {
 }
 const mapDispatchToProps = (dispatch) => {
     return {
-        fetchRentals: () => dispatch(actions.fetchRentals())
+        fetchRentals: () => dispatch(actions.fetchRentals()),
+        fetchTopRentals: () => dispatch(fetchTopRentals())
     }
 }
 const mapStateToProps = (state) => {
     return {
-        rentals: state.rentals.data,
+        rentals: state.rentals.topRentals,
     }
 }
-export default connect(mapStateToProps,mapDispatchToProps)(RentalList);
+export default connect(mapStateToProps, mapDispatchToProps)(RentalList);

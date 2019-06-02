@@ -62,7 +62,6 @@ class Header extends Component {
                                     <div className="collapse navbar-collapse na-right col-sm-6" id="myNavbar">
                                         <ul className="nav navbar-nav ">
                                             <li><Link className="na-item " to="/booking_home">ĐẶT NHÀ</Link></li>
-                                            <li><Link className="na-item" to="/history">LỊCH SỬ</Link></li>
 
                                             {/* <li><Link className="na-item" to="/">BLOG CHIA SẺ</Link></li> */}
                                             {/*{this.renderOwnerSection(isAuth)}*/}
@@ -76,7 +75,7 @@ class Header extends Component {
                                                 <a className="na-item dropdown-toggle" data-toggle="dropdown" href="#"> {username}<span className="caret" /></a>
                                                 <ul className="dropdown-menu">
                                                     <li><Link to="/user">TRANG CÁ NHÂN</Link></li>
-                                                    <li><Link to="/list_book">DANH SÁCH NHÀ ĐẴ ĐẶT</Link></li>
+                                                    <li><Link to="/history">DANH SÁCH NHÀ ĐẴ ĐẶT</Link></li>
                                                     <li><Link to="/rental/manage">DANH SÁCH NHÀ CHO THUÊ</Link></li>
                                                     <li><Link to="/create_rent">CHO THUÊ NHÀ</Link></li>
                                                     <hr />
