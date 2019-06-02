@@ -52,24 +52,24 @@ class Header extends Component {
                             <div className="container-fluid">
                                 <div className="row">
                                     <Link className="na-brand col-sm-2 mg-top-10" to="/"><span>U</span>IT HomeStay</Link>
-                                    <div className="navbar-header">
-                                        <button type="button" className="navbar-toggle na-toggle" data-toggle="collapse" data-target="#myNavbar">
-                                            <span className="icon-bar" />
-                                            <span className="icon-bar" />
-                                            <span className="icon-bar" />
-                                        </button>
-                                    </div>
+                                    {/*<div className="navbar-header">*/}
+                                    {/*    <button type="button" className="navbar-toggle na-toggle" data-toggle="collapse" data-target="#myNavbar">*/}
+                                    {/*        <span className="icon-bar" />*/}
+                                    {/*        <span className="icon-bar" />*/}
+                                    {/*        <span className="icon-bar" />*/}
+                                    {/*    </button>*/}
+                                    {/*</div>*/}
                                     <div className="collapse navbar-collapse na-right col-sm-6" id="myNavbar">
                                         <ul className="nav navbar-nav ">
                                             <li><Link className="na-item " to="/booking_home">ĐẶT NHÀ</Link></li>
 
-                                            {/* <li><Link className="na-item" to="/">BLOG CHIA SẺ</Link></li> */}
+                                             {/*<li><Link className="na-item" to="/">BLOG CHIA SẺ</Link></li> */}
                                             {/*{this.renderOwnerSection(isAuth)}*/}
-                                            {/* <li><Link className="na-item" to="/contact">LIÊN HỆ</Link></li> */}
+                                            {/* <li><Link className="na-item" to="/contact">LIÊN HỆ</Link></li>*/}
                                         </ul>
                                     </div>
 
-                                    <div className="navbar-right col-sm-2 mg-top-10">
+                                    <div className="navbar-right mg-top-10">
                                         {isAuth &&
                                             <span className="dropdown"><img className="navbar-right-img" alt="avatar" src={image} />
                                                 <a className="na-item dropdown-toggle" data-toggle="dropdown" href="#"> {username}<span className="caret" /></a>

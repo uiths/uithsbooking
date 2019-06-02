@@ -1143,10 +1143,13 @@ LEVEL 4. SETTINGS
 .pagination li a {
   cursor: pointer; }
 
+.i-block {
+  display: inline-block; }
+
 .title_h3 {
-  padding-top:20px;
   font-size: 35px;
   margin: 0;
+  margin-bottom: 20px;
   font-weight: 600;
   display: inline-block;
   color: #000000; }
@@ -1181,13 +1184,8 @@ LEVEL 4. SETTINGS
     box-shadow: none;
     line-height: 1;
     width: 80%; }
-    #home .home_search input:focus{
-      outline: none;
-  }
-  #home .home_search button {
-    margin-left: auto;
-    background-color: #f4511e;
-    color: #fff;
+  #home .home_search a {
+    float: right;
     font-size: 18px;
     height: 50px;
     border-radius: 8px;
@@ -1195,6 +1193,9 @@ LEVEL 4. SETTINGS
     line-height: 2;
     width: 17%;
     border: none; }
+    #home .home_search a button {
+      width: 100%;
+      height: 100%; }
 #home .home-dot {
   left: 97%;
   bottom: 40%;
@@ -1623,18 +1624,20 @@ LEVEL 4. SETTINGS
     text-decoration: none; }
 
 #sub_home {
-  /* padding-top: 20px; */
+  padding-top: 20px;
   padding-bottom: 40px; }
-  #sub_home .sub_home_slider .slick-prev:before {
-    margin-left: -15px;
-    color: black;
-    font-size: 40px;
-    line-height: 0; }
-  #sub_home .sub_home_slider .slick-next:before {
-    color: black;
-    margin-left: -25px;
-    font-size: 40px;
-    line-height: 0; }
+  #sub_home .sub_home_slider {
+    min-height: 400px; }
+    #sub_home .sub_home_slider .slick-prev:before {
+      margin-left: -15px;
+      color: black;
+      font-size: 40px;
+      line-height: 0; }
+    #sub_home .sub_home_slider .slick-next:before {
+      color: black;
+      margin-left: -25px;
+      font-size: 40px;
+      line-height: 0; }
   #sub_home .sub_home_slider_container {
     position: relative;
     text-align: left;
@@ -1845,56 +1848,5 @@ LEVEL 4. SETTINGS
 
 .react-datepicker-wrapper, .react-datepicker__input-container {
   display: block !important; }
-  .boxtrue
-  {
-      background-color: #CBFFD1;
-      border-style: solid;
-      border-color: #15A123;
-      border-width: 1px;
-      border-radius: 3px;
-      padding: 10px;
-      text-align: center;
-      color: #0E7C19;
-  }
-  
-  .boxfalse
-  {
-      background-color: #FFC3C3;
-      border-style: solid;
-      border-color: #E12828;
-      border-width: 1px;
-      border-radius: 3px;
-      padding: 10px;
-      text-align: center;
-      color: #A11515;
-  }
-  #history {
-    font-family: "Trebuchet MS", Arial, Helvetica, sans-serif;
-    border-collapse: collapse;
-    width: 100%;
-  }
-  
-  #history td, #history th {
-    border: 1px solid #ddd;
-    padding: 8px;
-  }
-  
-  #history tr:nth-child(even){background-color: #f2f2f2;}
-  
-  #history tr:hover {background-color: #ddd;}
-  
-  #history th {
-    padding-top: 12px;
-    padding-bottom: 12px;
-    text-align: center;
-    background-color: #4CAF50;
-    color: white;
-  }
-  #g-recaptcha {
-    display: flex;
-    justify-content: center;
-  }
-  .one-page-container {
-    min-height: calc(100vh - 65px)
-  }
+
 /*# sourceMappingURL=App.css.map */
