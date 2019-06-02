@@ -1,12 +1,7 @@
-import { Field, reduxForm, FieldArray } from 'redux-form';
-import { Input } from 'component/main/shared/form/Input';
-import { BwmResError } from 'component/main/shared/form/BwmResError';
-import { BwmSelect } from 'component/main/shared/form/BwmSelect';
+import { Field, reduxForm} from 'redux-form';
 import { Checkbox } from 'component/main/shared/form/Checkbox';
-import { BwmTextArea } from 'component/main/shared/form/BwmTextArea';
 import { validate } from './validate';
 import React, { Component } from 'react';
-import DropzoneUpload from '../../shared/form/DropzoneUpload';
 import ProfilePhoto from "component/Form/ProfilePhoto"
 import { CustomInput } from 'component/Form/CustomInput'
 import CustomSelect from 'component/Form/CustomSelect'

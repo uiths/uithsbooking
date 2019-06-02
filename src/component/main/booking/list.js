@@ -3,7 +3,6 @@ import { BrowserRouter as Router, Link, withRouter } from "react-router-dom";
 import * as actions from 'actions'
 import RentalCard from 'component/RentalCard'
 import { connect } from 'react-redux'
-import Loading from 'component/main/user/loading'
 import Pagination from './Pagination';
 
 import "./style.scss"

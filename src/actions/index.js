@@ -271,11 +271,7 @@ export const sortBooking = (data) => {
     data
   }
 }
-const fetchUserBookingsInit = () => {
-  return {
-    type: FETCH_USER_BOOKINGS_INIT
-  }
-}
+
 export const createPayment = (data) => {
   return dispatch => {
     dispatch(showLoading());
@@ -297,13 +293,6 @@ const fetchUserBookingsSuccess = (userBookings) => {
   return {
     type: FETCH_USER_BOOKINGS_SUCCESS,
     userBookings
-  }
-}
-
-const fetchUserBookingsFail = (errors) => {
-  return {
-    type: FETCH_USER_BOOKINGS_FAIL,
-    errors
   }
 }
 
@@ -392,7 +381,6 @@ export const deleteRental = (rentalId) => {
 
 const loginSuccess = () => {
   const username = authService.getUsername();
-
   return {
     type: LOGIN_SUCCESS,
     username

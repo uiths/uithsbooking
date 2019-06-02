@@ -13,7 +13,7 @@ import {
   RESET_RENTALS_STATE,
   RESET_RENTAL_STATE,
   CREATE_RENTAL_SUCCESS,
-  CREATE_RENTAL_FAILURE
+  CREATE_RENTAL_FAILURE,
 } from '../actions/types';
 import { toast } from "react-toastify";
 
@@ -21,7 +21,9 @@ const INITIAL_STATE = {
   rentals: {
     data: [],
     errors: [],
-    isDeleted: false
+    isDeleted: false,
+    topRentals: [],
+    userRentals: []
   },
   rental: {
     data: {},
@@ -45,6 +47,10 @@ export const rentalReducer = (state = INITIAL_STATE.rentals, action) => {
       return {...state, errors:action.errors}
     case RESET_RENTALS_STATE:
       return {...state, isDeleted: false, erros:[]}
+    case 'FETCH_TOP_RENTALS_SUCCESS':
+      return {...state, topRentals: action.data}
+    case 'FETCH_USER_RENTALS_SUCCESS':
+      return {...state, userRentals: action.data}
     default:
       return state;
   }

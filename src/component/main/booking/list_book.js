@@ -40,7 +40,7 @@ class List_book extends Component {
             <div>
                 <ToastContainer autoClose={3000} />
                 <div className="container one-page-container">
-                    <br />
+
                     <h4 className="text-left title_h3 type1 animated fadeInLeft">Danh sách nhà mà bạn thuê</h4>
                     <select defaultValue="newest" onChange={this.handleSelect} className="list-sort-selector js-toggle-this">
                         <option value="toPrice">Tổng chi phí</option>
@@ -73,7 +73,7 @@ class List_book extends Component {
         );
     }
 }
-const mapStateToProps = (state, ownProps) => {
+const mapStateToProps = (state) => {
     return {
         bookingReducer : state.userBookings,
         userBookings: state.userBookings.data,

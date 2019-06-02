@@ -27,7 +27,7 @@ import change_new_pass from "./user/change_new_password";
 import RentalEdit from 'component/RentalEdit'
 import ResetPass from './user/reset_pass'
 // import EditProfile from 'component/EditProfile'
-import RentalManage from './rental/rental-manage/RentalManage'
+import RentalManage from 'component/Rental/RentalManage'
 class Routerr extends Component {
     render() {
         return (
@@ -50,9 +50,9 @@ class Routerr extends Component {
                 <LoggedInRoute path="/register" component={Register} />
                 <ProtectedRoute path="/booking/:id" component={BookingDetail}/>
                 <Route path="/detail/:id" component={RentalDetail} />
-                <ProtectedRoute path="/booking_home" component={BookingHome} />
+                <Route path="/booking_home" component={BookingHome} />
                 <ProtectedRoute exact path="/rental/manage" component={RentalManage} />
-                <Route path="/list_book" component={MyListBook} />
+                <ProtectedRoute path="/list_book" component={MyListBook} />
                 {/* <Route path="/editMyProfile" component={EditProfile}/> */}
                 {/*<PrivateRoute  path="/slot" component={Slot} />*/}
                 <ProtectedRoute path="/contact" component={Contactmain} />

@@ -6,6 +6,9 @@ import { connect } from 'react-redux'
 import authService from 'services/auth-service';
 import * as actions from 'actions'
 import _ from 'lodash'
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
+
 class Home extends Component {
     constructor() {
         super();
@@ -18,10 +21,11 @@ class Home extends Component {
             this.props.fetchUserById(authService.getId())
     }
     render() {
-        const data = [{
-            title: "Gợi ý rentals",
-            array: this.props.rentals.data || []
-        },
+        const data = [
+        //     {
+        //     title: "Gợi ý rentals",
+        //     array: this.props.rentals.data || []
+        // },
         {
             title: "Lịch sử tìm kiếm",
             array: this.props.users.data.searchHistory || []
@@ -29,6 +33,7 @@ class Home extends Component {
         return (
             <div>
                 <main>
+                    <ToastContainer/>
                     <div id="home" className="carousel slide carousel-fade" data-ride="carousel">
                         <ol className="carousel-indicators home-dot">
                             <li data-target="#home" data-slide-to="0" className="active" />
