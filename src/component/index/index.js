@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import RentalList from './rentalList'
+import PlaceList from './placeList'
 import { Link } from "react-router-dom";
 import Search from 'component/main/search'
 import { connect } from 'react-redux'
@@ -55,76 +56,10 @@ class Home extends Component {
                         </div>
                         <Search data={data} />
                     </div>
+
                     <RentalList />
-                    <div id="sub_home02" className="container-fluid mg-top-40">
-                        <h4 className="text-left title_h3 animated fadeInLeft">Điểm đến hàng đầu</h4>
-                        <div className="sub_home02_list">
-                            <div className="col-sm-3 sub_home02_container mg-top-15">
-                                <Link className="sub_home02_link" to="search?key=ha noi">
-                                    <img className="sub_home02_img" src="../img/img_home/index_region/Ha_noi.png" alt="Snow" width="100%" />
-                                    <p className="sub_home_text_p">
-                                        <b> Hà nội</b>
-                                    </p>
-                                </Link>
-                            </div>
-                            <div className="col-sm-3 sub_home02_container mg-top-15">
-                                <Link className="sub_home02_link" to="search?key=da lat">
-                                    <img className="sub_home02_img" src="../img/img_home/index_region/Da_lat.png" alt="Snow" width="100%" />
-                                    <p className="sub_home_text_p">
-                                        <b> Đà Lạt</b>
-                                    </p>
-                                </Link>
-                            </div>
-                            <div className="col-sm-3 sub_home02_container mg-top-15">
-                                <Link className="sub_home02_link" to="search?key=nha trang">
-                                    <img className="sub_home02_img" src="../img/img_home/index_region/Nha_trang.png" alt="Snow" width="100%" />
-                                    <p className="sub_home_text_p">
-                                        <b> Nha Trang</b>
-                                    </p>
-                                </Link>
-                            </div>
-                            <div className="col-sm-3 sub_home02_container mg-top-15">
-                                <Link className="sub_home02_link" to="search?key=hoa binh">
-                                    <img className="sub_home02_img" src="../img/img_home/index_region/Hoa_Binh.png" alt="Snow" width="100%" />
-                                    <p className="sub_home_text_p">
-                                        <b> Hoà Bình</b>
-                                    </p>
-                                </Link>
-                            </div>
-                            <div className="col-sm-3 sub_home02_container mg-top-15">
-                                <Link className="sub_home02_link" to="search?key=ho chi minh">
-                                    <img className="sub_home02_img" src="../img/img_home/index_region/TPHCM.png" alt="Snow" width="100%" />
-                                    <p className="sub_home_text_p">
-                                        <b> Hồ Chí Minh</b>
-                                    </p>
-                                </Link>
-                            </div>
-                            <div className="col-sm-3 sub_home02_container mg-top-15">
-                                <Link className="sub_home02_link" to="search?key=ha long">
-                                    <img className="sub_home02_img" src="../img/img_home/index_region/Ha_long.png" alt="Snow" width="100%" />
-                                    <p className="sub_home_text_p">
-                                        <b> Hạ Long</b>
-                                    </p>
-                                </Link>
-                            </div>
-                            <div className="col-sm-3 sub_home02_container mg-top-15">
-                                <Link className="sub_home02_link" to="search?key=vung tau">
-                                    <img className="sub_home02_img" src="../img/img_home/index_region/Vung_tau.png" alt="Snow" width="100%" />
-                                    <p className="sub_home_text_p">
-                                        <b> Vũng Tàu</b>
-                                    </p>
-                                </Link>
-                            </div>
-                            <div className="col-sm-3 sub_home02_container mg-top-15">
-                                <Link className="sub_home02_link" to="search?key=da nang">
-                                    <img className="sub_home02_img" src="../img/img_home/index_region/Da_Nang.png" alt="Snow" width="100%" />
-                                    <p className="sub_home_text_p">
-                                        <b> Đà Nẵng</b>
-                                    </p>
-                                </Link>
-                            </div>
-                        </div>
-                    </div>
+
+                    <PlaceList />
 
                     <div id="home_event" className="mg-top-80">
                         <div className="container-fluid text-center">
