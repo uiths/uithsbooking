@@ -20,7 +20,7 @@ class Footer extends Component {
         // this.componentDidMount();
 
         return (
-            <div className="scene">
+            <div className="scene mg-top-20">
 
                 <footer>
                     <div className="container text-left footer-container ">
