@@ -57,7 +57,7 @@ let RentalDateForm = props => {
                 <hr />
                 <h4 style={{ fontWeight: "bold", marginLeft: "5px" }}>Tổng cộng: {(totalPrice > 0 ) ? totalPrice.toLocaleString() : "---"} đồng</h4>
                 <hr />
-                <button type="submit" className="b b1 center_button" disabled={!valid || pristine || submitting}>
+                <button type="submit" className="b b1 center_button" style={{width:"60%"}} disabled={!valid || pristine || submitting}>
                     {submitting ?
                         <span>
                             <i className="fa fa-spin fa-spinner" /> Đang đặt phòng...

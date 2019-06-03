@@ -22,7 +22,7 @@ class Comment extends Component {
     render() {
         return (
             <div id="comment-rental-container">
-                <button className="b b1" onClick={this.handleChange}>
+                <button className="b b1 rbutton" onClick={this.handleChange}>
                     Đánh giá
                 </button>
                 <Modal className="comment-rental-container" style={{ opacity: 1 }} show={this.state.show}>

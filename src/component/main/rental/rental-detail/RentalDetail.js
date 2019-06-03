@@ -119,7 +119,7 @@ class RentalDetail extends Component {
             <div className="col-sm-8">
               <div>
 
-                <div className="infobox slide-in-left row" style={{ marginBottom: "20px" }}>
+                <div className="infobox slide-in-left row" style={{ marginBottom: "20px", marginLeft:"0", marginRight:"0"}}>
                   <div className="col-lg-8">
                     <img src={owner.image ? owner.image : '/img/default-img.jpg'} className="ravatar" alt="none" />
                     <h4 className="rname">{owner.username && owner.username}</h4>
@@ -147,24 +147,24 @@ class RentalDetail extends Component {
                   {(authService.isAuthenticated() && (authService.getId() !== owner._id)) &&
                     <Comment rentalId={rental._id && rental._id} />}
                 </div>
-                <div className="infobox slide-in-left" style={{ backgroundColor: "#4B0082" }}>
+                <div className="infobox slide-in-left" style={{ backgroundImage: "linear-gradient(#753a88,#cc2b5e)" }}>
                   <h3 id="null" style={{ fontWeight: "bold", color: "white", fontSize: "25px" }}>{this.props.rental.title}</h3>
                   <h5 style={{ color: "white" }}>{this.props.rental.address}</h5>
 
                 </div>
-                <div className="infobox slide-in-left">
+                <div className="infobox slide-in-left" style={{borderRadius:"0"}}>
                   <div>
-                    <h3 className="text-left bor type1"
-                      style={{ padding: "5px", fontSize: "27px" }}>Mô tả </h3>
+                    <div style={{width: "100%", height: "20px", borderBottom: "2px solid gray",marginTop:"30px",marginBottom:"20px"}}>
+                      <span style={{fontSize: "27px", backgroundColor: "white", padding: "0 10px", marginLeft:"30px"}}>Mô tả</span>
+                    </div>
                     <div>
                       <br />
                       <p style={{ whiteSpace: "pre-line", whiteSpace: "pre-wrap" }}>{this.props.rental.description}</p>
                     </div>
-                    <hr />
-                    <h3 className="text-left bor type1"
-                      style={{ padding: "5px", fontSize: "27px" }}>Thông tin </h3>
+                    <div style={{width: "100%", height: "20px", borderBottom: "2px solid gray",marginTop:"30px",marginBottom:"30px"}}>
+                      <span style={{fontSize: "27px", backgroundColor: "white", padding: "0 10px", marginLeft:"30px"}}>Thông tin</span>
+                    </div>
                     <div>
-
                       <div className="block">
                         <i className="fa fa-bed"> {this.props.rental.bedrooms} giường</i> <br />
                       </div>
@@ -175,11 +175,11 @@ class RentalDetail extends Component {
                         <i className="fa fa-bath"> {this.props.rental.bathrooms} phòng tắm</i> <br />
                       </div>
                     </div>
-                    <hr />
-                    <h3 className="text-left bor type1"
-                      style={{ padding: "5px", fontSize: "27px" }}>Tiện nghi </h3>
+                    <div style={{width: "100%", height: "20px", borderBottom: "2px solid gray",marginTop:"30px",marginBottom:"20px"}}>
+                      <span style={{fontSize: "27px", backgroundColor: "white", padding: "0 10px", marginLeft:"30px"}}>Tiện nghi</span>
+                    </div>
                     <RentalAssets rental={this.props.rental} />
-                  </div>
+                    </div>
                 </div>
               </div>
             </div>
@@ -189,8 +189,8 @@ class RentalDetail extends Component {
             {
               (!authService.isAuthenticated() || (authService.isAuthenticated() && !(authService.getId() === owner._id))) &&
               <div className="divide">
-                <div className="infobox slide-in-right" style={{ backgroundColor: "#4B0082" }}>
-                  <h3 style={{ color: "white" }}>Giá: <b>{rental.price && rental.price.toLocaleString()}</b> đ / ngày</h3>
+                <div className="infobox slide-in-right" style={{ backgroundImage: "linear-gradient(#753a88,#cc2b5e)" }}>
+                  <h3 style={{ color: "white" }}>Giá: <b>{rental.price && rental.price.toLocaleString()}</b> đ/ngày</h3>
                 </div>
                 <div className="infobox slide-in-right">
 

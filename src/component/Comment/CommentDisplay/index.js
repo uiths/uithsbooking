@@ -28,7 +28,7 @@ class CommentDisplay extends Component {
     render() {
         const commentList = this.props.commentList;
         return (
-            <div id="comment-display" >
+            <div id="comment-display" style={{marginTop:"20px"}}>
                 <ToastContainer/>
                 <div className="comment-header">
                     Đánh giá của khách hàng
