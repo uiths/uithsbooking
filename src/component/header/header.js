@@ -51,7 +51,7 @@ class Header extends Component {
                         <nav className="navbar na">
                             <div className="container-fluid">
                                 <div className="row">
-                                    <Link className="na-brand col-sm-2 mg-top-10" to="/"><span>U</span>IT HomeStay</Link>
+                                    <Link className="na-brand col-sm-2 " to="/"><img src="/img/index_icon_range.png" width="50%" alt={"header"}/></Link>
                                     {/*<div className="navbar-header">*/}
                                     {/*    <button type="button" className="navbar-toggle na-toggle" data-toggle="collapse" data-target="#myNavbar">*/}
                                     {/*        <span className="icon-bar" />*/}
@@ -59,7 +59,7 @@ class Header extends Component {
                                     {/*        <span className="icon-bar" />*/}
                                     {/*    </button>*/}
                                     {/*</div>*/}
-                                    <div className="collapse navbar-collapse na-right col-sm-6" id="myNavbar">
+                                    <div className="collapse navbar-collapse na-right col-sm-3" id="myNavbar">
                                         <ul className="nav navbar-nav ">
                                             <li><Link className="na-item " to="/booking_home">ĐẶT NHÀ</Link></li>
 
