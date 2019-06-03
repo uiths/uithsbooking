@@ -1148,8 +1148,6 @@ LEVEL 4. SETTINGS
 
 .title_h3 {
   font-size: 35px;
-  margin: 0;
-  margin-bottom: 20px;
   font-weight: 600;
   display: inline-block;
   color: #000000; }
@@ -1169,7 +1167,8 @@ LEVEL 4. SETTINGS
   left: 2.5%;
   min-height: auto;
   padding: 12px 16px;
-  border-radius: 8px; }
+  border-radius: 8px;
+  opacity: 0.9; }
   #home .home_search i {
     font-size: 30px;
     vertical-align: middle;
@@ -1620,7 +1619,6 @@ LEVEL 4. SETTINGS
     text-decoration: none; }
 
 #sub_home {
-  padding-top: 20px;
   padding-bottom: 40px; }
   #sub_home .sub_home_slider {
     min-height: 400px; }

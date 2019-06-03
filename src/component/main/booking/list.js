@@ -42,7 +42,7 @@ class List extends Component {
         // if(this.props.rentals && this.props.rentals.length > 0){
         return (
                 <div className="container list-rentals-container">
-                    <h3 className="text-left title_h3 type1 animated fadeInLeft">Tổng hợp thông tin</h3>
+                    <h3 className="text-left title_h3 type1 animated fadeInLeft mg-top-20">Tổng hợp thông tin</h3>
                     <div id="sub_home" className="text-center ">
                         <div className="container mg-top-20">
                             <div className="row">
