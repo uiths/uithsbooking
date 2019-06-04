@@ -86,10 +86,6 @@ class RentalDetail extends Component {
       this.props.dispatch(actions.resetRentalState())
 
     }
-    {
-      this.props.booking.isSuccess && this.notify("Đặt phòng thành công")
-      // this.props.dispatch(actions.resetBookingState())
-    }
     const owner = this.props.rental.user || {}
     const errors = this.props.booking.errors || {}
     const rental = this.props.rental || {}

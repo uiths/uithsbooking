@@ -19,24 +19,22 @@ class Datepicker extends Component {
     
     render() {
         const {
-            input, placeholder,
+            input, 
             meta: { touched, error }
         } = this.props
-        console.log(this.props.input.value)
         return (
 
             <div>
                 <label htmlFor={this.props.input.name}>{this.props.label}</label><br />
                 <DatePicker
                     {...input}
-                    placeholderText="dd/mm/yyyy"
+                    placeholderText="dd-mm-yyyy"
                     name={this.props.input.name}
-                    minDate={new Date()}
                     className={`${this.props.className} ${error && ' error-form'}`}
                     selected={this.state.startDate}
                     minDate={this.props.minDate}
                     maxDate={this.props.maxDate}
-                    dateFormat="dd/MM/yyyy"
+                    dateFormat="dd-MM-yyyy"
                     onChange={this.handleChange}
                     showMonthDropdown
                     showYearDropdown

@@ -1,4 +1,3 @@
-import axios from 'axios';
 import authService from 'services/auth-service';
 import axiosService from 'services/axios-service';
 import { startSubmit, stopSubmit } from 'redux-form';
@@ -13,21 +12,17 @@ import {
   FETCH_RENTALS_INIT,
   FETCH_RENTALS_FAIL,
   LOGIN_SUCCESS,
-  LOGIN_FAILURE,
   LOGOUT,
   SEND_MAIL_SUCCESS,
   SEND_MAIL_FAILURE,
   FETCH_USER_BY_ID_SUCCESS,
-  FETCH_USER_BY_ID_INIT,
   RESET_PASSWORD_SUCCESS,
   RESET_PASSWORD_FAILURE,
   UPDATE_PASSWORD_SUCCESS,
   UPDATE_PASSWORD_FAILURE,
   UPLOAD_AVATAR_SUCCESS,
-  UPLOAD_AVATAR_FAILURE,
   FETCH_USER_BOOKINGS_SUCCESS,
-  FETCH_USER_BOOKINGS_FAIL,
-  FETCH_USER_BOOKINGS_INIT,
+
   CREATE_BOOKING_FAIL,
   CREATE_BOOKING_SUCCESS,
   RESET_BOOKING_STATE,
@@ -43,11 +38,9 @@ import {
   RESET_USER_STATE,
   DELETE_RENTAL_SUCCESS,
   DELETE_RENTAL_FAILURE,
-  CREATE_RENTAL_SUCCESS,
-  CREATE_RENTAL_FAILURE,
   RESET_RENTAL_STATE,
   FETCH_BOOKING_BY_ID_SUCCESS,
-  FETCH_BOOKING_BY_ID_FAILURE,
+
   SORT_BOOKING
 } from './types';
 
@@ -97,13 +90,6 @@ const fetchRentalsInit = () => {
   }
 }
 
-const fetchRentalsFail = (errors) => {
-  return {
-    type: FETCH_RENTALS_FAIL,
-    errors
-  }
-}
-
 export const fetchRentals = (city) => {
   const url = city ? `/rentals?city=${city}` : '/rentals';
   return dispatch => {
@@ -137,52 +123,11 @@ export const fetchRentalById = (rentalId) => {
       );
   }
 }
-const createRentalSuccess = (data) => {
-  return {
-    type: CREATE_RENTAL_SUCCESS,
-    data
-  }
-}
-const createRentalFailure = (errors) => {
-  return {
-    type: CREATE_RENTAL_FAILURE,
-    errors
-  }
-}
-export const createRental = (rentalData) => {
-  // const image = []
-  // console.log(rentalData)
-  // const change = rentalData.image.map(i => {
-  //   if (i !== null)
-  //     image.push(i)
-  // })
-  // Promise.all(change).then(() => {
-  //   Object.assign(rentalData, { image: image })
-  //   console.log(rentalData)
-  return dispatch => {
-    dispatch(startSubmit('rentalCreateForm'))
-    return axiosInstance.post('/rentals/create', rentalData)
-      .then((res) => {
-        dispatch(stopSubmit('rentalCreateForm'))
-        dispatch(createRentalSuccess(res.data))
-      })
-      .catch(({ response }) => {
-        console.log(response.data.errors)
-        dispatch(stopSubmit('rentalCreateForm'))
-        dispatch(createRentalFailure(response.data.errors))
-        return response.data.errors
-      })
-  }
-  // })
-}
 const editRentalSuccess = (data) => {
   return {
     type: UPDATE_RENTAL_SUCCESS,
     data
   }
-}
-const editRentalFail = () => {
-  return { type: UPDATE_RENTAL_FAIL }
 }
 export const editRental = (rentalData, id) => {
   // const image = []
@@ -371,9 +316,14 @@ export const deleteRental = (rentalId) => {
     return axiosInstance.delete(`/rentals/${rentalId}`)
       .then(res => {
         dispatch(hideLoading())
+        toast.success("Xóa thành công")
         dispatch(deleteRentalSuccess(res.data))})
-      .catch(({ response }) => {
-        dispatch(deleteRentalFailure(response.data.errors))})
+        .catch(({response}) => {
+          if (response.status === 500)
+              toast.error(response.data);
+          else toast.error(response.data.errors.detail)
+          dispatch(hideLoading());
+      })
   }
 }
 
@@ -592,21 +542,6 @@ export const updatePass = (userData) => {
       }
       )
   }
-
-
-  // return (dispatch) => {
-  //   return axiosInstance.post('/users/change', userData)
-  //   .then(res => {
-  //     console.log(res)
-  //     dispatch(updatePassSuccess())
-  //     // return res.data
-  //   })
-  //   .catch(res => {
-  //     console.log(res)
-  //     dispatch(updatePassFailure(res.data.errors));
-  //     // return res.data
-  //   })
-  // }
 }
 
 export const resetUserState = () => {
@@ -620,13 +555,6 @@ const uploadSuccess = (data) => {
     data
   }
 }
-const uploadFailure = (errors) => {
-  return {
-    type: UPLOAD_AVATAR_FAILURE,
-    errors
-  }
-}
-
 export const uploadAvatar = (file) => {
   return dispatch => {
     const formData = new FormData();
@@ -707,78 +635,19 @@ export const resetBookingState = () => {
 export const createBooking = (booking) => {
   return (dispatch) => {
     dispatch(resetBookingState())
-    dispatch(startSubmit('rentalDateForm'))
+    dispatch(showLoading())
     return axiosInstance.post('/bookings/book', booking)
       .then(res => {
-        dispatch(stopSubmit('rentalDateForm'))
+        toast.success('Đặt phòng thành công')
+        dispatch(hideLoading())
         dispatch(createBookingSuccess(res.data))
       })
       .catch(({ response }) => {
-        dispatch(stopSubmit('rentalDateForm'))
-        dispatch(createBookingFail(response.data.errors))
+        console.log(response)
+        dispatch(hideLoading());
+        if (response.status === 500)
+          toast.error(response.data);
+        else toast.error(response.data.errors.detail)
       })
   }
 }
-
-
-export const uploadImage = image => {
-  const formData = new FormData();
-  formData.append('image', image);
-
-  return axiosInstance.post('/image-upload', formData)
-    .then(json => {
-      return json.data.imageUrl;
-    })
-    .catch(({ response }) => Promise.reject(response.data.errors[0]))
-}
-
-
-export const getPendingPayments = () => {
-  return axiosInstance.get('/payments')
-    .then(res => res.data)
-    .catch(({ response }) => Promise.reject(response.data.errors))
-}
-
-export const acceptPayment = (payment) => {
-  return axiosInstance.post('/payments/accept', payment)
-    .then(res => res.data)
-    .catch(({ response }) => Promise.reject(response.data.errors))
-}
-
-export const declinePayment = (payment) => {
-  return axiosInstance.post('/payments/decline', payment)
-    .then(res => res.data)
-    .catch(({ response }) => Promise.reject(response.data.errors))
-}
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-

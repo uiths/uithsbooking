@@ -19,23 +19,26 @@ export const validate = (values, props) => {
         errors.category = "Hãy chọn loại hình"
     if (!values.bedrooms)
         errors.bedrooms = "Hãy nhập số phòng"
-    else if (values.bedrooms > 10)
+    else if (values.bedrooms > 10 || values.bedrooms < 0)
         errors.bedrooms = "Không hợp lệ"
     if (!values.bathrooms)
         errors.bathrooms = "Hãy nhập số phòng"
-    else if (values.bathrooms > 10)
-        errors.bedrooms = "Không hợp lệ"
+    else if (values.bathrooms > 10 || values.bathrooms < 0)
+        errors.bathrooms = "Không hợp lệ"
     if (!values.people)
         errors.people = "Hãy nhập số người"
-    else if (values.people > 30)
+    else if (values.people > 30 || values.people < 0)
         errors.people = "Không hợp lệ"
     if (!values.price)
         errors.price = "Hãy nhập giá tiền"
+    else if (values.price < 0)
+        errors.price = "Không hợp lệ"
     if (!values.description)
         errors.description = "Hãy nhập mô tả"
-    else if(values.description.length < 6)
+    else if (values.description.length < 6)
         errors.description = "Mô tả quá ngắn"
     if (!values.image)
         errors.image = "Hãy chọn hình"
+
     return errors
 }

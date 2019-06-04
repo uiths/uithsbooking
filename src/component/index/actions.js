@@ -2,8 +2,9 @@ import axiosService from 'services/axios-service';
 import { showLoading, hideLoading } from 'react-redux-loading-bar';
 import { toast } from "react-toastify";
 
-const FETCH_TOP_RENTALS_SUCCESS = "FETCH_TOP_RENTALS_SUCCESS"
 const axiosInstance = axiosService.getInstance();
+
+const FETCH_TOP_RENTALS_SUCCESS = "FETCH_TOP_RENTALS_SUCCESS"
 
 const fetchTopRentalsSuccess = (data) => {
     return {

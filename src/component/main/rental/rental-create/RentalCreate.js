@@ -1,25 +1,12 @@
 import React, { Component, Fragment } from 'react';
-import { BrowserRouter as Router, Link, withRouter } from "react-router-dom";
 import RentalCreateForm from './RentalCreateForm';
 import { Redirect } from 'react-router-dom';
-import * as actions from 'actions';
+import { createRental } from './actions'
 import { connect } from 'react-redux'
-import { startSubmit, stopSubmit } from 'redux-form';
 import './style.scss'
-import { base64toBlob } from 'helpers/index';
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
-// import {rentalCreateForm} from './RentalCreateForm'
 class Create_rent extends Component {
-    constructor() {
-        super();
-        this.state = {
-            errors: [],
-            redirect: false,
-            images: []
-        }
-    }
-
     handleClick = (rentalData) => {
         const image = []
         const change = rentalData.image.map(i => {
@@ -27,27 +14,19 @@ class Create_rent extends Component {
                 image.push(i)
         })
         Promise.all(change).then(() => {
-            Object.assign(rentalData, { image: image })
-            this.props.dispatch(actions.createRental(rentalData))
-            .then(res =>{  res && res[0] &&  toast.error(res[0].detail)})
+            if (image.length && image.length >= 3) {
+                Object.assign(rentalData, { image: image })
+                this.props.createRental(rentalData);
+            }
+            else toast.error('Hãy chọn ít nhất 3 hình')
         }
         )
-
     }
-    
-    render() {
 
-        if(this.props.rental.isCreated){
-            return <Redirect to={{ pathname: `/detail/${this.props.rental.data._id}`, state: { posted: true } }} />
+    render() {
+        if (this.props.rental.isCreated) {
+            return <Redirect to={{ pathname: `/detail/${this.props.rental.data._id}`}} />
         }
-        // if(this.props.rental.errors){
-        //     console.log(this.props.rental.errors)
-        // }
-        const { isLoad, isLoading } = this.state;
-        if (this.state.redirect) {
-            return <Redirect to={{ pathname: '/rental/manage', state: { posted: true } }} />
-        }
-        
         return (
             <div>
                 <div className="container">
@@ -58,20 +37,22 @@ class Create_rent extends Component {
                             <div className="infobox">
                                 <RentalCreateForm submitCb={this.handleClick} />
                                 <ToastContainer autoClose={2000} />
-
                             </div>
                         </div>
                     </div>
                 </div>
-
             </div >
         );
     }
 }
 const mapStateToProps = (state) => {
     return {
-        errors: state.rental.errors,
         rental: state.rental
     }
 }
-export default connect(mapStateToProps)(Create_rent);
+const mapDispatchToProps = (dispatch) => {
+    return {
+        createRental: (rentalData) => dispatch(createRental(rentalData))
+    }
+}
+export default connect(mapStateToProps, mapDispatchToProps)(Create_rent);

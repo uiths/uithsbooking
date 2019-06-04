@@ -10,7 +10,7 @@ class CustomSelect extends Component {
                     {this.props.children}
                 </select>
                 {this.props.meta.touched &&
-                    ((this.props.meta.error && <p style={{ fontSize: "14x", color: "red" }}>{this.props.meta.error}</p>))}
+                    ((this.props.meta.error && <p className="error-text">{this.props.meta.error}</p>))}
             </Fragment>
         );
     }

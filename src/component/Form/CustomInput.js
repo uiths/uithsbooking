@@ -58,5 +58,5 @@ export const CustomInput = ({
                     disabled={disabled}
                 />}
             {touched &&
-                ((error && <p style={{fontSize:"14x", color:"red"}}>{error}</p>))}
+                ((error && <p className="error-text" >{error}</p>))}
         </Fragment>)

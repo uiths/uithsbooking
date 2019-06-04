@@ -14,7 +14,7 @@ import {
   RESET_RENTAL_STATE,
   CREATE_RENTAL_SUCCESS,
   CREATE_RENTAL_FAILURE,
-} from '../actions/types';
+} from 'actions/types';
 import { toast } from "react-toastify";
 
 const INITIAL_STATE = {

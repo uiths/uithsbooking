@@ -2,7 +2,6 @@ import React, { Component, Fragment } from 'react';
 import PropTypes from 'prop-types';
 import _ from 'lodash';
 import RentalPhotoSelector from 'component/RentalPhotoSelector/';
-import {isImmutable, fromJS } from 'immutable';
 
 class ProfilePhoto extends Component {
     constructor(props) {
@@ -94,7 +93,7 @@ class ProfilePhoto extends Component {
         }
         return (
             <Fragment>
-                <div className="row">
+                <div className="avatar-row-1">
                     <div className="photo-selector-container col-sm-8 col-xs-12 col-md-8 col-xl-8">
                         {photoSelectors[0]}
                     </div>
@@ -103,17 +102,19 @@ class ProfilePhoto extends Component {
                         {photoSelectors[2]}
                     </div>
                 </div>
-                <div className="row">
-                    <div className="photo-selector-container col-xs-4 col-md-4 col-xl-4">
+                <div className="avatar-row-2">
+                    <div className="photo-selector-container container-right container-right-1 col-xs-4 col-md-4 col-xl-4">
                         {photoSelectors[3]}
                     </div>
-                    <div className="photo-selector-container col-xs-4 col-md-4 col-xl-4">
+                    <div className="photo-selector-container container-right col-xs-4 col-md-4 col-xl-4">
                         {photoSelectors[4]}
                     </div>
                     <div className="photo-selector-container col-xs-4 col-md-4 col-xl-4">
                         {photoSelectors[5]}
                     </div>
                 </div>
+                {this.props.meta.touched &&
+                ((this.props.meta.error && <p style={{paddingLeft:"30px"}} className="error-text" >* {this.props.meta.error}</p>))}
             </Fragment>
         );
     }
