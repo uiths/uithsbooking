@@ -147,22 +147,22 @@ class RentalDetail extends Component {
                   {(authService.isAuthenticated() && (authService.getId() !== owner._id)) &&
                     <Comment rentalId={rental._id && rental._id} />}
                 </div>
-                <div className="infobox slide-in-left" style={{ backgroundImage: "linear-gradient(#753a88,#cc2b5e)" }}>
+                <div className="infobox slide-in-left" style={{ backgroundImage:"linear-gradient( 90.2deg, rgba(75,68,229,1) 2%, rgba(97,212,202,1) 98.3% )" }}>
                   <h3 id="null" style={{ fontWeight: "bold", color: "white", fontSize: "25px" }}>{this.props.rental.title}</h3>
                   <h5 style={{ color: "white" }}>{this.props.rental.address}</h5>
 
                 </div>
                 <div className="infobox slide-in-left" style={{borderRadius:"0"}}>
                   <div>
-                    <div style={{width: "100%", height: "20px", borderBottom: "2px solid gray",marginTop:"30px",marginBottom:"20px"}}>
-                      <span style={{fontSize: "27px", backgroundColor: "white", padding: "0 10px", marginLeft:"30px"}}>Mô tả</span>
+                    <div style={{width: "100%", height: "20px", borderBottom: "2px solid", borderImage:"conic-gradient(rgba(97,212,202,1) 2%, rgba(75,68,229,1) 98.3%) 1",marginTop:"30px",marginBottom:"20px"}}>
+                      <span style={{fontSize: "25px", backgroundColor: "white", padding: "0 10px", marginLeft:"20px"}}><i className="fa fa-question-circle" style={{marginLeft:"10px",marginRight:"20px"}}/>Mô tả</span>
                     </div>
                     <div>
                       <br />
                       <p style={{ whiteSpace: "pre-line", whiteSpace: "pre-wrap" }}>{this.props.rental.description}</p>
                     </div>
-                    <div style={{width: "100%", height: "20px", borderBottom: "2px solid gray",marginTop:"30px",marginBottom:"30px"}}>
-                      <span style={{fontSize: "27px", backgroundColor: "white", padding: "0 10px", marginLeft:"30px"}}>Thông tin</span>
+                    <div style={{width: "100%", height: "20px", borderBottom: "2px solid", borderImage:"conic-gradient(rgba(97,212,202,1) 2%, rgba(75,68,229,1) 98.3%) 1",marginTop:"30px",marginBottom:"30px"}}>
+                      <span style={{fontSize: "25px", backgroundColor: "white", padding: "0 10px", marginLeft:"20px"}}><i className="fa fa-info-circle" style={{marginLeft:"10px",marginRight:"20px"}}/>Thông tin</span>
                     </div>
                     <div>
                       <div className="block">
@@ -175,8 +175,8 @@ class RentalDetail extends Component {
                         <i className="fa fa-bath"> {this.props.rental.bathrooms} phòng tắm</i> <br />
                       </div>
                     </div>
-                    <div style={{width: "100%", height: "20px", borderBottom: "2px solid gray",marginTop:"30px",marginBottom:"20px"}}>
-                      <span style={{fontSize: "27px", backgroundColor: "white", padding: "0 10px", marginLeft:"30px"}}>Tiện nghi</span>
+                    <div style={{width: "100%", height: "20px", borderBottom: "2px solid", borderImage:"conic-gradient(rgba(97,212,202,1) 2%, rgba(75,68,229,1) 98.3%) 1",marginTop:"30px",marginBottom:"20px"}}>
+                      <span style={{fontSize: "25px", backgroundColor: "white", padding: "0 10px", marginLeft:"20px"}}><i className="fa fa-check-circle" style={{marginLeft:"10px",marginRight:"20px"}}/>Tiện nghi</span>
                     </div>
                     <RentalAssets rental={this.props.rental} />
                     </div>
@@ -188,8 +188,8 @@ class RentalDetail extends Component {
           <div className="col-sm-4">
             {
               (!authService.isAuthenticated() || (authService.isAuthenticated() && !(authService.getId() === owner._id))) &&
-              <div className="divide">
-                <div className="infobox slide-in-right" style={{ backgroundImage: "linear-gradient(#753a88,#cc2b5e)" }}>
+              <div className="divide" style={{marginBottom:"20px"}}>
+                <div className="infobox slide-in-right" style={{ backgroundImage:"linear-gradient( 90.2deg, rgba(75,68,229,1) 2%, rgba(97,212,202,1) 98.3% )" }}>
                   <h3 style={{ color: "white" }}>Giá: <b>{rental.price && rental.price.toLocaleString()}</b> đ/ngày</h3>
                 </div>
                 <div className="infobox slide-in-right">
