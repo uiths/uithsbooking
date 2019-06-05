@@ -1159,37 +1159,41 @@ LEVEL 4. SETTINGS
 .title_link:hover {
   color: red; }
 
+.dv-star-rating-star i {
+  font-size: 18px !important; }
+
 #home .home_search {
   position: absolute;
   top: 5%;
-  background: white;
   width: 95%;
   left: 2.5%;
   min-height: auto;
-  padding: 12px 16px;
   border-radius: 8px;
   opacity: 0.9; }
   #home .home_search i {
     font-size: 30px;
     vertical-align: middle;
     margin-bottom: 5px;
-    color: #767676; }
+    color: #767676;
+    width: 2%; }
   #home .home_search input {
     height: 50px;
     border: none;
     font-size: 17px;
-    padding-left: 20px;
+    padding-left: 2%;
     position: relative;
     box-shadow: none;
     line-height: 1;
-    width: 80%; }
+    width: 100%;
+    border-bottom: 5px solid #232323;
+    background: none; }
   #home .home_search a button {
     font-size: 18px;
     height: 50px;
     border-radius: 8px;
     font-weight: 400;
     line-height: 2;
-    width: 17%;
+    width: 15%;
     border: none; }
 #home .home-dot {
   left: 97%;
