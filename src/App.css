@@ -1143,10 +1143,11 @@ LEVEL 4. SETTINGS
 .pagination li a {
   cursor: pointer; }
 
+.i-block {
+  display: inline-block; }
+
 .title_h3 {
-  padding-top:20px;
   font-size: 35px;
-  margin: 0;
   font-weight: 600;
   display: inline-block;
   color: #000000; }
@@ -1166,7 +1167,8 @@ LEVEL 4. SETTINGS
   left: 2.5%;
   min-height: auto;
   padding: 12px 16px;
-  border-radius: 8px; }
+  border-radius: 8px;
+  opacity: 0.9; }
   #home .home_search i {
     font-size: 30px;
     vertical-align: middle;
@@ -1181,13 +1183,7 @@ LEVEL 4. SETTINGS
     box-shadow: none;
     line-height: 1;
     width: 80%; }
-    #home .home_search input:focus{
-      outline: none;
-  }
-  #home .home_search button {
-    margin-left: auto;
-    background-color: #f4511e;
-    color: #fff;
+  #home .home_search a button {
     font-size: 18px;
     height: 50px;
     border-radius: 8px;
@@ -1623,18 +1619,19 @@ LEVEL 4. SETTINGS
     text-decoration: none; }
 
 #sub_home {
-  /* padding-top: 20px; */
   padding-bottom: 40px; }
-  #sub_home .sub_home_slider .slick-prev:before {
-    margin-left: -15px;
-    color: black;
-    font-size: 40px;
-    line-height: 0; }
-  #sub_home .sub_home_slider .slick-next:before {
-    color: black;
-    margin-left: -25px;
-    font-size: 40px;
-    line-height: 0; }
+  #sub_home .sub_home_slider {
+    min-height: 400px; }
+    #sub_home .sub_home_slider .slick-prev:before {
+      margin-left: -15px;
+      color: black;
+      font-size: 40px;
+      line-height: 0; }
+    #sub_home .sub_home_slider .slick-next:before {
+      color: black;
+      margin-left: -25px;
+      font-size: 40px;
+      line-height: 0; }
   #sub_home .sub_home_slider_container {
     position: relative;
     text-align: left;
@@ -1724,10 +1721,6 @@ LEVEL 4. SETTINGS
       #sub_home .sub_home_slider_container_list_rent .middle a i {
         display: inline-block;
         vertical-align: middle; }
-  #sub_home .sub_home_slider_container_list_rent:hover img {
-    opacity: 0.3; }
-  #sub_home .sub_home_slider_container_list_rent:hover .middle {
-    opacity: 1; }
 
 #sub_home02 .sub_home02_container {
   position: relative; }
@@ -1753,11 +1746,6 @@ LEVEL 4. SETTINGS
       font-size: 25px; }
     #sub_home02 .sub_home02_link p br {
       margin-bottom: 5px; }
-#sub_home02 .sub_home02_link:hover {
-  line-height: 1;
-  overflow: hidden; }
-  #sub_home02 .sub_home02_link:hover img {
-    transform: scale(1.02); }
 
 #contact {
   background: #3399ff;

@@ -1,32 +1,15 @@
 import React, {Component} from 'react';
-
-import $ from 'jquery';
-
-
-
 class Footer extends Component {
 
-    // componentDidMount() {
-    //     $(document).ready(function() {
-    //         var $magic = $(".magic"),
-    //             magicWHalf = $magic.width() / 2;
-    //         $(document).on("mousemove", function(e) {
-    //             $magic.css({ left: e.pageX - magicWHalf, top: e.pageY - magicWHalf });
-    //         });
-    //     });
-    // }
-
     render() {
-        // this.componentDidMount();
-
         return (
-            <div className="scene">
+            <div className="scene mg-top-20">
 
                 <footer>
                     <div className="container text-left footer-container ">
                         <div className="row">
                             <div className="col-sm-4 footer-left">
-                                <a className="na-brand2" href="#"><img src="/img/index_icon_footer.png" width="40%" alt={"none"}/></a>
+                                <a className="na-brand2" href="#"><img src="/img/index_icon_footer.png" width="45%" alt={"none"}/></a>
                             </div>
                             <div className="col-sm-4 footer-center-content">
                                 <h5 className="footer-text-head">Thông tin</h5>

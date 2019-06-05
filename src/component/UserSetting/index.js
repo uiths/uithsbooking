@@ -12,6 +12,7 @@ import EditProfile from 'component/UserSetting/EditProfile'
 import ReactNotification from "react-notifications-component";
 import "react-notifications-component/dist/theme.css";
 import { isEmpty } from 'helpers/index'
+// import {uploadAvatar} from './actions'
 class userSetting extends Component {
     constructor(props) {
         super(props);
@@ -103,6 +104,11 @@ class userSetting extends Component {
 const mapStateToProps = (state) => {
     return {
         users: state.users
+    }
+}
+const mapDispatchToProps = (dispatch, ownProps) => {
+    return {
+        
     }
 }
 export default connect(mapStateToProps)(userSetting);

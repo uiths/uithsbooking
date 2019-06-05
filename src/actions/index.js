@@ -9,8 +9,6 @@ import {
   FETCH_RENTAL_BY_ID_SUCCESS,
   FETCH_RENTAL_BY_ID_INIT,
   FETCH_RENTALS_SUCCESS,
-  FETCH_RENTALS_INIT,
-  FETCH_RENTALS_FAIL,
   LOGIN_SUCCESS,
   LOGOUT,
   SEND_MAIL_SUCCESS,
@@ -31,13 +29,10 @@ import {
   UPDATE_USER_SUCCESS,
   UPDATE_USER_FAILURE,
   RESET_RENTAL_ERRORS,
-  RELOAD_MAP,
-  RELOAD_MAP_FINISH,
   DELETE_BOOKING_SUCCESS,
   DELETE_BOOKING_FAILURE,
   RESET_USER_STATE,
   DELETE_RENTAL_SUCCESS,
-  DELETE_RENTAL_FAILURE,
   RESET_RENTAL_STATE,
   FETCH_BOOKING_BY_ID_SUCCESS,
 
@@ -48,18 +43,6 @@ const axiosInstance = axiosService.getInstance();
 
 export const verifyRentalOwner = (rentalId) => {
   return axiosInstance.get(`/rentals/${rentalId}/verify-user`);
-}
-
-export const reloadMap = () => {
-  return {
-    type: RELOAD_MAP
-  }
-}
-
-export const reloadMapFinish = () => {
-  return {
-    type: RELOAD_MAP_FINISH
-  }
 }
 
 // RENTALS ATIONS ---------------------------
@@ -81,12 +64,6 @@ const fetchRentalsSuccess = (rentals) => {
   return {
     type: FETCH_RENTALS_SUCCESS,
     rentals
-  }
-}
-
-const fetchRentalsInit = () => {
-  return {
-    type: FETCH_RENTALS_INIT
   }
 }
 
@@ -123,54 +100,7 @@ export const fetchRentalById = (rentalId) => {
       );
   }
 }
-const editRentalSuccess = (data) => {
-  return {
-    type: UPDATE_RENTAL_SUCCESS,
-    data
-  }
-}
-export const editRental = (rentalData, id) => {
-  // const image = []
-  // console.log(rentalData)
-  // const change = rentalData.image.map(i => {
-  //   if (i !== null)
-  //     image.push(i)
-  // })
-  // Promise.all(change).then(() => {
-  //   Object.assign(rentalData, { image: image })
-  return dispatch => {
-    dispatch(startSubmit('rentalCreateForm'))
-    axiosInstance.post(`/rentals/update/${id}`, rentalData)
-      .then(res => {
-        console.log(res.data)
-        dispatch(stopSubmit('rentalCreateForm'))
-        dispatch(editRentalSuccess(res.data))
-      })
-      .catch(({ response }) => {
-        dispatch(stopSubmit('rentalCreateForm'))
-        Promise.reject(response.data.errors)
-      }
-      )
-  }
-  // })
-  // const change = image.map(i => {
-  //   if(i!=null && i.includes(',')){
-  //     const base64 = (i.split(','))[1]
-  //     formData.append(`${image.indexOf(i)}`,base64toBlob(base64,'image/png'))
-  //     image[image.indexOf(i)] = null
-  //   }
-  // })
-  // Promise.all(change).then(()=>{
-  //   rentalData.image = image;
-  //   for (var key in rentalData) {
-  //     formData.append(key, rentalData[key]);
-  //   }
-  //   console.log(rentalData)
 
-  //   axiosInstance.post(`/rentals/${id}`, formData)
-  // })
-
-}
 export const resetRentalsState = () => {
   return {
     type: RESET_RENTAL_ERRORS
@@ -181,32 +111,6 @@ export const resetRentalState = () => {
   return {
     type: RESET_RENTAL_STATE
   }
-}
-const updateRentalSuccess = (updatedRental) => {
-  return {
-    type: UPDATE_RENTAL_SUCCESS,
-    rental: updatedRental
-  }
-}
-
-const updateRentalFail = (errors) => {
-  return {
-    type: UPDATE_RENTAL_FAIL,
-    errors
-  }
-}
-
-export const updateRental = (id, rentalData) => dispatch => {
-  return axiosInstance.patch(`/rentals/${id}`, rentalData)
-    .then(res => res.data)
-    .then(updatedRental => {
-      dispatch(updateRentalSuccess(updatedRental));
-
-      if (rentalData.city || rentalData.street) {
-        dispatch(reloadMap());
-      }
-    })
-    .catch(({ response }) => dispatch(updateRentalFail(response.data.errors)))
 }
 
 // USER BOOKINGS ACTIONS ---------------------------
@@ -304,12 +208,6 @@ const deleteRentalSuccess = (data) => {
     data
   }
 }
-const deleteRentalFailure = (errors) => {
-  return {
-    type: DELETE_RENTAL_FAILURE,
-    errors
-  }
-}
 export const deleteRental = (rentalId) => {
   return dispatch => {
     dispatch(showLoading());
@@ -336,51 +234,12 @@ const loginSuccess = () => {
     username
   }
 }
-export const register = (userData) => {
-  return dispatch => {
-    dispatch(showLoading())
-    dispatch(startSubmit('registerForm'))
-    return axiosInstance.post('/users/register', userData)
-      .then(res => {
-        dispatch(hideLoading());
-        dispatch(stopSubmit('registerForm'))
-        toast.success("Hãy kiểm tra email xác nhận")
-      })
-      .catch(({ response }) => {
-        if (response.status === 500)
-          toast.error(response.data);
-        else toast.error(response.data.errors.detail)
-        dispatch(hideLoading())
-        dispatch(stopSubmit('registerForm'))
-      })
-  }
-}
+
 export const checkAuthState = () => {
   return dispatch => {
     if (authService.isAuthenticated()) {
       dispatch(loginSuccess());
     }
-  }
-}
-export const login = (userData) => {
-  return dispatch => {
-    dispatch(startSubmit('loginForm'))
-    dispatch(showLoading());
-    return axiosInstance.post('/users/login', userData)
-      .then(res => res.data)
-      .then(token => {
-        authService.saveToken(token);
-        dispatch(loginSuccess());
-        dispatch(hideLoading());
-        dispatch(stopSubmit('loginForm'))
-      })
-      .catch(({ response }) => {
-        if (response.status === 500)
-          toast.error(response.data);
-        else toast.error(response.data.errors.detail);
-        dispatch(hideLoading());
-        dispatch(stopSubmit('loginForm'))
-      })
   }
 }
 
@@ -595,13 +454,6 @@ export const oldAvatar = (url) => {
         dispatch(stopSubmit('editAvatarForm'))
         Promise.reject(response.data.errors)
       })
-  }
-}
-
-const createBookingFail = (errors) => {
-  return {
-    type: CREATE_BOOKING_FAIL,
-    errors
   }
 }
 const createBookingSuccess = (data) => {

@@ -4,6 +4,7 @@ import LoginForm from './LoginForm';
 import { connect } from 'react-redux';
 import * as actions from 'actions';
 import { ToastContainer, toast } from "react-toastify";
+import {login} from './actions'
 import "react-toastify/dist/ReactToastify.css";
 
 class Login extends Component {
@@ -14,7 +15,7 @@ class Login extends Component {
         }
     }
     loginUser = (userData) => {
-        this.props.dispatch(actions.login(userData))
+        this.props.login(userData);
     }
     render() {
         const { isAuth } = this.props.auth;
@@ -48,4 +49,9 @@ function mapStateToProps(state) {
         auth: state.auth
     }
 }
-export default connect(mapStateToProps)(Login);
+const mapDispatchToProps = (dispatch) => {
+    return {
+        login: (userData) => dispatch(login(userData))
+    }
+}
+export default connect(mapStateToProps, mapDispatchToProps)(Login);

@@ -4,9 +4,10 @@ import {connect} from 'react-redux'
 import * as actions from 'actions';
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+import {register} from './actions'
 class Signup extends Component {
     registerUser = (userData) => {
-        this.props.dispatch(actions.register(userData))
+        this.props.register(userData)
     }
     render() {
         return (
@@ -32,9 +33,9 @@ class Signup extends Component {
         );
     }
 }
-function mapStateToProps(state) {
+const mapDispatchToProps = (dispatch, ownProps) => {
     return {
+        register: (userData) => dispatch(register(userData))
     }
 }
-
-export default connect(mapStateToProps)(Signup);
+export default connect(null, mapDispatchToProps)(Signup);

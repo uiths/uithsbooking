@@ -4,7 +4,7 @@ $border-radius: 50%;
 $font-size: 25px;
 
 #sub_home {
-  padding-top: 20px;
+  //padding-top: 20px;
   padding-bottom: 40px;
 
 
@@ -160,13 +160,7 @@ $font-size: 25px;
       }
     }
   }
-  .sub_home_slider_container_list_rent:hover img {
-    opacity: 0.3;
-  }
 
-  .sub_home_slider_container_list_rent:hover .middle {
-    opacity: 1;
-  }
 }
 
 #sub_home02
@@ -203,17 +197,8 @@ $font-size: 25px;
 
       br {
         margin-bottom: 5px;
+
       }
-
-    }
-  }
-  .sub_home02_link:hover {
-    line-height: 1;
-    overflow: hidden;
-
-    img{
-      transform: scale(1.02);
-
     }
   }
 }

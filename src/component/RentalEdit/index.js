@@ -3,6 +3,7 @@ import { BrowserRouter as Router, Link, withRouter } from "react-router-dom";
 import RentalCreateForm from 'component/main/rental/rental-create/RentalCreateForm';
 import { Redirect } from 'react-router-dom';
 import * as actions from 'actions';
+import {editRental} from './actions'
 import { connect } from 'react-redux'
 import ReactNotification from "react-notifications-component";
 import "react-notifications-component/dist/theme.css";
@@ -22,7 +23,6 @@ class RentalEdit extends Component {
 
     }
     handleClick = (rentalData) => {
-        
         if (rentalData != this.props.rental) {
             const image = []
             const change = rentalData.image.map(i => {
@@ -31,7 +31,7 @@ class RentalEdit extends Component {
             })
             Promise.all(change).then(() => {
                 Object.assign(rentalData, { image: image })
-                this.props.dispatch(actions.editRental(rentalData, this.props.location.state.rental._id));
+                this.props.editRental(rentalData, this.props.location.state.rental._id);
             })
         }
     }
@@ -92,4 +92,9 @@ const mapStateToProps = (state) => {
         rental: state.rental
     }
 }
-export default connect(mapStateToProps)(RentalEdit);
+const mapDispatchToProps = (dispatch) => {
+    return {
+        editRental: (rentalData, rentalId) => dispatch(editRental(rentalData, rentalId))
+    }
+}
+export default connect(mapStateToProps, mapDispatchToProps)(RentalEdit);

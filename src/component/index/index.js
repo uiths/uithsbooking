@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import RentalList from './rentalList'
+import PlaceItem from './placeItem'
 import { Link } from "react-router-dom";
 import Search from 'component/main/search'
 import { connect } from 'react-redux'
@@ -8,6 +9,7 @@ import * as actions from 'actions'
 import _ from 'lodash'
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+import Slider from "react-slick/lib";
 
 class Home extends Component {
     constructor() {
@@ -55,74 +57,28 @@ class Home extends Component {
                         </div>
                         <Search data={data} />
                     </div>
+
                     <RentalList />
+
                     <div id="sub_home02" className="container-fluid mg-top-40">
                         <h4 className="text-left title_h3 animated fadeInLeft">Điểm đến hàng đầu</h4>
                         <div className="sub_home02_list">
-                            <div className="col-sm-3 sub_home02_container mg-top-15">
-                                <Link className="sub_home02_link" to="search?key=ha noi">
-                                    <img className="sub_home02_img" src="../img/img_home/index_region/Ha_noi.png" alt="Snow" width="100%" />
-                                    <p className="sub_home_text_p">
-                                        <b> Hà nội</b>
-                                    </p>
-                                </Link>
-                            </div>
-                            <div className="col-sm-3 sub_home02_container mg-top-15">
-                                <Link className="sub_home02_link" to="search?key=da lat">
-                                    <img className="sub_home02_img" src="../img/img_home/index_region/Da_lat.png" alt="Snow" width="100%" />
-                                    <p className="sub_home_text_p">
-                                        <b> Đà Lạt</b>
-                                    </p>
-                                </Link>
-                            </div>
-                            <div className="col-sm-3 sub_home02_container mg-top-15">
-                                <Link className="sub_home02_link" to="search?key=nha trang">
-                                    <img className="sub_home02_img" src="../img/img_home/index_region/Nha_trang.png" alt="Snow" width="100%" />
-                                    <p className="sub_home_text_p">
-                                        <b> Nha Trang</b>
-                                    </p>
-                                </Link>
-                            </div>
-                            <div className="col-sm-3 sub_home02_container mg-top-15">
-                                <Link className="sub_home02_link" to="search?key=hoa binh">
-                                    <img className="sub_home02_img" src="../img/img_home/index_region/Hoa_Binh.png" alt="Snow" width="100%" />
-                                    <p className="sub_home_text_p">
-                                        <b> Hoà Bình</b>
-                                    </p>
-                                </Link>
-                            </div>
-                            <div className="col-sm-3 sub_home02_container mg-top-15">
-                                <Link className="sub_home02_link" to="search?key=ho chi minh">
-                                    <img className="sub_home02_img" src="../img/img_home/index_region/TPHCM.png" alt="Snow" width="100%" />
-                                    <p className="sub_home_text_p">
-                                        <b> Hồ Chí Minh</b>
-                                    </p>
-                                </Link>
-                            </div>
-                            <div className="col-sm-3 sub_home02_container mg-top-15">
-                                <Link className="sub_home02_link" to="search?key=ha long">
-                                    <img className="sub_home02_img" src="../img/img_home/index_region/Ha_long.png" alt="Snow" width="100%" />
-                                    <p className="sub_home_text_p">
-                                        <b> Hạ Long</b>
-                                    </p>
-                                </Link>
-                            </div>
-                            <div className="col-sm-3 sub_home02_container mg-top-15">
-                                <Link className="sub_home02_link" to="search?key=vung tau">
-                                    <img className="sub_home02_img" src="../img/img_home/index_region/Vung_tau.png" alt="Snow" width="100%" />
-                                    <p className="sub_home_text_p">
-                                        <b> Vũng Tàu</b>
-                                    </p>
-                                </Link>
-                            </div>
-                            <div className="col-sm-3 sub_home02_container mg-top-15">
-                                <Link className="sub_home02_link" to="search?key=da nang">
-                                    <img className="sub_home02_img" src="../img/img_home/index_region/Da_Nang.png" alt="Snow" width="100%" />
-                                    <p className="sub_home_text_p">
-                                        <b> Đà Nẵng</b>
-                                    </p>
-                                </Link>
-                            </div>
+                            <PlaceItem search="search?key=ha noi" title="Hà Nội" img="../img/img_home/index_region/Ha_noi.png" />
+
+                            <PlaceItem search="search?key=da lat" title="Đà Lạt" img="../img/img_home/index_region/Da_lat.png" />
+
+                            <PlaceItem search="search?key=nha trang" title="Nha Trang" img="../img/img_home/index_region/Nha_trang.png" />
+
+                            <PlaceItem search="search?key=ho chi minh" title="TP.Hồ Chí Minh" img="../img/img_home/index_region/TPHCM.png" />
+
+                            <PlaceItem search="search?key=hoa binh" title="Hòa Bình" img="../img/img_home/index_region/Hoa_Binh.png" />
+
+                            <PlaceItem search="search?key=ha long" title="Hạ Long" img="../img/img_home/index_region/Ha_long.png" />
+
+                            <PlaceItem search="search?key=da nang" title="Đà Nẵng" img="../img/img_home/index_region/Da_Nang.png" />
+
+                            <PlaceItem search="search?key=vung tau" title="Vũng Tàu" img="../img/img_home/index_region/Vung_tau.png" />
+
                         </div>
                     </div>
 
