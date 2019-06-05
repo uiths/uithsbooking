@@ -187,3 +187,14 @@ textarea {
 .photo-selector-container {
   padding-left: 0px;
 }
+.image_picker {
+  overflow-y: scroll;
+  height: 300px;
+}
+.image_picker::-webkit-scrollbar {
+  width: 3px;
+  background-color: #F5F5F5;
+} 
+.image_picker::-webkit-scrollbar-thumb {
+  background-color: #673AB7;
+}

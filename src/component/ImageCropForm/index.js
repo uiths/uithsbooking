@@ -12,7 +12,7 @@ class ImageCropForm extends Component {
       src: props.src,
       croppedImageUrl: null,
       crop: {
-        aspect: 12/9,
+        aspect: this.props.aspect || 12/9,
         width: 50,
         x: 0,
         y: 0

@@ -130,7 +130,9 @@ class PhotoSelector extends Component {
                   <ImageCropForm
                   onClose ={this.handleClose}
                   onCompleted={this.handleCompleted}
-                  src={this.state.imageForCrop} />
+                  src={this.state.imageForCrop}
+                  aspect={16/16} 
+                  />
                 :
                   <div></div>
               }

@@ -46,7 +46,6 @@ class userSetting extends Component {
         this.props.users.isUploaded && this.addNotification('Tải ảnh lên thành công')
     }
     uploadAvatar = (file) => {
-
         if (file.avatar)
             this.props.dispatch(actions.uploadAvatar(file))
         if (file.oldAvatar)
@@ -59,7 +58,6 @@ class userSetting extends Component {
     }
     render() {
         const user = this.props.users.data || {}
-        console.log(user)
         return (
             <div>
                 <div className="container" style={{ marginTop: "50px" }}>

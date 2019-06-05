@@ -585,6 +585,11 @@ export const oldAvatar = (url) => {
         dispatch(stopSubmit('editAvatarForm'))
         dispatch(reset('editAvatarForm'))
         dispatch(uploadSuccess(res.data))
+        const temp = document.getElementsByClassName('responsive selected')
+        temp[0] && temp[0].classList.remove('selected');
+        const temp2 = document.getElementsByClassName('thumbnail selected')
+        temp2[0] && temp2[0].classList.remove('selected')
+
       })
       .catch(({ response }) => {
         dispatch(stopSubmit('editAvatarForm'))

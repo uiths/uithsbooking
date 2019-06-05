@@ -9,7 +9,7 @@
   box-sizing: border-box; }
 
 body {
-  font-family: 'Open Sans','Arial', sans-serif;
+  font-family: 'Noto Sans JP', sans-serif;
   word-spacing: 1px !important;
   background: #FFFFFF; }
 
@@ -1086,9 +1086,9 @@ LEVEL 4. SETTINGS
   .checkb {
     padding-left: 22%; } }
 .center_button {
-  width: 40%;
-  margin-left: 30%;
-  margin-right: 30%; }
+  width: 60%;
+  margin-left: 20%;
+  margin-right: 20%; }
 
 @media screen and (max-width: 1000px) {
   .dbox {
@@ -1144,9 +1144,9 @@ LEVEL 4. SETTINGS
   cursor: pointer; }
 
 .title_h3 {
+  padding-top:20px;
   font-size: 35px;
   margin: 0;
-  margin-bottom: 20px;
   font-weight: 600;
   display: inline-block;
   color: #000000; }
@@ -1623,24 +1623,18 @@ LEVEL 4. SETTINGS
     text-decoration: none; }
 
 #sub_home {
-  padding-top: 20px;
+  /* padding-top: 20px; */
   padding-bottom: 40px; }
   #sub_home .sub_home_slider .slick-prev:before {
+    margin-left: -15px;
     color: black;
-    margin-right: -15px;
     font-size: 40px;
-    line-height: 0;
-    width: 50px;
-    height: 80px;
-    padding: 30px; }
+    line-height: 0; }
   #sub_home .sub_home_slider .slick-next:before {
     color: black;
-    margin-left: -15px;
+    margin-left: -25px;
     font-size: 40px;
-    line-height: 0;
-    width: 50px;
-    height: 80px;
-    padding: 30px; }
+    line-height: 0; }
   #sub_home .sub_home_slider_container {
     position: relative;
     text-align: left;
@@ -1851,5 +1845,4 @@ LEVEL 4. SETTINGS
 
 .react-datepicker-wrapper, .react-datepicker__input-container {
   display: block !important; }
-
 /*# sourceMappingURL=App.css.map */
