@@ -152,7 +152,7 @@ class RentalDetail extends Component {
                   <h5 style={{ color: "white" }}>{this.props.rental.address}</h5>
 
                 </div>
-                <div className="infobox slide-in-left" style={{borderRadius:"0"}}>
+                <div className="infobox slide-in-left" style={{borderRadius:"0", marginBottom:"50px"}}>
                   <div>
                     <div style={{width: "100%", height: "20px", borderBottom: "2px solid", borderImage:"conic-gradient(rgba(97,212,202,1) 2%, rgba(75,68,229,1) 98.3%) 1",marginTop:"30px",marginBottom:"20px"}}>
                       <span style={{fontSize: "25px", backgroundColor: "white", padding: "0 10px", marginLeft:"20px"}}><i className="fa fa-question-circle" style={{marginLeft:"10px",marginRight:"20px"}}/>Mô tả</span>
