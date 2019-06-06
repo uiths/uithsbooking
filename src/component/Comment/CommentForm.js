@@ -1,6 +1,6 @@
 import React from 'react';
 import { Field, reduxForm } from 'redux-form';
-import { validate } from 'component/main/shared/form/validators';
+import { validate } from './validate';
 import StarRating from 'component/Form/StarRating'
 import Textarea from 'component/Form/CustomTextArea'
 const CommentForm = props => {
@@ -24,10 +24,10 @@ const CommentForm = props => {
                 <button onClick={props.close} className="b b1 center_button" type="submit" disabled={!valid || pristine || submitting}>
                     {submitting ?
                         <span>
-                            <i className="fa fa-spin fa-spinner" /> Đang đăng ký...
+                            <i className="fa fa-spin fa-spinner" /> Đang đăng tải
                         </span>
                         :
-                        <span>Đăng ký</span>
+                        <span>Bình luận</span>
                     }
                 </button>
             </form>

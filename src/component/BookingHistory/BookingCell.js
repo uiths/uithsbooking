@@ -16,6 +16,7 @@ class BookingCell extends Component {
                     <div className="booking-time">
                         {booking.startAt && formatDate(booking.startAt,"DD/MM/YYYY")} ~ {booking.endAt &&formatDate(booking.endAt,"DD/MM/YYYY")}
                         {booking.guests && (", "+booking.guests+" khách")}
+                        {booking.days &&(", "+booking.days+" ngày")}
                     </div>
                 </div>
                 <div className={`booking-total-price ${booking.status.toLowerCase() === 'paid'?`paid`:`pending`}` }>

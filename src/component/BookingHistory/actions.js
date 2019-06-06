@@ -1,13 +1,21 @@
 import axiosService from 'services/axios-service';
 import { showLoading, hideLoading } from 'react-redux-loading-bar';
 import { toast } from "react-toastify";
+import {orderByDesc,orderByAsc} from 'helpers'
+import {FETCH_USER_BOOKINGS_SUCCESS, SORT_BY_BOOKINGS} from 'actions/types'
 
 const axiosInstance = axiosService.getInstance();
-const FETCH_USER_BOOKINGS_SUCCESS = "FETCH_USER_BOOKINGS_SUCCESS"
 const fetchUserBookingsSuccess = (userBookings) => {
     return {
         type: FETCH_USER_BOOKINGS_SUCCESS,
         userBookings
+    }
+}
+
+const sortByOrders = (data) => {
+    return {
+        type: SORT_BY_BOOKINGS,
+        data
     }
 }
 
@@ -27,4 +35,18 @@ export const fetchUserBookings = () => {
                 else toast.error(response.data.errors.detail)
             })
     }
+}
+export const sortBy = (array, sort) => {
+    return dispatch => {
+        let data = []
+        switch (sort) {
+            case 'totalPriceAsc':
+                data = orderByAsc(array, 'totalPrice');
+                return dispatch(sortByOrders(data));
+            default:
+                data = orderByDesc(array, sort);
+                return dispatch(sortByOrders(data))
+        }
+    }
+
 }

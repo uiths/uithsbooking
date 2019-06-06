@@ -20,8 +20,6 @@ import {
   UPDATE_PASSWORD_FAILURE,
   UPLOAD_AVATAR_SUCCESS,
   FETCH_USER_BOOKINGS_SUCCESS,
-
-  CREATE_BOOKING_FAIL,
   CREATE_BOOKING_SUCCESS,
   RESET_BOOKING_STATE,
   UPDATE_RENTAL_SUCCESS,
@@ -429,7 +427,8 @@ export const uploadAvatar = (file) => {
       })
       .catch(({ response }) => {
         dispatch(stopSubmit('editAvatarForm'))
-        Promise.reject(response.data.errors)
+        console.log(response)
+        // Promise.reject(response.data.errors)
       })
   }
 }

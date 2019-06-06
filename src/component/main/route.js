@@ -12,7 +12,7 @@ import Paymentmain from "./payment/payment_main";
 
 import Loading from "component/main/user/loading"
 import RentalDetail from "./rental/rental-detail/RentalDetail";
-import BookingHome from "./booking/list";
+import BookingHome from "component/BookingHome";
 import BookingDetail from "component/main/booking/BookingDetail";
 import BookingHistory from "component/BookingHistory/Loadable"
 import MyListBook from "./booking/list_book";

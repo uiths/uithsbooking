@@ -1,6 +1,7 @@
 import titleize from 'titleize';
 import * as moment from 'moment';
 import { fx } from 'money'
+import _ from 'lodash'
 export function isValidDate(date) {
   return moment(date).isValid();
 }
@@ -126,12 +127,9 @@ fx.rates = {
 export function toUSD(total) {
   return Number(parseFloat(fx.convert(total, { from: "VND", to: "USD" })).toFixed(2))
 }
-export function compare(a, b) {
-  if (a.totalPrice > b.totalPrice) {
-      return -1;
-  }
-  if (a.totalPrice < b.totalPrice) {
-      return 1;
-  }
-  return 0;
+export const orderByDesc = (data, field) => {
+  return _.orderBy(data, field, ['desc'])
+}
+export const orderByAsc = (data, field) => {
+  return _.orderBy(data, field, ['asc'])
 }

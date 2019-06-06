@@ -14,6 +14,8 @@ import {
   RESET_RENTAL_STATE,
   CREATE_RENTAL_SUCCESS,
   CREATE_RENTAL_FAILURE,
+  SORT_BY_RENTALS,
+  SORT_BY_USER_RENTALS
 } from 'actions/types';
 import { toast } from "react-toastify";
 
@@ -42,15 +44,19 @@ export const rentalReducer = (state = INITIAL_STATE.rentals, action) => {
     case FETCH_RENTALS_FAIL:
       return Object.assign({}, state, { errors: action.errors, data: [] });
     case DELETE_RENTAL_SUCCESS:
-      return {...state, data: action.data, isDeleted: true}
-    case DELETE_RENTAL_FAILURE: 
-      return {...state, errors:action.errors}
+      return { ...state, data: action.data, isDeleted: true }
+    case DELETE_RENTAL_FAILURE:
+      return { ...state, errors: action.errors }
     case RESET_RENTALS_STATE:
-      return {...state, isDeleted: false, erros:[]}
+      return { ...state, isDeleted: false, erros: [] }
     case 'FETCH_TOP_RENTALS_SUCCESS':
-      return {...state, topRentals: action.data}
+      return { ...state, topRentals: action.data }
     case 'FETCH_USER_RENTALS_SUCCESS':
-      return {...state, userRentals: action.data}
+      return { ...state, userRentals: action.data }
+    case SORT_BY_RENTALS:
+      return { ...state, data: action.data }
+    case SORT_BY_USER_RENTALS:
+      return { ...state, userRentals: action.data }
     default:
       return state;
   }
@@ -64,17 +70,17 @@ export const selectedRentalReducer = (state = INITIAL_STATE.rental, action) => {
     case FETCH_RENTAL_BY_ID_SUCCESS:
       return Object.assign({}, state, { data: action.rental });
     case UPDATE_RENTAL_SUCCESS:
-      return { ...state, data: action.data, isUpdated: true};
+      return { ...state, data: action.data, isUpdated: true };
     case UPDATE_RENTAL_FAIL:
       return { ...state, errors: action.errors };
     case RESET_RENTAL_ERRORS:
-      return { ...state, errors: [], isUpdated:false };
-    case  CREATE_RENTAL_SUCCESS:
-      return {...state, data:action.data, isCreated: true}
+      return { ...state, errors: [], isUpdated: false };
+    case CREATE_RENTAL_SUCCESS:
+      return { ...state, data: action.data, isCreated: true }
     case CREATE_RENTAL_FAILURE:
-      return {...state, errors:action.errors}
+      return { ...state, errors: action.errors }
     case RESET_RENTAL_STATE:
-      return {...state, isCreated: false, isUpdated: false}
+      return { ...state, isCreated: false, isUpdated: false }
     default:
       return state;
   }

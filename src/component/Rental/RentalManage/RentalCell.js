@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
-import {formatDate} from 'helpers'
+import StarRatingComponent from 'react-star-rating-component';
+
 class RentalCell extends Component {
     render() {
         const rental = this.props.rental || {}
@@ -16,8 +17,13 @@ class RentalCell extends Component {
                         {rental.address && rental.address}
                     </div>
                 </div>
-                <div className={`rental-total-price` }>
-                    {rental.price && (<p>{rental.price.toLocaleString()+" đồng"}</p>)}
+                <div className={`rental-total-price`}>
+                    {rental.price && (<p>{rental.price.toLocaleString() + " đồng"}</p>)}
+                    {/* {rental.rating >=0 && <StarRatingComponent
+                        name="rating"
+                        starCount={5}
+                        value={rental.rating}
+                    />} */}
                 </div>
             </div>
         );

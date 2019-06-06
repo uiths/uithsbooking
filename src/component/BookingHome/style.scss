@@ -1,0 +1,22 @@
+
+.list-sort-selector {
+    display: block;
+    right: 0;
+    position: relative;
+    margin: 0;
+    padding: 6px;
+    width: 140px;
+    font-size: 12px;
+    border-radius: 2px;
+    z-index: 20;
+    float: right;
+}
+
+.list-sort-selector option {
+    width: 88%;
+    margin: 5px auto;
+    text-align: left;
+    padding: 0;
+    border-bottom: 0;
+    list-style: none;
+}

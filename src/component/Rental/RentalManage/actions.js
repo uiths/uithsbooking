@@ -1,6 +1,9 @@
 import axiosService from 'services/axios-service';
 import { showLoading, hideLoading } from 'react-redux-loading-bar';
 import { toast } from "react-toastify";
+import {SORT_BY_USER_RENTALS} from 'actions/types';
+import {orderByDesc,orderByAsc} from 'helpers'
+
 const axiosInstance = axiosService.getInstance();
 
 export const FETCH_USER_RENTALS_SUCCESS = 'FETCH_USER_RENTALS_SUCCESS'
@@ -25,5 +28,24 @@ export const fetchUserRentals = () => {
             else toast.error(response.data.errors.detail)
             dispatch(hideLoading());
         })
+    }
+}
+const sortByOrders = (data) => {
+    return {
+        type: SORT_BY_USER_RENTALS,
+        data
+    }
+}
+export const sortBy = (array, sort) => {
+    return dispatch => {
+        let data = []
+        switch (sort) {
+            case 'priceAsc':
+                data = orderByAsc(array, 'price');
+                return dispatch(sortByOrders(data));
+            default:
+                data = orderByDesc(array, sort);
+                return dispatch(sortByOrders(data))
+        }
     }
 }
