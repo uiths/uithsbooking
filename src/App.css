@@ -34,7 +34,7 @@ h2 {
 .f-right {
   float: right; }
 
-#home .home-dot li, #features .fea-dot li, #team .team-dot li {
+#features .fea-dot li, #team .team-dot li, #home .home-dot li {
   border: 1px solid black;
   height: 8px;
   width: 8px;
@@ -178,29 +178,6 @@ header {
 /* //header */
 select option[disabled]:first-child {
   display: none; }
-
-@media screen and (max-width: 768px) {
-  #home {
-    padding-top: 260px; } }
-#home .home-dot {
-  left: 97%;
-  bottom: 40%;
-  margin-left: 0;
-  width: 0; }
-  @media screen and (max-width: 768px) {
-    #home .home-dot {
-      display: none; } }
-#home .home-dot li {
-  display: block;
-  border-color: white; }
-  @media screen and (max-width: 768px) {
-    #home .home-dot li {
-      margin-top: 3px; } }
-#home .home-inner {
-  font-family: 'open_sansLight',sans-serif; }
-  @media screen and (max-width: 768px) {
-    #home .home-inner {
-      display: none; } }
 
 .headdingGray {
   margin-top: 5px;
@@ -1165,9 +1142,11 @@ LEVEL 4. SETTINGS
 #home .home_search {
   position: absolute;
   top: 5%;
+  background: white;
   width: 95%;
   left: 2.5%;
   min-height: auto;
+  padding: 8px 16px;
   border-radius: 8px;
   opacity: 0.9; }
   #home .home_search i {
@@ -1184,8 +1163,7 @@ LEVEL 4. SETTINGS
     position: relative;
     box-shadow: none;
     line-height: 1;
-    width: 100%;
-    border-bottom: 5px solid #232323;
+    width: 80%;
     background: none; }
   #home .home_search a button {
     font-size: 18px;

@@ -206,37 +206,3 @@ select option[disabled]:first-child {
 }
 
 
-#home{
-  @media screen and (max-width: 768px ) {
-    padding-top: 260px;
-  }
-
-  .home-dot {
-    left:97%;
-    bottom: 40%;
-    margin-left: 0;
-    width: 0;
-    @media screen and( max-width: 768px) {
-      display: none;
-    }
-  }
-
-  .home-dot li {
-    display: block;
-    @extend %dot;
-    border-color: white;
-    @media screen and( max-width: 768px) {
-      margin-top: 3px;
-    }
-  }
-
-  .home-inner{
-    font-family: 'open_sansLight',sans-serif;
-    @media screen and( max-width: 768px) {
-      display: none;
-    }
-  }
-
-
-}
-
