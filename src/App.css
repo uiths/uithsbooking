@@ -1130,11 +1130,13 @@ LEVEL 4. SETTINGS
   color: #000000; }
 
 .title_link {
-  font-size: 20px;
-  color: red; }
+  font-family: 'Pacifico', sans-serif;
+  font-size: 23px;
+  transition: all .9s;
+  color: rgba(128, 0, 128, 0.75); }
 
 .title_link:hover {
-  color: red; }
+  color: purple; }
 
 .dv-star-rating-star i {
   font-size: 18px !important; }
@@ -1618,21 +1620,26 @@ LEVEL 4. SETTINGS
     position: relative;
     text-align: left;
     font-family: 'Open Sans', sans-serif;
-    max-height: 375px;
-    padding: 2em;
-    line-height: 1.3em; }
+    margin-bottom: 10px;
+    padding: 1em;
+    width: 25%;
+    display: inline-block; }
     #sub_home .sub_home_slider_container .sub_home_link {
       text-decoration: none;
-      color: #222222; }
+      color: rgba(34, 0, 34, 0.75);
+      transition: all .2s; }
+    #sub_home .sub_home_slider_container .sub_home_link:hover {
+      text-decoration: none;
+      color: #4d0080; }
     #sub_home .sub_home_slider_container .sub_home_text_p {
-      font-size: 13px;
+      font-size: 12.5px;
       margin-top: 0;
       margin-bottom: 5px;
       line-height: 22px; }
     #sub_home .sub_home_slider_container .sub_home_text_h3 {
       margin-top: 0;
       font-weight: 700;
-      font-size: 15px;
+      font-size: 15.5px;
       margin-bottom: 8px;
       line-height: 20px; }
     #sub_home .sub_home_slider_container .sub_home_text_price {
@@ -1643,8 +1650,6 @@ LEVEL 4. SETTINGS
       font-size: 15px;
       letter-spacing: 2px; }
     #sub_home .sub_home_slider_container img {
-      height: 190px;
-      width: 223.5px;
       opacity: 1;
       border-radius: 5px;
       margin-bottom: 10px; }
@@ -1729,6 +1734,18 @@ LEVEL 4. SETTINGS
     #sub_home02 .sub_home02_link p br {
       margin-bottom: 5px; }
 
+@media screen and (max-width: 800px) {
+  .sub_home_slider .slick-track {
+    min-height: 400px; }
+
+  #sub_home .sub_home_slider_container {
+    width: 50%; } }
+@media screen and (max-width: 480px) {
+  .sub_home_slider .slick-track {
+    min-height: 450px; }
+
+  #sub_home .sub_home_slider_container {
+    width: 100%; } }
 #contact {
   background: #3399ff;
   z-index: -20;

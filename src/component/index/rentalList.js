@@ -5,13 +5,14 @@ import { connect } from "react-redux";
 import * as actions from 'actions';
 import { fetchTopRentals } from './actions'
 import StarRatingComponent from 'react-star-rating-component';
+import TextTruncate from "react-text-truncate";
 
 function SampleNextArrow(props) {
     const { className, style, onClick } = props
     return (
         <div
             className={className}
-            style={{ ...style, display: 'block', zIndex: 3, padding: 25 }}
+            style={{ ...style, display: 'block', zIndex: 3, padding: 25, top:'30%'}}
             onClick={onClick}
         ></div>
     );
@@ -22,7 +23,7 @@ function SamplePrevArrow(props) {
     return (
         <div
             className={className}
-            style={{ ...style, display: 'block', zIndex: 3, padding: 25 }}
+            style={{ ...style, display: 'block', zIndex: 3, padding: 25, top:'30%' }}
             onClick={onClick}
         ></div>
     );
@@ -41,8 +42,18 @@ class RentalList extends Component {
                 <div key={index} className="sub_home_slider_container col-sm-3">
                     <Link className="sub_home_link" to={rental._id ? `/detail/${rental._id}` : '/'}>
                         <img className="sub_home_fix_img" src={rental.image && rental.image[0]} alt="Snow" width="100%" />
-                        <p className="sub_home_text_p">{rental.address && rental.address}</p>
-                        <h3 className="sub_home_text_h3">{rental.title && rental.title}</h3>
+                        <p className="sub_home_text_p" ><TextTruncate
+                            line={1}
+                            truncateText="…"
+                            text={rental.address && rental.address}
+                        /></p>
+                        <h3 className="sub_home_text_h3" ><TextTruncate
+                            line={1}
+                            truncateText="…"
+                            text={rental.title && rental.title}
+                        /></h3>
+                        {/*<p className="sub_home_text_p">{rental.address && rental.address}</p>*/}
+                        {/*<h3 className="sub_home_text_h3">{rental.title && rental.title}</h3>*/}
                         <div className="sub_home_text_price">{rental.price && rental.price.toLocaleString()} VNĐ</div>
                         <StarRatingComponent
                             name="rating"
@@ -57,14 +68,56 @@ class RentalList extends Component {
     }
     render() {
         const settings = {
+            slidesToShow: 5,
+            slidesToScroll: 1,
             dots: true,
             autoplay: true,
             infinite: true,
-            autoplaySpeed: 2000,
-            slidesToShow: 5,
-            slidesToScroll: 1,
+            autoplaySpeed: 3000,
             nextArrow: <SampleNextArrow />,
-            prevArrow: <SamplePrevArrow />
+            prevArrow: <SamplePrevArrow />,
+            responsive: [
+                {
+                    breakpoint: 1024,
+                    settings: {
+                        slidesToShow: 3,
+                        slidesToScroll: 1,
+                        dots: true,
+                        autoplay: true,
+                        infinite: true,
+                        autoplaySpeed: 3000,
+                        nextArrow: <SampleNextArrow />,
+                        prevArrow: <SamplePrevArrow />
+                    }
+                },
+                {
+                    breakpoint: 800,
+                    settings: {
+                        slidesToShow: 2,
+                        slidesToScroll: 1,
+                        initialSlide: 2,
+                        dots: false,
+                        autoplay: true,
+                        infinite: true,
+                        autoplaySpeed: 3000,
+                        nextArrow: <SampleNextArrow />,
+                        prevArrow: <SamplePrevArrow />
+                    }
+                },
+                {
+                    breakpoint: 480,
+                    settings: {
+                        slidesToShow: 1,
+                        slidesToScroll: 1,
+                        dots: false,
+                        autoplay: true,
+                        infinite: true,
+                        autoplaySpeed: 3000,
+                        nextArrow: <SampleNextArrow />,
+                        prevArrow: <SamplePrevArrow />
+                    }
+                }
+            ]
         };
         return (
             <div id="sub_home" className="container-fluid">
