@@ -1,0 +1,16 @@
+#bookmark-container {
+    position: absolute;
+    right: 18px;
+    top:18px;
+    .bookmark-btn {
+    border: 1px solid #e1e5eb;
+    border-radius: .25rem;
+    background-color: #fff;
+    }
+    .bookmark-img {
+        width: 16px;
+        height: 16px;
+        margin-bottom: 4px !important;
+        padding: 2px;
+    }
+}

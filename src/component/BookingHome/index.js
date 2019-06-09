@@ -22,7 +22,6 @@ class List extends Component {
     onChangePage = (pageOfItems) => {
         // update state with new page of items
         this.setState({ pageOfItems: pageOfItems });
-
     }
     sortBy = (e) => {
         this.props.sortBy(this.props.rentals, e.target.value)

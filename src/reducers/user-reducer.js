@@ -7,7 +7,8 @@ import {
     UPLOAD_AVATAR_SUCCESS,
     FETCH_USER_BY_ID_INIT,
     FETCH_USER_BY_ID_SUCCESS,
-    RESET_USER_STATE
+    RESET_USER_STATE,
+    ADD_BOOKMARK_SUCCESS
 } from '../actions/types';
 
 const INITIAL_STATE = {
@@ -47,6 +48,8 @@ export const userReducer = (state = INITIAL_STATE, action) => {
             return {...state, errors:action.errors}
         case RESET_USER_STATE:
             return {INITIAL_STATE}
+        case ADD_BOOKMARK_SUCCESS:
+            return Object.assign({}, state, {data: Object.assign({}, state.data,action.data)})
         default:
             return state;
     }
