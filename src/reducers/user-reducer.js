@@ -46,7 +46,7 @@ export const userReducer = (state = INITIAL_STATE, action) => {
         case UPDATE_USER_FAILURE:
             return {...state, errors:action.errors}
         case RESET_USER_STATE:
-            return {...state, isUpdated: false, isUploaded:false, isChanged: false}
+            return {INITIAL_STATE}
         default:
             return state;
     }

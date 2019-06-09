@@ -7,14 +7,15 @@ import DatePicker from 'component/Form/DatePicker'
 import { Field, reduxForm } from 'redux-form';
 import { validate } from './validate'
 import {formatDate} from 'helpers'
-
+import moment from 'moment'
 class EditProfile extends Component {
     constructor(props) {
         super(props);
     }
     render() {
         const { valid, submitting, handleSubmit, submitCb } = this.props
-        const dateOfBirth = this.props.initialValues.dateOfBirth ? new Date(this.props.initialValues.dateOfBirth):''
+        const dateOfBirth = (moment(this.props.initialValues.dateOfBirth).isValid() && this.props.initialValues.dateOfBirth) ? 
+        new Date(this.props.initialValues.dateOfBirth):new Date(moment(this.props.initialValues.dateOfBirth,'DD/MM/YYYY'))
         return (
             <Fragment>
                 <div className="edit-profile-form">
@@ -136,5 +137,6 @@ export default reduxForm({
     form: 'editProfileForm',
     destroyOnUnmount: true,
     enableReinitialize: true,
-    validate
+    validate,
+    
 })(EditProfile);

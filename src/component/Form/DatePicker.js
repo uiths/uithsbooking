@@ -14,7 +14,7 @@ class Datepicker extends Component {
     }
     handleChange = (date) => {
         this.setState({ startDate: date });
-        this.props.input.onChange(date);
+        this.props.input.onChange((date));
     }
     
     render() {
@@ -23,7 +23,6 @@ class Datepicker extends Component {
             meta: { touched, error }
         } = this.props
         return (
-
             <div>
                 <label htmlFor={this.props.input.name}>{this.props.label}</label><br />
                 <DatePicker
@@ -34,17 +33,11 @@ class Datepicker extends Component {
                     selected={this.state.startDate}
                     minDate={this.props.minDate}
                     maxDate={this.props.maxDate}
-                    dateFormat="dd-MM-yyyy"
+                    dateFormat="dd/MM/yyyy"
                     onChange={this.handleChange}
                     showMonthDropdown
                     showYearDropdown
                     dropdownMode="select"
-                // filterDate={(date) => {
-                //     if (this.props.birthdayType)
-                //         return moment() > date;
-                //     else
-                //         return date;
-                // }}
                 />
 
             </div>);

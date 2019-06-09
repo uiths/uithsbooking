@@ -13,8 +13,7 @@ class ForgotPassword extends Component {
         }
     }
 
-    sendMail(userData) {
-                
+    sendMail(userData) {         
         this.props.dispatch(actions.sendMail(userData))
     }
     render() {

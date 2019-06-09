@@ -25,7 +25,7 @@ class Create_rent extends Component {
 
     render() {
         if (this.props.rental.isCreated) {
-            return <Redirect to={{ pathname: `/detail/${this.props.rental.data._id}`}} />
+            return <Redirect to={{ pathname: `/rental/manage`}} />
         }
         return (
             <div>

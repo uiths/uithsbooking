@@ -23,9 +23,9 @@ import CreateRent from './rental/rental-create/RentalCreate'
 import {ProtectedRoute} from './shared/auth/ProtectedRoute'
 import {LoggedInRoute} from './shared/auth/LoggedInRoute'
 import ForgotPassword from "./user/forgot_password";
-import change_new_pass from "./user/change_new_password";
+// import ChangeNewPass from "component/ChangeNewPass";
 import RentalEdit from 'component/RentalEdit'
-import ResetPass from './user/reset_pass'
+import ResetPass from 'component/ResetPass'
 // import EditProfile from 'component/EditProfile'
 import RentalManage from 'component/Rental/RentalManage'
 class Routerr extends Component {
@@ -44,7 +44,7 @@ class Routerr extends Component {
                 <ProtectedRoute path="/history" component={BookingHistory}/>
                 <LoggedInRoute path="/forgot_pass" component={ForgotPassword} />
                 {/* <LoggedInRoute path="/new_pass_f" component={change_pass} /> */}
-                <ProtectedRoute path="/new_pass" component={change_new_pass} />
+                {/* <ProtectedRoute path="/new_pass" component={ChangeNewPass} /> */}
                 <Route exact path='/reset/:id' component={ResetPass}/>
                 <LoggedInRoute path="/login" component={Login} />
                 <LoggedInRoute path="/register" component={Register} />

@@ -30,7 +30,7 @@ class Home extends Component {
         // },
         {
             title: "Lịch sử tìm kiếm",
-            array: this.props.users.data.searchHistory || []
+            array: (this.props.users.data && this.props.users.data.searchHistory) || []
         }]
         return (
             <div>

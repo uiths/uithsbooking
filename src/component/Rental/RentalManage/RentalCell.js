@@ -14,16 +14,16 @@ class RentalCell extends Component {
                         {rental.title && rental.title}
                     </div>
                     <div className="rental-time">
-                        {rental.address && rental.address}
+                        {rental.address && rental.address+', '}{rental.status && rental.status}
                     </div>
                 </div>
                 <div className={`rental-total-price`}>
                     {rental.price && (<p>{rental.price.toLocaleString() + " đồng"}</p>)}
-                    {/* {rental.rating >=0 && <StarRatingComponent
+                    {rental.rating >=0 && <StarRatingComponent
                         name="rating"
                         starCount={5}
                         value={rental.rating}
-                    />} */}
+                    />}
                 </div>
             </div>
         );

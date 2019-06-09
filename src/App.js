@@ -22,6 +22,7 @@ class App extends Component {
   }
   logout() {
     store.dispatch(actions.logout());
+    store.dispatch(actions.resetUserState());
   }
 
   render() {

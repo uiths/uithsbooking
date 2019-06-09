@@ -15,10 +15,7 @@ import {
   SEND_MAIL_FAILURE,
   FETCH_USER_BY_ID_SUCCESS,
   RESET_PASSWORD_SUCCESS,
-  RESET_PASSWORD_FAILURE,
-  UPDATE_PASSWORD_SUCCESS,
-  UPDATE_PASSWORD_FAILURE,
-  UPLOAD_AVATAR_SUCCESS,
+
   FETCH_USER_BOOKINGS_SUCCESS,
   CREATE_BOOKING_SUCCESS,
   RESET_BOOKING_STATE,
@@ -33,7 +30,6 @@ import {
   DELETE_RENTAL_SUCCESS,
   RESET_RENTAL_STATE,
   FETCH_BOOKING_BY_ID_SUCCESS,
-
   SORT_BOOKING
 } from './types';
 
@@ -177,7 +173,6 @@ export const deleteBooking = (bookingId) => {
     axiosInstance.delete(`bookings/${bookingId}`)
       .then(res => { dispatch(deleteBookingSuccess(res.data)) })
       .catch(({ response }) => {
-        console.log(({ response }))
         dispatch(deleteBookingFailure(response.data.errors))
       })
   }
@@ -235,6 +230,8 @@ const loginSuccess = () => {
 
 export const checkAuthState = () => {
   return dispatch => {
+    if(!authService.isAuthenticated())
+      localStorage.getItem('auth_token') && localStorage.removeItem('auth_token')
     if (authService.isAuthenticated()) {
       dispatch(loginSuccess());
     }
@@ -250,11 +247,8 @@ export const fetchUserById = (userId) => {
         dispatch(fetchUserByIdSuccess(res.data))
       })
       .catch(( {response} ) => {
-        if (response.status === 500)
-          toast.error(response.data);
-        else toast.error(response.data.errors.detail);
+       toast.error(response.data.detail);
         dispatch(hideLoading());
-        dispatch(stopSubmit('loginForm'))
       })
   }
 }
@@ -268,7 +262,6 @@ const fetchUserByIdSuccess = (user) => {
 
 export const logout = () => {
   authService.invalidateUser();
-
   return {
     type: LOGOUT
   }
@@ -297,8 +290,6 @@ export const sendMail = (email) => {
         dispatch(sendMailFailure(response.data.errors))
         dispatch(stopSubmit('forgotForm'))
       })
-
-
   }
 }
 export const confirmAccount = (id) => {
@@ -310,93 +301,12 @@ export const confirmAccount = (id) => {
       else toast.error(response.data.errors.detail)
     })
 }
-export const resetSuccess = () => {
-  return {
-    type: RESET_PASSWORD_SUCCESS
-  }
-}
 
-export const resetFailure = (errors) => {
-  return {
-    type: RESET_PASSWORD_FAILURE,
-    errors
-  }
-}
-
-export const resetPass = (userData, id) => {
-  return (dispatch) => {
-    return axiosInstance.post(`/users/reset/${id}`, userData)
-      .then(res => {
-        dispatch(resetSuccess())
-      })
-      .catch(response => {
-        dispatch(resetFailure(response.data.errors))
-      })
-  }
-}
-
-const updatePassSuccess = () => {
-  return {
-    type: UPDATE_PASSWORD_SUCCESS
-  }
-}
-const updatePassFailure = (errors) => {
-  return {
-    type: UPDATE_PASSWORD_FAILURE,
-    errors
-  }
-}
-const updateUserSuccess = (data) => {
-  return {
-    type: UPDATE_USER_SUCCESS,
-    data
-  }
-}
-const updateUserFailure = (errors) => {
-  return {
-    type: UPDATE_USER_FAILURE,
-    errors
-  }
-}
-export const updateUserInfo = (userData) => {
-  return dispatch => {
-    dispatch(resetUserState())
-    dispatch(startSubmit('editProfileForm'))
-    return axiosInstance.post('/users/updateinfo', userData)
-      .then(res => {
-        dispatch(stopSubmit('editProfileForm'))
-        dispatch(updateUserSuccess(res.data))
-      })
-      .catch(({ response }) => {
-        dispatch(stopSubmit('editProfileForm'))
-        dispatch(updateUserFailure(response.data.errors))
-      })
-  }
-}
 export const addSearchHistory = (key) => {
   return dispatch => {
     return axiosInstance.post("/users/searchHistory", { "key": key })
       .then(res =>
         dispatch(fetchUserByIdSuccess(res.data))
-      )
-  }
-}
-export const updatePass = (userData) => {
-
-  userData._id = authService.getId();
-  return (dispatch) => {
-    dispatch(resetUserState());
-    dispatch(startSubmit('newPassForm'))
-    return axiosInstance.post('/users/change', userData)
-      .then(res => {
-        dispatch(stopSubmit('newPassForm'))
-        dispatch(updatePassSuccess())
-      })
-      .catch(errors => {
-        console.log(errors)
-        dispatch(stopSubmit('newPassForm'))
-        dispatch(updatePassFailure(errors.response.data.errors[0]))
-      }
       )
   }
 }
@@ -406,55 +316,7 @@ export const resetUserState = () => {
     type: RESET_USER_STATE
   }
 }
-const uploadSuccess = (data) => {
-  return {
-    type: UPLOAD_AVATAR_SUCCESS,
-    data
-  }
-}
-export const uploadAvatar = (file) => {
-  return dispatch => {
-    const formData = new FormData();
-    formData.append('image', file.avatar);
-    dispatch(resetUserState())
-    dispatch(startSubmit('editAvatarForm'))
-    return axiosInstance.post('/users/avatar', formData)
-      .then(res => {
-        dispatch(uploadSuccess(res.data))
-        dispatch(stopSubmit('editAvatarForm'))
-        dispatch(reset('editAvatarForm'))
 
-      })
-      .catch(({ response }) => {
-        dispatch(stopSubmit('editAvatarForm'))
-        console.log(response)
-        // Promise.reject(response.data.errors)
-      })
-  }
-}
-
-export const oldAvatar = (url) => {
-  return dispatch => {
-    dispatch(resetUserState())
-    dispatch(startSubmit('editAvatarForm'))
-    return axiosInstance.post('/users/oldAvatar', url)
-      .then(res => {
-        authService.changeImage(res.data.image)
-        dispatch(stopSubmit('editAvatarForm'))
-        dispatch(reset('editAvatarForm'))
-        dispatch(uploadSuccess(res.data))
-        const temp = document.getElementsByClassName('responsive selected')
-        temp[0] && temp[0].classList.remove('selected');
-        const temp2 = document.getElementsByClassName('thumbnail selected')
-        temp2[0] && temp2[0].classList.remove('selected')
-
-      })
-      .catch(({ response }) => {
-        dispatch(stopSubmit('editAvatarForm'))
-        Promise.reject(response.data.errors)
-      })
-  }
-}
 const createBookingSuccess = (data) => {
   return {
     type: CREATE_BOOKING_SUCCESS,
@@ -499,7 +361,6 @@ export const createBooking = (booking) => {
         dispatch(createBookingSuccess(res.data))
       })
       .catch(({ response }) => {
-        console.log(response)
         dispatch(hideLoading());
         if (response.status === 500)
           toast.error(response.data);

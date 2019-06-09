@@ -7,7 +7,7 @@ class BookingCell extends Component {
         return (
             <div className="booking-cell-container">
                 <div className="booking-cell-image">
-                    <img src={rental.image && rental.image[0]}></img>
+                    <img alt="rentalImg" src={rental.image && rental.image[0]}></img>
                 </div>
                 <div className="booking-detail">
                     <div className="rental-title">

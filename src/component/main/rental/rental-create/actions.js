@@ -17,7 +17,7 @@ export const createRental = (rentalData) => {
             .then((res) => {
                 dispatch(hideLoading());
                 dispatch(createRentalSuccess(res.data))
-                toast.success('Tạo nơi ở thành công')
+                toast.success('Tạo thành công. Hãy đợi kiểm duyệt')
             })
             .catch(({ response }) => {
                 if (response.status === 500)

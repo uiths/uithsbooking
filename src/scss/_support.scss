@@ -65,9 +65,16 @@ $color1: #566473;
   //font-family: 'Pacifico', sans-serif;
 }
 .title_link{
-  font-size: 20px;
-  color: red;
+  font-family: 'Pacifico', sans-serif;
+  font-size: 23px;
+  transition: all .9s;
+  color: rgba(128,0,128,0.75);
 }
 .title_link:hover{
-  color: red;
+  color: purple;
+}
+
+//rating
+.dv-star-rating-star i{
+  font-size: 18px!important;
 }

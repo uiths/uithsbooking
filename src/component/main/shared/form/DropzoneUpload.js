@@ -14,7 +14,6 @@ class DropzoneUpload extends Component {
     }
 
     onImageDrop(selectedFile) {
-        console.log(selectedFile)
         this.setState({
             imageFiles: selectedFile,
             isChange: true
