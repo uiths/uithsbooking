@@ -24,7 +24,7 @@ const CommentForm = props => {
                 <button onClick={props.close} className="b b1 center_button" type="submit" disabled={!valid || pristine || submitting}>
                     {submitting ?
                         <span>
-                            <i className="fa fa-spin fa-spinner" /> Đang đăng tải...
+                            <i className="fa fa-spin fa-spinner" /> Đang đăng tải
                         </span>
                         :
                         <span>Bình luận</span>

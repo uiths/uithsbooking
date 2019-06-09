@@ -154,15 +154,15 @@ class RentalDetail extends Component {
                 </div>
                 <div className="infobox slide-in-left" style={{borderRadius:"0", marginBottom:"50px"}}>
                   <div>
-                    <div style={{width: "100%", height: "20px", borderBottom: "2px solid", borderImage:"conic-gradient(rgba(97,212,202,1) 2%, rgba(75,68,229,1) 98.3%) 1",marginTop:"30px",marginBottom:"20px"}}>
-                      <span style={{fontSize: "25px", backgroundColor: "white", padding: "0 10px", marginLeft:"20px"}}><i className="fa fa-question-circle" style={{marginLeft:"10px",marginRight:"20px"}}/>Mô tả</span>
+                    <div className="title">
+                      <span className="titletext"><i className="fa fa-question-circle titleicon"/>Mô tả</span>
                     </div>
                     <div>
                       <br />
                       <p style={{ whiteSpace: "pre-line", whiteSpace: "pre-wrap" }}>{this.props.rental.description}</p>
                     </div>
-                    <div style={{width: "100%", height: "20px", borderBottom: "2px solid", borderImage:"conic-gradient(rgba(97,212,202,1) 2%, rgba(75,68,229,1) 98.3%) 1",marginTop:"30px",marginBottom:"30px"}}>
-                      <span style={{fontSize: "25px", backgroundColor: "white", padding: "0 10px", marginLeft:"20px"}}><i className="fa fa-info-circle" style={{marginLeft:"10px",marginRight:"20px"}}/>Thông tin</span>
+                    <div className="title">
+                      <span className="titletext"><i className="fa fa-info-circle titleicon"/>Thông tin</span>
                     </div>
                     <div>
                       <div className="block">
@@ -175,8 +175,8 @@ class RentalDetail extends Component {
                         <i className="fa fa-bath"> {this.props.rental.bathrooms} phòng tắm</i> <br />
                       </div>
                     </div>
-                    <div style={{width: "100%", height: "20px", borderBottom: "2px solid", borderImage:"conic-gradient(rgba(97,212,202,1) 2%, rgba(75,68,229,1) 98.3%) 1",marginTop:"30px",marginBottom:"20px"}}>
-                      <span style={{fontSize: "25px", backgroundColor: "white", padding: "0 10px", marginLeft:"20px"}}><i className="fa fa-check-circle" style={{marginLeft:"10px",marginRight:"20px"}}/>Tiện nghi</span>
+                    <div className="title">
+                      <span className="titletext"><i className="fa fa-check-circle titleicon"/>Tiện nghi</span>
                     </div>
                     <RentalAssets rental={this.props.rental} />
                     </div>

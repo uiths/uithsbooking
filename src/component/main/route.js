@@ -7,6 +7,8 @@ import User from "./user/user";
 import User2 from "./user/user2";
 import User1 from "component/UserSetting/Loadable"
 
+import Loginadmin from "component/LoginAdmin/loginadmin"
+
 import Contactmain from "./contact/contact_main";
 import Paymentmain from "./payment/payment_main";
 
@@ -57,6 +59,7 @@ class Routerr extends Component {
                 {/*<PrivateRoute  path="/slot" component={Slot} />*/}
                 <ProtectedRoute path="/contact" component={Contactmain} />
                 <ProtectedRoute  path="/payment" component={Paymentmain} />
+                <Route path="/loginadmin" component={Loginadmin} />
             </div>
         );
     }
