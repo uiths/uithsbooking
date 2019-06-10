@@ -9,6 +9,7 @@ import { userReducer} from './user-reducer';
 import { reducer as formReducer } from 'redux-form';
 import { loadingBarReducer } from 'react-redux-loading-bar'
 import {commentReducer} from 'component/Comment/reducer'
+import { blogReducer } from '../component/Blog/reducer';
 export const init = () => {
   const reducer = combineReducers({
     rentals: rentalReducer,
@@ -19,7 +20,8 @@ export const init = () => {
     users: userReducer,
     map: rentalMapReducer,
     loadingBar: loadingBarReducer,
-    comment: commentReducer
+    comment: commentReducer,
+    blog: blogReducer
   });
 
   const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;

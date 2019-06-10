@@ -7,12 +7,14 @@ import { fetchTopRentals } from './actions'
 import StarRatingComponent from 'react-star-rating-component';
 import TextTruncate from "react-text-truncate";
 import RentalCard from 'component/RentalCard'
+import BookmarkButton from 'component/Bookmark/BookmarkButton'
+
 function SampleNextArrow(props) {
     const { className, style, onClick } = props
     return (
         <div
             className={className}
-            style={{ ...style, display: 'block', zIndex: 3, padding: 25, top:'30%'}}
+            style={{ ...style, display: 'block', zIndex: 3, padding: 25, top: '30%' }}
             onClick={onClick}
         ></div>
     );
@@ -23,7 +25,7 @@ function SamplePrevArrow(props) {
     return (
         <div
             className={className}
-            style={{ ...style, display: 'block', zIndex: 3, padding: 25, top:'30%' }}
+            style={{ ...style, display: 'block', zIndex: 3, padding: 25, top: '30%' }}
             onClick={onClick}
         ></div>
     );
@@ -38,31 +40,32 @@ class RentalList extends Component {
         const rentals = this.props.rentals || []
         return rentals.map((rental, index) => {
             return (
-                <RentalCard key={index} rental={rental}/>
-                // <div key={index} className="sub_home_slider_container col-sm-3">
-                //     <Link className="sub_home_link" to={rental._id ? `/detail/${rental._id}` : '/'}>
-                //         <img className="sub_home_fix_img" src={rental.image && rental.image[0]} alt="Snow" width="100%" />
-                //         <p className="sub_home_text_p" ><TextTruncate
-                //             line={1}
-                //             truncateText="…"
-                //             text={rental.address && rental.address}
-                //         /></p>
-                //         <h3 className="sub_home_text_h3" ><TextTruncate
-                //             line={1}
-                //             truncateText="…"
-                //             text={rental.title && rental.title}
-                //         /></h3>
-                //         {/*<p className="sub_home_text_p">{rental.address && rental.address}</p>*/}
-                //         {/*<h3 className="sub_home_text_h3">{rental.title && rental.title}</h3>*/}
-                //         <div className="sub_home_text_price">{rental.price && rental.price.toLocaleString()} VNĐ</div>
-                //         <StarRatingComponent
-                //             name="rating"
-                //             starCount={5}
-                //             value={rental.rating}
-                //         />
-                //         {/* <div className="sub_home_star"><i className="fa fa-star" /><i className="fa fa-star" /><i className="fa fa-star" /><i className="fa fa-star" /><i className="fa fa-star" /></div> */}
-                //     </Link>
-                // </div>
+                // <RentalCard key={index} rental={rental}/>
+                <div key={index} className="sub_home_slider_container">
+                    <BookmarkButton rentalId={rental._id} />
+                    <Link className="sub_home_link" to={rental._id ? `/detail/${rental._id}` : '/'}>
+                        <img className="sub_home_fix_img" src={rental.image && rental.image[0]} alt="Snow" width="100%" />
+                        <p className="sub_home_text_p" ><TextTruncate
+                            line={1}
+                            truncateText="…"
+                            text={rental.address && rental.address}
+                        /></p>
+                        <h3 className="sub_home_text_h3" ><TextTruncate
+                            line={1}
+                            truncateText="…"
+                            text={rental.title && rental.title}
+                        /></h3>
+                        {/*<p className="sub_home_text_p">{rental.address && rental.address}</p>*/}
+                        {/*<h3 className="sub_home_text_h3">{rental.title && rental.title}</h3>*/}
+                        <div className="sub_home_text_price">{rental.price && rental.price.toLocaleString()} VNĐ</div>
+                        <StarRatingComponent
+                            name="rating"
+                            starCount={5}
+                            value={rental.rating}
+                        />
+                        {/* <div className="sub_home_star"><i className="fa fa-star" /><i className="fa fa-star" /><i className="fa fa-star" /><i className="fa fa-star" /><i className="fa fa-star" /></div> */}
+                    </Link>
+                </div>
             )
         })
     }

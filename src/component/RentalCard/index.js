@@ -32,7 +32,6 @@ export function RentalCard(props) {
           />
         </div>
       </Link>
-
     </div>
   )
 }

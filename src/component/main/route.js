@@ -26,6 +26,10 @@ import ForgotPassword from "./user/forgot_password";
 // import ChangeNewPass from "component/ChangeNewPass";
 import RentalEdit from 'component/RentalEdit'
 import ResetPass from 'component/ResetPass'
+import BlogPost from 'component/Blog/BlogPost'
+import BlogReview from 'component/Blog/BlogReview'
+import Blog from 'component/Blog'
+import BlogDetail from 'component/Blog/BlogDetail'
 // import EditProfile from 'component/EditProfile'
 import RentalManage from 'component/Rental/RentalManage'
 class Routerr extends Component {
@@ -57,6 +61,11 @@ class Routerr extends Component {
                 {/*<PrivateRoute  path="/slot" component={Slot} />*/}
                 <ProtectedRoute path="/contact" component={Contactmain} />
                 <ProtectedRoute  path="/payment" component={Paymentmain} />
+                
+                <ProtectedRoute path="/blog_post" component={BlogPost}/>
+                <ProtectedRoute path="/blog_review" component={BlogReview}/>
+                <Route path='/blog' component={Blog}/>
+                <Route path='/blog_detail/:id' component={BlogDetail}/>
             </div>
         );
     }

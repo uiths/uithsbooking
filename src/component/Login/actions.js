@@ -22,9 +22,7 @@ export const login = (userData) => {
                 dispatch(hideLoading());
             })
             .catch(({ response }) => {
-                if (response.status === 500)
-                    toast.error(response.data);
-                else toast.error(response.data.errors.detail);
+                toast.error(response.data.detail);
                 dispatch(hideLoading());
             })
     }
