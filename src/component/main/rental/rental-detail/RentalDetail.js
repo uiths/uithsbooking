@@ -118,7 +118,6 @@ class RentalDetail extends Component {
           <div>
             <div className="col-sm-8">
               <div>
-
                 <div className="infobox slide-in-left row" style={{ marginBottom: "20px", marginLeft:"0", marginRight:"0"}}>
                   <div className="col-lg-8">
                     <img src={owner.image ? owner.image : '/img/default-img.jpg'} className="ravatar" alt="none" />

@@ -28,6 +28,9 @@
 .ravatar {
     height: 50px;
     width: 50px;
+    margin-left: -50px;
+    border: 2px solid lightgray;
+    border-radius: 50%;
 }
 .rname{
     display:inline-block;
@@ -42,13 +45,23 @@
     margin-left: 5px;
     margin-right:5px;
 }
-
+@media screen and (max-width: 1000px) {
+  .rbutton{
+      width: 70%!important;
+      display: block!important;
+      float: none!important;
+      margin-top: 20px!important;
+      margin-left: auto!important;
+      margin-right: auto !important;
+  }
+}
 .block
 {
     margin-top: 20px;
     display: inline-block;
     height: 30px;
     width: 300px;
+    font-size: 16px;
 }
 
 .title

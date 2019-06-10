@@ -134,31 +134,31 @@ class BookingDetail extends Component {
                         <div>
                             <div className="col-sm-8">
                                 <div>
-                                    <div className="infobox slide-in-left row" style={{ marginBottom: "20px" }}>
+                                    <div className="infobox slide-in-left row" style={{ marginBottom: "20px", marginLeft:"0",marginRight:"0" }}>
                                         <div className="col-lg-8">
                                             <img src={owner.image ?owner.image :'/img/default-img.jpg'} className="ravatar" alt="none" />
                                             <h4 className="rname">{owner.username}</h4>
                                         </div>
 
                                     </div>
-                                    <div className="infobox slide-in-left" style={{ backgroundColor: "#4B0082" }}>
-                                        <h3 id="null" style={{ fontWeight: "bold", color: "white", fontSize: "25px" }}>{rental.title && rental.title}</h3>
-                                        <h5 style={{ color: "white" }}>{rental.address && rental.address}</h5>
+                                    <div className="infobox slide-in-left" style={{ backgroundImage:"linear-gradient( 90.2deg, rgba(75,68,229,1) 2%, rgba(97,212,202,1) 98.3% )" }}>
+                                        <h3 id="null" style={{ fontWeight: "bold", color: "white", fontSize: "25px" }}>{rental.title}</h3>
+                                        <h5 style={{ color: "white" }}>{rental.address}</h5>
 
                                     </div>
-                                    <div className="infobox slide-in-left">
+                                    <div className="infobox slide-in-left" style={{borderRadius:"0", marginBottom:"50px"}}>
                                         <div>
-                                            <h3 className="text-left bor type1"
-                                                style={{ padding: "5px", fontSize: "27px" }}>Mô tả </h3>
+                                            <div className="title">
+                                                <span className="titletext"><i className="fa fa-question-circle titleicon"/>Mô tả</span>
+                                            </div>
                                             <div>
                                                 <br />
-                                                <p style={{ whiteSpace: "pre-line", whiteSpace: "pre-wrap" }}>{rental.description && rental.description}</p>
+                                                <p style={{ whiteSpace: "pre-line", whiteSpace: "pre-wrap" }}>{rental.description}</p>
                                             </div>
-                                            <hr />
-                                            <h3 className="text-left bor type1"
-                                                style={{ padding: "5px", fontSize: "27px" }}>Thông tin </h3>
+                                            <div className="title">
+                                                <span className="titletext"><i className="fa fa-info-circle titleicon"/>Thông tin</span>
+                                            </div>
                                             <div>
-
                                                 <div className="block">
                                                     <i className="fa fa-bed"> {rental.bedrooms} giường</i> <br />
                                                 </div>
@@ -169,9 +169,9 @@ class BookingDetail extends Component {
                                                     <i className="fa fa-bath"> {rental.bathrooms} phòng tắm</i> <br />
                                                 </div>
                                             </div>
-                                            <hr />
-                                            <h3 className="text-left bor type1"
-                                                style={{ padding: "5px", fontSize: "27px" }}>Tiện nghi </h3>
+                                            <div className="title">
+                                                <span className="titletext"><i className="fa fa-check-circle titleicon"/>Tiện nghi</span>
+                                            </div>
                                             <RentalAssets rental={rental} />
                                         </div>
                                     </div>
@@ -182,28 +182,23 @@ class BookingDetail extends Component {
                             {
                                 !(authService.getId() === owner._id) &&
                                 <div className="divide">
-                                    <div className="infobox slide-in-right" style={{ backgroundColor: "#4B0082" }}>
+                                    <div className="infobox slide-in-right" style={{ backgroundImage:"linear-gradient( 90.2deg, rgba(75,68,229,1) 2%, rgba(97,212,202,1) 98.3% )" }}>
                                         <h3 style={{ color: "white" }}>Giá: <b>{rental.price && rental.price.toLocaleString() }</b> đ / ngày</h3>
                                     </div>
-                                    <div className="infobox" style={{ padding: "20px" }}>
-                                        <h4 style={{ fontWeight: "bold" }}>Số ngày:</h4>
-                                        <p>{booking.days}</p>
-                                        <h4 style={{ fontWeight: "bold" }}>Ngày đặt:</h4>
-                                        <p>{formatDate(booking.createdAt, "DD/MM/YYYY")}</p>
-                                        <h4 style={{ fontWeight: "bold" }}>Ngày bắt đầu:</h4>
-                                        <p>{formatDate(booking.startAt, "DD/MM/YYYY")}</p>
-                                        <h4 style={{ fontWeight: "bold" }}>Ngày kết thúc:</h4>
-                                        <p>{formatDate(booking.endAt, "DD/MM/YYYY")}</p>
-                                        <h4 style={{ fontWeight: "bold" }}>Tổng giá:</h4>
-                                        <p>{booking.totalPrice && booking.totalPrice.toLocaleString()} đ</p>
-                                        <h4 style={{ fontWeight: "bold" }}>Số khách:</h4>
-                                        <p>{booking.guests}</p>
-                                        <h4 style={{ fontWeight: "bold" }}>Trạng thái:</h4>
-                                        <p>{booking.status}</p>
+                                    <div className="infobox" style={{ padding: "20px",marginBottom:"50px" }}>
+                                        <h4 className="bookingdetail">Số ngày: {booking.days}</h4>
+                                        <h4 className="bookingdetail">Ngày đặt: {formatDate(booking.createdAt, "DD/MM/YYYY")}</h4>
+                                        <h4 className="bookingdetail">Ngày bắt đầu: {formatDate(booking.startAt, "DD/MM/YYYY")}</h4>
+                                        <h4 className="bookingdetail">Ngày kết thúc: {formatDate(booking.endAt, "DD/MM/YYYY")}</h4>
+                                        <h4 className="bookingdetail">Tổng giá: {booking.totalPrice && booking.totalPrice.toLocaleString()} đ</h4>
+                                        <h4 className="bookingdetail">Số khách: {booking.guests}</h4>
+                                        <h4 className="bookingdetail">Trạng thái: {booking.status}</h4>
                                         <hr />
                                         {(booking.status && booking.status === "pending") &&
                                             <Fragment>
+                                                <div className="paypalb">
                                                 <PaypalExpressBtn env={env} client={client} currency={currency} total={toUSD(booking.totalPrice)} onError={onError} onSuccess={onSuccess} onCancel={onCancel} />
+                                                </div>
                                                 <button onClick={this.handleShow} className="b b1 center_button"><span><i className="fa fa-close" />   Xóa</span></button>
                                             </Fragment>
                                         }
