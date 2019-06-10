@@ -9,7 +9,7 @@ class Blog extends Component {
     render() {
         console.log(this.props.blogList)
         return (
-            <div>
+            <div id="blog-container">
                 {
                     this.props.blogList.map((blog, index) => {
                         return <BlogCell key={index} blog={blog} />

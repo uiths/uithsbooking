@@ -18,6 +18,9 @@ export const addBookmark = (rentalId) => {
         .then( res => {
             dispatch(addBookmarkSuccess(res.data))
         })
+        .catch(({response}) =>{
+            console.log(response)
+        })
     }
 }
 export const removeBookmark = (rentalId) => {
@@ -29,6 +32,18 @@ export const removeBookmark = (rentalId) => {
             dispatch(addBookmarkSuccess(res.data))
         })
         .catch(({response})=>{
+            console.log(response)
+        })
+    }
+}
+export const getBookmark = () => {
+    return dispatch => {
+        axiosInstance.get('/users/getBookmark')
+        .then(res =>{
+            console.log(res.data)
+            dispatch(addBookmarkSuccess(res.data))
+        })
+        .catch(({response}) =>{
             console.log(response)
         })
     }

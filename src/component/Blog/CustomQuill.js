@@ -60,8 +60,21 @@ class CustomQuill extends Component {
   }
   toolbarOptions = {
     container: [
-      ['bold', 'italic', 'underline'],        // toggled buttons
-      [{ 'list': 'ordered' }, { 'list': 'bullet' }, { 'indent': '-1' }, { 'indent': '+1' }],
+      ['bold', 'italic', 'underline', 'strike'],        // toggled buttons
+      ['blockquote', 'code-block'],
+    
+      [{ 'list': 'ordered'}, { 'list': 'bullet' }],
+      [{ 'script': 'sub'}, { 'script': 'super' }],      // superscript/subscript
+      [{ 'indent': '-1'}, { 'indent': '+1' }],          // outdent/indent
+      [{ 'direction': 'rtl' }],                         // text direction
+    
+      [{ 'size': ['small', false, 'large', 'huge'] }],  // custom dropdown
+      [{ 'header': [1, 2, 3, 4, 5, 6, false] }],
+    
+      [{ 'color': [] }, { 'background': [] }],          // dropdown with defaults from theme
+      [{ 'font': [] }],
+      [{ 'align': [] }],
+    
       ['link', 'image', 'video'],
       ['clean']                                         // remove formatting button
     ],
@@ -78,8 +91,8 @@ class CustomQuill extends Component {
     history: this.history,
   }
   formats = [
-    'bold', 'italic', 'underline',
-    'list', 'bullet', 'indent',
+    'bold', 'italic', 'underline', 'strike', 'blockquote','code-block','header',
+    'list', 'script','bullet', 'indent','direction','size', 'color','background','font','align',
     'link', 'image', 'video'
   ]
   render() {

@@ -15,7 +15,6 @@ class BookmarkButton extends Component {
   render() {
     const bookmark = this.props.users.bookmark || []
     const rentalId = this.props.rentalId
-    console.log(this.props.users)
     return (
       <Fragment>
         {_.includes(bookmark, rentalId) ?

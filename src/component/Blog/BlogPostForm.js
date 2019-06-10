@@ -3,7 +3,8 @@ import { Field, reduxForm } from 'redux-form'
 import { CustomInput } from 'component/Form/CustomInput'
 import CustomQill from './CustomQuill'
 import PhotoSelector from './BlogPhotoSelector'
-
+import {validate} from './validate'
+import {ToastContainer} from 'react-toastify'
 class BlogPostForm extends Component {
     render() {
         const { handleSubmit, pristine, submitting, submitCb, valid } = this.props
@@ -12,8 +13,8 @@ class BlogPostForm extends Component {
                 <Field
                     name="title"
                     type="text"
-                    // label='title'
-                    className="field__input a-field__input"
+                    label='Tên bài viết'
+                    className="custom-input"
                     placeholder="Tên tiêu đề"
                     component={CustomInput}
                 />
@@ -36,5 +37,5 @@ class BlogPostForm extends Component {
 
 export default reduxForm({
     form: 'blogPostForm',
-    // validate
+    validate
 })(BlogPostForm)
