@@ -10,7 +10,6 @@ header {
   height: var(--nav-height);
   display: block;
   content: " ";
-  position: relative;
   z-index: 701; }
 
 .nav-container {

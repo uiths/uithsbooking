@@ -11,8 +11,9 @@ header {
   height: var(--nav-height);
   display: block;
   content: " ";
-  position: relative;
+  //position: relative;
   z-index: 701;
+
 }
 
 .nav-container {
@@ -199,6 +200,24 @@ header {
   float: right;
   display: inline;
 }
+
+//.form-control{
+//  width: 0!important;
+//  opacity: 0;
+//  transition: all 0.9s;
+//}
+//
+//.input-group:hover{
+//  .form-control{
+//    width: 100%!important;
+//    opacity: 1;
+//  }
+//}
+//.form-control:focus{
+//  width: 100%!important;
+//  opacity: 1;
+//}
+
 
 @media only screen and (max-width: 1408px) {
   .nav-container {

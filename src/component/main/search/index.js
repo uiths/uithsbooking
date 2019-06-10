@@ -119,8 +119,20 @@ class Search extends Component {
         };
         return (
             <React.Fragment>
-                <form autoComplete="off" className="home_search home_search_form">
-                    <i className="fa fa-search" />
+                {/*<form className="navbar-form " action="">*/}
+                {/*    <div className="input-group">*/}
+                {/*        <input type="text" className="form-control" placeholder="Search"*/}
+                {/*               name="search"/>*/}
+                {/*        <div className="input-group-btn">*/}
+                {/*            <button className="btn btn-default" type="submit">*/}
+                {/*                <i className="fa fa-search"/>*/}
+                {/*            </button>*/}
+                {/*        </div>*/}
+                {/*    </div>*/}
+                {/*</form>*/}
+                {/*<form  className="home_search home_search_form">*/}
+                <form autoComplete="off" className="navbar-form search-navbar-form f-left" >
+                    <div className="input-group search-input-group">
                     <Autosuggest
                         multiSection={true}
                         suggestions={suggestions}
@@ -131,11 +143,13 @@ class Search extends Component {
                         renderSectionTitle={this.renderSectionTitle}
                         getSectionSuggestions={this.getSectionSuggestions}
                         inputProps={inputProps} />
-                    <Link to={`/search?key=${this.state.value}`} >
-                        <button disabled={!value} style={{ width: "200px" }} className="btn btn-success">
-                            Tìm kiếm
+
+                    <Link className="input-group-btn search-input-group-btn" to={`/search?key=${this.state.value}`} >
+                        <button disabled={!value} style={{ width: "50px" }} className="btn">
+                            <i className="fa fa-search" />
                         </button>
                     </Link>
+                    </div>
                 </form>
             </React.Fragment>
         );
