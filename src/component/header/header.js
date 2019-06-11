@@ -13,32 +13,56 @@ class Header extends Component {
     constructor() {
         super();
         this.state = {
-            key: null
+            key: null,
+            slideWidth: '0'
         }
     }
-    // componentDidMount(){
-    //     if(localStorage.getItem('auth_token')!==null && _.isEmpty(this.props.users.data)&& authService.isValid(authService.getToken()))
-    //         this.props.fetchUserById(authService.getId())
-    // }
+    openNav = () => {
+        this.setState({
+            slideWidth : '100%'
+        })
+    }
+    closeNav = () => {
+        this.setState({
+            slideWidth : '0'
+        })
+    }
 
     handleLogout = () => {
         this.props.logout();
         this.props.history.push('/');
     }
+
     renderAuthButton(isAuth) {
         if (isAuth) {
             return
         }
         return (
             <React.Fragment>
-                <div style={{ paddingTop: "5px" }}>
+                <div className="na-auth-btn" style={{ paddingTop: "5px" }}>
                     <Link className="na-sign-in" to="/login"><i className="fa fa-user" /> ĐĂNG NHẬP</Link>
                     <span >/</span>
-                    <Link className="na-sign-in" to="/register"> <i className="fa fa-key" /> ĐĂNG KÝ</Link>
+                    <Link  className="na-sign-in" to="/register"> <i className="fa fa-key" /> ĐĂNG KÝ</Link>
                 </div>
             </React.Fragment>
         )
     }
+
+    renderAuthButtonSideNav(isAuth) {
+        if (isAuth) {
+            return
+        }
+        return (
+            <React.Fragment>
+                <div className="na-auth-btn-sidenav">
+                    <Link onClick={this.closeNav} className="" to="/login"><i className="fa fa-user" /> ĐĂNG NHẬP</Link>
+                    <span >/</span>
+                    <Link onClick={this.closeNav} className="" to="/register"> <i className="fa fa-key" /> ĐĂNG KÝ</Link>
+                </div>
+            </React.Fragment>
+        )
+    }
+
     renderOwnerSection(isAuth) {
         if (isAuth) {
             return (
@@ -68,24 +92,29 @@ class Header extends Component {
                             <div className="container-fluid">
                                 <div className="row">
                                     <Link className="na-brand f-left " to="/"><img src="/img/index_icon_range.png" width="100%" alt={"header"}/></Link>
-                                    <div className="navbar-header">
-                                        <button type="button" className="navbar-toggle na-toggle" data-toggle="collapse" data-target="#myNavbar">
-                                            <span className="fa fa-magic" />
-                                        </button>
-                                    </div>
+
 
                                     <div className="collapse navbar-collapse na-right f-left mg-left-2per" id="myNavbar">
                                         <ul className="nav navbar-nav ">
                                             <li> </li>
                                             <li className="active" ><Link className="na-item " to="/booking_home">ĐẶT NHÀ</Link></li>
                                              <li><Link className="na-item" to="/blog">BLOG CHIA SẺ</Link></li>
-                                            {/*{this.renderOwnerSection(isAuth)}*/}
+
                                              <li><Link className="na-item" to="/contact">LIÊN HỆ</Link></li>
+                                            {/*{this.renderOwnerSection(isAuth)}*/}
 
                                         </ul>
                                     </div>
 
+                                    <div className="na-search">
                                     <Search data={data} />
+                                    </div>
+
+                                    <div className="navbar-header f-right">
+                                        <button onClick={this.openNav} type="button" className="btn navbar-toggle na-toggle">
+                                            <span className="fa fa-bars" />
+                                        </button>
+                                    </div>
 
                                     <div className="navbar-right mg-top-10">
                                         {isAuth &&
@@ -104,6 +133,21 @@ class Header extends Component {
                                         {this.renderAuthButton(isAuth)}
                                     </div>
 
+                                    <div id="mySidenav" className="sidenav" style={{width: this.state.slideWidth}}>
+                                        <button className="btn btn-danger closebtn"
+                                           onClick={this.closeNav}>&times;</button>
+                                        <Link onClick={this.closeNav} className="sidenav-item " to="/booking_home">ĐẶT NHÀ</Link>
+                                        <Link onClick={this.closeNav} className="sidenav-item" to="/blog">BLOG CHIA SẺ</Link>
+
+                                        <Link onClick={this.closeNav} className="sidenav-item" to="/contact">LIÊN HỆ</Link>
+                                        <hr />
+
+                                        {this.renderAuthButtonSideNav(isAuth)}
+
+                                        <div className="sidenav-search">
+                                        <Search data={data} />
+                                        </div>
+                                    </div>
 
                                 </div>
                             </div>
