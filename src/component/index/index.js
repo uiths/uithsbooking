@@ -55,7 +55,7 @@ class Home extends Component {
                                 <img src="./img/img_home/index_slide/3.png" alt="Brandi Img 3" width="100%" />
                             </div>
                         </div>
-                        <Search data={data} />
+                        {/*<Search data={data} />*/}
                     </div>
 
                     <RentalList />

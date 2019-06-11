@@ -6,8 +6,8 @@ import { readURL, dataURItoBlob } from 'helpers/index';
 // import { request } from 'utilities/Api';
 import { Modal } from 'react-bootstrap';
 import './style.css';
-
-const loaderURL = 'images/loader.gif'
+import axios from 'axios'
+const loaderURL = 'img/loader.gif'
 class RentalPhotoSelector extends Component {
     constructor(props) {
         super(props);
@@ -54,9 +54,19 @@ class RentalPhotoSelector extends Component {
         this.setState({ loading: true });
         const blob = dataURItoBlob(imageUrl);
         try {
-            // const avatarId = await this.handleUploadFile(blob);
-            this.props.addItem({ imageUrl: imageUrl }, this.props.frameKey);
-            this.setState({ loading: false, imageBase64: imageUrl });
+            const formData = new FormData();
+            formData.append('image', blob);
+            await axios
+                .post('	https://api.imgur.com/3/image', formData, {
+                    headers: {
+                        Authorization: 'Client-ID ' + 'ccc9266052a1d7e'
+                    }
+                })
+                .then(res => {
+                    this.props.addItem({ imageUrl: res.data.data.link }, this.props.frameKey);
+                    this.setState({ loading: false, imageBase64: res.data.data.link });
+                })
+
         } catch (e) {
             console.log(e.message);
         }
@@ -91,7 +101,7 @@ class RentalPhotoSelector extends Component {
             avatar = <img className="image-avatar" src={this.state.imageBase64} />
 
             cornerBtnAction = this.props.removeItem;
-            cornerButton = <div className="corner-btn" onClick={(cornerBtnAction)}><img onClick={()=>{this.setState({imageBase64:null})}} src="/img/remove-upload-image.svg" /></div>;
+            cornerButton = <div className="corner-btn" onClick={(cornerBtnAction)}><img onClick={() => { this.setState({ imageBase64: null }) }} src="/img/remove-upload-image.svg" /></div>;
 
             // background = "url('" + this.state.imageBase64 + "')";
         } else {

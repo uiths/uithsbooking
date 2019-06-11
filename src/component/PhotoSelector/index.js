@@ -4,7 +4,7 @@ import ImageCropForm from 'component/ImageCropForm';
 import { readURL, dataURItoBlob, uploadAvatar } from 'helpers/index';
 import { Modal } from 'react-bootstrap';
 import './style.css';
-
+import axios from 'axios'
 const loaderURL = 'img/loader.gif'
 class PhotoSelector extends Component {
   constructor(props) {
@@ -17,10 +17,10 @@ class PhotoSelector extends Component {
       blobFile: null
     };
   }
-  componentWillReceiveProps(nextProps){
-    if(nextProps.image!==this.props.image){
+  componentWillReceiveProps(nextProps) {
+    if (nextProps.image !== this.props.image) {
       //Perform some operation
-      this.setState({imageBase64: nextProps.image });
+      this.setState({ imageBase64: nextProps.image });
       // this.classMethod();
     }
   }
@@ -53,23 +53,32 @@ class PhotoSelector extends Component {
     this.setState({ loading: true });
     const blob = dataURItoBlob(imageUrl);
     try {
-    
-      // const avatarId = 'ABC'
-      // const avatarId = await this.handleUploadFile(blob);
-      // this.props.addItem({ imageUrl: imageUrl, imageId: avatarId }, this.props.frameKey);
-      this.setState({ loading: false, imageBase64: imageUrl, blobFile: blob }, () =>{ 
-        this.props.action();
-        this.props.input.onChange(blob)
-      }
-        );
+
+      const formData = new FormData();
+      formData.append('image', blob);
+      await axios
+        .post('	https://api.imgur.com/3/image', formData, {
+          headers: {
+            Authorization: 'Client-ID ' + 'ccc9266052a1d7e'
+          }
+        })
+        .then(res => {
+          this.setState({ loading: false, imageBase64: imageUrl });
+          this.props.input.onChange(res.data.data.link)
+        })
+      // this.setState({ loading: false, imageBase64: imageUrl, blobFile: blob }, () =>{ 
+      //   this.props.action();
+      //   this.props.input.onChange(blob)
+      // }
+      //   );
     } catch (e) {
       console.log(e.message);
     }
   }
   removeItem = () => {
     this.setState(
-      { imageBase64: null, blobFile: ''}, ()=>
-      this.props.input.onChange(this.state.blobFile));   
+      { imageBase64: null, blobFile: '' }, () =>
+        this.props.input.onChange(this.state.blobFile));
   }
   // async handleUploadFile(file) {
   //   try {
@@ -98,7 +107,7 @@ class PhotoSelector extends Component {
     if (this.state.imageBase64) {
       // remove mode
       // background = "url('" + this.state.imageBase64 + ".jpg')";
-      avatar = <img className="image-avatar" src={this.state.imageBase64}/>
+      avatar = <img className="image-avatar" src={this.state.imageBase64} />
       cornerBtnAction = this.removeItem;
       cornerButton = <div className="corner-btn" onClick={cornerBtnAction}> <img src="/img/remove-upload-image.svg" /></div>;
     } else {
@@ -119,24 +128,24 @@ class PhotoSelector extends Component {
           onChange={e => this.handleSelectedFile(e)} />
 
 
-        <Modal style={{opacity:1}} backdrop='static' keyboard={false} show={this.state.isOpen} onHide={this.handleClose}>
+        <Modal style={{ opacity: 1 }} backdrop='static' keyboard={false} show={this.state.isOpen} onHide={this.handleClose}>
           <Modal.Header>
             <Modal.Title>Crop Image</Modal.Title>
           </Modal.Header>
           <Modal.Body>
             <div className="text-center">
               {
-                this.state.imageForCrop ? 
+                this.state.imageForCrop ?
                   <ImageCropForm
-                  onClose ={this.handleClose}
-                  onCompleted={this.handleCompleted}
-                  src={this.state.imageForCrop}
-                  aspect={16/16} 
+                    onClose={this.handleClose}
+                    onCompleted={this.handleCompleted}
+                    src={this.state.imageForCrop}
+                    aspect={16 / 16}
                   />
-                :
+                  :
                   <div></div>
               }
-              
+
             </div>
           </Modal.Body>
         </Modal>

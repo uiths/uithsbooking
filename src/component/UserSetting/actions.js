@@ -15,11 +15,7 @@ const uploadSuccess = (data) => {
 export const uploadAvatar = (file) => {
   return dispatch => {
     dispatch(showLoading())
-    const formData = new FormData();
-    formData.append('image', file.avatar);
-    // dispatch(resetUserState())
-    // dispatch(startSubmit('editAvatarForm'))
-    return axiosInstance.post('/users/avatar', formData)
+    return axiosInstance.post('/users/avatar', file)
       .then(res => {
         dispatch(hideLoading())
         dispatch(uploadSuccess(res.data))
