@@ -9,7 +9,7 @@ class ResetPass extends Component {
 		this.props.resetPass(userData, rsid)
 	}
 	render() {
-		const { isReset, errors } = this.props
+		const { errors } = this.props
 		return (
 			<main>
 				<div className="container">

@@ -9,7 +9,6 @@ import {
   FETCH_BOOKING_BY_ID_SUCCESS,
   SORT_BY_BOOKINGS
 } from 'actions/types';
-import { compare } from 'helpers'
 import { RESET_BOOKING_STATE} from '../actions/types';
 
 const INITIAL_STATE = {

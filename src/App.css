@@ -1605,6 +1605,10 @@ LEVEL 4. SETTINGS
 
 #sub_home {
   padding-bottom: 40px; }
+  .sub_home_list .sub_home_slider_container 
+  {
+    width: 100% !important;
+  }
   #sub_home .sub_home_slider {
     min-height: 400px; }
     #sub_home .sub_home_slider .slick-prev:before {

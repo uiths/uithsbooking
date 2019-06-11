@@ -9,7 +9,7 @@ class BlogCell extends Component {
                 <div className="col-md-6">
 
                     <Link to={`blog_detail/${blog._id}`}>
-                        <img src="img/img_blog_example/img_5.jpg" alt="Image placeholder" />
+                        <img src="img/img_blog_example/img_5.jpg" alt="imagePlaceholder" />
                         <div className="blog-content-body">
                             <div className="post-meta">
                             </div>

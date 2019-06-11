@@ -17,7 +17,7 @@ class BlogDetail extends Component {
           <div className="col-md-12 col-lg-8 main-content">
             <h1 className="mb-4">{blog.title}</h1>
             <div className="post-meta">
-              {/* <span className="category">{blog.author.username}</span> */}
+              <span className="category">{blog.author && blog.author.username}</span>
               <span className="mr-2">{moment(blog.createdAt).format('DD/MM/YYYY')}</span>
             </div>
             <div className="content-container" style={{width:"100%"}} dangerouslySetInnerHTML={{ __html: blog.content }}></div>

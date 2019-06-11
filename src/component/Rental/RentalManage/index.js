@@ -28,6 +28,7 @@ class RentalManage extends Component {
                             <option value="priceAsc">Giá thấp nhất</option>
                             <option value="price">Giá cao nhất</option>
                             <option value="rating">Rating</option>
+                            <option value="status">Trang thai</option>
                         </select>
                     </div>
                     <div className="rental-history-content">

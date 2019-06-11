@@ -6,6 +6,7 @@ import StarRatingComponent from 'react-star-rating-component';
 
 export function RentalCard(props) {
   const rental = props.rental || [];
+  console.log(props.bookmark)
   return (
     <div className="sub_home_slider_container">
       <BookmarkButton rentalId={rental._id} />

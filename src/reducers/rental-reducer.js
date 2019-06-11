@@ -9,7 +9,6 @@ import {
   RESET_RENTAL_ERRORS,
   DELETE_RENTAL_SUCCESS,
   DELETE_RENTAL_FAILURE,
-  DELETE_BOOKING_FAILURE,
   RESET_RENTALS_STATE,
   RESET_RENTAL_STATE,
   CREATE_RENTAL_SUCCESS,
@@ -17,7 +16,6 @@ import {
   SORT_BY_RENTALS,
   SORT_BY_USER_RENTALS
 } from 'actions/types';
-import { toast } from "react-toastify";
 
 const INITIAL_STATE = {
   rentals: {

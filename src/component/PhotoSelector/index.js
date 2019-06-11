@@ -53,7 +53,6 @@ class PhotoSelector extends Component {
     this.setState({ loading: true });
     const blob = dataURItoBlob(imageUrl);
     try {
-
       const formData = new FormData();
       formData.append('image', blob);
       await axios

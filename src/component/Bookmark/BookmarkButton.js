@@ -3,17 +3,19 @@ import './style.scss'
 import { addBookmark, removeBookmark } from './actions'
 import { connect } from 'react-redux'
 import _ from 'lodash'
+import {Redirect} from 'react-router-dom'
 class BookmarkButton extends Component {
   addBookmark = () => {
     if (this.props.auth.isAuth)
       this.props.addBookmark(this.props.rentalId)
+      else return <Redirect to='/login'/>
   }
   removeBookmark = () => {
     if (this.props.auth.isAuth)
       this.props.removeBookmark(this.props.rentalId)
   }
   render() {
-    const bookmark = this.props.users.bookmark || []
+    const bookmark = (this.props.users && this.props.users.bookmark) || []
     const rentalId = this.props.rentalId
     return (
       <Fragment>
