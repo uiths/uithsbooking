@@ -37,5 +37,5 @@ class BlogPostForm extends Component {
 
 export default reduxForm({
     form: 'blogPostForm',
-    validate
+    // validate
 })(BlogPostForm)
