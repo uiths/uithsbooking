@@ -26,7 +26,6 @@ class BlogDetail extends Component {
                 href="#">#manila</a>, <a href="#">#asia</a></p>
             </div>
           </div>
-
           <div className="mg-top-80">
             <BlogSlideBar />
           </div>

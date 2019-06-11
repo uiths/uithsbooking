@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import { getBlog } from './actions'
 import { connect } from 'react-redux'
-import BlogCell from './BlogCell'
 import BlogSlideBar from './BlogDetail/BlogSlideBar'
 import BlogItem from './BlogItem'
 
