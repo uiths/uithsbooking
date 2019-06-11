@@ -74,7 +74,7 @@
 }
 .bg1{
   content: '';
-  background-image: radial-gradient( circle farthest-corner at 97.4% 91.4%,  rgba(204,0,107,1) 0%, rgba(0,0,0,1) 82.4% );
+  background-image: linear-gradient( 135deg, #52E5E7 10%, #130CB7 100%);
   padding-bottom: 100px;
   height: auto !important;
   width: 100% !important;
@@ -83,7 +83,7 @@
 @media screen and (max-width: 1200px) {
   .bg1{
     content: '';
-    background-image: radial-gradient( circle farthest-corner at 97.4% 91.4%,  rgba(204,0,107,1) 0%, rgba(0,0,0,1) 82.4% );
+    background-image: linear-gradient( 135deg, #52E5E7 10%, #130CB7 100%);
     padding-bottom: 50px;
     height: 100% !important;
     width: auto !important;

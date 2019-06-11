@@ -4,7 +4,7 @@ class Map extends Component {
     render() {
         return (
             <div>
-                <div style={{width: '80%', marginLeft: '10%', paddingTop: 50}}>
+                <div>
                     <div className="col">
                         <div id="google_map">
                             <div className="map_container">

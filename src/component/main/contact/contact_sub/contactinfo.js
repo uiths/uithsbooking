@@ -5,7 +5,7 @@ class Contactinfo extends Component {
         return (
             <div>
                 <div className="col-sm-12">
-                    <div className="contact_sidebar"n>
+                    <div className="contact_sidebar">
                         {/* Contact Info */}
                         <div className="sidebar_section">
                             <div className="sidebar_contact_info">
