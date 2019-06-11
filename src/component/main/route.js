@@ -9,7 +9,9 @@ import User1 from "component/UserSetting/Loadable"
 
 import Blogmain from "component/Blog/BlogList"
 import BlogDetail from "component/Blog/BlogDetail/BlogDetail"
-import Contactmain from "./contact/contact_main";
+
+import Contactmain from "component/Contact/ContactPage"
+// import Contactmain from "./contact/contact_main";
 import Paymentmain from "./payment/payment_main";
 
 import Loading from "component/main/user/loading"
