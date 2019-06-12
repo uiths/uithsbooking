@@ -11,8 +11,9 @@ header {
   height: var(--nav-height);
   display: block;
   content: " ";
-  position: relative;
+  //position: relative;
   z-index: 701;
+
 }
 
 .nav-container {
@@ -200,6 +201,57 @@ header {
   display: inline;
 }
 
+//Slide navbar
+
+.sidenav {
+  height: 100%; /* 100% Full-height */
+  width: 0; /* 0 width - change this with JavaScript */
+  position: fixed; /* Stay in place */
+  z-index: 1; /* Stay on top */
+  top: 0; /* Stay at the top */
+  left: 0;
+  background-color: #111; /* Black*/
+  overflow-x: hidden; /* Disable horizontal scroll */
+  padding-top: 60px; /* Place content 60px from the top */
+  transition: 0.5s; /* 0.5 second transition effect to slide in the sidenav */
+
+  .sidenav-item{
+    padding: 8px 8px 8px 8px;
+    text-decoration: none;
+    font-size: 25px;
+    color: #818181;
+    display: block;
+    transition: 0.3s;
+    text-align: center;
+  }
+
+  .sidenav-item:hover {
+    color: #f1f1f1;
+  }
+
+  .closebtn {
+    position: absolute;
+    top: 1.5%;
+    right: 15px;
+    font-size: 24px;
+    margin-left: 50px;
+  }
+}
+.sidenav-search{
+  .search-navbar-form{
+    width: 95%;
+    margin-left: 2.5%;
+  }
+}
+.na-auth-btn-sidenav{
+  text-align: center;
+  a{
+    color: grey;
+  }
+}
+
+///Responsive
+
 @media only screen and (max-width: 1408px) {
   .nav-container {
     padding-left: 24px;
@@ -209,6 +261,9 @@ header {
 }
 
 @media only screen and (max-width: 767px) {
+  .na-search{
+    display: none;
+  }
   nav.meshi-navbar {
     height: var(--nav-height);
   }
@@ -276,4 +331,22 @@ header {
     cursor: pointer;
     margin: 6px 0;
   }
+
+
+
+  .na-auth-btn{
+    display: none;
+  }
+}
+
+
+@media screen and (max-height: 450px) {
+  .sidenav {
+    padding-top: 15px;
+
+    .sidenav-item{
+      font-size: 18px;
+    }
+  }
+
 }

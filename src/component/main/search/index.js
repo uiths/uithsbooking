@@ -119,18 +119,6 @@ class Search extends Component {
         };
         return (
             <React.Fragment>
-                {/*<form className="navbar-form " action="">*/}
-                {/*    <div className="input-group">*/}
-                {/*        <input type="text" className="form-control" placeholder="Search"*/}
-                {/*               name="search"/>*/}
-                {/*        <div className="input-group-btn">*/}
-                {/*            <button className="btn btn-default" type="submit">*/}
-                {/*                <i className="fa fa-search"/>*/}
-                {/*            </button>*/}
-                {/*        </div>*/}
-                {/*    </div>*/}
-                {/*</form>*/}
-                {/*<form  className="home_search home_search_form">*/}
                 <form autoComplete="off" className="navbar-form search-navbar-form f-left" >
                     <div className="input-group search-input-group">
                     <Autosuggest

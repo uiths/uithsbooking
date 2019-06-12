@@ -25,24 +25,13 @@
 
 header
 {
-  background: #FFFFFF;
+  margin-top: 65px;
+}
+.na-brand{
+  width:9.5%;
+  margin-left: 1%;
 }
 
-.na-brand{
-  text-decoration: none;
-  font-weight: 300;
-  color: #000;
-  letter-spacing: 1px;
-  font-size: 1.5em;
-  position: relative;
-  outline: 0;
-  span{
-    background: #000;
-    padding: 0 17px;
-    font-weight: bold;
-    color: #fff;
-  }
-}
 .navbar-right{
   margin-right: 0;
   @media screen and (max-width: 768px ) {
@@ -77,54 +66,40 @@ header
     background: none;
     color: #36363a;
     margin-right: 10px;
+  font-weight: 500;
 }
 .na-sign-in:hover{
-    color:#1ea78d;
+    color: #770077;
     text-decoration: none;
+
 }
 .na-sign-in:focus{
-  color:#1ea78d;
+  color:#770077;
   text-decoration: none;
-}
 
-.langauge{
-  margin-right: 20px;
-  float: right;
-
-  p{
-
-    a{
-      color: #a0a3a7;
-    }
-    a:hover{
-      color:#1ea78d;
-      text-decoration: none;
-    }
-
-  }
 }
 
 .na
 {
+  position: fixed;
+  top: 0;
   padding: 10px 0;
   margin-bottom: 0;
-   background: white !important;
-  z-index: 1;
-  border-bottom: 3px solid #bfa161;
-  box-shadow: 0 1px 0 rgba(12,13,14,0.1),0 1px 6px rgba(59,64,69,0.1);
-
-
-
+  background: rgba(245,245,245,0.98) !important;
+  z-index: 9999;
+  border-bottom: 3px solid #3c84e9;
+  border-radius: 0;
   .na-item{
-    font-size: 17px;
+    font-size: 15px;
     font-weight: normal;
     color: black !important;
     padding-top: 5px;
     padding-bottom: 5px;
-    letter-spacing: 2px;
+    letter-spacing: 1.5px;
     margin-right: 10px;
     text-decoration: none;
-    border-bottom: 1px solid white;
+    border-bottom: 3px solid rgba(245,245,245,0.98) ;
+
     @media screen and (max-width: 1200px ) {
       font-size: 14px;
       text-align: center;
@@ -157,9 +132,9 @@ header
     }
   }
   .na-item:hover{
-
+    transition: all 1s;
     background: none!important;
-    border-bottom: 1px solid #1ea78d !important;
+    border-bottom: 3px dotted purple !important;
   }
 
   .na-item:focus{
@@ -168,7 +143,7 @@ header
   .na-item:active{
 
     background: none!important;
-    border-bottom: 1px solid #1ea78d !important;
+    border-bottom: 3px dotted purple !important;
     a:active{
       text-decoration: none;
     }

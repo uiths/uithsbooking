@@ -139,7 +139,7 @@ body {
 
   .search-navbar-form{
     width: 35%;
-    margin: 3px 2% 0 0 ;
+    //margin: 3px 2% 0 0 ;
   }
   .search-input-group{
     border: 2px solid rgba(135,206,250,0.75);
@@ -162,4 +162,8 @@ body {
       background:lightskyblue ;
       color: white;
     }
+  }
+  
+  @media screen and (max-width: 767px) {
+
   }
