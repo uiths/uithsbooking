@@ -147,7 +147,7 @@ class Header extends Component {
                                         {this.renderAuthButtonSideNav(isAuth)}
 
                                         <div className="sidenav-search">
-                                            <Search data={data} />
+                                            <Search closeNav={this.closeNav} data={data} />
                                         </div>
                                     </div>
 

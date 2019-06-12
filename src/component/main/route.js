@@ -62,7 +62,7 @@ class Routerr extends Component {
                 <Route path="/booking_home" component={BookingHome} />
                 <ProtectedRoute exact path="/rental/manage" component={RentalManage} />
                 <ProtectedRoute path="/list_book" component={MyListBook} />
-                {/* <Route path="/editMyProfile" component={EditProfile}/> */}
+                {/* <Route path="/editMyProfile" boocomponent={EditProfile}/> */}
                 {/*<PrivateRoute  path="/slot" component={Slot} />*/}
                 {/* <Route path="/blog" component={Blogmain} /> */}
                 <Route path="/blogDetail" component={BlogDetail} />

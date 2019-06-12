@@ -59,7 +59,7 @@ class Search extends Component {
             return (
 
                 <React.Fragment>
-                    <Link to={`/detail/${suggestion._id}`}>
+                    <Link onClick={this.props.closeNav} to={`/detail/${suggestion._id}`}>
                         <span className={'suggestion-content ' + suggestion._id}>
                             <img style={{ maxWidth: "40px", maxHeight: "40px" }} src={suggestion.image[0]}></img>
                             <div className="suggestion-detail">

@@ -505,9 +505,6 @@ li .tab-item {
 .centered1:hover .middle1 {
   opacity: 1; }
 
-@media screen and (max-width: 1000px) {
-  .tabc {
-    width: 100%; } }
 /*User page*/
 /*new*/
 .bg {
@@ -519,13 +516,7 @@ li .tab-item {
   padding: 0 0;
   height: auto !important;
   width: 100% !important;
-  z-index: -5;
-  /*
-  -webkit-filter: blur(2px);
-  -moz-filter: blur(2px);
-  -o-filter: blur(2px);
-  -ms-filter: blur(2px);
-  filter: blur(px);*/ }
+  z-index: -5; }
 
 .bg img {
   -webkit-filter: grayscale(75%);
@@ -535,7 +526,23 @@ li .tab-item {
   filter: alpha(opacity=60);
   /* For IE8 and earlier */ }
 
+.bg1 {
+  content: '';
+  background-image: linear-gradient(135deg, #52E5E7 10%, #130CB7 100%);
+  padding-bottom: 100px;
+  height: auto !important;
+  width: 100% !important;
+  z-index: -5; }
+
 @media screen and (max-width: 1200px) {
+  .bg1 {
+    content: '';
+    background-image: linear-gradient(135deg, #52E5E7 10%, #130CB7 100%);
+    padding-bottom: 50px;
+    height: 100% !important;
+    width: auto !important;
+    z-index: -5; }
+
   .bg {
     content: '';
     position: fixed;
@@ -544,14 +551,7 @@ li .tab-item {
     padding: 0 0;
     height: 100% !important;
     width: auto !important;
-    z-index: -5;
-    /*
-            -webkit-filter: blur(1px);
-            -moz-filter: blur(1px);
-            -o-filter: blur(1px);
-            -ms-filter: blur(1px);
-            filter: blur(px);
-      */ } }
+    z-index: -5; } }
 .slide-in-bottom {
   -webkit-animation: slide-in-bottom 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94) both;
   animation: slide-in-bottom 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94) both; }
@@ -910,7 +910,6 @@ LEVEL 4. SETTINGS
     padding-left: 22%; } }
 .center_button {
   display: block;
-  width: 60%;
   margin-left: auto;
   margin-right: auto; }
 
@@ -978,6 +977,8 @@ LEVEL 4. SETTINGS
 
 .title_h3 {
   font-size: 35px;
+  margin: 0;
+  margin-bottom: 20px;
   font-weight: 600;
   display: inline-block;
   color: #000000; }
@@ -1594,7 +1595,6 @@ LEVEL 4. SETTINGS
   #sub_home .sub_home_slider_container {
     width: 100%; } }
 #contact {
-  background: #3399ff;
   z-index: -20;
   padding-bottom: 20px; }
   #contact .contact_box {
@@ -1679,4 +1679,3 @@ LEVEL 4. SETTINGS
 
 .react-datepicker-wrapper, .react-datepicker__input-container {
   display: block !important; }
-/*# sourceMappingURL=App.css.map */

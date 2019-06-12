@@ -18,7 +18,7 @@ class RentalDetail extends Component {
   componentDidMount() {
     // Dispatch action
     window.scrollTo(0, 0);
-    if (authService.isAuthenticated() && !this.props.booking.data.length > 0)
+    if (!this.props.booking.data.length > 0)
       this.props.dispatch(actions.fetchUserBookings());
     const rentalId = this.props.match.params.id;
     this.props.dispatch(actions.fetchRentalById(rentalId));
@@ -67,7 +67,7 @@ class RentalDetail extends Component {
         return false;
     return true
   }
-  componentWillUnmount() {
+  componentDidUpdate() {
     this.props.dispatch(actions.resetRentalState())
   }
 

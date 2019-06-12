@@ -17,10 +17,12 @@ class BookingCell extends Component {
                         {booking.startAt && formatDate(booking.startAt,"DD/MM/YYYY")} ~ {booking.endAt &&formatDate(booking.endAt,"DD/MM/YYYY")}
                         {booking.guests && (", "+booking.guests+" khách")}
                         {booking.days &&(", "+booking.days+" ngày")}
+                        {booking.totalPrice && <b>{(", "+booking.totalPrice.toLocaleString()+" VND")}</b>}
                     </div>
                 </div>
-                <div className={`booking-total-price ${booking.status.toLowerCase() === 'paid'?`paid`:`pending`}` }>
-                    {booking.totalPrice && (<p>{booking.totalPrice.toLocaleString()+" đồng"}</p>)}
+                <div className={`booking-total-price ${booking.status.toLowerCase()}` }>
+                    {booking.status === 'pending' && (<p>Chưa thanh toán</p>)}
+                    {booking.status === 'paid' && (<p>Chưa thanh toán</p>)}
                 </div>
             </div>
         );
