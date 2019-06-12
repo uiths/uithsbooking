@@ -44,7 +44,6 @@ export const getBlogById = (blogId) => {
     return dispatch => {
         axiosInstance.post('/blog/getBlogById', {blogId: blogId})
         .then(res => {
-            console.log(res.data)
             dispatch(getBlogByIdSuccess(res.data))
         })
         .catch(({response})=>{

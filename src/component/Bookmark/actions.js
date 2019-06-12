@@ -16,6 +16,7 @@ export const addBookmark = (rentalId) => {
     return dispatch => {
         axiosInstance.post('/users/addBookmark',{rentalId})
         .then( res => {
+            toast.success('Đã thêm vào mục ưa thích')
             dispatch(addBookmarkSuccess(res.data))
         })
         .catch(({response}) =>{
@@ -24,10 +25,10 @@ export const addBookmark = (rentalId) => {
     }
 }
 export const removeBookmark = (rentalId) => {
-    console.log(rentalId)
     return dispatch => {
         axiosInstance.post('/users/removeBookmark',{rentalId})
         .then( res => {
+            toast.success('Đã xóa khỏi mục ưa thích')
             dispatch(addBookmarkSuccess(res.data))
         })
         .catch(({response})=>{
@@ -39,9 +40,11 @@ export const getBookmark = () => {
     return dispatch => {
         axiosInstance.get('/users/getBookmark')
         .then(res =>{
+            dispatch(showLoading());
             dispatch(addBookmarkSuccess(res.data))
         })
         .catch(({response}) =>{
+            dispatch(hideLoading())
             console.log(response)
         })
     }

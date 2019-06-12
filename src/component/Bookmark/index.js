@@ -4,6 +4,8 @@ import {getBookmark} from './actions'
 import './style.scss'
 import BookmarkCell from './BookmarkCell';
 import {Link} from 'react-router-dom'
+import {ToastContainer} from 'react-toastify' 
+
 class BookmarkPage extends Component {
 	// componentDidMount() {
 	// 	this.props.getBookmark();
@@ -12,6 +14,7 @@ class BookmarkPage extends Component {
 		const bookmark = this.props.bookmark || []
 		return (
 			<div className="user-bookmark-history" style={{ backgroundColor: "#f5f5f5" }}>
+				<ToastContainer/>
 				<div className="bookmark-history-container">
 					<div className="bookmark-history-title">
 						Danh sách ưa thích

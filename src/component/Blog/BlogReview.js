@@ -4,7 +4,6 @@ import {connect} from 'react-redux'
 import {ToastContainer} from 'react-toastify'
 class BlogReview extends Component {
     postBlog = (data) => {
-        console.log(data)
         this.props.createBlog(data)
     }
     render() {

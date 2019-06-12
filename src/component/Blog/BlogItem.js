@@ -5,7 +5,6 @@ import moment from 'moment'
 class BlogItem extends Component {
     render() {
         const blog = this.props.blog;
-        console.log(blog)
         return (
             <div className="col-md-6">
                 <Link  className="blog-entry"  to={`blog_detail/${blog._id}`}>

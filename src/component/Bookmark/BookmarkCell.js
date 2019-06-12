@@ -2,7 +2,6 @@ import React, { Component } from 'react';
 class BookmarkCell extends Component {
     render() {
         const bookmark = this.props.bookmark || {};
-        console.log(bookmark)
         return (
             <div className="bookmark-cell-container">
                 <div className="bookmark-cell-image">

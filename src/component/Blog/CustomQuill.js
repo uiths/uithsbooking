@@ -43,7 +43,6 @@ class CustomQuill extends Component {
             fileInput.value = '';
           })
           .catch(error => {
-            console.log('quill image upload failed');
             console.log(error);
             this.quill.enable(true);
           });

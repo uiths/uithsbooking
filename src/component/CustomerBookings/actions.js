@@ -22,9 +22,11 @@ export const getCustomerBookings = (req, res) => {
     return dispatch => {
         axiosInstance.get('/bookings/getCustomerBookings')
         .then(res => {
+            dispatch(showLoading())
             dispatch(fetchCustomersBookingsSuccess(res.data))
         })
         .catch(({response}) =>{
+            dispatch(hideLoading())
             toast.error(response.data.detail)
         })
     }
@@ -38,7 +40,6 @@ export const sortBy = (array, sort) => {
                 return dispatch(sortByOrders(data));
             default:
                 data = orderByDesc(array, sort);
-                console.log(data)
                 return dispatch(sortByOrders(data))
         }
     }

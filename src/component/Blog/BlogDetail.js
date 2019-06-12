@@ -10,7 +10,6 @@ class BlogDetail extends Component {
   }
   render() {
     const blog = this.props.blog || {}
-    console.log(blog)
     return (
       <div className="container mg-top-80">
         <div className="row blog-entries">

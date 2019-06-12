@@ -9,7 +9,6 @@ class CustomerBookings extends Component {
         this.props.getCustomerBookings()
     }
     sortBy = (e) => {
-        console.log(this.props.customerBookings)
         this.props.sortBy(this.props.customerBookings, e.target.value)
     }
     render() {

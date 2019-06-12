@@ -43,7 +43,6 @@ class userSetting extends Component {
     let user = this.props.users.data || {}
     const dateOfBirth = moment(user.dateOfBirth).isValid() ? moment(user.dateOfBirth).format('DD/MM/YYYY') : user.dateOfBirth
     user = Object.assign(user, { dateOfBirth: dateOfBirth })
-    console.log(user)
     user = _.omit(user, ['bookings', 'rentals', 'searchHistory', 'role', 'isVerified', 'status'])
     return (
       <div className="container" style={{ marginTop: "50px" }}>

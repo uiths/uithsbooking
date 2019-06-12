@@ -48,7 +48,6 @@ export const userBookingsReducer = (state = INITIAL_STATE, action) => {
     case FETCH_CUSTOMER_BOOKINGS_SUCCESS:
       return {...state, customerBookings: action.data}
     case SORT_BY_CUSTOMER_BOOKINGS:
-      console.log(action.data)
       return {...state, customerBookings :action.data}
     default:
       return state;

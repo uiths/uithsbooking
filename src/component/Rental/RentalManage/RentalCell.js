@@ -3,7 +3,6 @@ import StarRatingComponent from 'react-star-rating-component';
 
 class RentalCell extends Component {
     renderBtn = (status) => {
-        console.log(status)
         switch (status) {
             case 'pending':
                 return <button className="pending-status">Đang duyệt</button>

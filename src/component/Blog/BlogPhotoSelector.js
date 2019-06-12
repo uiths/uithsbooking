@@ -51,7 +51,6 @@ class PhotoSelector extends Component {
     handleCompleted = async (imageUrl) => {
         this.handleClose();
         this.setState({ loading: true });
-        console.log(imageUrl)
 
         const blob = dataURItoBlob(imageUrl);
         try {

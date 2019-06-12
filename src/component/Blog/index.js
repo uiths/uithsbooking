@@ -9,7 +9,6 @@ class Blog extends Component {
         this.props.getBlog();
     }
     render() {
-        console.log(this.props.blogList)
         return (
             // <div id="blog-container">
                 <div className="container list-rentals-container">
