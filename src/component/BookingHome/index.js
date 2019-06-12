@@ -5,7 +5,7 @@ import { connect } from 'react-redux'
 import Pagination from './Pagination';
 import { sortBy, resetBookState } from './actions'
 import "./style.scss"
-
+import _ from 'lodash'
 class List extends Component {
     constructor(props) {
         super(props);
@@ -27,6 +27,7 @@ class List extends Component {
         this.props.sortBy(this.props.rentals, e.target.value)
     }
     render() {
+        const bookmarkId = this.props.users && _.map(this.props.users.bookmark, '_id')
         return (
             <div className="container list-rentals-container">
                 <h3 className="text-left title_h3 type1 animated fadeInLeft mg-top-20">Tổng hợp thông tin</h3>
@@ -39,8 +40,10 @@ class List extends Component {
                 <div id="sub_home" className="text-center ">
                     <div className="container mg-top-20">
                         <div className="row">
-                            {this.state.pageOfItems.map((item, index) =>
-                                <RentalCard key={index} rental={item} />
+                            {this.state.pageOfItems.map((item, index) => {
+                                const bookmark = _.includes(bookmarkId, item._id);
+                                return <RentalCard key={index} bookmark={bookmark} rental={item} />
+                            }
                             )}
                         </div>
                         <Pagination items={this.props.rentals} onChangePage={this.onChangePage} />
@@ -53,6 +56,8 @@ class List extends Component {
 const mapStateToProps = (state) => {
     return {
         rentals: state.rentals.data,
+        users: state.users.data
+
     }
 }
 const mapDispatchToProps = (dispatch) => {

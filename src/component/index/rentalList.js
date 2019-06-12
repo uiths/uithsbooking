@@ -37,13 +37,8 @@ class RentalList extends Component {
         const rentals = this.props.rentals || []
         const bookmarkId = this.props.users && _.map(this.props.users.bookmark, '_id')
         return rentals.map((rental, index) => {
-
-            // console.log(rental._id)
-            const bookmark = _.includes(bookmarkId,rental._id);
-
-            // console.log(_.find(this.props.bookmark,['id',))
-            return (
-                <RentalCard key={index} rental={rental} bookmark={bookmark}/>
+            const bookmark = _.includes(bookmarkId, rental._id);            return (
+                <RentalCard key={index} rental={rental} bookmark={bookmark} />
             )
         })
     }

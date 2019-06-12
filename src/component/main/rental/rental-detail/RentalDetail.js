@@ -18,7 +18,7 @@ class RentalDetail extends Component {
   componentDidMount() {
     // Dispatch action
     window.scrollTo(0, 0);
-    if (!this.props.booking.data.length > 0)
+    if (authService.isAuthenticated() && !this.props.booking.data.length > 0)
       this.props.dispatch(actions.fetchUserBookings());
     const rentalId = this.props.match.params.id;
     this.props.dispatch(actions.fetchRentalById(rentalId));
@@ -28,10 +28,15 @@ class RentalDetail extends Component {
     this.state = {
       booked: false,
       errors: [],
-      show: false
+      show: false,
+      redirect: false
     }
   }
-
+  setRedirect = () =>{
+    this.setState({
+      redirect: true
+    })
+  }
   deleteRental = (rentalId) => {
     this.props.dispatch(actions.deleteRental(rentalId))
   }
@@ -59,7 +64,7 @@ class RentalDetail extends Component {
       if (this.isValid(this.props.booking.data, booking))
         this.props.dispatch(actions.createBooking(booking))
       else toast.error("Bạn không thể đặt thêm nhà trong khoảng thời gian này")
-    } else toast.error('Bạn cần phải đăng nhập')
+    } else this.setRedirect()
   }
   isValid(data, booking) {
     for (let i = 0; i < data.length; i++)
@@ -70,7 +75,11 @@ class RentalDetail extends Component {
   componentDidUpdate() {
     this.props.dispatch(actions.resetRentalState())
   }
-
+  renderRedirect = () => {
+    if (this.state.redirect) {
+      return <Redirect to='/login' />
+    }
+  }
   render() {
     const { posted } = this.props.location.state || false
     {
@@ -93,6 +102,7 @@ class RentalDetail extends Component {
     const image = rental.image || ['/img/default-img.jpg', '/img/default-img.jpg']
     return (
       <div id="rent">
+        {this.renderRedirect()}
         <ToastContainer />
         <RentalImages image={image} />
         <br />
