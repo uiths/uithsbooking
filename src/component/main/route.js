@@ -7,7 +7,11 @@ import User from "./user/user";
 import User2 from "./user/user2";
 import User1 from "component/UserSetting/Loadable"
 
-import Contactmain from "./contact/contact_main";
+import Blogmain from "component/Blog/BlogList"
+import BlogDetail from "component/Blog/BlogDetail/BlogDetail"
+
+import Contactmain from "component/Contact/ContactPage"
+// import Contactmain from "./contact/contact_main";
 import Paymentmain from "./payment/payment_main";
 
 import Loading from "component/main/user/loading"
@@ -55,7 +59,9 @@ class Routerr extends Component {
                 <ProtectedRoute path="/list_book" component={MyListBook} />
                 {/* <Route path="/editMyProfile" component={EditProfile}/> */}
                 {/*<PrivateRoute  path="/slot" component={Slot} />*/}
-                <ProtectedRoute path="/contact" component={Contactmain} />
+                <Route path="/blog" component={Blogmain} />
+                <Route path="/blogDetail" component={BlogDetail} />
+                <Route path="/contact" component={Contactmain} />
                 <ProtectedRoute  path="/payment" component={Paymentmain} />
             </div>
         );
