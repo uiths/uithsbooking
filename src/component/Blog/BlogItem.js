@@ -13,9 +13,15 @@ class BlogItem extends Component {
                         <div className="blog-content-body">
                             <div className="post-meta">
                                 {/* <span className="category">{blog.author && blog.author.username}</span> */}
+                                <span className=""><img className="" alt="avatar" src=".././img/1.jpg" /></span>
+                                <span> TÊN </span>
                                 <span className="mr-2">{moment(blog.createdAt).format('DD/MM/YYYY')}</span>
+                                <span> • </span>
+                                <span className="ml-2"><span className="fa fa-eye"/> 3</span>
+
+
                             </div>
-                            <h2>{blog.title}</h2>
+                            <h2 className="text-truncate">{blog.title}</h2>
                         </div>
                 </Link>
             </div>

@@ -66,5 +66,21 @@
 .content-container {
     p {
         width: inherit;
+        font-weight: 300;
+        font-size: 16px;
+        line-height: 1.5;
+        color: #6c757d;
+        img{
+            display: block;
+            margin: 0 auto;
+            width: inherit;
+        }
     }
+}
+.main-content{
+    font-family: 'Josefin Sans', sans-serif;
+
+}
+.pt-5, .py-5 {
+    padding-top: 3rem !important;
 }
