@@ -8,6 +8,12 @@
   margin: 0;
   box-sizing: border-box; }
 
+.row-eq-height {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex; }
+
 body {
   font-family: 'Noto Sans JP', sans-serif;
   word-spacing: 1px !important;
@@ -1761,6 +1767,51 @@ LEVEL 4. SETTINGS
 #contact {
   z-index: -20;
   padding-bottom: 20px; }
+  #contact .row-eq-height {
+    display: -webkit-box;
+    display: -webkit-flex;
+    display: -ms-flexbox;
+    display: flex; }
+  #contact .av {
+    margin-top: -80px;
+    border-radius: 50%;
+    border: 3px solid lightgray; }
+  #contact .hidecontact {
+    display: block; }
+  #contact .mapp {
+    margin-top: 50px;
+    padding: 10px;
+    border-radius: 0;
+    height: 620px; }
+  #contact .h {
+    height: 600px; }
+  #contact .pad {
+    margin-left: 50px;
+    margin-right: 50px; }
+  #contact .message {
+    padding: 50px; }
+  #contact .about {
+    font-size: 17px;
+    padding-left: 30px; }
+  @media screen and (max-width: 1000px) {
+    #contact .hidecontact {
+      display: none; }
+    #contact .h {
+      height: 300px; }
+    #contact .pad {
+      margin-left: 5px;
+      margin-right: 5px; }
+    #contact .mapp {
+      margin-top: 20px;
+      padding: 10px;
+      border-radius: 0;
+      height: 320px; }
+    #contact .removepad {
+      padding-left: 0;
+      padding-right: 0; }
+    #contact .about {
+      font-size: 15px;
+      padding-left: 10px; } }
   #contact .contact_box {
     margin: 50px auto;
     border-radius: 7px 7px 7px 7px;
