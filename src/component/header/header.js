@@ -18,12 +18,12 @@ class Header extends Component {
     }
     openNav = () => {
         this.setState({
-            slideWidth : '100%'
+            slideWidth: '100%'
         })
     }
     closeNav = () => {
         this.setState({
-            slideWidth : '0'
+            slideWidth: '0'
         })
     }
 
@@ -44,7 +44,7 @@ class Header extends Component {
                 <div className="na-auth-btn" style={{ paddingTop: "5px" }}>
                     <Link className="na-sign-in" to="/login"><i className="fa fa-user" /> ĐĂNG NHẬP</Link>
                     <span >/</span>
-                    <Link  className="na-sign-in" to="/register"> <i className="fa fa-key" /> ĐĂNG KÝ</Link>
+                    <Link className="na-sign-in" to="/register"> <i className="fa fa-key" /> ĐĂNG KÝ</Link>
                 </div>
             </React.Fragment>
         )
@@ -81,7 +81,7 @@ class Header extends Component {
             // },
             {
                 title: "Lịch sử tìm kiếm",
-                array: this.props.users.data.searchHistory || []
+                array: (this.props.users.data && this.props.users.data.searchHistory) || []
             }]
         const { username, isAuth } = this.props.auth;
         const image = authService.getImage() || ''
@@ -93,23 +93,23 @@ class Header extends Component {
                         <nav className="navbar na">
                             <div className="container-fluid">
                                 <div className="row">
-                                    <Link className="na-brand f-left " to="/"><img src="/img/index_icon_range.png" width="100%" alt={"header"}/></Link>
+                                    <Link className="na-brand f-left " to="/"><img src="/img/index_icon_range.png" width="100%" alt={"header"} /></Link>
 
 
                                     <div className="collapse navbar-collapse na-right f-left mg-left-2per" id="myNavbar">
                                         <ul className="nav navbar-nav ">
                                             <li> </li>
                                             <li className="active" ><Link className="na-item " to="/booking_home">ĐẶT NHÀ</Link></li>
-                                             <li><Link className="na-item" to="/blog">BLOG CHIA SẺ</Link></li>
+                                            <li><Link className="na-item" to="/blog">BLOG CHIA SẺ</Link></li>
 
-                                             <li><Link className="na-item" to="/contact">LIÊN HỆ</Link></li>
+                                            <li><Link className="na-item" to="/contact">LIÊN HỆ</Link></li>
                                             {/*{this.renderOwnerSection(isAuth)}*/}
 
                                         </ul>
                                     </div>
 
                                     <div className="na-search">
-                                    <Search data={data} />
+                                        <Search data={data} />
                                     </div>
 
                                     <div className="navbar-header f-right">
@@ -135,9 +135,9 @@ class Header extends Component {
                                         {this.renderAuthButton(isAuth)}
                                     </div>
 
-                                    <div id="mySidenav" className="sidenav" style={{width: this.state.slideWidth}}>
+                                    <div id="mySidenav" className="sidenav" style={{ width: this.state.slideWidth }}>
                                         <button className="btn btn-danger closebtn"
-                                           onClick={this.closeNav}>&times;</button>
+                                            onClick={this.closeNav}>&times;</button>
                                         <Link onClick={this.closeNav} className="sidenav-item " to="/booking_home">ĐẶT NHÀ</Link>
                                         <Link onClick={this.closeNav} className="sidenav-item" to="/blog">BLOG CHIA SẺ</Link>
 
@@ -147,7 +147,7 @@ class Header extends Component {
                                         {this.renderAuthButtonSideNav(isAuth)}
 
                                         <div className="sidenav-search">
-                                        <Search data={data} />
+                                            <Search data={data} />
                                         </div>
                                     </div>
 
@@ -175,4 +175,4 @@ const mapDispatchToProps = (dispatch, ownProps) => {
         }
     }
 }
-export default withRouter(connect(mapStateToProps,mapDispatchToProps)(Header));
+export default withRouter(connect(mapStateToProps, mapDispatchToProps)(Header));

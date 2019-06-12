@@ -15,11 +15,11 @@ class BookmarkButton extends Component {
       this.props.removeBookmark(this.props.rentalId)
   }
   render() {
-    const bookmark = (this.props.users && this.props.users.bookmark) || []
+    const {bookmark } = this.props
     const rentalId = this.props.rentalId
     return (
       <Fragment>
-        {_.includes(bookmark, rentalId) ?
+        {bookmark ?
           (<div id="bookmark-container">
             <button onClick={this.removeBookmark} className="bookmark-btn">
               <img className="bookmark-img" src="/img/bookmarked-red.png" />

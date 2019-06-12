@@ -71,10 +71,8 @@ export const fetchRentals = (city) => {
         dispatch(hideLoading())
         dispatch(fetchRentalsSuccess(rentals))
       })
-      .catch(( response ) => {
-        if (response.status === 500)
-          toast.error(response.data);
-        else toast.error(response.data.errors.detail)
+      .catch((response) => {
+        toast.error(response.data.detail)
         dispatch(hideLoading());
       })
   }
@@ -126,9 +124,7 @@ export const createPayment = (data) => {
       })
       .catch(({ response }) => {
         dispatch(hideLoading());
-        if (response.status === 500)
-          toast.error(response.data);
-        else toast.error(response.data.errors.detail)
+        toast.error(response.data.detail)
       })
   }
 }
@@ -150,9 +146,7 @@ export const fetchUserBookings = () => {
       })
       .catch(({ response }) => {
         dispatch(hideLoading());
-        if (response.status === 500)
-          toast.error(response.data);
-        else toast.error(response.data.errors.detail)
+        toast.error(response.data.detail)
       })
   }
 }
@@ -208,12 +202,11 @@ export const deleteRental = (rentalId) => {
       .then(res => {
         dispatch(hideLoading())
         toast.success("Xóa thành công")
-        dispatch(deleteRentalSuccess(res.data))})
-        .catch(({response}) => {
-          if (response.status === 500)
-              toast.error(response.data);
-          else toast.error(response.data.errors.detail)
-          dispatch(hideLoading());
+        dispatch(deleteRentalSuccess(res.data))
+      })
+      .catch(({ response }) => {
+        toast.error(response.data.detail)
+        dispatch(hideLoading());
       })
   }
 }
@@ -230,7 +223,7 @@ const loginSuccess = () => {
 
 export const checkAuthState = () => {
   return dispatch => {
-    if(!authService.isAuthenticated())
+    if (!authService.isAuthenticated())
       localStorage.getItem('auth_token') && localStorage.removeItem('auth_token')
     if (authService.isAuthenticated()) {
       dispatch(loginSuccess());
@@ -246,8 +239,8 @@ export const fetchUserById = (userId) => {
         dispatch(hideLoading());
         dispatch(fetchUserByIdSuccess(res.data))
       })
-      .catch(( {response} ) => {
-       toast.error(response.data.detail);
+      .catch(({ response }) => {
+        toast.error(response.data.detail);
         dispatch(hideLoading());
       })
   }
@@ -296,9 +289,7 @@ export const confirmAccount = (id) => {
   return axiosInstance.get(`/users/confirm/${id}`)
     .then(res => toast.success("Xác thực tài khoản thành công. Hãy đăng nhập ngay"))
     .catch(({ response }) => {
-      if (response.status === 500)
-        toast.error(response.data);
-      else toast.error(response.data.errors.detail)
+      toast.error(response.data.detail)
     })
 }
 
@@ -339,9 +330,7 @@ export const fetchBookingById = (bookingId) => {
       })
       .catch(({ response }) => {
         dispatch(hideLoading());
-        if (response.status === 500)
-          toast.error(response.data);
-        else toast.error(response.data.errors.detail)
+        toast.error(response.data.detail)
       })
   }
 }
@@ -362,9 +351,7 @@ export const createBooking = (booking) => {
       })
       .catch(({ response }) => {
         dispatch(hideLoading());
-        if (response.status === 500)
-          toast.error(response.data);
-        else toast.error(response.data.errors.detail)
+        toast.error(response.data.detail)
       })
   }
 }

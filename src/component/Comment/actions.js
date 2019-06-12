@@ -24,9 +24,8 @@ export const comment = (commentData, rentalId) => {
                 toast.success("Cảm ơn bạn đã đánh giá!")
             })
             .catch(({response}) => {
-                if (response.status === 500)
-                    toast.error(response.data);
-                else toast.error(response.data.errors.detail)
+                console.log(response)
+                toast.error(response.data.detail)
                 dispatch(hideLoading());
             })
     }
@@ -46,10 +45,9 @@ export const getComment = (page, hasMore, rentalId) => {
                 .then(res => {
                     dispatch(getCommentSuccess(res.data))
                 })
-                .catch((response) => {
-                    if (response.status === 500)
-                        toast.error(response.data);
-                    else toast.error(response.data.errors.detail)
+                .catch(({response}) => {
+                    console.log(response)
+                    toast.error(response.data.detail)
                     dispatch(hideLoading());
                 })
         }

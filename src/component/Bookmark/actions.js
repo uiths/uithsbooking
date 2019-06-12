@@ -28,7 +28,6 @@ export const removeBookmark = (rentalId) => {
     return dispatch => {
         axiosInstance.post('/users/removeBookmark',{rentalId})
         .then( res => {
-            console.log(res.data)
             dispatch(addBookmarkSuccess(res.data))
         })
         .catch(({response})=>{
@@ -40,7 +39,6 @@ export const getBookmark = () => {
     return dispatch => {
         axiosInstance.get('/users/getBookmark')
         .then(res =>{
-            console.log(res.data)
             dispatch(addBookmarkSuccess(res.data))
         })
         .catch(({response}) =>{
