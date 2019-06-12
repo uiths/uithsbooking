@@ -60,7 +60,7 @@ class Home extends Component {
 
                     <RentalList />
 
-                    <div id="sub_home02" className="container-fluid mg-top-40">
+                    <div id="sub_home02" className="container-fluid mg-top-40Responsive">
                         <h4 className="text-left title_h3 animated fadeInLeft">Điểm đến hàng đầu</h4>
                         <div className="sub_home02_list">
                             <PlaceItem search="search?key=ha noi" title="Hà Nội" img="../img/img_home/index_region/Ha_noi.png" />

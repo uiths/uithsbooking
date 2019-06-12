@@ -60,7 +60,7 @@ class Search extends Component {
 
                 <React.Fragment>
                     <Link to={`/detail/${suggestion._id}`}>
-                        <span className={'suggestion-content ' + suggestion._id}>
+                        <span onClick={this.props.closeNav} className={'suggestion-content ' + suggestion._id}>
                             <img style={{ maxWidth: "40px", maxHeight: "40px" }} src={suggestion.image[0]}></img>
                             <div className="suggestion-detail">
                                 <p className="suggestion-title">{suggestion.title}</p>
@@ -133,7 +133,7 @@ class Search extends Component {
                         inputProps={inputProps} />
 
                     <Link className="input-group-btn search-input-group-btn" to={`/search?key=${this.state.value}`} >
-                        <button disabled={!value} style={{ width: "50px" }} className="btn">
+                        <button disabled={!value} onClick={this.props.closeNav} style={{ width: "50px" }} className="btn">
                             <i className="fa fa-search" />
                         </button>
                     </Link>

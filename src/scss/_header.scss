@@ -25,7 +25,7 @@
 
 header
 {
-  margin-top: 65px;
+  margin-top: 66px;
 }
 .na-brand{
   width:9.5%;
@@ -71,12 +71,10 @@ header
 .na-sign-in:hover{
     color: #770077;
     text-decoration: none;
-
 }
 .na-sign-in:focus{
   color:#770077;
   text-decoration: none;
-
 }
 
 .na
@@ -99,11 +97,10 @@ header
     margin-right: 10px;
     text-decoration: none;
     border-bottom: 3px solid rgba(245,245,245,0.98) ;
-
-    @media screen and (max-width: 1200px ) {
+    @media screen and (max-width: 1278px ) {
       font-size: 14px;
       text-align: center;
-      margin-right: 20px;
+      margin-right: 8px;
     }
     @media screen and (max-width: 996px ) {
       font-size: 12px;
@@ -119,9 +116,14 @@ header
     @media screen and( min-width: 1600px) {
       font-size: 18px;
     }
-
   }
-  .nav .open>a, .nav .open>a:focus, .nav .open>a:hover{
+  .na-item:focus {
+    background: none!important;
+    border:none;
+    border-bottom: 3px dotted purple !important;
+    outline: none;
+  }
+    .nav .open>a, .nav .open>a:focus, .nav .open>a:hover{
     background: none!important;
   }
   .nav>li>ul>li>a{
@@ -148,11 +150,9 @@ header
       text-decoration: none;
     }
   }
-
   .na-right{
     margin-top: 10px;
     vertical-align: baseline;
-
 
     @media screen and (max-width: 787px) {
       margin-right: auto;
@@ -164,9 +164,10 @@ header
 
   .na-toggle{
     float: left;
-    margin-top: 20px;
+    margin: 0 5px 0 0;
+    border: 2px solid black;
     @media screen and (max-width: 367px ) {
-      margin-top: 15px;
+      margin-top: 2px;
     }
   }
 }
@@ -180,4 +181,50 @@ select option[disabled]:first-child {
   display: none;
 }
 
+@media screen and (max-width: 1278px) {
+  .na-sign-in{
+    font-size: 13px;
+    margin-right: 8px;
+    font-weight: 500;
+  }
+}
+
+@media screen and (max-width: 1092px) {
+  .na-brand{
+    width:11%;
+    margin-left: 0.5%;
+    margin-top: 1%;
+  }
+  .na-sign-in{
+    font-size: 12px;
+    margin-right: 3px;
+    font-weight: 500;
+  }
+}
+@media screen and (max-width: 822px) {
+  .na {
+    .na-item {
+      padding-left: 5px;
+      padding-right: 5px;
+    }
+  }
+}
+@media screen and (max-width: 768px) {
+  .na-brand{
+    width:17% !important;
+    margin-top: 2%;
+  }
+}
+@media screen and (max-width: 500px) {
+  .na-brand{
+    width:25% !important;
+    margin-top: 2%;
+  }
+}
+@media screen and (max-width: 380px) {
+  .na-brand{
+    width:35% !important;
+    margin-top: 2%;
+  }
+}
 

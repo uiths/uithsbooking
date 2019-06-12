@@ -5,7 +5,6 @@ import { connect } from "react-redux";
 import * as actions from 'actions';
 import { fetchTopRentals } from './actions'
 import StarRatingComponent from 'react-star-rating-component';
-import TextTruncate from "react-text-truncate";
 
 function SampleNextArrow(props) {
     const { className, style, onClick } = props
@@ -39,21 +38,11 @@ class RentalList extends Component {
         console.log(rentals)
         return rentals.map((rental, index) => {
             return (
-                <div key={index} className="sub_home_slider_container col-sm-3">
+                <div key={index} className="sub_home_slider_container">
                     <Link className="sub_home_link" to={rental._id ? `/detail/${rental._id}` : '/'}>
                         <img className="sub_home_fix_img" src={rental.image && rental.image[0]} alt="Snow" width="100%" />
-                        <p className="sub_home_text_p" ><TextTruncate
-                            line={1}
-                            truncateText="…"
-                            text={rental.address && rental.address}
-                        /></p>
-                        <h3 className="sub_home_text_h3" ><TextTruncate
-                            line={1}
-                            truncateText="…"
-                            text={rental.title && rental.title}
-                        /></h3>
-                        {/*<p className="sub_home_text_p">{rental.address && rental.address}</p>*/}
-                        {/*<h3 className="sub_home_text_h3">{rental.title && rental.title}</h3>*/}
+                        <p className="sub_home_text_p text-truncate">{rental.address && rental.address}</p>
+                        <h3 className="sub_home_text_h3 text-truncate">{rental.title && rental.title}</h3>
                         <div className="sub_home_text_price">{rental.price && rental.price.toLocaleString()} VNĐ</div>
                         <StarRatingComponent
                             name="rating"
@@ -121,7 +110,7 @@ class RentalList extends Component {
         };
         return (
             <div id="sub_home" className="container-fluid">
-                <div style={{ minHeight: "400px" }} className="sub_home_list mg-top-40">
+                <div style={{ minHeight: "400px" }} className="sub_home_list mg-top-40Responsive">
                     <h4 className="text-left title_h3 animated fadeInLeft">Gợi ý tốt nhất</h4>
                     <div className="sub_home_slider text-center">
                         <Slider {...settings}>
