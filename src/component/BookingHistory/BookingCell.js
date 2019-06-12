@@ -20,9 +20,13 @@ class BookingCell extends Component {
                         {booking.totalPrice && <b>{(", "+booking.totalPrice.toLocaleString()+" VND")}</b>}
                     </div>
                 </div>
-                <div className={`booking-total-price ${booking.status.toLowerCase()}` }>
-                    {booking.status === 'pending' && (<p>Chưa thanh toán</p>)}
-                    {booking.status === 'paid' && (<p>Chưa thanh toán</p>)}
+                <div className={`rental-total-price`}>
+                    {
+                        booking.status === 'pending' && <button className="status-btn pending-status">Chưa thanh toán</button>}{
+                        booking.status.toLowerCase() === 'paid' && <button className="status-btn approved-status">Đã thanh toán</button>}{
+                        rental.status === 'forbid' && <button className="status-btn forbid-status">Đã xóa</button>
+
+                    }
                 </div>
             </div>
         );

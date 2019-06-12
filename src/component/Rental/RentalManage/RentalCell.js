@@ -35,12 +35,6 @@ class RentalCell extends Component {
                         rental.status === 'forbid' && <button className="status-btn forbid-status">Đã xóa</button>
 
                     }
-                    {/* {rental.price && (<p>{rental.price.toLocaleString() + " đồng"}</p>)} */}
-                    {/* {rental.rating >=0 && <StarRatingComponent
-                        name="rating"
-                        starCount={5}
-                        value={rental.rating}
-                    />} */}
                 </div>
             </div>
         );
