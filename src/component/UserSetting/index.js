@@ -45,7 +45,7 @@ class userSetting extends Component {
     user = Object.assign(user, { dateOfBirth: dateOfBirth })
     user = _.omit(user, ['bookings', 'rentals', 'searchHistory', 'role', 'isVerified', 'status'])
     return (
-      <div className="container" style={{ marginTop: "50px" }}>
+      <div id="user-setting-container" className="container" style={{ marginTop: "50px" }}>
         <ToastContainer />
         <div className="user">
           <Tabs defaultTab="basic-tab-one">

@@ -20,9 +20,10 @@ const sortByOrders = (data) => {
 }
 export const getCustomerBookings = (req, res) => {
     return dispatch => {
+        dispatch(showLoading())
         axiosInstance.get('/bookings/getCustomerBookings')
         .then(res => {
-            dispatch(showLoading())
+            dispatch(hideLoading())
             dispatch(fetchCustomersBookingsSuccess(res.data))
         })
         .catch(({response}) =>{
