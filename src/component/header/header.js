@@ -95,8 +95,6 @@ class Header extends Component {
                             <div className="container-fluid">
                                 <div className="row">
                                     <Link className="na-brand f-left " to="/"><img src="/img/index_icon_range.png" width="100%" alt={"header"} /></Link>
-
-
                                     <div className="collapse navbar-collapse na-right f-left mg-left-2per" id="myNavbar">
                                         <ul className="nav navbar-nav ">
                                             <li> </li>
@@ -122,11 +120,14 @@ class Header extends Component {
                                     <div className="navbar-right mg-top-10">
                                         {isAuth &&
                                             <span className="dropdown"><img className="navbar-right-img" alt="avatar" src={image} />
-                                                <a className="na-item dropdown-toggle" data-toggle="dropdown" href="#"> {username}<span className="caret" /></a>
+                                                <a className="na-item dropdown-toggle na-toggle-l" data-toggle="dropdown" href="#"> {username}<span className="caret" /></a>
+                                                <a className="na-item dropdown-toggle na-toggle-p" data-toggle="dropdown" href="#"><span className="caret" /></a>
                                                 <ul className="dropdown-menu">
                                                     <li><Link to="/user">TRANG CÁ NHÂN</Link></li>
+                                                    <li><Link to="/bookmark">DANH SÁCH ƯA THÍCH</Link></li>                                                    
                                                     <li><Link to="/history">DANH SÁCH NHÀ ĐẴ ĐẶT</Link></li>
                                                     <li><Link to="/rental/manage">DANH SÁCH NHÀ CHO THUÊ</Link></li>
+                                                    <li><Link to="/customer_booking">DANH SÁCH ĐƯỢC THUÊ</Link></li>                                                    
                                                     <li><Link to="/create_rent">CHO THUÊ NHÀ</Link></li>
                                                     <hr />
                                                     <li> <button onClick={this.handleLogout}> ĐĂNG XUẤT</button></li>
@@ -141,7 +142,6 @@ class Header extends Component {
                                             onClick={this.closeNav}>&times;</button>
                                         <Link onClick={this.closeNav} className="sidenav-item " to="/booking_home">ĐẶT NHÀ</Link>
                                         <Link onClick={this.closeNav} className="sidenav-item" to="/blog">BLOG CHIA SẺ</Link>
-
                                         <Link onClick={this.closeNav} className="sidenav-item" to="/contact">LIÊN HỆ</Link>
                                         {this.renderAuthButtonSideNav(isAuth)}
                                         <div className="sidenav-search">

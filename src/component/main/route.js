@@ -37,6 +37,7 @@ import BlogDetail from 'component/Blog/BlogDetail'
 // import EditProfile from 'component/EditProfile'
 import RentalManage from 'component/Rental/RentalManage'
 import Bookmark from 'component/Bookmark'
+import CustomerBookings from 'component/CustomerBookings'
 class Routerr extends Component {
     render() {
         return (
@@ -73,7 +74,7 @@ class Routerr extends Component {
                 <ProtectedRoute path="/blog_review" component={BlogReview}/>
                 <Route path='/blog' component={Blog}/>
                 <Route path='/blog_detail/:id' component={BlogDetail}/>
-
+                <ProtectedRoute path='/customer_booking' component={CustomerBookings}/>
                 <ProtectedRoute path="/bookmark" component={Bookmark}/>
             </div>
         );

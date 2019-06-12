@@ -16,8 +16,10 @@ class BookmarkCell extends Component {
                         {bookmark.address && bookmark.address}
                     </div>
                 </div>
-                <div className={`bookmark-total-price` }>
-                    {bookmark.price && (<p>{bookmark.price.toLocaleString()+" đồng"}</p>)}
+                <div className={`rental-total-price`}>
+                    {
+                        bookmark.price && <button className="status-btn approved-status">{bookmark.price.toLocaleString()+" đồng"}</button>}{
+                    }
                 </div>
             </div>
         );

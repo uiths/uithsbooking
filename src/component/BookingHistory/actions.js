@@ -48,5 +48,4 @@ export const sortBy = (array, sort) => {
                 return dispatch(sortByOrders(data))
         }
     }
-
 }

@@ -348,7 +348,9 @@ header {
     display: none;
   }
 }
-
+.na-toggle-p{
+  display: none;
+}
 @media screen and (max-height: 450px) {
   .sidenav {
     padding-top: 15px;
@@ -356,4 +358,25 @@ header {
       font-size: 18px;
     }
   }
+ 
+}
+@media screen and (max-width: 450px) {
+  .na-toggle-p {
+    display: inline-block;
+  }
+  .na-toggle-l {
+    display: none;
+  }
+  .f-right {
+    margin-top: 7px;
+  }
+  .navbar-right {
+    margin-right: 100px;
+  }
+}
+.na-toggle {
+  border: none !important;
+}
+.f-right {
+  margin-top: 6px;
 }

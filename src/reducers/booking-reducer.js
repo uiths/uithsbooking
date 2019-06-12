@@ -7,7 +7,9 @@ import {
   DELETE_BOOKING_SUCCESS,
   DELETE_BOOKING_FAILURE,
   FETCH_BOOKING_BY_ID_SUCCESS,
-  SORT_BY_BOOKINGS
+  SORT_BY_BOOKINGS,
+  FETCH_CUSTOMER_BOOKINGS_SUCCESS,
+  SORT_BY_CUSTOMER_BOOKINGS
 } from 'actions/types';
 import { RESET_BOOKING_STATE} from '../actions/types';
 
@@ -15,6 +17,7 @@ const INITIAL_STATE = {
   data: [],
   booking: [],
   errors: [],
+  customerBookings: [],
   isFetching: false,
   isSuccess: false,
   isDeleted: false
@@ -42,6 +45,11 @@ export const userBookingsReducer = (state = INITIAL_STATE, action) => {
       return { ...state, booking: action.data }
     case SORT_BY_BOOKINGS:
       return {...state, data: action.data }
+    case FETCH_CUSTOMER_BOOKINGS_SUCCESS:
+      return {...state, customerBookings: action.data}
+    case SORT_BY_CUSTOMER_BOOKINGS:
+      console.log(action.data)
+      return {...state, customerBookings :action.data}
     default:
       return state;
   }

@@ -7,7 +7,7 @@ import _ from 'lodash'
 import {sortBy} from './actions'
 import './style.scss'
 class BookingHistory extends Component {
-    componentWillMount() {
+    componentDidMount() {
         if (_.isEmpty(this.props.userBookings))
             this.props.fetchUserBookings();
     }
@@ -32,9 +32,8 @@ class BookingHistory extends Component {
 
                     <div className="booking-history-content">
                         {
-
-                            this.props.userBookings.map(i =>
-                                <Link to={`/booking/${i._id}`}>
+                            this.props.userBookings.map((i,index) =>
+                                <Link key={index} to={`/booking/${i._id}`}>
                                     <BookingCell booking={i} />
                                 </Link>
                             )
