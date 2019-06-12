@@ -23,6 +23,7 @@
     }
 }
 .rental-cell-container {
+    width: 100%;
     display: flex;
     align-items: center;
     border-bottom: 1px solid #e5e5e5;
@@ -57,4 +58,30 @@
 }
 .user-rental-page {
     min-height: calc(100vh - 40px)
+}
+.status-btn {
+    font-size: 10px !important;
+    cursor: pointer;
+    -webkit-appearance: button;
+    background-color: initial;
+    background-image: none;
+    font-weight: 400;
+    border: 1px solid;
+    padding: .5625rem 1rem;
+    font-size: .75rem;
+    line-height: 1.125;
+    border-radius: .25rem;
+    
+}
+.approved-status{
+    border-color: #17c671;
+    color: #17c671;
+}
+.pending-status {
+    border-color: #ffb400;
+    color: #ffb400;
+}
+.forbid-status {
+    border-color: #c4183c;
+    color: #c4183c;
 }

@@ -1,5 +1,4 @@
 import React from 'react';
-import Carousel from 'nuka-carousel';
 import { VariableWidth } from '../rental-detail/RentalSlide'
 function afterSlide(currentSlide) {
     const list = window.document.querySelector('.slider-list');

@@ -6,10 +6,8 @@ import UserAvatar from './user-avatar';
 import * as actions from 'actions'
 import { connect } from 'react-redux'
 import ChangNewPass from 'component/ChangeNewPass'
-// import UserContentForm from './OLD-user-content-form'
 import _ from 'lodash'
 import EditProfile from 'component/UserSetting/EditProfile'
-import "react-notifications-component/dist/theme.css";
 import { isEmpty } from 'helpers/index'
 import { updateUserInfo, uploadAvatar, uploadOldAvatar } from './actions'
 import moment from 'moment';

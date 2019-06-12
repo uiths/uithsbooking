@@ -5,8 +5,6 @@ import { Redirect } from 'react-router-dom';
 import * as actions from 'actions';
 import {editRental} from './actions'
 import { connect } from 'react-redux'
-import ReactNotification from "react-notifications-component";
-import "react-notifications-component/dist/theme.css";
 import './style.scss'
 
 // import {rentalCreateForm} from './RentalCreateForm'
@@ -19,7 +17,6 @@ class RentalEdit extends Component {
             images: [],
             rental: {}
         }
-        this.notificationDOMRef = React.createRef();
 
     }
     handleClick = (rentalData) => {
@@ -35,22 +32,10 @@ class RentalEdit extends Component {
             })
         }
     }
-    componentWillMount() {
+    componentDidMount() {
         window.scrollTo(0, 0);
         if (this.props.location.state)
             this.state.rental = this.props.location.state.rental;
-    }
-    addNotification = (message, type) => {
-        this.notificationDOMRef.current.addNotification({
-            message,
-            type,
-            insert: "top",
-            container: "top-right",
-            animationIn: ["animated", "fadeIn"],
-            animationOut: ["animated", "fadeOut"],
-            dismiss: { duration: 4000 },
-            dismissable: { click: true }
-        });
     }
     // componentDidUpdate() {
     //     if (this.props.rental.isUpdated) {
@@ -71,7 +56,6 @@ class RentalEdit extends Component {
         return (
             <div>
                 <div className="container">
-                    <ReactNotification ref={this.notificationDOMRef} />
                     <div id="create-rent" className=" text-left ">
                         <h3 className="title_h3 type1 animated fadeInLeft">Cho thuê nhà</h3>
                         <br />

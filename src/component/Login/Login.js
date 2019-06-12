@@ -13,6 +13,9 @@ class Login extends Component {
             errors: []
         }
     }
+    componentDidMount(){
+        window.scrollTo({top:18,behavior: 'smooth'})
+    }
     loginUser = (userData) => {
         this.props.login(userData);
     }

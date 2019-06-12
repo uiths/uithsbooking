@@ -1,6 +1,5 @@
 import React from 'react';
 import { Link } from "react-router-dom";
-import TextTruncate from 'react-text-truncate';
 import BookmarkButton from 'component/Bookmark/BookmarkButton'
 import StarRatingComponent from 'react-star-rating-component';
 import './_style.scss'
