@@ -11,6 +11,7 @@ import {sortBy} from './actions'
 class RentalManage extends Component {
 
     componentDidMount() {
+        window.scrollTo(0, 0);
         this.props.fetchUserRentals()
     }
     sortBy = (e) => {

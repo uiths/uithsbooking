@@ -7,9 +7,9 @@ import {Link} from 'react-router-dom'
 import {ToastContainer} from 'react-toastify' 
 
 class BookmarkPage extends Component {
-	// componentDidMount() {
-	// 	this.props.getBookmark();
-	// }
+	componentDidMount() {
+		window.scrollTo(0,0)
+	}
 	render() {
 		const bookmark = this.props.bookmark || []
 		return (

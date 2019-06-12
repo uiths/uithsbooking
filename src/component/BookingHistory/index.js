@@ -8,6 +8,7 @@ import {sortBy} from './actions'
 import './style.scss'
 class BookingHistory extends Component {
     componentDidMount() {
+        window.scrollTo(0,0)
         if (_.isEmpty(this.props.userBookings))
             this.props.fetchUserBookings();
     }

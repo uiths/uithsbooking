@@ -20,7 +20,7 @@ export const uploadAvatar = (file) => {
         dispatch(hideLoading())
         dispatch(uploadSuccess(res.data))
         dispatch(reset('editAvatarForm'))
-
+        toast.success('Đăng ảnh lên thành công')
       })
       .catch(({ response }) => {
         dispatch(hideLoading())

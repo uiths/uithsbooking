@@ -11,9 +11,7 @@ class User2 extends Component {
     render() {
         return (
             <div>
-                <div className="bg1">
-                        <img src="/img/bg.jpg" alt="bg" />
-                </div>
+              
                 <div className="container" style={{marginTop:"100px",marginBottom:"50px"}}>
                     <div className="dbox3">
                         <div className="row">
