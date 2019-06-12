@@ -3,24 +3,44 @@ import ReactCrop from 'react-image-crop';
 import { Button } from 'react-bootstrap';
 import PropTypes from 'prop-types';
 import 'react-image-crop/dist/ReactCrop.css';
-import './style.scss'
+
 class ImageCropForm extends Component {
   constructor(props) {
     super(props);
 
+    const crop = props.freeSelect ? {
+      width: 100,
+      height: 100,
+      x: 0,
+      y: 0
+    } : {
+      aspect: 1,
+      width: 50,
+      x: 0,
+      y: 0
+    }
+
     this.state = {
       src: props.src,
       croppedImageUrl: null,
-      crop: {
-        aspect: this.props.aspect || 1.8,
-        width: 100,
-        x: 0,
-        y: 0
-      }
+      crop
     };
+  }
+  componentWillReceiveProps(newProp) {
+    if (newProp.freeSelect) {
+      this.setState({
+        crop: {
+          width: 100,
+          height: 100,
+          x: 0,
+          y: 0
+        }
+      });
+    }
   }
   onImageLoaded = (image) => {
     this.imageRef = image;
+    this.setState({ croppedImageUrl: image.src});
   }
   onCropComplete = async(crop, pixelCrop) => {
     await this.makeClientCrop(crop, pixelCrop);
@@ -63,7 +83,7 @@ class ImageCropForm extends Component {
     });
   }
   render() {
-    const { crop, croppedImageUrl, src } = this.state;
+    const { crop, src } = this.state;
     return (
       <Fragment>
         {src && (
@@ -71,6 +91,8 @@ class ImageCropForm extends Component {
             src={src}
             crop={crop}
             keepSelection={true}
+            minWidth={1}
+            minHeight={1}
             onImageLoaded={this.onImageLoaded}
             onComplete={this.onCropComplete}
             onChange={this.onCropChange} />
@@ -80,18 +102,10 @@ class ImageCropForm extends Component {
             <Button
               onClick={this.handleCompleted}
               className="btn-fw-96"
-              bsstyle="primary"
+              bsStyle="primary"
               // disabled={!croppedImageUrl ? true : false}
             >
               Crop
-            </Button>
-            <Button
-              onClick={this.props.onClose}
-              className="btn-close"
-              bsstyle="primary"
-              // disabled={!croppedImageUrl ? true : false}
-            >
-              Close
             </Button>
           </div>
         )}

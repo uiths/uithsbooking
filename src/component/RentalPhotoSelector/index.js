@@ -133,6 +133,7 @@ class RentalPhotoSelector extends Component {
                             {
                                 this.state.imageForCrop ?
                                     <ImageCropForm
+                                    freeSelect={true}
                                         onCompleted={this.handleCompleted}
                                         src={this.state.imageForCrop} />
                                     :
