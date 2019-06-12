@@ -44,7 +44,7 @@ class RentalList extends Component {
     }
     render() {
         const settings = {
-            slidesToShow: 4,
+            slidesToShow: 5,
             slidesToScroll: 1,
             dots: true,
             autoplay: true,

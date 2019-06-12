@@ -4,6 +4,7 @@ import BookmarkButton from 'component/Bookmark/BookmarkButton'
 import StarRatingComponent from 'react-star-rating-component';
 export function RentalCard(props) {
   const rental = props.rental || [];
+
   return (
     <div className="sub_home_slider_container">
       <BookmarkButton bookmark={props.bookmark} rentalId={rental._id} />

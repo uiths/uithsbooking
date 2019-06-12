@@ -1017,8 +1017,6 @@ LEVEL 4. SETTINGS
 
 .title_h3 {
   font-size: 35px;
-  margin: 0;
-  margin-bottom: 20px;
   font-weight: 600;
   display: inline-block;
   color: #000000; }
@@ -1506,10 +1504,6 @@ LEVEL 4. SETTINGS
 
 #sub_home {
   padding-bottom: 40px; }
-  .sub_home_list .sub_home_slider_container 
-  {
-    width: 100% !important;
-  }
   #sub_home .sub_home_slider {
     min-height: 400px; }
     #sub_home .sub_home_slider .slick-prev:before {
@@ -1522,6 +1516,8 @@ LEVEL 4. SETTINGS
       margin-left: -25px;
       font-size: 40px;
       line-height: 0; }
+    #sub_home .sub_home_slider .sub_home_slider_container {
+      width: 100%; }
   #sub_home .sub_home_slider_container {
     position: relative;
     text-align: left;
@@ -1559,6 +1555,8 @@ LEVEL 4. SETTINGS
       opacity: 1;
       border-radius: 5px;
       margin-bottom: 10px; }
+    #sub_home .sub_home_slider_container .sub_home_fix_img {
+      height: 198.375px; }
   #sub_home .sub_home_slider_container:hover {
     box-shadow: 0 7px 14px rgba(0, 0, 0, 0.25), 0 5px 5px rgba(0, 0, 0, 0.22); }
   #sub_home .sub_home_slider_container_list_rent .sub_home_image_link {
@@ -1680,6 +1678,18 @@ LEVEL 4. SETTINGS
 
   #sub_home .sub_home_slider_container {
     width: 100%; } }
+@media screen and (max-width: 1199px) {
+  #sub_home .sub_home_slider_container .sub_home_fix_img {
+    height: 160.875px; } }
+@media screen and (max-width: 991px) {
+  #sub_home .sub_home_slider_container .sub_home_fix_img {
+    height: 119.625px; } }
+@media screen and (max-width: 767px) {
+  #sub_home .sub_home_slider_container .sub_home_fix_img {
+    height: 132.26px; } }
+@media screen and (max-width: 464px) {
+  #sub_home .sub_home_slider_container .sub_home_fix_img {
+    height: 204.383px; } }
 #contact {
   z-index: -20;
   padding-bottom: 20px; }
@@ -1765,3 +1775,5 @@ LEVEL 4. SETTINGS
 
 .react-datepicker-wrapper, .react-datepicker__input-container {
   display: block !important; }
+
+/*# sourceMappingURL=App.css.map */
