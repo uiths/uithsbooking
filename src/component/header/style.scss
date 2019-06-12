@@ -207,7 +207,7 @@ header {
   height: 100%; /* 100% Full-height */
   width: 0; /* 0 width - change this with JavaScript */
   position: fixed; /* Stay in place */
-  z-index: 1; /* Stay on top */
+  z-index: 2; /* Stay on top */
   top: 0; /* Stay at the top */
   left: 0;
   background-color: #111; /* Black*/
@@ -245,8 +245,23 @@ header {
 }
 .na-auth-btn-sidenav{
   text-align: center;
+  hr{
+    border-color: #4d4d4d;
+  }
   a{
     color: grey;
+    text-decoration: none;
+    font-size: 20px;
+    @media screen and (max-width: 450px) {
+      font-size: 16px;
+    }
+  }
+  a:hover{
+    color: #f1f1f1;
+  }
+  span{
+    margin-right: 5px;
+    margin-left: 5px;
   }
 }
 
@@ -260,7 +275,7 @@ header {
 
 }
 
-@media only screen and (max-width: 767px) {
+@media only screen and (max-width: 768px) {
   .na-search{
     display: none;
   }
@@ -317,12 +332,10 @@ header {
     /* display: inline; */
     float: left;
   }
-
   .nav-right {
     float: right;
     display: inline;
   }
-
   .nav-menu {
     display: inline;
     float: right;
@@ -331,22 +344,16 @@ header {
     cursor: pointer;
     margin: 6px 0;
   }
-
-
-
   .na-auth-btn{
     display: none;
   }
 }
 
-
 @media screen and (max-height: 450px) {
   .sidenav {
     padding-top: 15px;
-
     .sidenav-item{
       font-size: 18px;
     }
   }
-
 }

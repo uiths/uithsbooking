@@ -57,6 +57,7 @@ class Header extends Component {
         return (
             <React.Fragment>
                 <div className="na-auth-btn-sidenav">
+                    <hr />
                     <Link onClick={this.closeNav} className="" to="/login"><i className="fa fa-user" /> ĐĂNG NHẬP</Link>
                     <span >/</span>
                     <Link onClick={this.closeNav} className="" to="/register"> <i className="fa fa-key" /> ĐĂNG KÝ</Link>
@@ -142,12 +143,9 @@ class Header extends Component {
                                         <Link onClick={this.closeNav} className="sidenav-item" to="/blog">BLOG CHIA SẺ</Link>
 
                                         <Link onClick={this.closeNav} className="sidenav-item" to="/contact">LIÊN HỆ</Link>
-                                        <hr />
-
                                         {this.renderAuthButtonSideNav(isAuth)}
-
                                         <div className="sidenav-search">
-                                            <Search closeNav={this.closeNav} data={data} />
+                                        <Search closeNav={this.closeNav} data={data} />
                                         </div>
                                     </div>
 

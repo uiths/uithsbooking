@@ -97,7 +97,7 @@ class RentalList extends Component {
         };
         return (
             <div id="sub_home" className="container-fluid">
-                <div style={{ minHeight: "400px" }} className="sub_home_list mg-top-40">
+                <div style={{ minHeight: "400px" }} className="sub_home_list mg-top-40Responsive">
                     <h4 className="text-left title_h3 animated fadeInLeft">Gợi ý tốt nhất</h4>
                     <div className="sub_home_slider text-center">
                         <Slider {...settings}>

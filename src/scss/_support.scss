@@ -20,6 +20,12 @@ $color1: #566473;
 .mg-top-40{
   margin-top:40px;
 }
+.mg-top-40Responsive{
+  margin-top:40px;
+  @media screen and( max-width: 768px) {
+    margin-top:15px;
+  }
+}
 
 .mg-top-80{
   margin-top:80px;
@@ -82,4 +88,10 @@ $color1: #566473;
 //rating
 .dv-star-rating-star i{
   font-size: 18px!important;
+}
+.text-truncate{
+  width: 100%;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
