@@ -6,7 +6,7 @@ const axiosInstance = axiosService.getInstance();
 export const POST_COMMENT_SUCCESS = "POST_COMMENT_SUCCESS"
 export const GET_COMMENT_SUCCESS = "GET_COMMENT_SUCCESS"
 export const REMOVE_COMMENT = "REMOVE_COMMENT"
-
+export const REMOVE_COMMENT_SUCCESS = 'REMOVE_COMMENT_SUCCESS'
 const commentSuccess = (comment) => {
     return {
         type: 'POST_COMMENT_SUCCESS',
@@ -24,7 +24,6 @@ export const comment = (commentData, rentalId) => {
                 toast.success("Cảm ơn bạn đã đánh giá!")
             })
             .catch(({response}) => {
-                console.log(response)
                 toast.error(response.data.detail)
                 dispatch(hideLoading());
             })
@@ -51,6 +50,25 @@ export const getComment = (page, hasMore, rentalId) => {
                     dispatch(hideLoading());
                 })
         }
+    }
+}
+const removeOneCommentSuccess = (id) => {
+    return {
+        type: REMOVE_COMMENT_SUCCESS,
+        id
+    }
+}
+export const removeOneComment = (cmtId) => {
+    console.log(cmtId)
+    return dispatch => {
+        axiosInstance.delete(`/comments/${cmtId}`)
+        .then(res => {
+            toast.success(res.data.detail)
+            dispatch(removeOneCommentSuccess(cmtId))
+        })
+        .catch(({response}) =>{
+            console.log(response)
+        })
     }
 }
 

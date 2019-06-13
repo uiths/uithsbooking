@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import ReactDOM from 'react-dom'
 import "./style.scss"
-import { getComment, removeComment } from 'component/Comment/actions'
+import { getComment, removeComment,removeOneComment } from 'component/Comment/actions'
 import { connect } from "react-redux";
 import _ from "lodash"
 import moment from 'moment'
@@ -26,10 +26,11 @@ class CommentDisplay extends Component {
         this.props.removeComment();
     }
     render() {
+        const currentUserId = (this.props.user.data && this.props.user.data._id) || ''
         const commentList = this.props.commentList;
         return (
             <div id="comment-display" >
-                <ToastContainer/>
+                <ToastContainer />
                 <div className="comment-header">
                     Đánh giá của khách hàng
                     </div>
@@ -42,13 +43,20 @@ class CommentDisplay extends Component {
                                         <img src={i.user.image}></img>
                                     </div>
                                     <div className="comment-content">
+                                        {
+                                            _.isEqual(i.user._id,currentUserId) && 
+                                            <button onClick={()=> this.props.removeOneComment(i._id)}className="delete-cmt-btn">Xóa</button>
+                                        }
                                         <div className="content-container">
+                                            <div className="name-star-container">
+                                                <div className="user-comment-name">{i.user.username}</div>
+                                                <StarRatingComponent
+                                                    name="rating"
+                                                    starCount={5}
+                                                    value={i.rating}
+                                                />
+                                            </div>
                                             {i.comment && i.comment}
-                                            <StarRatingComponent
-                                                name="rating"
-                                                starCount={5}
-                                                value={i.rating}
-                                            />
                                         </div>
                                         <div className="comment-time">
                                             {moment(i.createdAt).fromNow()}
@@ -66,12 +74,14 @@ const mapStateToProps = state => {
         commentList: state.comment.commentList,
         page: state.comment.page,
         hasMore: state.comment.hasMore,
+        user: state.users
     };
 };
 
 const mapDispatchToProps = (dispatch) => ({
     getComment: (page, hasMore, rentalId) => dispatch(getComment(page, hasMore, rentalId)),
-    removeComment: () => dispatch(removeComment())
+    removeComment: () => dispatch(removeComment()),
+    removeOneComment: (id) => dispatch(removeOneComment(id))
 })
 
 export default connect(mapStateToProps, mapDispatchToProps)(CommentDisplay);

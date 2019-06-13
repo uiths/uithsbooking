@@ -22,7 +22,7 @@ class BlogDetail extends Component {
             <div className="content-container" style={{width:"100%"}} dangerouslySetInnerHTML={{ __html: blog.content }}></div>
             <div className="pt-5">
               <p>Categories: <a href="#">Food</a>, <a href="#">Travel</a> Tags: <a
-                href="#">#manila</a>, <a href="#">#asia</a></p>
+                href="#">#dalat</a>, <a href="#">#dulich</a></p>
             </div>
           </div>
           <div className="mg-top-80">

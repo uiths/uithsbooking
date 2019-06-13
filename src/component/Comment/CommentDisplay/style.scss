@@ -38,28 +38,47 @@
         .comment-cell {
             align-items: center;
             display: flex;
-            padding-top: 8px;
             border-bottom: 1px solid #e5e5e5;
             .user-avatar{
                 align-self: normal;
-                padding: 8px 16px 8px 8px;
+                padding: 8px 16px 8px 0px;
             }
             img {
                 border-radius: 50%;
-                width: 48px;
-                height: 48px;
+                width: 40px;
+                height: 40px;
             }
             .comment-content {
+                position: relative;
                 display: flex;
             width: 100%;
             font-family: $fontFamily;
             font-size: 14px;
             color:#53525a;
             padding-bottom: 8px;
-            padding-top:8px;
+            .delete-cmt-btn {
+                position: absolute;
+                bottom: 4px;
+                right: 0;
+                background-color: white;
+                border: 1px solid #c4183c;
+                padding: 3px;
+                font-size: 12px;
+                line-height: 1.5;
+                border-radius: .25rem;
+                color: #c4183c;
+            }
             .content-container {
                 display: flex;
                 flex-direction: column;
+                .name-star-container {
+                    display: flex;
+                    .user-comment-name {
+                        font-weight: 600;
+                        margin-top:3px;
+                        margin-right: 5px;
+                    }
+                }
             }
             .dv-star-rating{
                 display: block !important;

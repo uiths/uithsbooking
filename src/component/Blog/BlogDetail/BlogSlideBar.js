@@ -3,11 +3,6 @@ import { BrowserRouter as Router, Link, withRouter } from "react-router-dom";
 import ".././_style_blog.scss"
 
 class BlogSlideBar extends Component {
-    constructor(props) {
-        super(props);
-    }
-
-
     render() {
         return (
             <div className="col-md-12 col-lg-4 sidebar">

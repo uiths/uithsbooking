@@ -1,8 +1,9 @@
 import React, { Fragment, Component } from 'react';
 import { connect } from 'react-redux'
-import NormalRentalCard from './NormalRentalCard'
+import RentalCard from 'component/RentalCard'
 import { Link } from "react-router-dom";
 import * as actions from 'actions'
+import _ from 'lodash'
 import {handleString} from 'helpers/index'
 class Search extends Component {
     constructor(props) {
@@ -14,13 +15,13 @@ class Search extends Component {
     renderRentals() {
         return this.state.rentals.map((rental, index) => {
             return (
-                <NormalRentalCard key={index} rental={rental} />
+                <RentalCard key={index} rental={rental} />
             )
         })
     }
     componentWillMount() {
         window.scrollTo(0, 0)
-        if (this.props.rentals.data.length === 0)
+        if (_.isEmpty(this.props.rentals.data))
             this.props.dispatch(actions.fetchRentals());
         else {
             const params = new URLSearchParams(this.props.location.search);
@@ -35,7 +36,7 @@ class Search extends Component {
     }
     componentWillReceiveProps(nextProps) {
         const params = new URLSearchParams(nextProps.location.search);
-        const key = params.get('key');
+        const key = handleString(params.get('key'));
         const result = nextProps.rentals.data.filter(i =>
             handleString(i.title).includes(key) ||
             handleString(i.city).includes(key) ||
