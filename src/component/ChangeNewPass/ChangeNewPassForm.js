@@ -39,13 +39,7 @@ const newPassForm = props => {
         </div>
 
         <button className='b b1 center_button' type="submit" disabled={!valid || pristine || submitting}>
-          {submitting ?
-            <span>
-              <i className="fa fa-spin fa-spinner" /> Đang gửi...
-                        </span>
-            :
-            <span>Gửi</span>
-          }
+          Gửi
         </button>
 
       </form>
@@ -55,5 +49,5 @@ const newPassForm = props => {
 
 export default reduxForm({
   form: 'newPassForm',
-  //  validate
+  validate
 })(newPassForm)

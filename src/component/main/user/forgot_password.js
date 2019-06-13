@@ -3,7 +3,7 @@ import ForgotPass from './forgot_pass_form';
 import { connect } from 'react-redux';
 import * as actions from 'actions';
 import { stopSubmit, startSubmit } from "redux-form";
-
+import {ToastContainer} from 'react-toastify'
 class ForgotPassword extends Component {
     constructor() {
         super();
@@ -21,6 +21,7 @@ class ForgotPassword extends Component {
         // const sendSuccess = this.props.location.state || false;
         return (
             <div className="container">
+                <ToastContainer/>
                 <div>
                     <h3>Quên mật khẩu</h3>
                 </div>
@@ -32,13 +33,13 @@ class ForgotPassword extends Component {
                     <div>
                         <p>Nhập email để chúng tôi có thể gửi thư xác nhận và giúp bạn khôi phục lại mật
                             khẩu</p>
-                            { 
+                            {/* { 
                                 isSend &&
                                 <div className='boxtrue'>
                                     <p>Hãy kiểm tra email của bạn</p>
                                 </div>
-                            }
-                        <ForgotPass submitCb={this.sendMail} errors={errors}  />
+                            } */}
+                        <ForgotPass submitCb={this.sendMail}/>
 
                         {/* <div className="form-group">
                             <label htmlFor="email">Nhập lại email:</label>

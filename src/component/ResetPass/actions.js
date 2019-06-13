@@ -1,7 +1,7 @@
 import axiosService from 'services/axios-service';
 // import { showLoading, hideLoading } from 'react-redux-loading-bar';
-import {startSubmit, stopSubmit} from 'redux-form';
 import { toast } from "react-toastify";
+import {showLoading, hideLoading} from 'react-redux-loading-bar'
 import {RESET_PASSWORD_SUCCESS} from 'actions/types'
 const axiosInstance = axiosService.getInstance();
 export const resetSuccess = () => {
@@ -12,15 +12,14 @@ export const resetSuccess = () => {
 
 export const resetPass = (userData, id) => {
 	return (dispatch) => {
-		dispatch(startSubmit('forgotForm'))
+		dispatch(showLoading())
 		return axiosInstance.post(`/users/reset/${id}`, userData)
 			.then(() => {
-				dispatch(stopSubmit('forgotForm'))
-				dispatch(resetSuccess())
-				toast.success('Tha đổi mật khẩu thành công')
+				dispatch(hideLoading())
+				toast.success('Thay đổi mật khẩu thành công')
 			})
 			.catch(({response}) => {
-				dispatch(stopSubmit('forgotForm'))
+				dispatch(hideLoading())
 				toast.error(response.data.detail)
 			})
 	}

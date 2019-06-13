@@ -39,13 +39,7 @@ const LoginForm = props => {
           component={Captcha}
         />}
         <button type="submit" className="b b1 center_button" disabled={!valid || pristine || submitting}>
-        {submitting ?
-          <span>
-            <i className="fa fa-spin fa-spinner"/> Đang đăng nhập...
-          </span>
-          :
-          <span>Đăng nhập</span>
-        }
+        Đăng nhập
       </button>
         {}
         <br />

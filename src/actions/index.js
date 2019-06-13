@@ -227,29 +227,17 @@ export const logout = () => {
     type: LOGOUT
   }
 }
-const sendMailFailure = (errors) => {
-  return {
-    type: SEND_MAIL_FAILURE,
-    errors
-  }
-}
-
-const sendMailSuccess = () => {
-  return {
-    type: SEND_MAIL_SUCCESS
-  }
-}
 export const sendMail = (email) => {
   return dispatch => {
-    dispatch(startSubmit('forgotForm'))
+    dispatch(showLoading())
     return axiosInstance.post('/users/forgotpass', email)
       .then(response => {
-        dispatch(sendMailSuccess())
-        dispatch(stopSubmit('forgotForm'))
+        toast.success('Hãy kiểm tra email của bạn')
+        dispatch(hideLoading())
       })
       .catch(({ response }) => {
-        dispatch(sendMailFailure(response.data.detail))
-        dispatch(stopSubmit('forgotForm'))
+        toast.error(response.data.detail)
+        dispatch(hideLoading())
       })
   }
 }
