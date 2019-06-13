@@ -11,7 +11,7 @@ class Blog extends Component {
     render() {
         console.log(this.props.blogList)
         return (
-            // <div id="blog-container">
+            <div id="blog-container">
                 <div className="container list-rentals-container">
                     <h3 className="text-left title_h3 type1 animated fadeInLeft mg-top-20">Blog chia sẻ</h3>
                     <div className="row blog-entries mg-top-20">
@@ -27,7 +27,7 @@ class Blog extends Component {
                         <BlogSlideBar />
                     </div>
                 </div>
-            // </div>
+             </div>
         );
     }
 }
