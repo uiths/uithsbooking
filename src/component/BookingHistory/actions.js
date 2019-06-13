@@ -30,9 +30,7 @@ export const fetchUserBookings = () => {
             })
             .catch(({ response }) => {
                 dispatch(hideLoading());
-                if (response.status === 500)
-                    toast.error(response.data);
-                else toast.error(response.data.errors.detail)
+                toast.error(response.data.detail)
             })
     }
 }

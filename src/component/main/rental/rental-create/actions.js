@@ -20,9 +20,8 @@ export const createRental = (rentalData) => {
                 toast.success('Tạo thành công. Hãy đợi kiểm duyệt')
             })
             .catch(({ response }) => {
-                if (response.status === 500)
-                    toast.error(response.data);
-                else toast.error(response.data.errors.detail)
+                console.log(response)
+                toast.error(response.data.detail)
                 dispatch(hideLoading());
             })
     }

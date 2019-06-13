@@ -14,18 +14,11 @@ import {
   SEND_MAIL_SUCCESS,
   SEND_MAIL_FAILURE,
   FETCH_USER_BY_ID_SUCCESS,
-  RESET_PASSWORD_SUCCESS,
-
   FETCH_USER_BOOKINGS_SUCCESS,
   CREATE_BOOKING_SUCCESS,
   RESET_BOOKING_STATE,
-  UPDATE_RENTAL_SUCCESS,
-  UPDATE_RENTAL_FAIL,
-  UPDATE_USER_SUCCESS,
-  UPDATE_USER_FAILURE,
   RESET_RENTAL_ERRORS,
   DELETE_BOOKING_SUCCESS,
-  DELETE_BOOKING_FAILURE,
   RESET_USER_STATE,
   DELETE_RENTAL_SUCCESS,
   RESET_RENTAL_STATE,
@@ -46,21 +39,18 @@ const fetchRentalByIdInit = () => {
     type: FETCH_RENTAL_BY_ID_INIT
   }
 }
-
 const fetchRentalByIdSuccess = (rental) => {
   return {
     type: FETCH_RENTAL_BY_ID_SUCCESS,
     rental
   }
 }
-
 const fetchRentalsSuccess = (rentals) => {
   return {
     type: FETCH_RENTALS_SUCCESS,
     rentals
   }
 }
-
 export const fetchRentals = (city) => {
   const url = city ? `/rentals?city=${city}` : '/rentals';
   return dispatch => {
@@ -77,7 +67,6 @@ export const fetchRentals = (city) => {
       })
   }
 }
-
 export const fetchRentalById = (rentalId) => {
   return function (dispatch) {
     dispatch(showLoading())
@@ -88,23 +77,18 @@ export const fetchRentalById = (rentalId) => {
       .then(rental => {
         dispatch(hideLoading())
         dispatch(fetchRentalByIdSuccess(rental))
-      }
-      );
-  }
+      } );}
 }
-
 export const resetRentalsState = () => {
   return {
     type: RESET_RENTAL_ERRORS
   }
 }
-
 export const resetRentalState = () => {
   return {
     type: RESET_RENTAL_STATE
   }
 }
-
 // USER BOOKINGS ACTIONS ---------------------------
 export const sortBooking = (data) => {
   return {
@@ -112,7 +96,6 @@ export const sortBooking = (data) => {
     data
   }
 }
-
 export const createPayment = (data) => {
   return dispatch => {
     dispatch(showLoading());
@@ -134,7 +117,6 @@ const fetchUserBookingsSuccess = (userBookings) => {
     userBookings
   }
 }
-
 export const fetchUserBookings = () => {
   return dispatch => {
     dispatch(showLoading());
@@ -156,18 +138,12 @@ const deleteBookingSuccess = (data) => {
     data
   }
 }
-const deleteBookingFailure = (errors) => {
-  return {
-    type: DELETE_BOOKING_FAILURE,
-    errors
-  }
-}
 export const deleteBooking = (bookingId) => {
   return dispatch => {
     axiosInstance.delete(`bookings/${bookingId}`)
       .then(res => { dispatch(deleteBookingSuccess(res.data)) })
       .catch(({ response }) => {
-        dispatch(deleteBookingFailure(response.data.errors))
+        toast.error(response.data.detail)
       })
   }
 }
@@ -179,16 +155,8 @@ export const resetBookState = () => {
     dispatch(resetBooking())
   }
 }
-
-
 // USER RENTALS ACTIONS ---------------------------
 
-export const getUserRentals = () => {
-  return axiosInstance.get('/rentals/manage').then(
-    res => res.data,
-    err => Promise.reject(err.response.data.errors)
-  )
-}
 const deleteRentalSuccess = (data) => {
   return {
     type: DELETE_RENTAL_SUCCESS,
@@ -280,7 +248,7 @@ export const sendMail = (email) => {
         dispatch(stopSubmit('forgotForm'))
       })
       .catch(({ response }) => {
-        dispatch(sendMailFailure(response.data.errors))
+        dispatch(sendMailFailure(response.data.detail))
         dispatch(stopSubmit('forgotForm'))
       })
   }

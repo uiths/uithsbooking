@@ -21,9 +21,7 @@ export const  fetchTopRentals = () =>{
             dispatch(fetchTopRentalsSuccess(res.data))
         })
         .catch(({response}) => {
-            if (response.status === 500)
-                toast.error(response.data);
-            else toast.error(response.data.errors.detail)
+            toast.error(response.data.detail)
             dispatch(hideLoading());
         })
     }

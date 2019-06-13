@@ -3,7 +3,7 @@ import { BrowserRouter as Router, Link, withRouter } from "react-router-dom";
 import RentalCreateForm from 'component/main/rental/rental-create/RentalCreateForm';
 import { Redirect } from 'react-router-dom';
 import * as actions from 'actions';
-import {editRental} from './actions'
+import { editRental } from './actions'
 import { connect } from 'react-redux'
 import './style.scss'
 
@@ -35,14 +35,11 @@ class RentalEdit extends Component {
     componentDidMount() {
         window.scrollTo(0, 0);
         if (this.props.location.state)
-            this.state.rental = this.props.location.state.rental;
+        {
+            const rental = this.props.location.state.rental
+            this.setState({rental});
+        }
     }
-    // componentDidUpdate() {
-    //     if (this.props.rental.isUpdated) {
-    //         const id = this.props.location.pathname.split('/edit/')[1]
-    //         return <Redirect to={{ pathname: `/detail/${id}` }} />
-    //     }
-    // }
     render() {
         if (!this.props.location.state || this.props.rental.isUpdated) {
             const id = this.props.location.pathname.split('/edit/')[1]

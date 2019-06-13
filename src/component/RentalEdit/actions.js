@@ -13,14 +13,15 @@ const editRentalSuccess = (data) => {
 }
 export const editRental = (rentalData, id) => {
     return dispatch => {
+        dispatch(showLoading())
         axiosInstance.post(`/rentals/update/${id}`, rentalData)
             .then(res => {
+                dispatch(hideLoading());
+                toast.success('Cập nhật thành công !')
                 dispatch(editRentalSuccess(res.data))
             })
             .catch(({ response }) => {
-                if (response.status === 500)
-                    toast.error(response.data);
-                else toast.error(response.data.errors.detail);
+                toast.error(response.data.detail);
                 dispatch(hideLoading());
             })
     }

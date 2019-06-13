@@ -14,7 +14,7 @@ import Comment from 'component/Comment'
 import "./style.scss"
 import moment from 'moment'
 import CommentDisplay from 'component/Comment/CommentDisplay'
-import {getDates} from 'helpers'
+import { getDates } from 'helpers'
 class RentalDetail extends Component {
   componentDidMount() {
     // Dispatch action
@@ -73,31 +73,20 @@ class RentalDetail extends Component {
         return false;
     return true
   }
-  componentDidUpdate() {
-    this.props.dispatch(actions.resetRentalState())
-  }
   renderRedirect = () => {
     if (this.state.redirect) {
       return <Redirect to='/login' />
     }
   }
-  
+  componentWillUnmount() {
+    this.props.dispatch(actions.resetRentalState())
+  }
   render() {
     const bookings = (this.props.rental && this.props.rental.bookings) || []
     let filterDates = []
     bookings.map((i) => {
-      filterDates = filterDates.concat(getDates(i.startAt,i.endAt))
+      filterDates = filterDates.concat(getDates(i.startAt, i.endAt))
     })
-    const { posted } = this.props.location.state || false
-    {
-      posted && this.notify("Đăng nhà thành công")
-      this.props.dispatch(actions.resetRentalState())
-    }
-    {
-      this.props.isUpdated && this.notify("Cập nhật thành công")
-      this.props.dispatch(actions.resetRentalState())
-
-    }
     const owner = this.props.rental.user || {}
     const errors = this.props.booking.errors || {}
     const rental = this.props.rental || {}
@@ -105,15 +94,15 @@ class RentalDetail extends Component {
       this.handleClose()
       return <Redirect to={{ pathname: "/rental/manage", state: { isDeleted: true } }} />
     }
-
     const image = rental.image || ['/img/default-img.jpg', '/img/default-img.jpg']
     return (
       <div id="rent">
         {this.renderRedirect()}
-        <ToastContainer />
         <RentalImages image={image} />
         <br />
         <div className="container">
+        <ToastContainer />
+
           <div className="col-sm-8">
             <div className="infobox slide-in-left row" style={{ marginBottom: "20px", marginLeft: "0", marginRight: "0" }}>
               <div className="col-lg-8">
@@ -204,7 +193,6 @@ class RentalDetail extends Component {
 function mapStateToProps(state) {
   return {
     isDeleted: state.rentals.isDeleted,
-    isUpdated: state.rental.isUpdated,
     booking: state.userBookings,
     rental: state.rental.data,
     rentals: state.rentals.data,

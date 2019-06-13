@@ -102,7 +102,7 @@ class ImageCropForm extends Component {
             <Button
               onClick={this.handleCompleted}
               className="btn-fw-96"
-              bsStyle="primary"
+              bsstyle="primary"
               // disabled={!croppedImageUrl ? true : false}
             >
               Crop

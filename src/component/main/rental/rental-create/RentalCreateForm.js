@@ -1,4 +1,4 @@
-import { Field, reduxForm} from 'redux-form';
+import { Field, reduxForm } from 'redux-form';
 import { Checkbox } from 'component/main/shared/form/Checkbox';
 import { validate } from './validate';
 import React, { Component } from 'react';
@@ -125,11 +125,11 @@ class RentalCreateForm extends Component {
                                                 id='category'
                                                 component={CustomSelect}
                                             ><option disabled></option>
-                                            <option value='Biệt thư'>Biệt thự</option>
-                                            <option value='Chung cư'>Chung cư</option>
-                                            <option value='Khách sạn'>Khách sạn</option>
-                                            <option value='Nhà riêng'>Nhà riêng</option>
-                                            <option value='Căn hộ dịch vụ'>Căn hộ dịch vụ</option>
+                                                <option value='Biệt thư'>Biệt thự</option>
+                                                <option value='Chung cư'>Chung cư</option>
+                                                <option value='Khách sạn'>Khách sạn</option>
+                                                <option value='Nhà riêng'>Nhà riêng</option>
+                                                <option value='Căn hộ dịch vụ'>Căn hộ dịch vụ</option>
                                             </Field>
                                         </div>
                                     </div>
@@ -208,32 +208,26 @@ class RentalCreateForm extends Component {
                                     name='image'
                                     component={ProfilePhoto}
                                 />
-                                
+
                             </div>
                             <div className="col-lg-6 col-md-6 col-sm-6 col-xs-12">
-                                    <Field
-                                        name="description"
-                                        type="text"
-                                        label='Giới thiệu chung'
-                                        className='custom-textarea'
-                                        id='description'
-                                        rows='8'
-                                        component={CustomTextArea}
-                                    />
-                                </div>
+                                <Field
+                                    name="description"
+                                    type="text"
+                                    label='Giới thiệu chung'
+                                    className='custom-textarea'
+                                    id='description'
+                                    rows='8'
+                                    component={CustomTextArea}
+                                />
+                            </div>
                         </div>
                         <div>
                             <div className="col-lg-4">
                             </div>
                             <div className="col-lg-4">
-                                <button type="submit" className="b b1 center_button" >
-                                    {submitting ?
-                                        <span>
-                                            <i className="fa fa-spin fa-spinner" /> Đăng đăng tải...
-                                        </span>
-                                        :
-                                        <span>Đăng tải</span>
-                                    }</button>
+                                <button type="submit" disabled={!valid || pristine} className="b b1 center_button" >
+                                    Đăng tải</button>
                             </div>
                             <div className="col-lg-4">
                             </div>
@@ -251,5 +245,5 @@ class RentalCreateForm extends Component {
 export default reduxForm({
     form: 'rentalCreateForm',
     enableReinitialize: true,
-    // validate
+    validate
 })(RentalCreateForm)

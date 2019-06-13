@@ -12,9 +12,7 @@ export const register = (userData) => {
           toast.success("Hãy kiểm tra email xác nhận")
         })
         .catch(({ response }) => {
-          if (response.status === 500)
-            toast.error(response.data);
-          else toast.error(response.data.errors.detail)
+          toast.error(response.data.detail)
           dispatch(hideLoading())
         })
     }
