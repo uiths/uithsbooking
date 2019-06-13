@@ -19,7 +19,6 @@ class Home extends Component {
         }
     }
     componentDidMount(){
-        window.scrollTo({top:490,behavior: 'smooth'})
         if(localStorage.getItem('auth_token')!==null && _.isEmpty(this.props.users.data)&& authService.isValid(authService.getToken()))
             this.props.fetchUserById(authService.getId())
     }
