@@ -8,6 +8,7 @@ import { subtractTwoDates } from 'helpers/index'
 // import { bookValidate } from 'component/main/shared/form/validators'
 import { validate } from './validate'
 import { addDays } from 'date-fns'
+
 let RentalDateForm = props => {
    const options = ['1', '2', '3', '4', '5', '6', '7', '8', '9', '10', '11', '12', '13', '14', '15', '16', '17', '18', '19', '20']
    const { price, startAt, endAt, handleSubmit, pristine, submitting, submitCb, valid, errors } = props
@@ -26,6 +27,7 @@ let RentalDateForm = props => {
                         placeholder="dd/mm/yy"
                         component={Datepicker}
                         minDate={addDays(new Date, 1)}
+                        filterDate={props.filterDates}
                      // validate={[required]}
                      />
                   </div>
@@ -39,6 +41,7 @@ let RentalDateForm = props => {
                         className="custom-input"
                         component={Datepicker}
                         minDate={addDays(new Date, 2)}
+                        filterDate={props.filterDates}
                      />
                   </div>
                </div>

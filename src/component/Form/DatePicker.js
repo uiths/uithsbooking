@@ -3,6 +3,7 @@ import DatePicker from 'react-datepicker';
 import PropTypes from 'prop-types';
 import 'react-datepicker/dist/react-datepicker.css';
 import moment from 'moment'
+import _ from 'lodash'
 import './style.scss'
 class Datepicker extends Component {
     constructor(props) {
@@ -38,8 +39,10 @@ class Datepicker extends Component {
                     showMonthDropdown
                     showYearDropdown
                     dropdownMode="select"
+                    filterDate={(date) => {
+                        return !_.includes(this.props.filterDate, moment(date).format('YYYY-MM-DD'))
+                    }}
                 />
-
             </div>);
     }
 }

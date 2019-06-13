@@ -22,8 +22,8 @@ class BookmarkPage extends Component {
 					<div className="bookmark-history-content">
 						{
 
-							bookmark.map(i =>
-								<Link to={`/detail/${i._id}`}>
+							bookmark.map((i,index) =>
+								<Link key={index} to={`/detail/${i._id}`}>
 									<BookmarkCell bookmark={i} />
 								</Link>
 							)

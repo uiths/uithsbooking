@@ -14,6 +14,7 @@ import Comment from 'component/Comment'
 import "./style.scss"
 import moment from 'moment'
 import CommentDisplay from 'component/Comment/CommentDisplay'
+import {getDates} from 'helpers'
 class RentalDetail extends Component {
   componentDidMount() {
     // Dispatch action
@@ -32,7 +33,7 @@ class RentalDetail extends Component {
       redirect: false
     }
   }
-  setRedirect = () =>{
+  setRedirect = () => {
     this.setState({
       redirect: true
     })
@@ -80,7 +81,13 @@ class RentalDetail extends Component {
       return <Redirect to='/login' />
     }
   }
+  
   render() {
+    const bookings = (this.props.rental && this.props.rental.bookings) || []
+    let filterDates = []
+    bookings.map((i) => {
+      filterDates = filterDates.concat(getDates(i.startAt,i.endAt))
+    })
     const { posted } = this.props.location.state || false
     {
       posted && this.notify("Đăng nhà thành công")
@@ -181,7 +188,7 @@ class RentalDetail extends Component {
                 </div>
                 <div className="infobox slide-in-right">
 
-                  <RentalDateForm price={this.props.rental.price} submitCb={this.book} people={this.props.rental.people} errors={errors} />
+                  <RentalDateForm filterDates={filterDates} price={this.props.rental.price} submitCb={this.book} people={this.props.rental.people} errors={errors} />
                   <br />
                 </div>
               </div>
@@ -196,15 +203,12 @@ class RentalDetail extends Component {
 }
 function mapStateToProps(state) {
   return {
-    isCreated: state.rental.isCreated,
     isDeleted: state.rentals.isDeleted,
-    deleteError: state.rentals.errors,
     isUpdated: state.rental.isUpdated,
     booking: state.userBookings,
     rental: state.rental.data,
     rentals: state.rentals.data,
     errors: state.rental.errors,
-    // booking: state.userBookings
     auth: state.auth
   }
 }
