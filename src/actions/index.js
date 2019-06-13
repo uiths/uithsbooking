@@ -140,21 +140,27 @@ const deleteBookingSuccess = (data) => {
 }
 export const deleteBooking = (bookingId) => {
   return dispatch => {
+    dispatch(showLoading())
     axiosInstance.delete(`bookings/${bookingId}`)
-      .then(res => { dispatch(deleteBookingSuccess(res.data)) })
+      .then(res => { 
+        dispatch(hideLoading())
+        toast.success('Đã xóa thành công')
+        dispatch(deleteBookingSuccess(res.data)) 
+      })
       .catch(({ response }) => {
+        dispatch(hideLoading())
         toast.error(response.data.detail)
       })
   }
 }
-const resetBooking = () => {
+export const resetBookState = () => {
   return { type: RESET_BOOKING_STATE }
 }
-export const resetBookState = () => {
-  return dispatch => {
-    dispatch(resetBooking())
-  }
-}
+// export const resetBookState = () => {
+//   return dispatch => {
+//     dispatch(resetBooking())
+//   }
+// }
 // USER RENTALS ACTIONS ---------------------------
 
 const deleteRentalSuccess = (data) => {
