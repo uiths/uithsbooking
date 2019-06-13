@@ -1,14 +1,25 @@
+.list-sort-span{
+    position: relative;
+    right: 5px;
+    margin-top: 32px;
+    font-size: 14px;
+    font-weight: bold;
+    @media screen and (max-width: 420px) {
+        display: none;
+    }
+}
 .list-sort-selector {
     display: block;
     right: 0;
     position: relative;
     margin: 0;
     padding: 6px;
-    width: 140px;
+    width: 110px;
     font-size: 12px;
     border-radius: 2px;
     z-index: 20;
     float: right;
+    margin-top: 25px;
 }
 .list-sort-selector ul {
     display: none;
