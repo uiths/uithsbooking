@@ -59,7 +59,6 @@ const removeOneCommentSuccess = (id) => {
     }
 }
 export const removeOneComment = (cmtId) => {
-    console.log(cmtId)
     return dispatch => {
         axiosInstance.delete(`/comments/${cmtId}`)
         .then(res => {

@@ -2,6 +2,7 @@ import React, { Component, Fragment } from 'react';
 import RentalCreateForm from './RentalCreateForm';
 import { Redirect } from 'react-router-dom';
 import { createRental } from './actions'
+import {resetRentalState} from 'actions'
 import { connect } from 'react-redux'
 import './style.scss'
 import { ToastContainer, toast } from "react-toastify";
@@ -22,9 +23,12 @@ class Create_rent extends Component {
         }
         )
     }
-
+    componentWillUnmount(){
+        console.log(this.props)
+    }
     render() {
         if (this.props.rental.isCreated) {
+            this.props.resetRentalState()
             return <Redirect to={{ pathname: `/rental/manage`}} />
         }
         return (
@@ -52,6 +56,7 @@ const mapStateToProps = (state) => {
 }
 const mapDispatchToProps = (dispatch) => {
     return {
+        resetRentalState: () => dispatch(resetRentalState()),
         createRental: (rentalData) => dispatch(createRental(rentalData))
     }
 }
