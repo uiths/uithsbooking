@@ -78,20 +78,18 @@ class RentalDetail extends Component {
       return <Redirect to='/login' />
     }
   }
-  componentWillUnmount() {
-    this.props.dispatch(actions.resetRentalState())
-  }
   render() {
     const bookings = (this.props.rental && this.props.rental.bookings) || []
     let filterDates = []
     bookings.map((i) => {
       filterDates = filterDates.concat(getDates(i.startAt, i.endAt))
     })
-    const owner = this.props.rental.user || {}
+    const owner = (this.props.rental && this.props.rental.user) || {}
     const errors = this.props.booking.errors || {}
     const rental = this.props.rental || {}
     if (this.props.isDeleted) {
       this.handleClose()
+      this.props.dispatch(actions.resetRentalState())
       return <Redirect to={{ pathname: "/rental/manage", state: { isDeleted: true } }} />
     }
     const image = rental.image || ['/img/default-img.jpg', '/img/default-img.jpg']

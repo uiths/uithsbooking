@@ -45,8 +45,6 @@ const RegisterForm = props => {
                 <div className="text-center">
                     <p>Qua việc click <strong className="label label-primary">Đăng ký</strong>, bạn đã đồng ý với <a href="#" data-toggle="modal" data-target="#t_and_c_m">Điều khoản dịch vụ</a> của chúng tôi, bao gồm cả việc sử dụng Cookie.</p>
                 </div>
-                <br />
-                <br />
                 <button className="b b1 center_button" type="submit" disabled={!valid || pristine || submitting}>
                     {submitting ?
                         <span>
