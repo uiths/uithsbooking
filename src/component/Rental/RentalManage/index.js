@@ -31,8 +31,9 @@ class RentalManage extends Component {
                             <option value="rating">Rating</option>
                             <option value="status">Trang thai</option>
                         </select>
+                        <span className="list-sort-span list-sort-span-fix f-right">Lọc theo:</span>
                     </div>
-                    <div className="rental-history-content">
+                    <div className="rental-history-content mg-top-20">
                         {
 
                             this.props.rentals.map(i =>

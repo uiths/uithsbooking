@@ -29,9 +29,10 @@ class BookingHistory extends Component {
                             <option value="guests">Số khách</option>
                             <option value="status">Trạng thái</option>                            
                         </select>
+                        <span className="list-sort-span list-sort-span-fix f-right">Lọc theo:</span>
                     </div>
 
-                    <div className="booking-history-content">
+                    <div className="booking-history-content mg-top-20">
                         {
                             this.props.userBookings.map((i,index) =>
                                 <Link key={index} to={`/booking/${i._id}`}>

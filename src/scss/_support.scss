@@ -74,6 +74,9 @@ $color1: #566473;
   color: #000000;
   //color: #ba9186;
   //font-family: 'Pacifico', sans-serif;
+  @media screen and( max-width: 768px) {
+    font-size: 28px;
+  }
 }
 .title_link{
   font-family: 'Pacifico', sans-serif;
@@ -94,4 +97,19 @@ $color1: #566473;
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
+}
+.pagination{
+  display: inline-block;
+  @media screen and( max-width: 768px) {
+    display: none;
+  }
+}
+.pagination-mobile{
+  display: none;
+  @media screen and( max-width: 768px) {
+    display: inline-block;
+  }
+}
+.list-sort-span-fix{
+  margin-top: 28px !important;
 }

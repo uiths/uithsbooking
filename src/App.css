@@ -45,7 +45,7 @@ h2 {
 
 /* header top */
 header {
-  margin-top: 66px; }
+  margin-top: 75px; }
 
 .na-brand {
   width: 9.5%;
@@ -1020,6 +1020,9 @@ LEVEL 4. SETTINGS
   font-weight: 600;
   display: inline-block;
   color: #000000; }
+  @media screen and (max-width: 768px) {
+    .title_h3 {
+      font-size: 28px; } }
 
 .title_link {
   font-family: 'Pacifico', sans-serif;
@@ -1038,6 +1041,21 @@ LEVEL 4. SETTINGS
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis; }
+
+.pagination {
+  display: inline-block; }
+  @media screen and (max-width: 768px) {
+    .pagination {
+      display: none; } }
+
+.pagination-mobile {
+  display: none; }
+  @media screen and (max-width: 768px) {
+    .pagination-mobile {
+      display: inline-block; } }
+
+.list-sort-span-fix {
+  margin-top: 28px !important; }
 
 #home .home_search i {
   font-size: 30px;
@@ -1525,7 +1543,8 @@ LEVEL 4. SETTINGS
     margin-bottom: 10px;
     padding: 1em;
     width: 25%;
-    display: inline-block; }
+    display: inline-block;
+    float: left; }
     #sub_home .sub_home_slider_container .sub_home_link {
       text-decoration: none;
       color: rgba(34, 0, 34, 0.75);
