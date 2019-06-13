@@ -83,8 +83,8 @@ class Home extends Component {
                         </div>
                     </div>
 
-                    <div id="home_event" className="mg-top-80">
-                        <div className="container-fluid text-center">
+                    <div id="home_event" className="mg-top-80" >
+                         <div className="container-fluid text-center">
                             <div className="col-sm-4">
                                 <div className="home_event_img">
                                     <img src="./img/img_home/index_event/home_event_1.png" alt="Brandi Img 2" width="100%" />
