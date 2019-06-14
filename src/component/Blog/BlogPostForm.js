@@ -20,7 +20,7 @@ class BlogPostForm extends Component {
                     component={CustomInput}
                 />
                 </div>
-                <div className="col-sm-offset-1 col-sm-3 " style={{paddingLeft:0}}>
+                <div className="col-sm-offset-1 blog-post-input-img col-sm-3 " style={{paddingLeft:0}}>
                     <span><b> Ảnh đại diện bài viết: </b></span>
                 <Field
                     className="photo-selector "
