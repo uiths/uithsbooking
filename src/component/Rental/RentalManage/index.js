@@ -24,14 +24,14 @@ class RentalManage extends Component {
                 <div className="rental-history-container">
                     <div className="rental-history-title">
                         Danh sách nhà đã cho thuê
-                        <select defaultValue="createdAt" onChange={this.sortBy} className="list-sort-selector">
+                        <select style={{fontWeight:'400', width:'120px', fontSize:'14px'}} defaultValue="createdAt" onChange={this.sortBy} className="list-sort-selector f-right">
                             <option value="createdAt">Mới nhất</option>
                             <option value="priceAsc">Giá thấp nhất</option>
                             <option value="price">Giá cao nhất</option>
                             <option value="rating">Rating</option>
-                            <option value="status">Trang thai</option>
+                            <option value="status">Trạng thái</option>
                         </select>
-                        <span className="list-sort-span list-sort-span-fix f-right">Lọc theo:</span>
+                        <span className="list-sort-span f-right span-near-sort-user">Lọc theo:</span>
                     </div>
                     <div className="rental-history-content mg-top-20">
                         {

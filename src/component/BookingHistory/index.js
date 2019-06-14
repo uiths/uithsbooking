@@ -21,7 +21,7 @@ class BookingHistory extends Component {
                 <div className="booking-history-container">
                     <div className="booking-history-title">
                         Lịch sử thuê phòng
-                        <select defaultValue="createdAt" onChange={this.sortBy} className="list-sort-selector">
+                        <select style={{fontWeight:'400', width:'180px', fontSize:'14px'}} defaultValue="createdAt" onChange={this.sortBy} className="list-sort-selector f-right">
                             <option value="createdAt">Mới nhất</option>
                             <option value="totalPriceAsc">Tổng chi phí ít nhất</option>
                             <option value="totalPrice">Tổng chi phí cao nhất</option>
@@ -29,7 +29,7 @@ class BookingHistory extends Component {
                             <option value="guests">Số khách</option>
                             <option value="status">Trạng thái</option>                            
                         </select>
-                        <span className="list-sort-span list-sort-span-fix f-right">Lọc theo:</span>
+                        <span className="list-sort-span f-right span-near-sort-user">Lọc theo:</span>
                     </div>
 
                     <div className="booking-history-content mg-top-20">

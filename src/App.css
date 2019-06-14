@@ -1048,6 +1048,21 @@ LEVEL 4. SETTINGS
 .list-sort-span-fix {
   margin-top: 28px !important; }
 
+.span-near-sort {
+  margin-top: 25px !important; }
+  @media screen and (max-width: 380px) {
+    .span-near-sort {
+      display: none; } }
+
+.span-near-sort-user {
+  margin-top: 4px !important;
+  font-weight: 400;
+  font-size: 14px;
+  margin-right: 2px; }
+  @media screen and (max-width: 640px) {
+    .span-near-sort-user {
+      display: none; } }
+
 #home .home_search i {
   font-size: 30px;
   vertical-align: middle;

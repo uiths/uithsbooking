@@ -31,13 +31,13 @@ class List extends Component {
         return (
             <div className="container list-rentals-container">
                 <h3 className="text-left title_h3 type1 animated fadeInLeft mg-top-20">Đặt nhà</h3>
-                <select defaultValue="createdAt" onChange={this.sortBy} className="list-sort-selector">
+                <select style={{width:'110px'}} defaultValue="createdAt" onChange={this.sortBy} className="list-sort-selector">
                     <option value="createdAt">Mới nhất</option>
                     <option value="priceAsc">Giá thấp nhất</option>
                     <option value="price">Giá cao nhất</option>
                     <option value="rating">Rating</option>
                 </select>
-                <span className="list-sort-span f-right">Lọc theo:</span>
+                <span className="list-sort-span f-right span-near-sort">Lọc theo: </span>
                 <div id="sub_home" className="text-center ">
                     <div className="container mg-top-20">
                         <div className="row">
