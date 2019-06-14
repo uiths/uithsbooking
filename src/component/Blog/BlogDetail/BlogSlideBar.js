@@ -11,8 +11,10 @@ class BlogSlideBar extends Component {
                         <img src=".././img/img_blog_example/person_1.jpg" alt="Image Placeholder" className="img-fluid"/>
                         <div className="bio-body">
                             <h2>Nhật Nguyễn</h2>
-                            <p>Là người lãnh đạo tuyệt vời nhất nhóm. Chủ tịch chưa bao giờ than phiền về task khó hay gì hêt, anh ấy luôn cố gắng hết sức để hoàn thiện mọi thứ một cách tốt nhất.</p>
-                            <p><a href="#" className="btn btn-primary btn-sm">Follow me!</a></p>
+                            <p>Là chủ tịch quản lý blog.
+                                <br/>
+                                Chủ tịch chưa bao giờ thực sự than phiền về task khó hay gì hêt, anh ấy luôn cố gắng hết sức để hoàn thiện mọi thứ một cách tốt nhất. Nếu bạn gặp vấn đề về bài viết không hiển thị thì hãy nhớ liên hệ chủ tịch nhé!</p>
+                            <p><a href="#" className="btn btn-primary btn-sm">Nhớ liên hệ nhé!</a></p>
                             <p className="social">
                                 <a href="#" className="p-2"><span className="fa fa-facebook"/></a>
                                 <a href="#" className="p-2"><span className="fa fa-twitter"/></a>
@@ -24,16 +26,18 @@ class BlogSlideBar extends Component {
                 </div>
 
                 <div className="sidebar-box">
-                    <h3 className="heading">Bài viết được nhiều người xem</h3>
+                    <h3 className="heading">Bài viết được nhiều người quan tâm</h3>
                     <div className="post-entry-sidebar">
                         <ul>
                             <li>
                                 <a href="">
                                     <img src=".././img/img_blog_example/img_2.jpg" alt="Image placeholder" className="mr-4"/>
                                     <div className="text">
-                                        <h4>There’s a Cool New Way for Men to Wear Socks and Sandals</h4>
+                                        <h4>Ngắm hoàng hôn cùng nhau để trải nghiệm cảm giác bất tận.</h4>
                                         <div className="post-meta">
-                                            <span className="mr-2">March 15, 2018 </span>
+                                            <span className="mr-2">10/5/2019 </span>
+                                            <span> • </span>
+                                            <span className="ml-2"><span className="fa fa-eye"/> 99</span>
 
                                         </div>
                                     </div>
@@ -43,9 +47,11 @@ class BlogSlideBar extends Component {
                                 <a href="">
                                     <img src=".././img/img_blog_example/img_4.jpg" alt="Image placeholder" className="mr-4"/>
                                     <div className="text">
-                                        <h4>There’s a Cool New Way for Men to Wear Socks and Sandals</h4>
+                                        <h4>Căn hộ nào thích hợp cho cặp đôi thuở mới hẹn hò.</h4>
                                         <div className="post-meta">
-                                            <span className="mr-2">March 15, 2018 </span>
+                                            <span className="mr-2">8/5/2019 </span>
+                                            <span> • </span>
+                                            <span className="ml-2"><span className="fa fa-eye"/> 88</span>
 
                                         </div>
                                     </div>
@@ -55,9 +61,11 @@ class BlogSlideBar extends Component {
                                 <a href="">
                                     <img src=".././img/img_blog_example/img_12.jpg" alt="Image placeholder" className="mr-4"/>
                                     <div className="text">
-                                        <h4>There’s a Cool New Way for Men to Wear Socks and Sandals</h4>
+                                        <h4>Bí quyết chọn nhà thuê phù hợp cho hội chị em.</h4>
                                         <div className="post-meta">
-                                            <span className="mr-2">March 15, 2018 </span>
+                                            <span className="mr-2">1/6/2019 </span>
+                                            <span> • </span>
+                                            <span className="ml-2"><span className="fa fa-eye"/> 69</span>
                                         </div>
                                     </div>
                                 </a>

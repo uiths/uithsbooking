@@ -10,7 +10,6 @@ import _ from 'lodash'
 class List extends Component {
     constructor(props) {
         super(props);
-
         this.state = {
             pageOfItems: []
         };

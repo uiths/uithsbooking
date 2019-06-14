@@ -16,12 +16,15 @@ class BlogDetail extends Component {
           <div className="col-md-12 col-lg-8 main-content">
             <h1 className="mb-4">{blog.title}</h1>
             <div className="post-meta">
+              Tác giả:
+              {/*<span className=""><img className="blog-avatar" alt="avatar" src={blog.author.image} /></span>*/}
               <span className="category">{blog.author && blog.author.username}</span>
-              <span className="mr-2">{moment(blog.createdAt).format('DD/MM/YYYY')}</span>
+              <span> • </span>
+              Ngày đăng: <span className="mr-2">{moment(blog.createdAt).format('DD/MM/YYYY')}</span>
             </div>
             <div className="content-container" style={{width:"100%"}} dangerouslySetInnerHTML={{ __html: blog.content }}></div>
             <div className="pt-5">
-              <p>Categories: <a href="#">Food</a>, <a href="#">Travel</a> Tags: <a
+              <p>Danh mục: <a href="#"> Du lịch</a> Tags: <a
                 href="#">#dalat</a>, <a href="#">#dulich</a></p>
             </div>
           </div>
