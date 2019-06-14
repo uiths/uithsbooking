@@ -5,7 +5,7 @@ class Contactmail extends Component {
         return (
             <div>
                 <div>
-                    <div >
+                    <div>
                         <h3>Hãy để lại lời nhắn cho chúng tôi</h3>
                         {/* Contact Us Form */}
                         <div style={{marginTop: 30}}>
@@ -22,7 +22,7 @@ class Contactmail extends Component {
                                 <br />
                                 <div>
                                     {/* Submit*/}
-                                    <button id="contact_form_submit" type="submit" className="btn btn-primary" value="Submit" style={{marginLeft: '54%', width: 200}}>Gửi</button>
+                                    <button id="contact_form_submit" type="submit" className="b b1 center_button" value="Submit" style={{marginLeft: '54%', width: 200}}>Gửi</button>
                                 </div>
                             </form>
                         </div>

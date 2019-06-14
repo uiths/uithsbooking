@@ -2,6 +2,79 @@
   z-index: -20;
   padding-bottom:20px;
 
+  .row-eq-height {
+    display: -webkit-box;
+    display: -webkit-flex;
+    display: -ms-flexbox;
+    display:         flex;
+  }
+  .av
+  {
+    margin-top:-80px;
+    border-radius:50%;
+    border: 3px solid lightgray;
+  }
+  .hidecontact
+  {
+    display: block;
+  }
+  .mapp
+  {
+    margin-top:50px;
+    padding:10px;
+    border-radius:0;
+    height: 620px;
+  }
+  .h
+  {
+    height: 600px;
+  }
+  .pad
+  {
+    margin-left: 50px;
+    margin-right: 50px;
+  }
+  .message
+  {
+    padding: 50px;
+  }
+  .about
+  {
+    font-size:17px;
+    padding-left:30px;
+  }
+  @media screen and (max-width: 1000px) {
+    .hidecontact
+    {
+      display: none;
+    }
+    .h
+    {
+      height: 300px;
+    }
+    .pad
+    {
+      margin-left: 5px;
+      margin-right: 5px;
+    }
+    .mapp
+    {
+      margin-top:20px;
+      padding:10px;
+      border-radius:0;
+      height: 320px;
+    }
+    .removepad
+    {
+      padding-left: 0;
+      padding-right: 0;
+    }
+    .about
+    {
+      font-size:15px;
+      padding-left:10px;
+    }
+  }
   .contact_box
   {
     margin: 50px auto;

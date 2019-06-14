@@ -4,21 +4,20 @@ class Contactinfo extends Component {
     render() {
         return (
             <div>
-                <div className="col-sm-12">
+                <div className="removepad">
                     <div className="contact_sidebar">
                         {/* Contact Info */}
                         <div className="sidebar_section">
                             <div className="sidebar_contact_info">
-                                <h3>Thông tin</h3>
+                                <h3>Về chúng tôi</h3>
                                 <br />
-                                <ul style={{fontSize: 17}}>
-                                    <li type="circle">135 Nam Kỳ Khởi Nghĩa, quận 1,
-                                        <br />TP. Hồ Chí Minh, Việt Nam</li>
-                                    <br />
-                                    <li type="circle">Công ty TNHH MMTT</li>
-                                    <br />
-                                    <li type="circle">01123 456 </li>
-                                </ul>
+                                <div className="about">
+                                <p style={{paddingBottom:"7px"}}><i className="fa fa-map-marker"/>    562 Nguyễn Thị Diệu, Phường 6,
+                                        <br />Quận 3 , HCM, Vietnam</p>
+                                <p style={{paddingBottom:"7px"}}><i className="fa fa-phone"/>    (+84)8 3056 2877</p>
+                                <p style={{paddingBottom:"7px"}}><i className="fa fa-envelope"/>    contact@uithsbooking</p>
+                                <p style={{paddingBottom:"7px"}}><i className="fa fa-globe"/>    hsbooking.netlify.com</p>
+                                </div>
                             </div>
                         </div>
                     </div>
