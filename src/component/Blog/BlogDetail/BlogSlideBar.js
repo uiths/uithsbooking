@@ -8,12 +8,12 @@ class BlogSlideBar extends Component {
             <div className="col-md-12 col-lg-4 sidebar">
                 <div className="sidebar-box">
                     <div className="bio text-center">
-                        <img src=".././img/img_blog_example/person_1.jpg" alt="Image Placeholder" className="img-fluid"/>
+                        <img src="/img/index-icon.png" alt="Image Placeholder" className="img-fluid"/>
                         <div className="bio-body">
-                            <h2>Nhật Nguyễn</h2>
-                            <p>Là chủ tịch quản lý blog.
+                            <h2>UITHSBOOKING</h2>
+                            <p>Xin cám ơn quý khách
                                 <br/>
-                                Chủ tịch chưa bao giờ thực sự than phiền về task khó hay gì hêt, anh ấy luôn cố gắng hết sức để hoàn thiện mọi thứ một cách tốt nhất. Nếu bạn gặp vấn đề về bài viết không hiển thị thì hãy nhớ liên hệ chủ tịch nhé!</p>
+                                Hãy follow trang chúng tôi ngay để nhận được những tin tức mới nhất! </p>
                             <p><a href="#" className="btn btn-primary btn-sm">Nhớ liên hệ nhé!</a></p>
                             <p className="social">
                                 <a href="#" className="p-2"><span className="fa fa-facebook"/></a>

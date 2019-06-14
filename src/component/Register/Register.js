@@ -11,14 +11,12 @@ class Signup extends Component {
     }
     render() {
         return (
-            <div>
+            <div style={{marginBottom:"20px"}}>
                 <ToastContainer autoClose={3500}/>
                 <div className="bg">
                     <img src="/img/bg.jpg" alt="bg"/>
                 </div>
                 <div className="container">
-                    <br/>
-                    <br/>
                     <br/>
                     <div>
                         <div  className="dbox slide-in-bottom">

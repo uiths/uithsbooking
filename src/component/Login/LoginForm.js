@@ -27,23 +27,21 @@ const LoginForm = props => {
           className="field__input a-field__input"
           component={BwmInput}
         />
-        <div className="checkbox checkb">
-          <label><input type="checkbox" name="remember" /> Nhớ tên tài khoản</label>
-          <Link to="/forgot_pass" className="btn btn-link"
-          >Quên mật khẩu?</Link>
-        </div>
-        <br />
-        {process.env.NODE_ENV === "production" && 
-        <Field
-          name="captcha"
-          component={Captcha}
-        />}
+
+
+          <center>
+            <Link to="/forgot_pass" className="btn btn-link"
+            >Quên mật khẩu?</Link>
+          </center>
+
+        {process.env.NODE_ENV === "production" &&
+          <Field
+            name="captcha"
+            component={Captcha}
+          />}
         <button type="submit" className="b b1 center_button" disabled={!valid || pristine || submitting}>
-        Đăng nhập
+          Đăng nhập
       </button>
-        {}
-        <br />
-        <br />
       </form>
     </React.Fragment>
   )

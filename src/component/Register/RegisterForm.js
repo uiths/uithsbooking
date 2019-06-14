@@ -58,8 +58,6 @@ const RegisterForm = props => {
                 <div className='alert alert-danger bwm-res-errors'>
                     {errors.map((error, index) => <p key={index}> {error.detail} </p>)}
                 </div>} */}
-                <br />
-                <br />
             </form>
         </React.Fragment>
     )

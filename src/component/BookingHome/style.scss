@@ -1,6 +1,8 @@
 
 .list-rentals-container
-{.list-sort-selector {
+{
+    min-height: calc(100vh);
+    .list-sort-selector {
     margin-top: 20px;
     display: block;
     right: 0;

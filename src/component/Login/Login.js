@@ -25,7 +25,7 @@ class Login extends Component {
             return <Redirect to={{ pathname: '/' }} />
         }
         return (
-            <div>
+            <div style={{paddingBottom:"20px"}}>
                 <ToastContainer autoClose={2000} />
                 <div className="bg">
                     <img src="/img/bg.jpg" alt="bg" />

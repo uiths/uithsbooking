@@ -10,7 +10,7 @@ class Editor extends Component {
 	}
 	render() {
 		return (
-			<div id="blog_post mg-top-20">
+			<div style={{marginBottom:"20px"}} id="blog_post mg-top-20">
 				<div className="container-fluid">
 					<h3 className="text-left title_h3 type1 animated fadeInLeft mg-top-20">Đăng bài viết</h3>
 					<BlogPostForm submitCb={this.blogPost} />
