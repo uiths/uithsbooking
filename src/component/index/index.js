@@ -82,7 +82,7 @@ class Home extends Component {
                         </div>
                     </div>
 
-                    <div id="home_event" className="mg-top-80" >
+                    <div id="home_event" className="mg-top-80 mg-bot-20" >
                          <div className="container-fluid text-center">
                             <div className="col-sm-4">
                                 <div className="home_event_img">

@@ -10,7 +10,7 @@ class Footer extends Component {
 
 
         return (
-            <div className="mg-top-20">
+            <div className="">
                 <footer className="footer">
                     <div className="container text-left footer-container ">
                             <a className="na-brand2" href="#"><img src="/img/index_icon_footer.png" width="10%" alt={"footerIMG"}/></a>
