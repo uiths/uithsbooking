@@ -3,7 +3,6 @@ import React, {Component} from 'react';
 class Contactinfo extends Component {
     render() {
         return (
-            <div>
                 <div className="removepad">
                     <div className="contact_sidebar">
                         {/* Contact Info */}
@@ -21,9 +20,8 @@ class Contactinfo extends Component {
                             </div>
                         </div>
                     </div>
+                    <br/>
                 </div>
-                <br/>
-            </div>
         );
     }
 }
