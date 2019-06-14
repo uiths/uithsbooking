@@ -138,14 +138,14 @@ const deleteBookingSuccess = (data) => {
     data
   }
 }
-export const deleteBooking = (bookingId) => {
+export const deleteBooking = (bookingId, ownProps) => {
   return dispatch => {
     dispatch(showLoading())
     axiosInstance.delete(`bookings/${bookingId}`)
       .then(res => { 
         dispatch(hideLoading())
         toast.success('Đã xóa thành công')
-        dispatch(deleteBookingSuccess(res.data)) 
+        ownProps.history.push('/') 
       })
       .catch(({ response }) => {
         dispatch(hideLoading())

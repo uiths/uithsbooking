@@ -19,7 +19,6 @@ import RentalDetail from "./rental/rental-detail/RentalDetail";
 import BookingHome from "component/BookingHome";
 import BookingDetail from "component/main/booking/BookingDetail";
 import BookingHistory from "component/BookingHistory/Loadable"
-import MyListBook from "./booking/list_book";
 import RegisterConfirm from "component/RegisterConfirm"
 import Search from "component/Search"
 // import CreateRent from "./user/create_rent"
@@ -38,6 +37,8 @@ import BlogDetail from 'component/Blog/BlogDetail'
 import RentalManage from 'component/Rental/RentalManage'
 import Bookmark from 'component/Bookmark'
 import CustomerBookings from 'component/CustomerBookings'
+import {ToastContainer} from 'react-toastify'
+
 class Routerr extends Component {
     render() {
         return (
@@ -62,7 +63,6 @@ class Routerr extends Component {
                 <Route path="/detail/:id" component={RentalDetail} />
                 <Route path="/booking_home" component={BookingHome} />
                 <ProtectedRoute exact path="/rental/manage" component={RentalManage} />
-                <ProtectedRoute path="/list_book" component={MyListBook} />
                 {/* <Route path="/editMyProfile" boocomponent={EditProfile}/> */}
                 {/*<PrivateRoute  path="/slot" component={Slot} />*/}
                 {/* <Route path="/blog" component={Blogmain} /> */}
@@ -76,6 +76,8 @@ class Routerr extends Component {
                 <Route path='/blog_detail/:id' component={BlogDetail}/>
                 <ProtectedRoute path='/customer_booking' component={CustomerBookings}/>
                 <ProtectedRoute path="/bookmark" component={Bookmark}/>
+                <ToastContainer />
+
             </div>
         );
     }

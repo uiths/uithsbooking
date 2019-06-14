@@ -2,7 +2,6 @@ import axiosService from 'services/axios-service';
 import { showLoading, hideLoading } from 'react-redux-loading-bar';
 import { toast } from "react-toastify";
 import authService from 'services/auth-service';
-
 export const GET_BLOG_SUCCESS = 'GET_BLOG_SUCCESS';
 export const GET_BLOG_BY_ID_SUCCESS = 'GET_BLOG_BY_ID_SUCCESS';
 
@@ -20,10 +19,13 @@ const getBlogByIdSuccess = (data) => {
 }
 const axiosInstance = axiosService.getInstance();
 
-export const createBlog = (data) => {
+export const createBlog = (data,ownProps) => {
     return dispatch => {
         axiosInstance.post('/blog/post', data)
-        .then(res => toast.success(res.data.detail))
+        .then(res => {
+            toast.success(res.data.detail)
+            ownProps.history.push('/blog')
+        })
         .catch(({response}) => console.log(response))
     }
 }

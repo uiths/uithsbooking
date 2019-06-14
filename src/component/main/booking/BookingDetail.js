@@ -5,13 +5,10 @@ import { RentalAssets } from 'component/main/rental/rental-detail/RentalAssets';
 import { RentalInfo } from 'component/main/rental/rental-detail/RentalDetailInfo';
 import * as actions from 'actions';
 import { toUSD } from 'helpers/index'
-import { Link, Redirect } from 'react-router-dom'
 import authService from 'services/auth-service';
 import { Modal, Button } from 'react-bootstrap'
 import { formatDate, isEmpty } from 'helpers/index'
 import PaypalExpressBtn from 'react-paypal-express-checkout';
-import { resetBookState } from 'actions'
-import { ToastContainer } from 'react-toastify'
 
 
 class BookingDetail extends Component {
@@ -19,7 +16,7 @@ class BookingDetail extends Component {
 		// Dispatch action
 		window.scrollTo(0, 0)
 		const bookingId = this.props.match.params.id;
-		this.props.dispatch(actions.fetchBookingById(bookingId));
+		this.props.fetchBookingById(bookingId);
 		// this.props.dispatch(actions.fetchBookingById(this.props.location.state.id))
 		// this.props.dispatch(action.fetchBookingById())
 	}
@@ -32,9 +29,9 @@ class BookingDetail extends Component {
 		}
 	}
 
-	deleteRental = (rentalId) => {
-		this.props.dispatch(actions.deleteRental(rentalId))
-	}
+	// deleteRental = (rentalId) => {
+	// 	this.props.dispatch(actions.deleteRental(rentalId))
+	// }
 	handleClose = () => {
 		this.setState({ show: false });
 	}
@@ -43,24 +40,10 @@ class BookingDetail extends Component {
 		this.setState({ show: true });
 	}
 
-	book = (bookData) => {
-		const booking = {
-			startAt: bookData.startAt,
-			endAt: bookData.endAt,
-			guests: bookData.guests,
-			id: this.props.match.params.id,
-			price: this.props.rental.price
-		}
-		this.setState({
-			booked: false,
-			errors: []
-		})
-		this.props.dispatch(actions.createBooking(booking))
-	}
 
-	componentDidUpdate() {
-		this.props.dispatch(actions.resetRentalState())
-	}
+	// componentDidUpdate() {
+	// 	this.props.dispatch(actions.resetRentalState())
+	// }
 	delete = (bookingId) => {
 		this.props.dispatch(actions.deleteBooking(bookingId))
 	}
@@ -103,16 +86,11 @@ class BookingDetail extends Component {
 			sandbox: 'AejbPR5WPbaNy-8nOCslLZEn6dY8VtGeH1LxFIGZT8e-hihHe4hmEzmAyOYQifAC_hEp7AeNvUIIYqMs',
 			production: 'Aa05uaG4gJWB23ezy_b3bqTXVs-01Ao2QKBgYI5NzbUfKRDIrxOA8n3JmQTWp__K_sqIG7qpb5Lfv6V5',
 		}
-		if (this.props.isDeleted) {
-			this.props.dispatch(resetBookState())
-			return <Redirect to={{ pathname: "/history", state: { deleted: true } }} />
-		}
 		return (
 			<div id="rent">
 				<RentalImages image={rental.image ? rental.image : ['/img/default-img.jpg', '/img/default-img.jpg']} />
 				<br />
 				<div className="container">
-					<ToastContainer />
 					<div className="col-sm-8">
 						<div className="infobox slide-in-left row" style={{ marginBottom: "20px", marginLeft: "0", marginRight: "0" }}>
 							<div className="col-lg-8">
@@ -184,12 +162,12 @@ class BookingDetail extends Component {
 									<Modal style={{ opacity: 1 }} show={this.state.show} onHide={this.handleClose}>
 										<Modal.Body>Bạn có chắc muốn xóa?</Modal.Body>
 										<Modal.Footer>
-											<Button className="b b1" onClick={() => { this.handleClose(); this.delete(booking._id) }}>
+											<Button className="b b1" onClick={() => { this.handleClose(); this.props.deleteBooking(booking._id) }}>
 												Xóa
-                                        </Button>
+                      </Button>
 											<Button className="b b1" onClick={this.handleClose}>
 												Đóng
-                                        </Button>
+                      </Button>
 										</Modal.Footer>
 									</Modal>
 								</div>
@@ -202,11 +180,6 @@ class BookingDetail extends Component {
 
 		)
 
-		// }
-		// else return <Fragment>
-		//     <Loading />
-		//     <ReactNotification ref={this.notificationDOMRef} />
-		// </Fragment>
 	}
 }
 function mapStateToProps(state) {
@@ -222,4 +195,10 @@ function mapStateToProps(state) {
 		booking: state.userBookings.booking
 	}
 }
-export default connect(mapStateToProps)(BookingDetail)
+const mapDispatchToProps = (dispatch, ownProps) => {
+	return {
+		deleteBooking: (id) => dispatch(actions.deleteBooking(id, ownProps)),
+		fetchBookingById: (id) => dispatch(actions.fetchBookingById(id))
+	}
+}
+export default connect(mapStateToProps, mapDispatchToProps)(BookingDetail)

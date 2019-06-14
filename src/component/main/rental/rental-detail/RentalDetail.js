@@ -99,8 +99,7 @@ class RentalDetail extends Component {
         <RentalImages image={image} />
         <br />
         <div className="container">
-        <ToastContainer />
-
+        {/* <ToastContainer /> */}
           <div className="col-sm-8">
             <div className="infobox slide-in-left row" style={{ marginBottom: "20px", marginLeft: "0", marginRight: "0" }}>
               <div className="col-lg-8">
