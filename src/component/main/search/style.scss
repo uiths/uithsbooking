@@ -183,7 +183,14 @@ body {
       background:lightskyblue ;
       color: white;
     }
+    button:focus{
+      outline: none;
+    }
   }
+
+.search-input-group-btn:focus{
+  outline: none;
+}
   
 @media screen and (max-width: 1278px) {
     .search-navbar-form {
