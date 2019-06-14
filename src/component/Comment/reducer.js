@@ -30,7 +30,6 @@ export function commentReducer(state = initState, action) {
 			_.remove(listTemp, (cmt)=> {
 				return cmt._id === action.id;
 			});
-			console.log(listTemp)
 			return { ...state, commentList: listTemp}
 		default:
 			return state;

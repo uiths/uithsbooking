@@ -3,7 +3,6 @@ import {
   FETCH_USER_BOOKINGS_FAIL,
   FETCH_USER_BOOKINGS_INIT,
   CREATE_BOOKING_SUCCESS,
-  CREATE_BOOKING_FAIL,
   DELETE_BOOKING_SUCCESS,
   DELETE_BOOKING_FAILURE,
   FETCH_BOOKING_BY_ID_SUCCESS,
@@ -43,6 +42,8 @@ export const userBookingsReducer = (state = INITIAL_STATE, action) => {
       return {...state, data: action.data }
     case FETCH_CUSTOMER_BOOKINGS_SUCCESS:
       return {...state, customerBookings: action.data}
+    case CREATE_BOOKING_SUCCESS:
+      return {...state, data: action.data}
     case SORT_BY_CUSTOMER_BOOKINGS:
       return {...state, customerBookings :action.data}
     default:

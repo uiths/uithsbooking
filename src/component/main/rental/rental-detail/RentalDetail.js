@@ -20,9 +20,9 @@ class RentalDetail extends Component {
     // Dispatch action
     window.scrollTo(0, 0);
     if (authService.isAuthenticated() && !this.props.booking.data.length > 0)
-      this.props.dispatch(actions.fetchUserBookings());
+      this.props.fetchUserBookings();
     const rentalId = this.props.match.params.id;
-    this.props.dispatch(actions.fetchRentalById(rentalId));
+    this.props.fetchRentalById(rentalId);
   }
   constructor(props) {
     super(props);
@@ -39,16 +39,14 @@ class RentalDetail extends Component {
     })
   }
   deleteRental = (rentalId) => {
-    this.props.dispatch(actions.deleteRental(rentalId))
+    this.props.deleteRental(rentalId)
   }
   handleClose = () => {
     this.setState({ show: false });
   }
-
   handleShow = () => {
     this.setState({ show: true });
   }
-
   book = (bookData) => {
     if (authService.isAuthenticated()) {
       const booking = {
@@ -63,7 +61,7 @@ class RentalDetail extends Component {
         errors: []
       })
       if (this.isValid(this.props.booking.data, booking))
-        this.props.dispatch(actions.createBooking(booking))
+        this.props.createBooking(booking)
       else toast.error("Bạn không thể đặt thêm nhà trong khoảng thời gian này")
     } else this.setRedirect()
   }
@@ -87,11 +85,11 @@ class RentalDetail extends Component {
     const owner = (this.props.rental && this.props.rental.user) || {}
     const errors = this.props.booking.errors || {}
     const rental = this.props.rental || {}
-    if (this.props.isDeleted) {
-      this.handleClose()
-      this.props.dispatch(actions.resetRentalState())
-      return <Redirect to={{ pathname: "/rental/manage", state: { isDeleted: true } }} />
-    }
+    // if (this.props.isDeleted) {
+    //   this.handleClose()
+    //   this.props.dispatch(actions.resetRentalState())
+    //   return <Redirect to={{ pathname: "/rental/manage", state: { isDeleted: true } }} />
+    // }
     const image = rental.image || ['/img/default-img.jpg', '/img/default-img.jpg']
     return (
       <div id="rent">
@@ -99,7 +97,7 @@ class RentalDetail extends Component {
         <RentalImages image={image} />
         <br />
         <div className="container">
-        {/* <ToastContainer /> */}
+          {/* <ToastContainer /> */}
           <div className="col-sm-8">
             <div className="infobox slide-in-left row" style={{ marginBottom: "20px", marginLeft: "0", marginRight: "0" }}>
               <div className="col-lg-8">
@@ -163,8 +161,6 @@ class RentalDetail extends Component {
               </div>
             </div>
           </div>
-
-
           <div className="col-sm-4">
             {
               (!authService.isAuthenticated() || (authService.isAuthenticated() && !(authService.getId() === owner._id))) &&
@@ -173,7 +169,6 @@ class RentalDetail extends Component {
                   <h3 style={{ color: "white" }}>Giá: <b>{rental.price && rental.price.toLocaleString()}</b> đ/ngày</h3>
                 </div>
                 <div className="infobox slide-in-right">
-
                   <RentalDateForm filterDates={filterDates} price={this.props.rental.price} submitCb={this.book} people={this.props.rental.people} errors={errors} />
                   <br />
                 </div>
@@ -197,4 +192,12 @@ function mapStateToProps(state) {
     auth: state.auth
   }
 }
-export default connect(mapStateToProps)(RentalDetail)
+const mapDispatchToProps = (dispatch, ownProps) => {
+  return {
+    fetchUserBookings: () => dispatch(actions.fetchUserBookings()),
+    fetchRentalById: (id) => dispatch(actions.fetchRentalById(id)),
+    deleteRental: (id) => dispatch(actions.deleteRental(id, ownProps)),
+    createBooking: (data) => dispatch(actions.createBooking(data, ownProps))
+  }
+}
+export default connect(mapStateToProps, mapDispatchToProps)(RentalDetail)

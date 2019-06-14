@@ -35,7 +35,7 @@ class BlogPostForm extends Component {
                     // label='Password'
                     component={CustomQill}
                 />
-                <button className="btn btn-info f-right">Xem trước</button>
+                <button className="btn btn-info f-right">Đăng bài</button>
             </form>
         );
     }

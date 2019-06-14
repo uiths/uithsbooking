@@ -11,8 +11,6 @@ import {
   FETCH_RENTALS_SUCCESS,
   LOGIN_SUCCESS,
   LOGOUT,
-  SEND_MAIL_SUCCESS,
-  SEND_MAIL_FAILURE,
   FETCH_USER_BY_ID_SUCCESS,
   FETCH_USER_BOOKINGS_SUCCESS,
   CREATE_BOOKING_SUCCESS,
@@ -77,7 +75,8 @@ export const fetchRentalById = (rentalId) => {
       .then(rental => {
         dispatch(hideLoading())
         dispatch(fetchRentalByIdSuccess(rental))
-      } );}
+      });
+  }
 }
 export const resetRentalsState = () => {
   return {
@@ -93,6 +92,12 @@ export const resetRentalState = () => {
 export const sortBooking = (data) => {
   return {
     type: SORT_BOOKING,
+    data
+  }
+}
+const createBookingSuccess = (data) => {
+  return {
+    type: CREATE_BOOKING_SUCCESS,
     data
   }
 }
@@ -132,20 +137,17 @@ export const fetchUserBookings = () => {
       })
   }
 }
-const deleteBookingSuccess = (data) => {
-  return {
-    type: DELETE_BOOKING_SUCCESS,
-    data
-  }
-}
+
 export const deleteBooking = (bookingId, ownProps) => {
   return dispatch => {
     dispatch(showLoading())
     axiosInstance.delete(`bookings/${bookingId}`)
-      .then(res => { 
-        dispatch(hideLoading())
+      .then(res => {
         toast.success('Đã xóa thành công')
-        ownProps.history.push('/') 
+        dispatch(createBookingSuccess(res.data))
+        dispatch(hideLoading())
+        ownProps.history.push('/history')
+        console.log(res.data)
       })
       .catch(({ response }) => {
         dispatch(hideLoading())
@@ -169,14 +171,15 @@ const deleteRentalSuccess = (data) => {
     data
   }
 }
-export const deleteRental = (rentalId) => {
+export const deleteRental = (rentalId, ownProps) => {
   return dispatch => {
     dispatch(showLoading());
     return axiosInstance.delete(`/rentals/${rentalId}`)
       .then(res => {
         dispatch(hideLoading())
-        toast.success("Xóa thành công")
-        dispatch(deleteRentalSuccess(res.data))
+        toast.success("Xóa thành công");
+        ownProps.history.push('/rental/manage')
+        // dispatch(deleteRentalSuccess(res.data))
       })
       .catch(({ response }) => {
         toast.error(response.data.detail)
@@ -270,12 +273,7 @@ export const resetUserState = () => {
   }
 }
 
-const createBookingSuccess = (data) => {
-  return {
-    type: CREATE_BOOKING_SUCCESS,
-    data
-  }
-}
+
 const fetchBookingByIdSuccess = (data) => {
   return {
     type: FETCH_BOOKING_BY_ID_SUCCESS,
@@ -301,15 +299,16 @@ export const resetBookingState = () => {
     type: RESET_BOOKING_STATE
   }
 }
-export const createBooking = (booking) => {
+export const createBooking = (booking, ownProps) => {
   return (dispatch) => {
     dispatch(resetBookingState())
     dispatch(showLoading())
     return axiosInstance.post('/bookings/book', booking)
-      .then(res => {
+      .then((res) => {
         toast.success('Đặt phòng thành công')
-        dispatch(hideLoading())
         dispatch(createBookingSuccess(res.data))
+        dispatch(hideLoading())
+        ownProps.history.push('/history')
       })
       .catch(({ response }) => {
         dispatch(hideLoading());

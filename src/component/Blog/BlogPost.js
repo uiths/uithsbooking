@@ -4,7 +4,6 @@ import "react-quill/dist/quill.snow.css";
 import BlogPostForm from './BlogPostForm';
 import {createBlog} from './actions'
 import { connect} from 'react-redux'
-
 class Editor extends Component {
 	blogPost = (data) => {
 		this.props.createBlog(data)
