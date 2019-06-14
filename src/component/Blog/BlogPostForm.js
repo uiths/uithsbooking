@@ -10,26 +10,32 @@ class BlogPostForm extends Component {
         const { handleSubmit, pristine, submitting, submitCb, valid } = this.props
         return (
             <form onSubmit={handleSubmit(submitCb)}>
+                <div className="col-sm-8 blog-post-mg-special" style={{paddingLeft:0}}>
                 <Field
                     name="title"
                     type="text"
-                    label='Tên bài viết'
-                    className="custom-input"
+                    label='Tên bài viết:'
+                    className=" custom-input "
                     placeholder="Tên tiêu đề"
                     component={CustomInput}
                 />
+                </div>
+                <div className="col-sm-offset-1 blog-post-input-img col-sm-3 " style={{paddingLeft:0}}>
+                    <span><b> Ảnh đại diện bài viết: </b></span>
                 <Field
-                    className="photo-selector"
+                    className="photo-selector "
                     name="image"
                     component={PhotoSelector}
                 />
+                </div>
+                <span><b>Nội dung bài viết: </b></span>
                 <Field
                     name="content"
                     type="text"
                     // label='Password'
                     component={CustomQill}
                 />
-                <button>Xem trước</button>
+                <button className="btn btn-info f-right">Xem trước</button>
             </form>
         );
     }

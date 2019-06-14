@@ -14,3 +14,20 @@ input[type=number]::-webkit-outer-spin-button {
     height: inherit;
     margin-top: 0px !important;
 }
+.rental-create-form-img{
+  @media screen and (max-width: 1199px) {
+    margin-top: 90px;
+  }
+
+  .photo-selector-1{
+    @media screen and (max-width: 1199px) {
+      width: 100% !important;
+    }
+  }
+}
+.create-rent-br{
+  @media screen and (max-width: 1199px) {
+    display: none;
+  }
+}
+

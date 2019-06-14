@@ -6,6 +6,8 @@ import ProfilePhoto from "component/Form/ProfilePhoto"
 import { CustomInput } from 'component/Form/CustomInput'
 import CustomSelect from 'component/Form/CustomSelect'
 import CustomTextArea from 'component/Form/CustomTextArea'
+import './style.scss'
+
 class RentalCreateForm extends Component {
     render() {
         const { handleSubmit, pristine, submitting, submitCb, valid, errors, options, user } = this.props
@@ -55,7 +57,6 @@ class RentalCreateForm extends Component {
                                     </div>
                                     <div className="col-lg-4">
                                         <div className="field-container">
-
                                             <Field
                                                 name="people"
                                                 type="number"
@@ -169,7 +170,7 @@ class RentalCreateForm extends Component {
                                             component={Checkbox}
                                         />
                                     </div>
-                                    <br />
+                                    <br className='create-rent-br'/>
                                     <div className="col-lg-4">
                                         <Field
                                             name="isElevator"
@@ -202,7 +203,7 @@ class RentalCreateForm extends Component {
 
                             </div>
                         </div>
-                        <div className="row">
+                        <div className="row rental-create-form-img">
                             <div className="col-lg-6 col-md-6 col-sm-6 col-xs-12">
                                 <Field
                                     name='image'

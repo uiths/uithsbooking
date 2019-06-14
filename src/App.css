@@ -20,21 +20,6 @@ body {
   word-spacing: 1px !important;
   background: #FFFFFF; }
 
-h2 {
-  color: #0eb493;
-  letter-spacing: 2px;
-  font-size: 36px !important;
-  margin-top: 20px;
-  font-weight: bold;
-  font-family: 'Roboto' , sans-serif; }
-  @media screen and (max-width: 367px) {
-    h2 {
-      margin-top: 50px; } }
-  @media screen and (min-width: 1600px) {
-    h2 {
-      font-size: 28px !important;
-      margin-top: 100px; } }
-
 .f-left {
   float: left; }
 
