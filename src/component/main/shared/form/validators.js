@@ -17,7 +17,7 @@ export const validate = (values) => {
   if (values.username && values.username.length < 6)
     errors.username = 'Tên người dùng phải có tối thiểu 6 ký tự'
   if (values.username && values.username.length > 15)
-    errors.password = 'Tên người dùng chỉ chứa tối đa 15 ký tự'
+    errors.username = 'Tên người dùng chỉ chứa tối đa 15 ký tự'
   if (!values.passwordConfirmation)
     errors.passwordConfirmation = 'Hãy nhập lại mật khẩu'
   if (values.passwordConfirmation && values.passwordConfirmation.length < 6)
