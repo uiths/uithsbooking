@@ -74,8 +74,8 @@ class BookingDetail extends Component {
 		// Document on Paypal's currency code: https://developer.paypal.com/docs/classic/api/currency_codes/
 
 		const client = {
-			sandbox: 'AejbPR5WPbaNy-8nOCslLZEn6dY8VtGeH1LxFIGZT8e-hihHe4hmEzmAyOYQifAC_hEp7AeNvUIIYqMs',
-			production: 'Aa05uaG4gJWB23ezy_b3bqTXVs-01Ao2QKBgYI5NzbUfKRDIrxOA8n3JmQTWp__K_sqIG7qpb5Lfv6V5',
+			sandbox: process.env.REACT_APP_PAYPAL_CLIENT_ID_SANDBOX,
+			production: process.env.REACT_APP_PAYPAL_CLIENT_ID_PRODUCTION,
 		}
 		return (
 			<div id="rent">
