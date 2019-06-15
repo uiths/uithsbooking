@@ -77,6 +77,7 @@ class RentalDetail extends Component {
     }
   }
   render() {
+    const commentList = this.props.commentList
     const bookings = (this.props.rental && this.props.rental.bookings) || []
     let filterDates = []
     bookings.map((i) => {
@@ -174,7 +175,7 @@ class RentalDetail extends Component {
                 </div>
               </div>
             }
-            <CommentDisplay rentalId={this.props.match.params.id} />
+            <CommentDisplay commentList={commentList} rentalId={this.props.match.params.id} />
           </div>
         </div>
       </div>
@@ -189,7 +190,8 @@ function mapStateToProps(state) {
     rental: state.rental.data,
     rentals: state.rentals.data,
     errors: state.rental.errors,
-    auth: state.auth
+    auth: state.auth,
+    commentList: state.comment.commentList,
   }
 }
 const mapDispatchToProps = (dispatch, ownProps) => {

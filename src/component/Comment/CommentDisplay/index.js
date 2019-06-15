@@ -28,6 +28,7 @@ class CommentDisplay extends Component {
     render() {
         const currentUserId = (this.props.user.data && this.props.user.data._id) || ''
         const commentList = this.props.commentList;
+        console.log(commentList)
         return (
             <div id="comment-display" >
                 <ToastContainer />
@@ -71,17 +72,16 @@ class CommentDisplay extends Component {
 }
 const mapStateToProps = state => {
     return {
-        commentList: state.comment.commentList,
         page: state.comment.page,
         hasMore: state.comment.hasMore,
         user: state.users
     };
 };
 
-const mapDispatchToProps = (dispatch) => ({
+const mapDispatchToProps = (dispatch, ownProps) => ({
     getComment: (page, hasMore, rentalId) => dispatch(getComment(page, hasMore, rentalId)),
     removeComment: () => dispatch(removeComment()),
-    removeOneComment: (id) => dispatch(removeOneComment(id))
+    removeOneComment: (id) => dispatch(removeOneComment(id, ownProps.commentList))
 })
 
 export default connect(mapStateToProps, mapDispatchToProps)(CommentDisplay);

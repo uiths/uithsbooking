@@ -52,18 +52,19 @@ export const getComment = (page, hasMore, rentalId) => {
         }
     }
 }
-const removeOneCommentSuccess = (id) => {
+const removeOneCommentSuccess = (id, data) => {
     return {
         type: REMOVE_COMMENT_SUCCESS,
+        data,
         id
     }
 }
-export const removeOneComment = (cmtId) => {
+export const removeOneComment = (cmtId, commentList) => {
     return dispatch => {
         axiosInstance.delete(`/comments/${cmtId}`)
         .then(res => {
             toast.success(res.data.detail)
-            dispatch(removeOneCommentSuccess(cmtId))
+            dispatch(removeOneCommentSuccess(cmtId,commentList))
         })
         .catch(({response}) =>{
             console.log(response)

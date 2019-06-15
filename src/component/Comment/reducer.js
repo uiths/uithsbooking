@@ -26,11 +26,11 @@ export function commentReducer(state = initState, action) {
 		case REMOVE_COMMENT:
 			return initState;
 		case REMOVE_COMMENT_SUCCESS:
-			const listTemp = state.commentList;
-			_.remove(listTemp, (cmt)=> {
+
+			_.remove(action.data, (cmt) => {
 				return cmt._id === action.id;
 			});
-			return { ...state, commentList: listTemp}
+			return { ...state, commentList: [].concat(action.data) }
 		default:
 			return state;
 	}
