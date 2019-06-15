@@ -21,7 +21,7 @@ const ForgotForm = props => {
 				<Field
 					name="newPasswordConfirmation"
 					type="password"
-					label="Lại Mật Khẩu Mới"
+					label="Nhập Lại Mật Khẩu Mới"
 					className='field__input a-field__input'
 					id='newPasswordConfirmation'
 					component={BwmInput}

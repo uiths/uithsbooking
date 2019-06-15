@@ -47,7 +47,7 @@ class Search extends Component {
     render() {
         return (
             <Fragment>
-                <div className="container">
+                <div style={{minHeight:"400px"}} className="container">
                     <h3 className="text-left title_h3 type1 animated fadeInLeft">Kết quả tìm kiếm</h3>
                     <div id="sub_home" className="text-center ">
                         <div className="container mg-top-20">

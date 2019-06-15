@@ -32,9 +32,9 @@ export const validate = (values) => {
     errors.newPassword = 'Mật khẩu mới chỉ có tối đa 15 ký tự'
   if (!values.newPasswordConfirmation)
     errors.newPasswordConfirmation = 'Hãy nhập lại mật khẩu mới'
-  if (values.newPasswordConfirmation && values.newPasswordConfirmation < 6)
+  if (values.newPasswordConfirmation && values.newPasswordConfirmation.length < 6)
     errors.newPasswordConfirmation = 'Mật khẩu mới phải có tối thiểu 6 ký tự'
-  if (values.newPasswordConfirmation && values.newPasswordConfirmation > 15)
+  if (values.newPasswordConfirmation && values.newPasswordConfirmation.length > 15)
     errors.newPasswordConfirmation = 'Mật khẩu mới chỉ có tối đa 15 ký tự'
   if (values.password && values.passwordConfirmation && values.passwordConfirmation != values.password)
     errors.passwordConfirmation = 'Mật khẩu xác nhận không trùng khớp'
