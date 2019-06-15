@@ -2,7 +2,7 @@ import React, { Component, Fragment } from 'react';
 import { connect } from 'react-redux';
 import RentalImages from './RentalImages';
 import { RentalAssets } from './RentalAssets';
-import { RentalInfo } from './RentalDetailInfo'
+import _ from 'lodash'
 import * as actions from 'actions';
 import RentalDateForm from './RentalDateForm'
 import { Link, Redirect } from 'react-router-dom'
@@ -19,7 +19,7 @@ class RentalDetail extends Component {
   componentDidMount() {
     // Dispatch action
     window.scrollTo(0, 0);
-    if (authService.isAuthenticated() && !this.props.booking.data.length > 0)
+    if (authService.isAuthenticated() && _.isEmpty(this.props.booking.data))
       this.props.fetchUserBookings();
     const rentalId = this.props.match.params.id;
     this.props.fetchRentalById(rentalId);
@@ -56,12 +56,9 @@ class RentalDetail extends Component {
         id: this.props.match.params.id,
         price: this.props.rental.price
       }
-      this.setState({
-        booked: false,
-        errors: []
-      })
-      if (this.isValid(this.props.booking.data, booking))
+      if (this.isValid(this.props.booking.data, booking)) {
         this.props.createBooking(booking)
+      }
       else toast.error("Bạn không thể đặt thêm nhà trong khoảng thời gian này")
     } else this.setRedirect()
   }
