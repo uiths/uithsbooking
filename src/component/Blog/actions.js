@@ -5,7 +5,7 @@ import authService from 'services/auth-service';
 export const GET_BLOG_SUCCESS = 'GET_BLOG_SUCCESS';
 export const GET_BLOG_BY_ID_SUCCESS = 'GET_BLOG_BY_ID_SUCCESS';
 
-const getBlogSuccess = (data)=> {
+const getBlogSuccess = (data) => {
     return {
         type: GET_BLOG_SUCCESS,
         data
@@ -19,37 +19,45 @@ const getBlogByIdSuccess = (data) => {
 }
 const axiosInstance = axiosService.getInstance();
 
-export const createBlog = (data,ownProps) => {
+export const createBlog = (data, ownProps) => {
     return dispatch => {
+        dispatch(showLoading())
         axiosInstance.post('/blog/post', data)
-        .then(res => {
-            toast.success(res.data.detail)
-            ownProps.history.push('/blog')
-        })
-        .catch(({response}) => console.log(response))
+            .then(async res => {
+                dispatch(hideLoading())
+                toast.success(res.data.detail);
+                ownProps.history.push('/blog')
+            })
+            .catch(({ response }) => {
+                dispatch(hideLoading())
+                console.log(response)
+            })
     }
 }
 
 export const getBlog = () => {
     return dispatch => {
         axiosInstance.get('/blog/get')
-        .then(res => {
-            dispatch(getBlogSuccess(res.data))    
-        })
-        .catch(({response}) => {
-            console.log(response)
-        })
+            .then(res => {
+                dispatch(getBlogSuccess(res.data))
+            })
+            .catch(({ response }) => {
+                console.log(response)
+            })
     }
 }
 
 export const getBlogById = (blogId) => {
     return dispatch => {
-        axiosInstance.post('/blog/getBlogById', {blogId: blogId})
-        .then(res => {
-            dispatch(getBlogByIdSuccess(res.data))
-        })
-        .catch(({response})=>{
-            console.log(response)
-        })
+        dispatch(showLoading())
+        axiosInstance.post('/blog/getBlogById', { blogId: blogId })
+            .then(res => {
+                dispatch(hideLoading())
+                dispatch(getBlogByIdSuccess(res.data))
+            })
+            .catch(({ response }) => {
+                dispatch(hideLoading())
+                console.log(response)
+            })
     }
 }

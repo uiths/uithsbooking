@@ -7,6 +7,8 @@ import PaginationMobile from './PaginationMobile'
 import { sortBy, resetBookState } from './actions'
 import "./style.scss"
 import _ from 'lodash'
+import { ToastContainer } from 'react-toastify'
+
 class List extends Component {
     constructor(props) {
         super(props);
@@ -30,6 +32,7 @@ class List extends Component {
         const bookmarkId = this.props.users && _.map(this.props.users.bookmark, '_id')
         return (
             <div className="container list-rentals-container">
+                <ToastContainer/>
                 <h3 className="text-left title_h3 type1 animated fadeInLeft mg-top-20">Đặt nhà</h3>
                 <select style={{width:'110px'}} defaultValue="createdAt" onChange={this.sortBy} className="list-sort-selector">
                     <option value="createdAt">Mới nhất</option>

@@ -25,7 +25,7 @@ import BlogDetail from 'component/Blog/BlogDetail'
 import RentalManage from 'component/Rental/RentalManage'
 import Bookmark from 'component/Bookmark'
 import CustomerBookings from 'component/CustomerBookings'
-import { ToastContainer } from 'react-toastify'
+import { ToastContainer } from 'react-toastify';
 class Routerr extends Component {
     render() {
         return (
@@ -56,9 +56,8 @@ class Routerr extends Component {
                     <ProtectedRoute path='/customer_booking' component={CustomerBookings} />
                     <ProtectedRoute path="/bookmark" component={Bookmark} />
                     <Route component={Home} />
-
                 </Switch>
-                <ToastContainer />
+                <ToastContainer/>
             </div>
         );
     }

@@ -7,6 +7,7 @@ import { Link } from "react-router-dom";
 import _ from "lodash";
 import Pagination from "../BookingHome/Pagination";
 import PaginationMobile from "../BookingHome/PaginationMobile";
+import { ToastContainer } from 'react-toastify'
 
 class Blog extends Component {
 	constructor(props) {
@@ -27,6 +28,7 @@ class Blog extends Component {
 	render() {
 		return (
 			<div id="blog-container">
+				<ToastContainer/>
 				<div className="container list-rentals-container">
 					<h3 className="text-left title_h3 type1 animated fadeInLeft mg-top-20">Blog chia sẻ</h3>
 

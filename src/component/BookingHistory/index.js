@@ -6,6 +6,8 @@ import BookingCell from './BookingCell'
 import _ from 'lodash'
 import {sortBy} from './actions'
 import './style.scss'
+import { ToastContainer } from 'react-toastify';
+
 class BookingHistory extends Component {
     componentDidMount() {
         window.scrollTo(0,0)
@@ -18,6 +20,7 @@ class BookingHistory extends Component {
     render() {
         return (
             <div className="user-booking-history" style={{ backgroundColor: "#f5f5f5" }}>
+                <ToastContainer/>
                 <div className="booking-history-container">
                     <div className="booking-history-title">
                         Lịch sử thuê phòng

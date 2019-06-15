@@ -27,7 +27,7 @@ class Captcha extends Component {
                     ref={(el) => { this.captchaDemo = el; }}
                     size="normal"
                     render="explicit"
-                    sitekey="6LesUKQUAAAAABp7KjBQ99GmjvNcKCyijdhcN5jC"
+                    sitekey={process.env.REACT_APP_SITEKEY}
                     onloadCallback={this.onLoadRecaptcha}
                     verifyCallback={this.verifyCallback}
                     expiredCallback={this.expiredCallback}

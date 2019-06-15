@@ -1,4 +1,5 @@
 import React from 'react';
+import _ from 'lodash';
 function renderTv(isTv) {
   if (isTv)
     return (<React.Fragment><div className="block"><i className="fa fa-tv"> TV</i></div></React.Fragment>);
@@ -24,16 +25,16 @@ function renderFridge(isFridge) {
     return (<React.Fragment><div className="block"><i className="fa fa-cube"> Tủ lạnh</i></div></React.Fragment>);
 }
 export function RentalAssets(props) {
-
+  if(!_.isEmpty(props.rental)){
   return (
     <div>
-        {renderTv(props.rental.isTv)}
-        {renderWifi(props.rental.isWifi)}
-        {renderConditioner(props.rental.isConditioner)}
-        {renderWashing(props.rental.isWashing)}
-        {renderFridge(props.rental.isFridge)}
-        {renderElevator(props.rental.isElevator)}
+      {renderTv(props.rental.isTv)}
+      {renderWifi(props.rental.isWifi)}
+      {renderConditioner(props.rental.isConditioner)}
+      {renderWashing(props.rental.isWashing)}
+      {renderFridge(props.rental.isFridge)}
+      {renderElevator(props.rental.isElevator)}
     </div>
-
-  )
+  )}
+  else return <div></div>
 }

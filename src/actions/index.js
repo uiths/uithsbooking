@@ -148,7 +148,6 @@ export const deleteBooking = (bookingId, ownProps) => {
         dispatch(createBookingSuccess(res.data))
         dispatch(hideLoading())
         ownProps.history.push('/history')
-        console.log(res.data)
       })
       .catch(({ response }) => {
         dispatch(hideLoading())
@@ -302,7 +301,7 @@ export const resetBookingState = () => {
 }
 export const createBooking = (booking, ownProps) => {
   return (dispatch) => {
-    dispatch(resetBookingState())
+    // dispatch(resetBookingState())
     dispatch(showLoading())
     return axiosInstance.post('/bookings/book', booking)
       .then((res) => {

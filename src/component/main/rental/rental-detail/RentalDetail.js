@@ -97,7 +97,7 @@ class RentalDetail extends Component {
         <RentalImages image={image} />
         <br />
         <div className="container">
-          {/* <ToastContainer /> */}
+          <ToastContainer />
           <div className="col-sm-8">
             <div className="infobox slide-in-left row" style={{ marginBottom: "20px", marginLeft: "0", marginRight: "0" }}>
               <div className="col-lg-8">
@@ -127,8 +127,8 @@ class RentalDetail extends Component {
                 <Comment rentalId={rental._id && rental._id} />}
             </div>
             <div className="infobox slide-in-left" style={{ backgroundImage: "linear-gradient( 90.2deg, rgba(75,68,229,1) 2%, rgba(97,212,202,1) 98.3% )" }}>
-              <h3 id="null" style={{ fontWeight: "bold", color: "white", fontSize: "25px" }}>{this.props.rental.title}</h3>
-              <h5 style={{ color: "white" }}>{this.props.rental.address}</h5>
+              <h3 id="null" style={{ fontWeight: "bold", color: "white", fontSize: "25px" }}>{rental.title && rental.title}</h3>
+              <h5 style={{ color: "white" }}>{rental.address && rental.address}</h5>
 
             </div>
             <div className="infobox slide-in-left" style={{ borderRadius: "0", marginBottom: "50px" }}>
@@ -138,20 +138,20 @@ class RentalDetail extends Component {
                 </div>
                 <div>
                   <br />
-                  <p style={{ whiteSpace: "pre-line", whiteSpace: "pre-wrap" }}>{this.props.rental.description}</p>
+                  <p style={{ whiteSpace: "pre-line", whiteSpace: "pre-wrap" }}>{rental.description && rental.description}</p>
                 </div>
                 <div style={{ width: "100%", height: "20px", borderBottom: "2px solid", borderImage: "conic-gradient(rgba(97,212,202,1) 2%, rgba(75,68,229,1) 98.3%) 1", marginTop: "30px", marginBottom: "30px" }}>
                   <span style={{ fontSize: "25px", backgroundColor: "white", padding: "0 10px", marginLeft: "20px" }}><i className="fa fa-info-circle" style={{ marginLeft: "10px", marginRight: "20px" }} />Thông tin</span>
                 </div>
                 <div>
                   <div className="block">
-                    <i className="fa fa-bed"> {this.props.rental.bedrooms} giường</i> <br />
+                    <i className="fa fa-bed"> {rental.bedrooms && rental.bedrooms} giường</i> <br />
                   </div>
                   <div className="block">
-                    <i className="fa fa-male"> Tối đa {this.props.rental.people} người ở</i> <br />
+                    <i className="fa fa-male"> Tối đa {rental.people && rental.people} người ở</i> <br />
                   </div>
                   <div className="block">
-                    <i className="fa fa-bath"> {this.props.rental.bathrooms} phòng tắm</i> <br />
+                    <i className="fa fa-bath"> {rental.bathrooms && rental.bathrooms} phòng tắm</i> <br />
                   </div>
                 </div>
                 <div style={{ width: "100%", height: "20px", borderBottom: "2px solid", borderImage: "conic-gradient(rgba(97,212,202,1) 2%, rgba(75,68,229,1) 98.3%) 1", marginTop: "30px", marginBottom: "20px" }}>
@@ -169,7 +169,7 @@ class RentalDetail extends Component {
                   <h3 style={{ color: "white" }}>Giá: <b>{rental.price && rental.price.toLocaleString()}</b> đ/ngày</h3>
                 </div>
                 <div className="infobox slide-in-right">
-                  <RentalDateForm filterDates={filterDates} price={this.props.rental.price} submitCb={this.book} people={this.props.rental.people} errors={errors} />
+                  <RentalDateForm filterDates={filterDates} price={rental.price && rental.price} submitCb={this.book} people={rental.people && rental.people} errors={errors} />
                   <br />
                 </div>
               </div>
