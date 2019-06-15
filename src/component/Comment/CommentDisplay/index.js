@@ -28,10 +28,8 @@ class CommentDisplay extends Component {
     render() {
         const currentUserId = (this.props.user.data && this.props.user.data._id) || ''
         const commentList = this.props.commentList;
-        console.log(commentList)
         return (
             <div id="comment-display" >
-                <ToastContainer />
                 <div className="comment-header">
                     Đánh giá của khách hàng
                     </div>

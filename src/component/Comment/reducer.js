@@ -26,7 +26,6 @@ export function commentReducer(state = initState, action) {
 		case REMOVE_COMMENT:
 			return initState;
 		case REMOVE_COMMENT_SUCCESS:
-
 			_.remove(action.data, (cmt) => {
 				return cmt._id === action.id;
 			});
