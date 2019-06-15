@@ -19,7 +19,7 @@ class RentalDetail extends Component {
   componentDidMount() {
     // Dispatch action
     window.scrollTo(0, 0);
-    if (authService.isAuthenticated() && _.isEmpty(this.props.booking.data))
+    if (authService.isAuthenticated())
       this.props.fetchUserBookings();
     const rentalId = this.props.match.params.id;
     this.props.fetchRentalById(rentalId);
@@ -47,7 +47,7 @@ class RentalDetail extends Component {
   handleShow = () => {
     this.setState({ show: true });
   }
-  book = (bookData) => {
+  book = async (bookData) => {
     if (authService.isAuthenticated()) {
       const booking = {
         startAt: bookData.startAt,
@@ -56,17 +56,23 @@ class RentalDetail extends Component {
         id: this.props.match.params.id,
         price: this.props.rental.price
       }
-      if (this.isValid(this.props.booking.data, booking)) {
+      const isValid = await this.isValid(this.props.booking.data, booking)
+      if (isValid) {
         this.props.createBooking(booking)
       }
       else toast.error("Bạn không thể đặt thêm nhà trong khoảng thời gian này")
     } else this.setRedirect()
   }
   isValid(data, booking) {
-    for (let i = 0; i < data.length; i++)
-      if ((+moment(booking.startAt) <= +moment(data[i].endAt) && +moment(booking.startAt) >= +moment(data[i].startAt)) || (+moment(booking.endAt) <= +moment(data[i].endAt) && +moment(booking.endAt) >= +moment(data[i].startAt)))
-        return false;
-    return true
+    let flag = true;
+    const bStartAt = +moment(booking.startAt,'DD/MM/YYYY')
+    const bEndAt = +moment(booking.endAt,'DD/MM/YYYY') 
+    for (let i = 0; i < data.length; i++) {
+      if ((bStartAt <= +moment(data[i].endAt) && bStartAt >= +moment(data[i].startAt)) || (bEndAt <= +moment(data[i].endAt) && bEndAt >= +moment(data[i].startAt))) {
+        flag = false;
+      }
+    }
+    return flag
   }
   renderRedirect = () => {
     if (this.state.redirect) {
@@ -113,10 +119,10 @@ class RentalDetail extends Component {
                     <Modal.Footer>
                       <Button className="b b1" onClick={() => { this.handleClose(); this.deleteRental(this.props.rental._id) }}>
                         Xóa
-                            </Button>
+                      </Button>
                       <Button className="b b1" onClick={this.handleClose}>
                         Đóng
-                            </Button>
+                      </Button>
                     </Modal.Footer>
                   </Modal>
                 </div>

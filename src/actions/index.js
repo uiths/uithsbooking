@@ -311,6 +311,7 @@ export const createBooking = (booking, ownProps) => {
         ownProps.history.push('/history')
       })
       .catch(({ response }) => {
+        console.log(response)
         dispatch(hideLoading());
         toast.error(response.data.detail)
       })

@@ -114,8 +114,10 @@ export function handleString(str) {
   return str;
 }
 export function subtractTwoDates(startAt, endAt) {
-  const date1 = new Date(startAt);
-  const date2 = new Date(endAt);
+  const startAtt = moment(startAt,'DD/MM/YYYY').format('MM/DD/YYYY');
+  const endAtt = moment(endAt, 'DD/MM/YYYY').format('MM/DD/YYYY');
+  const date1 = new Date(startAtt);
+  const date2 = new Date(endAtt);
   const diffTime = (date2.getTime() - date1.getTime());
   const diffDays = Math.ceil(diffTime / (1000 * 60 * 60 * 24));
   return diffDays;
