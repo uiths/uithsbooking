@@ -1,12 +1,16 @@
 import React, { Component } from 'react';
-import { getBlogById } from './actions'
+import { getBlogById, resetBlogDetail } from './actions'
 import { connect } from 'react-redux'
 import moment from 'moment'
 import BlogSlideBar from './BlogDetail/BlogSlideBar'
 import './style.scss'
 class BlogDetail extends Component {
   componentDidMount() {
+    window.scrollTo(0,0)
     this.props.getBlogById(this.props.match.params.id)
+  }
+  componentWillUnmount(){
+    this.props.resetBlogDetail()
   }
   render() {
     const blog = this.props.blog || {}
@@ -44,7 +48,8 @@ const mapStateToProps = (state) => {
 }
 const mapDispatchToProps = (dispatch) => {
   return {
-    getBlogById: (id) => dispatch(getBlogById(id))
+    getBlogById: (id) => dispatch(getBlogById(id)),
+    resetBlogDetail: () => dispatch(resetBlogDetail())
   }
 }
 export default connect(mapStateToProps, mapDispatchToProps)(BlogDetail);

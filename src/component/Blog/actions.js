@@ -4,7 +4,7 @@ import { toast } from "react-toastify";
 import authService from 'services/auth-service';
 export const GET_BLOG_SUCCESS = 'GET_BLOG_SUCCESS';
 export const GET_BLOG_BY_ID_SUCCESS = 'GET_BLOG_BY_ID_SUCCESS';
-
+export const RESET_BLOG_DETAIL='RESET_BLOG_DETAIL'
 const getBlogSuccess = (data) => {
     return {
         type: GET_BLOG_SUCCESS,
@@ -19,6 +19,11 @@ const getBlogByIdSuccess = (data) => {
 }
 const axiosInstance = axiosService.getInstance();
 
+export const resetBlogDetail = () => {
+    return {
+        type: RESET_BLOG_DETAIL
+    }
+}
 export const createBlog = (data, ownProps) => {
     return dispatch => {
         dispatch(showLoading())
