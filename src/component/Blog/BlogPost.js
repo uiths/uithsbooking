@@ -5,7 +5,7 @@ import BlogPostForm from './BlogPostForm';
 import {createBlog} from './actions'
 import { connect} from 'react-redux'
 import { ToastContainer } from 'react-toastify'
-
+import './style.scss'
 class Editor extends Component {
 	blogPost = (data) => {
 		this.props.createBlog(data)

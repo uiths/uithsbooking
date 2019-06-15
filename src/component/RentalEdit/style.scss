@@ -22,8 +22,8 @@ input[type=number]::-webkit-outer-spin-button {
 }
 
 .blog-post-mg-special{
-    @media screen and (min-width: 769px){
-        margin-top:40px;
+    @media only screen and (min-width: 769px){
+        // margin-top:40px;
     }
 }
 #create-rent{

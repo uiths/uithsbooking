@@ -95,8 +95,12 @@ class CustomQuill extends Component {
     'link', 'image', 'video'
   ]
   render() {
+    console.log(this.props)
+    const {error} = this.props.meta
     return (
       <div>
+        <span><b>Nội dung bài viết: </b></span>
+        <div className="error-quill-text"> {error}</div>
         <ReactQuill
           className="add-new-post__editor mb-1"
           modules={this.modules}

@@ -28,7 +28,8 @@ class BlogPostForm extends Component {
                     component={PhotoSelector}
                 />
                 </div>
-                <span><b>Nội dung bài viết: </b></span>
+                
+                <br/>
                 <Field
                     name="content"
                     type="text"
