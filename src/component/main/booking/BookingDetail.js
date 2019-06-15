@@ -9,7 +9,7 @@ import authService from 'services/auth-service';
 import { Modal, Button } from 'react-bootstrap'
 import { formatDate, isEmpty } from 'helpers/index'
 import PaypalExpressBtn from 'react-paypal-express-checkout';
-
+import './style.scss'
 
 class BookingDetail extends Component {
 	componentWillMount() {
@@ -28,10 +28,6 @@ class BookingDetail extends Component {
 			show: false
 		}
 	}
-
-	// deleteRental = (rentalId) => {
-	// 	this.props.dispatch(actions.deleteRental(rentalId))
-	// }
 	handleClose = () => {
 		this.setState({ show: false });
 	}
@@ -39,11 +35,6 @@ class BookingDetail extends Component {
 	handleShow = () => {
 		this.setState({ show: true });
 	}
-
-
-	// componentDidUpdate() {
-	// 	this.props.dispatch(actions.resetRentalState())
-	// }
 	delete = (bookingId) => {
 		this.props.dispatch(actions.deleteBooking(bookingId))
 	}
@@ -53,7 +44,7 @@ class BookingDetail extends Component {
 		const owner = this.props.booking.owner || {};
 		const rental = this.props.booking.rental || {};
 		const onSuccess = (payment) => {
-			console.log("The payment was succeeded!", payment);
+			console.log("The payment was succeeded!");
 			const data = {
 				toUser: owner._id,
 				booking: booking._id,
@@ -62,7 +53,7 @@ class BookingDetail extends Component {
 				paymentID: payment.paymentID,
 				paymentToken: payment.paymentToken,
 			}
-			this.props.dispatch(actions.createPayment(data))
+			this.props.createPayment(data)
 		}
 
 		const onCancel = (data) => {
@@ -149,7 +140,7 @@ class BookingDetail extends Component {
 									<h4 className="bookingdetail">Ngày kết thúc: {formatDate(booking.endAt, "DD/MM/YYYY")}</h4>
 									<h4 className="bookingdetail">Tổng giá: {booking.totalPrice && booking.totalPrice.toLocaleString()} đ</h4>
 									<h4 className="bookingdetail">Số khách: {booking.guests}</h4>
-									<h4 className="bookingdetail">Trạng thái: {booking.status}</h4>
+									<h4 className="bookingdetail">Trạng thái: {booking.status && (booking.status.toLowerCase() === 'pending' ? 'Chưa thanh toán' : 'Đã thanh toán')}</h4>
 									<hr />
 									{(booking.status && booking.status === "pending") &&
 										<Fragment>
@@ -198,7 +189,8 @@ function mapStateToProps(state) {
 const mapDispatchToProps = (dispatch, ownProps) => {
 	return {
 		deleteBooking: (id) => dispatch(actions.deleteBooking(id, ownProps)),
-		fetchBookingById: (id) => dispatch(actions.fetchBookingById(id))
+		fetchBookingById: (id) => dispatch(actions.fetchBookingById(id)),
+		createPayment: (data) => dispatch(actions.createPayment(data))
 	}
 }
 export default connect(mapStateToProps, mapDispatchToProps)(BookingDetail)

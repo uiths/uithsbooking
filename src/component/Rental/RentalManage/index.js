@@ -33,7 +33,7 @@ class RentalManage extends Component {
                         </select>
                         <span className="list-sort-span f-right span-near-sort-user">Lọc theo:</span>
                     </div>
-                    <div className="rental-history-content mg-top-20">
+                    <div id="rentalManageList" className="rental-history-content mg-top-20">
                         {
 
                             this.props.rentals.map(i =>

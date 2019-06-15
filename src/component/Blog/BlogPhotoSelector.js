@@ -59,7 +59,7 @@ class PhotoSelector extends Component {
             await axios
                 .post('	https://api.imgur.com/3/image', formData, {
                     headers: {
-                        Authorization: 'Client-ID ' + 'ccc9266052a1d7e'
+                        Authorization: 'Client-ID ' + process.env.REACT_APP_IMGUR_CLIENT_ID
                     }
                 })
                 .then(res => {

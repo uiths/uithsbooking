@@ -2,16 +2,6 @@ import React, { Component } from 'react';
 import StarRatingComponent from 'react-star-rating-component';
 
 class RentalCell extends Component {
-    renderBtn = (status) => {
-        switch (status) {
-            case 'pending':
-                return <button className="pending-status">Đang duyệt</button>
-            case 'approved':
-                return <button className="approved-status">Đã duyệt</button>
-            case 'forbid':
-                return <button className="forbid-status">Đã xóa</button>
-        }
-    }
     render() {
         const rental = this.props.rental || {}
         return (
@@ -31,7 +21,7 @@ class RentalCell extends Component {
                     {
                         rental.status === 'pending' && <button className="status-btn pending-status">Đang duyệt</button>}{
                         rental.status === 'approved' && <button className="status-btn approved-status">Đã duyệt</button>}{
-                        rental.status === 'forbid' && <button className="status-btn forbid-status">Đã xóa</button>
+                        rental.status === 'forbid' && <button className="status-btn forbid-status">Đã bị loại</button>
 
                     }
                 </div>

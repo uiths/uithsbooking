@@ -106,6 +106,7 @@ export const createPayment = (data) => {
     dispatch(showLoading());
     axiosInstance.post("/payments/create", data)
       .then(res => {
+        console.log(res.data)
         dispatch(hideLoading())
         toast.success("Thanh toán thành công")
         dispatch(fetchBookingByIdSuccess(res.data));

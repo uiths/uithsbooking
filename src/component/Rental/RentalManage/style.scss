@@ -3,7 +3,14 @@
     margin: 0 auto;
     max-width: 928px;
     padding-bottom: 40px;
-
+    max-height: 800px;
+    #rentalManageList::-webkit-scrollbar {
+        width: 3px;
+        background-color: #F5F5F5;
+    } 
+    #rentalManageList::-webkit-scrollbar-thumb {
+        background-color: #673AB7;
+    }
     .rental-history-title {
         font-size: 24px;
         font-weight: 700;
@@ -15,7 +22,9 @@
         border-radius: 8px;
         box-shadow: 0 6px 6px 0 rgba(0, 0, 0, 0.1);
         background-color: #ffffff;
+        overflow-y: scroll;
         height: fit-content;
+        max-height: 800px;
         a {
             text-decoration: none;
             color:#53525a;

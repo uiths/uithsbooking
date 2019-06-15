@@ -79,7 +79,8 @@
 }
 .paypalb
 {
-    margin-left: 25%;
+    display: flex;
+    justify-content: center;
 }
 @media screen and (max-width: 1000px) {
     .rbutton{
@@ -96,17 +97,7 @@
         padding-top: 5px;
         padding-bottom: 5px;
     }
-    .paypalb
-    {
-        margin-left: 10%;
-    }
 }
-@media screen and (max-width: 800px) {
-    .paypalb {
-        margin-left: 20%;
-    }
-}
-
 
 .block
 {
